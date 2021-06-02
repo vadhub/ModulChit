@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/gcdItem"
+        android:title="GCD(E)"
+        android:icon="@drawable/ic_baseline_architecture_24"
+    />
+
+    <item
+        android:id="@+id/nokItem"
+        android:title="NOK"
+        android:icon="@drawable/ic_baseline_attach_money_24"
+        />
+
+    <item
+        android:id="@+id/feItem"
+        android:title="FE"
+        android:icon="@drawable/ic_baseline_beach_access_24"
+        />
+
+    <item
+        android:id="@+id/modItem"
+        android:title="mod"
+        android:icon="@drawable/ic_baseline_child_care_24"
+        />
+
+</menu>
