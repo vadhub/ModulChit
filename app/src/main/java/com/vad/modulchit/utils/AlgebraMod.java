@@ -1,5 +1,6 @@
 package com.vad.modulchit.utils;
 
+import com.vad.modulchit.pojos.TableNumberFE;
 import com.vad.modulchit.pojos.TableNumberGCDe;
 import com.vad.modulchit.pojos.TableNumberNOK;
 
@@ -131,6 +132,52 @@ public class AlgebraMod {
     }
 
     public List<Integer> getClasterBinary(String binary){
+        char[] chars = binary.toCharArray();
+        List<Integer> tmp = new ArrayList<>();
 
+        int mult = 1;
+
+        for(int i  = binary.length()-1; i >=0; i--){
+            if(chars[i]=='1'){
+                tmp.add(mult);
+            }
+            mult*=2;
+        }
+
+        return tmp;
     }
+
+//    public List<Integer> feGraph(int degree, int baseNumber, int mod){
+//        List<Integer> ls = new ArrayList<>();
+//        return ls;
+//    }
+
+    public List<TableNumberFE> feGraph(int a, int m, int n){
+
+        List<TableNumberFE> tableNumberFES = new ArrayList<>();
+        TableNumberFE tableNumberFE;
+
+        int tempA = a;
+        int tempM = m;
+        int p = 1;
+        int tmpP = 1;
+        int r = 0;
+        while (true){
+            if(tempM==0){
+                break;
+            }
+            r = tempM%2;
+            if(r==1){
+                p = tmpP * tempA;
+            }
+            tableNumberFE = new TableNumberFE(tempA, tempM, n, p, r);
+            tableNumberFES.add(tableNumberFE);
+            tempM = tempM/2;
+            tempA = (tempA*tempA)%n;
+
+        }
+
+        return tableNumberFES;
+    }
+
 }
