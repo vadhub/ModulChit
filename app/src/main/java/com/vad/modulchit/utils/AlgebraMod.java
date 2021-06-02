@@ -168,7 +168,8 @@ public class AlgebraMod {
             }
             r = tempM%2;
             if(r==1){
-                p = tmpP * tempA;
+                p = (tmpP * tempA)%n;
+                tmpP = p;
             }
             tableNumberFE = new TableNumberFE(tempA, tempM, n, p, r);
             tableNumberFES.add(tableNumberFE);

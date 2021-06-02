@@ -40,7 +40,7 @@ public class FragmentFE extends Fragment {
 
         editTextA = (EditText) v.findViewById(R.id.editTextNumberAFe);
         editTextM = (EditText) v.findViewById(R.id.editTextNumberMFe);
-        editTextA = (EditText) v.findViewById(R.id.editTextNumberNFe);
+        editTextN = (EditText) v.findViewById(R.id.editTextNumberNFe);
 
         mRecyclerView = (RecyclerView) v.findViewById(R.id.mRecyclerFE);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
