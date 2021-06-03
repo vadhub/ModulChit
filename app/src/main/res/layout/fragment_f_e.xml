@@ -26,11 +26,11 @@
 
             <TextView
                 android:id="@+id/textView11"
+                style="@style/Theme.ModulChit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:text="a:"
-                android:textColor="@color/black"
                 android:textSize="20sp" />
 
             <EditText
@@ -39,8 +39,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:ems="5"
+                style="@style/Theme.ModulChit"
                 android:inputType="number"
-                android:textColor="@color/black"
                 android:textSize="20sp" />
 
         </LinearLayout>
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:text="m:"
-                android:textColor="@color/black"
+                style="@style/Theme.ModulChit"
                 android:textSize="20sp" />
 
             <EditText
@@ -67,7 +67,7 @@
                 android:layout_weight="0.5"
                 android:ems="5"
                 android:inputType="number"
-                android:textColor="@color/black"
+                style="@style/Theme.ModulChit"
                 android:textSize="20sp" />
         </LinearLayout>
 
@@ -83,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:text="n:"
-                android:textColor="@color/black"
+                style="@style/Theme.ModulChit"
                 android:textSize="20sp" />
 
             <EditText
@@ -93,7 +93,7 @@
                 android:layout_weight="0.5"
                 android:ems="5"
                 android:inputType="number"
-                android:textColor="@color/black"
+                style="@style/Theme.ModulChit"
                 android:textSize="20sp" />
         </LinearLayout>
 

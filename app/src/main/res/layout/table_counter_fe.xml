@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:text="a"
                 android:gravity="center"
-                android:textColor="#000000"
+                style="@style/Theme.ModulChit"
                 android:textSize="20sp" />
 
             <TextView
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:text="m"
                 android:gravity="center"
-                android:textColor="#000000"
+                style="@style/Theme.ModulChit"
                 android:textSize="20sp" />
 
             <TextView
@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:text="n"
                 android:gravity="center"
-                android:textColor="#000000"
+                style="@style/Theme.ModulChit"
                 android:textSize="20sp" />
 
             <TextView
@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:text="p"
                 android:gravity="center"
-                android:textColor="#000000"
+                style="@style/Theme.ModulChit"
                 android:textSize="20sp" />
 
             <TextView
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:text="r"
                 android:gravity="center"
-                android:textColor="#000000"
+                style="@style/Theme.ModulChit"
                 android:textSize="20sp" />
         </TableRow>
 

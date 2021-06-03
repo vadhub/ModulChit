@@ -15,7 +15,7 @@
         android:ems="5"
         android:hint="num1"
         android:inputType="number"
-        android:textColor="#000000"
+        style="@style/Theme.ModulChit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,7 +28,7 @@
         android:ems="5"
         android:hint="num2"
         android:inputType="number"
-        android:textColor="#000000"
+        style="@style/Theme.ModulChit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="mod"
-        android:textColor="#000000"
+        style="@style/Theme.ModulChit"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonMod"
         app:layout_constraintEnd_toStartOf="@+id/editTextNumberB"
@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="0"
-        android:textColor="#000000"
+        style="@style/Theme.ModulChit"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

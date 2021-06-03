@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="a"
-                android:textColor="#000000"
+                style="@style/Theme.ModulChit"
                 android:textSize="20sp" />
 
             <TextView
@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="b"
-                android:textColor="#000000"
+                style="@style/Theme.ModulChit"
                 android:textSize="20sp" />
 
             <TextView
@@ -46,7 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="q"
-                android:textColor="#000000"
+                style="@style/Theme.ModulChit"
                 android:textSize="20sp" />
 
             <TextView
@@ -54,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="r"
-                android:textColor="#000000"
+                style="@style/Theme.ModulChit"
                 android:textSize="20sp" />
 
             <TextView
@@ -62,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="x"
-                android:textColor="#000000"
+                style="@style/Theme.ModulChit"
                 android:textSize="20sp" />
 
             <TextView
@@ -70,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="y"
-                android:textColor="#000000"
+                style="@style/Theme.ModulChit"
                 android:textSize="20sp" />
         </TableRow>
     </TableLayout>
