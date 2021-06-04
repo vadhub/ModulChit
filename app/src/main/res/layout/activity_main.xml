@@ -55,6 +55,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1.8"
             android:gravity="center"
+            android:textSize="24sp"
+            style="@style/Theme.ModulChit"
             android:text="a:" />
 
         <EditText
@@ -62,8 +64,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1.2"
+            android:hint="number_1"
             style="@style/Theme.ModulChit"
             android:ems="5"
+            android:textSize="24sp"
             android:inputType="number" />
 
         <TextView
@@ -71,13 +75,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1.8"
+            android:textSize="24sp"
+            style="@style/Theme.ModulChit"
             android:gravity="center"
             android:text="b:" />
         <EditText
             android:id="@+id/editTextB"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:hint="number_1"
             android:layout_weight="1.2"
+            android:textSize="24sp"
             style="@style/Theme.ModulChit"
             android:ems="5"
             android:inputType="number" />

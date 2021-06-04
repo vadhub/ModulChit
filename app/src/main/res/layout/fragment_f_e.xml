@@ -39,6 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:ems="5"
+                android:hint="@string/base_number"
                 style="@style/Theme.ModulChit"
                 android:inputType="number"
                 android:textSize="20sp" />
@@ -66,6 +67,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:ems="5"
+                android:hint="@string/degree"
                 android:inputType="number"
                 style="@style/Theme.ModulChit"
                 android:textSize="20sp" />
@@ -83,6 +85,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:text="n:"
+                android:hint="module"
                 style="@style/Theme.ModulChit"
                 android:textSize="20sp" />
 
@@ -92,6 +95,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:ems="5"
+                android:hint="@string/module"
                 android:inputType="number"
                 style="@style/Theme.ModulChit"
                 android:textSize="20sp" />

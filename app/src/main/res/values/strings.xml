@@ -1,5 +1,11 @@
 <resources>
-    <string name="app_name">ModulChit</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name">Analysis of algorithms</string>
+    <string name="module">module</string>
+    <string name="degree">degree</string>
+    <string name="base_number">base_number</string>
+    <string name="num1">num1</string>
+    <string name="num2">num2</string>
+    <string name="mod">mod</string>
+    <string name="mod_number">mod_number</string>
+
 </resources>

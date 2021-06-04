@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.vad.modulchit.R;
 import com.vad.modulchit.adapters.AdapterFE;
@@ -53,14 +54,23 @@ public class FragmentFE extends Fragment {
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int a = Integer.parseInt(editTextA.getText().toString());
-                int m = Integer.parseInt(editTextM.getText().toString());
-                int n = Integer.parseInt(editTextN.getText().toString());
+                if(!editTextA.getText().toString().equals("")||!editTextM.getText().toString().equals("")||!editTextN.getText().toString().equals("")){
 
-                List<TableNumberFE> tableNumberFES = algebraMod.feGraph(a, m, n);
+                    int a = Integer.parseInt(editTextA.getText().toString());
+                    int m = Integer.parseInt(editTextM.getText().toString());
+                    int n = Integer.parseInt(editTextN.getText().toString());
+                    if(m!=0||n!=0){
+                        List<TableNumberFE> tableNumberFES = algebraMod.feGraph(a, m, n);
+                        adapterFE.setTableNumberFES(tableNumberFES);
+                        mRecyclerView.setAdapter(adapterFE);
+                    }else{
+                        Toast.makeText(getContext(), "Zero is invalid!", Toast.LENGTH_SHORT).show();
+                    }
 
-                adapterFE.setTableNumberFES(tableNumberFES);
-                mRecyclerView.setAdapter(adapterFE);
+
+                }
+
+                Toast.makeText(getContext(), "Enter the number!", Toast.LENGTH_SHORT).show();
             }
         });
 

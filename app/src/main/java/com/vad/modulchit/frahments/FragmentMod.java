@@ -36,9 +36,13 @@ public class FragmentMod extends Fragment {
         btnMod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int a = Integer.parseInt(editTextA.getText().toString());
-                int b = Integer.parseInt(editTextB.getText().toString());
-                textViewResult.setText(AlgebraMod.mod(a, b)+"");
+                if((!editTextA.getText().toString().equals("")&&!editTextB.getText().toString().equals(""))
+                    &&(!editTextA.getText().toString().equals("")||!editTextB.getText().toString().equals(""))
+                ){
+                    int a = Integer.parseInt(editTextA.getText().toString());
+                    int b = Integer.parseInt(editTextB.getText().toString());
+                    textViewResult.setText(AlgebraMod.mod(a, b)+"");
+                }
             }
         });
         return v;

@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.vad.modulchit.adapters.AdapterGCDe;
 import com.vad.modulchit.R;
@@ -62,11 +63,24 @@ public class FragmentGCDe extends Fragment {
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int a = Integer.parseInt(editTextA.getText().toString());
-                int b = Integer.parseInt(editTextB.getText().toString());
-                List<TableNumberGCDe> tempTableNumberGCDes = algebraMod.gcdGraph(a, b);
-                adapterGCDe.setTableNumbers(tempTableNumberGCDes);
-                mRecyclerView.setAdapter(adapterGCDe);
+
+                if((!editTextA.getText().toString().equals("")&&!editTextB.getText().toString().equals(""))
+                    &&(!editTextA.getText().toString().equals("")||!editTextB.getText().toString().equals(""))){
+
+                    int a = Integer.parseInt(editTextA.getText().toString());
+                    int b = Integer.parseInt(editTextB.getText().toString());
+
+                    if(a!=0||b!=0){
+                        List<TableNumberGCDe> tempTableNumberGCDes = algebraMod.gcdGraph(a, b);
+                        adapterGCDe.setTableNumbers(tempTableNumberGCDes);
+                        mRecyclerView.setAdapter(adapterGCDe);
+                    }else{
+                        Toast.makeText(getContext(), "Zero is invalid!", Toast.LENGTH_SHORT).show();
+                    }
+
+                }else{
+                    Toast.makeText(getContext(), "Enter the number!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
