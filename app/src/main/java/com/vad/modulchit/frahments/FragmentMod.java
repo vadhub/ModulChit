@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.vad.modulchit.R;
 import com.vad.modulchit.utils.AlgebraMod;
@@ -41,7 +42,18 @@ public class FragmentMod extends Fragment {
                 ){
                     int a = Integer.parseInt(editTextA.getText().toString());
                     int b = Integer.parseInt(editTextB.getText().toString());
-                    textViewResult.setText(AlgebraMod.mod(a, b)+"");
+
+                    if(a != 0 || b != 0) {
+                        if(a!=0 && b!=0){
+                            textViewResult.setText(AlgebraMod.mod(a, b)+"");
+                        }else{
+                            Toast.makeText(getContext(), "Zero is invalid!", Toast.LENGTH_SHORT).show();
+                        }
+                    }else{
+                        Toast.makeText(getContext(), "Zero is invalid!", Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+                    Toast.makeText(getContext(), "Enter the number!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

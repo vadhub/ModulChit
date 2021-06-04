@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.vad.modulchit.R;
 import com.vad.modulchit.adapters.AdapterNOK;
@@ -46,11 +47,19 @@ public class FragmentNOK extends Fragment {
         btnNok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int m = Integer.parseInt(editTextMod.getText().toString());
-                List<TableNumberNOK> numberNOKS = algebraMod.nokGraph(m);
-                textViewResult.setText(getResult(numberNOKS));
-                adapterNOK.setTableNumberNOKS(numberNOKS);
-                mRecyclerView.setAdapter(adapterNOK);
+                if(!editTextMod.getText().toString().equals("")){
+                    int m = Integer.parseInt(editTextMod.getText().toString());
+                    if(m!=0){
+                        List<TableNumberNOK> numberNOKS = algebraMod.nokGraph(m);
+                        textViewResult.setText(getResult(numberNOKS));
+                        adapterNOK.setTableNumberNOKS(numberNOKS);
+                        mRecyclerView.setAdapter(adapterNOK);
+                    }else{
+                        Toast.makeText(getContext(), "Zero is invalid!", Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+                    Toast.makeText(getContext(), "Enter the number!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

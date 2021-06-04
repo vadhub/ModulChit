@@ -71,13 +71,16 @@ public class FragmentGCDe extends Fragment {
                     int b = Integer.parseInt(editTextB.getText().toString());
 
                     if(a!=0||b!=0){
-                        List<TableNumberGCDe> tempTableNumberGCDes = algebraMod.gcdGraph(a, b);
-                        adapterGCDe.setTableNumbers(tempTableNumberGCDes);
-                        mRecyclerView.setAdapter(adapterGCDe);
+                        if(a!=0&&b!=0){
+                            List<TableNumberGCDe> tempTableNumberGCDes = algebraMod.gcdGraph(a, b);
+                            adapterGCDe.setTableNumbers(tempTableNumberGCDes);
+                            mRecyclerView.setAdapter(adapterGCDe);
+                        }else{
+                            Toast.makeText(getContext(), "Zero is invalid!", Toast.LENGTH_SHORT).show();
+                        }
                     }else{
                         Toast.makeText(getContext(), "Zero is invalid!", Toast.LENGTH_SHORT).show();
                     }
-
                 }else{
                     Toast.makeText(getContext(), "Enter the number!", Toast.LENGTH_SHORT).show();
                 }
