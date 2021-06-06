@@ -30,6 +30,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="a"
+                android:gravity="center"
+                android:textStyle="bold"
                 style="@style/Theme.ModulChit"
                 android:textSize="20sp" />
 
@@ -38,6 +40,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="b"
+                android:gravity="center"
+                android:textStyle="bold"
                 style="@style/Theme.ModulChit"
                 android:textSize="20sp" />
 
@@ -46,6 +50,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="q"
+                android:gravity="center"
+                android:textStyle="bold"
                 style="@style/Theme.ModulChit"
                 android:textSize="20sp" />
 
@@ -54,6 +60,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="r"
+
+                android:gravity="center"
+                android:textStyle="bold"
                 style="@style/Theme.ModulChit"
                 android:textSize="20sp" />
 
@@ -62,6 +71,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="x"
+                android:gravity="center"
+                android:textStyle="bold"
                 style="@style/Theme.ModulChit"
                 android:textSize="20sp" />
 
@@ -70,6 +81,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="y"
+                android:gravity="center"
+                android:textStyle="bold"
                 style="@style/Theme.ModulChit"
                 android:textSize="20sp" />
         </TableRow>

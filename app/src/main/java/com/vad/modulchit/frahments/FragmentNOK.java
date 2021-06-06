@@ -1,4 +1,4 @@
-package com.vad.modulchit.frahments;
+ package com.vad.modulchit.frahments;
 
 import android.os.Bundle;
 
@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,12 +31,14 @@ public class FragmentNOK extends Fragment {
     private AdapterNOK adapterNOK;
     private AlgebraMod algebraMod;
     private TextView textViewResult;
+    private ScrollView scrollView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_n_o_k, container, false);
 
+        scrollView = (ScrollView) v.findViewById(R.id.scrollView);
         editTextMod = (EditText) v.findViewById(R.id.editTextTextMod);
         textViewResult = (TextView) v.findViewById(R.id.textViewResult);
         btnNok = (Button) v.findViewById(R.id.buttonNOK);
@@ -54,6 +57,13 @@ public class FragmentNOK extends Fragment {
                         textViewResult.setText(getResult(numberNOKS));
                         adapterNOK.setTableNumberNOKS(numberNOKS);
                         mRecyclerView.setAdapter(adapterNOK);
+
+                        scrollView.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+                            }
+                        });
                     }else{
                         Toast.makeText(getContext(), "Zero is invalid!", Toast.LENGTH_SHORT).show();
                     }
