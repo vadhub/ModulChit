@@ -22,7 +22,6 @@
         app:itemBackground="@color/design_default_color_primary"
         app:itemIconTint="@color/color_item_bottom_nav_menu"
         app:itemTextColor="@color/color_item_bottom_nav_menu"
-        app:labelVisibilityMode="labeled"
         app:menu="@menu/my_menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

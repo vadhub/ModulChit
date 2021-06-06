@@ -1,11 +1,17 @@
 <resources>
     <string name="app_name">Analysis of algorithms</string>
-    <string name="module">module</string>
+    <string name="module">modulo</string>
     <string name="degree">degree</string>
-    <string name="base_number">base_number</string>
-    <string name="num1">num1</string>
-    <string name="num2">num2</string>
+    <string name="base_number">base</string>
+    <string name="num1">number1</string>
+    <string name="num2">number2</string>
     <string name="mod">mod</string>
-    <string name="mod_number">mod_number</string>
+    <string name="mod_number">number</string>
+    <string name="number_1">modulo</string>
+    <string name="number_2">number</string>
+    <string name="gcd_e">GCD(E)</string>
+    <string name="multiplicative_group">Multiplicative group</string>
+    <string name="fast_exponentiation">Fast exponentiation</string>
+    <string name="euclidean_division">Euclidean division</string>
 
 </resources>

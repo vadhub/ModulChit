@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Анализ алгоритмов</string>
+    <string name="number_1">модуль</string>
+    <string name="number_2">число</string>
+    <string name="module">модуль</string>
+    <string name="degree">степень</string>
+    <string name="base_number">основание</string>
+    <string name="num1">число1</string>
+    <string name="num2">число2</string>
+    <string name="mod">mod</string>
+    <string name="mod_number">число</string>
+    <string name="gcd_e">Алгоритм Евклида</string>
+    <string name="multiplicative_group">Обратная группа</string>
+    <string name="fast_exponentiation">Возведение в степень</string>
+    <string name="euclidean_division">Остаток от деления</string>
+</resources>

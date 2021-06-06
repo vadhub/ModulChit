@@ -18,12 +18,12 @@
 
     <TextView
         android:id="@+id/textView9"
+        style="@style/Theme.ModulChit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:text="mod"
-        style="@style/Theme.ModulChit"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonNOK"
         app:layout_constraintEnd_toStartOf="@+id/editTextTextMod"
@@ -31,26 +31,29 @@
 
     <EditText
         android:id="@+id/editTextTextMod"
+        style="@style/Theme.ModulChit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="6"
-        android:textSize="24sp"
         android:hint="@string/mod_number"
         android:inputType="number"
-        style="@style/Theme.ModulChit"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/mRecyclerNok"
+    <TextView
+        android:id="@+id/textViewResult"
+        style="@style/Theme.ModulChit"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="0"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include3" />
+        app:layout_constraintTop_toBottomOf="@id/buttonNOK" />
 
     <include
         android:id="@+id/include3"
@@ -59,20 +62,15 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewResult"/>
+        app:layout_constraintTop_toBottomOf="@+id/textViewResult" />
 
-    <TextView
-        android:id="@+id/textViewResult"
-        android:layout_width="0dp"
-        android:gravity="center"
-        android:layout_height="wrap_content"
-        android:text="0"
-        style="@style/Theme.ModulChit"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mRecyclerNok"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/buttonNOK"
-
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/include3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

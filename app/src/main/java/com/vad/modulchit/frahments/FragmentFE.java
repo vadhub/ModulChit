@@ -77,9 +77,11 @@ public class FragmentFE extends Fragment {
                     }else{
                         Toast.makeText(getContext(), "Zero is invalid!", Toast.LENGTH_SHORT).show();
                     }
+                }else {
+                    Toast.makeText(getContext(), "Enter the number!", Toast.LENGTH_SHORT).show();
                 }
 
-                Toast.makeText(getContext(), "Enter the number!", Toast.LENGTH_SHORT).show();
+
             }
         });
 

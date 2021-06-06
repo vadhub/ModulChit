@@ -39,17 +39,21 @@ public class MainActivityMain extends AppCompatActivity {
             switch (item.getItemId()){
                 case R.id.gcdItem:
                     fragment = new FragmentGCDe();
+                    setTitle(R.string.gcd_e);
                     break;
 
                 case R.id.nokItem:
                     fragment = new FragmentNOK();
+                    setTitle(R.string.multiplicative_group);
                     break;
                 case R.id.feItem:
                     fragment = new FragmentFE();
+                    setTitle(R.string.fast_exponentiation);
                     break;
 
                 case R.id.modItem:
                     fragment = new FragmentMod();
+                    setTitle(R.string.euclidean_division);
                     break;
             }
 
