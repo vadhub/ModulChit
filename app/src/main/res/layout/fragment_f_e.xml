@@ -143,6 +143,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/include4" />
 
+            <TextView
+                android:id="@+id/resultFE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                style="@style/Theme.ModulChit"
+                app:layout_constraintTop_toBottomOf="@id/mRecyclerFE"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
