@@ -32,6 +32,7 @@ public class FragmentGCDe extends Fragment {
 
     private AlgebraMod algebraMod;
 
+
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);

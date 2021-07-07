@@ -13,7 +13,6 @@
     <string name="multiplicative_group">Multiplicative group</string>
     <string name="fast_exponentiation">Fast exponentiation</string>
     <string name="euclidean_division">Euclidean division</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>

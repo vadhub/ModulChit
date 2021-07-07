@@ -10,6 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ModulChit">
 
+        <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-5356301729869498~4916272144"/>
+
         <activity android:name=".MainActivityMain">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -8,6 +8,11 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.vad.modulchit.frahments.FragmentFE;
 import com.vad.modulchit.frahments.FragmentGCDe;
@@ -17,12 +22,25 @@ import com.vad.modulchit.frahments.FragmentNOK;
 public class MainActivityMain extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
+    private AdView mAdView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main_main);
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigate);
         bottomNavigationView.setOnNavigationItemSelectedListener(listener);

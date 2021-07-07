@@ -9,6 +9,7 @@ import java.util.List;
 public class RSAmod {
 
     private AlgebraMod algebraMod = new AlgebraMod();
+
     //get n modulo for public key
     public int getN(int p, int q){
         return p*q;
