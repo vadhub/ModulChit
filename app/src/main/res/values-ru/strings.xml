@@ -14,4 +14,5 @@
     <string name="multiplicative_group">Обратная группа</string>
     <string name="fast_exponentiation">Возведение в степень</string>
     <string name="euclidean_division">Остаток от деления</string>
+    <string name="other">другое</string>
 </resources>

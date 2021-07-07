@@ -13,6 +13,12 @@
     <string name="multiplicative_group">Multiplicative group</string>
     <string name="fast_exponentiation">Fast exponentiation</string>
     <string name="euclidean_division">Euclidean division</string>
+    <string name="other">other</string>
 
+    <string-array name="modifyRsaAlpabyte">
+        <item>add 10</item>
+        <item>add 20</item>
+        <item>random</item>
+    </string-array>
 
 </resources>

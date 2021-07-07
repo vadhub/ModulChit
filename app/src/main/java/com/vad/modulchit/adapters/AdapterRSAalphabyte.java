@@ -17,13 +17,13 @@ import java.util.List;
 
 public class AdapterRSAalphabyte extends RecyclerView.Adapter<AdapterRSAalphabyte.MyViewHolder> {
 
-    private LinkedHashMap<String, Integer> hashMap;
+    private LinkedHashMap<Character, Integer> hashMap;
 
-    public LinkedHashMap<String, Integer> getHashMap() {
+    public LinkedHashMap<Character, Integer> getHashMap() {
         return hashMap;
     }
 
-    public void setHashMap(LinkedHashMap<String, Integer> hashMap) {
+    public void setHashMap(LinkedHashMap<Character, Integer> hashMap) {
         this.hashMap = hashMap;
         notifyDataSetChanged();
     }
@@ -39,7 +39,7 @@ public class AdapterRSAalphabyte extends RecyclerView.Adapter<AdapterRSAalphabyt
     public void onBindViewHolder(@NonNull AdapterRSAalphabyte.MyViewHolder holder, int position) {
 
         //get letters from linkedhashset at keyset
-        List<String> letters = new ArrayList<>(hashMap.keySet());
+        List<Character> letters = new ArrayList<>(hashMap.keySet());
 
         //get numbers from linkedhashset at values
         List<Integer> numbers = new ArrayList<>(hashMap.values());
