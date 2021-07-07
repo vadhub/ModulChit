@@ -16,7 +16,7 @@
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <EditText
-        android:id="@+id/textViewNumber"
+        android:id="@+id/editTextNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/theme_chit"
