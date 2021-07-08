@@ -44,7 +44,6 @@ public class AddAlphaviteFragment extends Fragment {
         shiphr = new RSAshiphr();
 
         ArrayAdapter<?> adapterSpinner = ArrayAdapter.createFromResource(getContext(), R.array.modifyRsaAlpabyte, android.R.layout.simple_spinner_item);
-        ArrayAdapter<?> adapterSpinnerOther = ArrayAdapter.createFromResource(getContext(), R.string.other, android.R.layout.simple_spinner_item);
         adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapterSpinner);
         spinner.setOnItemSelectedListener(onItemSelectedListener);
@@ -72,7 +71,7 @@ public class AddAlphaviteFragment extends Fragment {
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-
+            getFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentRSAdecrypt()).commit();
         }
     };
 
@@ -95,13 +94,10 @@ public class AddAlphaviteFragment extends Fragment {
                     shiphr.getNumberShiphr(Integer.parseInt(numberForFirstLetter.getText().toString()), 10);
                     break;
                 case 1:
-                    shiphr.getNumberShiphr(Integer.parseInt(numberForFirstLetter.getText().toString()), 20);
+                    shiphr.getNumberShiphr(Integer.parseInt(numberForFirstLetter.getText().toString()));
                     break;
                 case 2:
                     shiphr.getNumberShiphr();
-                    break;
-                default:
-                    shiphr.getNumberShiphr(Integer.parseInt(numberForFirstLetter.getText().toString()));
                     break;
             }
         }

@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.vad.modulchit.R;
 
-public class FragmentRSA extends Fragment {
+public class FragmentRSAdecrypt extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
