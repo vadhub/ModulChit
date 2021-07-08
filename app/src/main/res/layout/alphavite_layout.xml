@@ -21,6 +21,7 @@
         android:layout_height="wrap_content"
         style="@style/theme_chit"
         android:layout_marginLeft="10sp"
+        android:inputType="number"
         android:text="10"
         app:layout_constraintStart_toEndOf="@+id/textViewLitter"
         app:layout_constraintTop_toTopOf="parent" />

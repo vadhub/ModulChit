@@ -1,7 +1,6 @@
 package com.vad.modulchit.utils;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 public class RSAshiphr {
@@ -30,6 +29,15 @@ public class RSAshiphr {
             numbers.add(i);
         }
 
+        return numbers;
+    }
+
+    public List<Integer> getNumberShiphr(){
+        List<Integer> numbers = new ArrayList<>();
+        int startNumber = (int) (Math.random() * 100);
+        for(int i = startNumber; i < getAlphabyte().size(); i+=(int) (Math.random() * 100)){
+            numbers.add(i);
+        }
         return numbers;
     }
 
