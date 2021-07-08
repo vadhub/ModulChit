@@ -12,7 +12,7 @@
     <string name="gcd_e">GCD(E)</string>
     <string name="multiplicative_group">Multiplicative group</string>
     <string name="fast_exponentiation">Fast exponentiation</string>
-    <string name="euclidean_division">Euclidean division</string>
+    <string name="rsa">RSA</string>
     <string name="other">other</string>
 
     <string-array name="modifyRsaAlpabyte">

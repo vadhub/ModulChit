@@ -18,6 +18,7 @@ import com.vad.modulchit.frahments.FragmentFE;
 import com.vad.modulchit.frahments.FragmentGCDe;
 import com.vad.modulchit.frahments.FragmentMod;
 import com.vad.modulchit.frahments.FragmentNOK;
+import com.vad.modulchit.frahments.rsa.AddAlphaviteFragment;
 
 public class MainActivityMain extends AppCompatActivity {
 
@@ -70,8 +71,8 @@ public class MainActivityMain extends AppCompatActivity {
                     break;
 
                 case R.id.modItem:
-                    fragment = new FragmentMod();
-                    setTitle(R.string.euclidean_division);
+                    fragment = new AddAlphaviteFragment();
+                    setTitle(R.string.rsa);
                     break;
             }
 

@@ -20,7 +20,7 @@
 
     <item
         android:id="@+id/modItem"
-        android:title="@string/euclidean_division"
+        android:title="@string/rsa"
         android:icon="@drawable/ic_baseline_child_care_24"
         />
 

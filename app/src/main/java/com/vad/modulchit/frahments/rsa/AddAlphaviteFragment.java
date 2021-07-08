@@ -19,6 +19,7 @@ import android.widget.Spinner;
 
 import com.vad.modulchit.R;
 import com.vad.modulchit.adapters.AdapterRSAalphabyte;
+import com.vad.modulchit.utils.RSAshiphr;
 
 public class AddAlphaviteFragment extends Fragment {
 
@@ -27,6 +28,8 @@ public class AddAlphaviteFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private AdapterRSAalphabyte adapterRSAalphabyte;
     private Spinner spinner;
+    private RSAshiphr shiphr;
+    private int theChoice;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,11 +41,15 @@ public class AddAlphaviteFragment extends Fragment {
         mRecyclerView = (RecyclerView) v.findViewById(R.id.mRecyclerAlphabyte);
         adapterRSAalphabyte = new AdapterRSAalphabyte();
         spinner = (Spinner) v.findViewById(R.id.spinner);
+        shiphr = new RSAshiphr();
 
         ArrayAdapter<?> adapterSpinner = ArrayAdapter.createFromResource(getContext(), R.array.modifyRsaAlpabyte, android.R.layout.simple_spinner_item);
+        ArrayAdapter<?> adapterSpinnerOther = ArrayAdapter.createFromResource(getContext(), R.string.other, android.R.layout.simple_spinner_item);
         adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapterSpinner);
         spinner.setOnItemSelectedListener(onItemSelectedListener);
+        btnNext.setOnClickListener(clickListener);
+        numberForFirstLetter.addTextChangedListener(textWatcher);
 
         mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         return v;
@@ -52,7 +59,7 @@ public class AddAlphaviteFragment extends Fragment {
     private AdapterView.OnItemSelectedListener onItemSelectedListener = new AdapterView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
+            theChoice = i;
         }
 
         @Override
@@ -83,7 +90,20 @@ public class AddAlphaviteFragment extends Fragment {
 
         @Override
         public void afterTextChanged(Editable editable) {
-
+            switch (theChoice){
+                case 0:
+                    shiphr.getNumberShiphr(Integer.parseInt(numberForFirstLetter.getText().toString()), 10);
+                    break;
+                case 1:
+                    shiphr.getNumberShiphr(Integer.parseInt(numberForFirstLetter.getText().toString()), 20);
+                    break;
+                case 2:
+                    shiphr.getNumberShiphr();
+                    break;
+                default:
+                    shiphr.getNumberShiphr(Integer.parseInt(numberForFirstLetter.getText().toString()));
+                    break;
+            }
         }
     };
 }
