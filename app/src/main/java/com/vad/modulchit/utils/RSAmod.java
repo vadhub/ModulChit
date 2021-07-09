@@ -49,7 +49,30 @@ public class RSAmod {
         return gcdeList;
     }
 
-    public String crypting(int e, int n, LinkedHashMap<Character, Integer> keys){
+    public List<Integer> getClastersFromString(String strCrypt, int n){
+        List<Integer> clasters = new ArrayList<>();
+        char[] charNumb = strCrypt.toCharArray();
+        String numberClaster = String.valueOf(charNumb[0]);
+        int number;
+
+        for(int i = 1; i<charNumb.length; i++){
+            number = Character.getNumericValue(charNumb[i]);
+            if(number<n){
+                numberClaster+=charNumb[0];
+            }else{
+                clasters.add(Integer.parseInt(numberClaster));
+                numberClaster="";
+            }
+        }
+
+        return clasters;
+    }
+
+    public List<Integer> getClasters(List<Integer> numberCodes){
+
+    }
+
+    public String crypting(int e, int n, List<Integer> numberCodes){
 
     }
 }

@@ -20,10 +20,13 @@ import com.vad.modulchit.frahments.FragmentMod;
 import com.vad.modulchit.frahments.FragmentNOK;
 import com.vad.modulchit.frahments.rsa.AddAlphaviteFragment;
 
+import java.util.LinkedHashMap;
+
 public class MainActivityMain extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
     private AdView mAdView;
+    private LinkedHashMap<Character, Integer> hashMap;
 
 
     @Override

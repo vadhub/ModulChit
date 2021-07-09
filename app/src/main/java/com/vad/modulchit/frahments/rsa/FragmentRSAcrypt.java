@@ -12,6 +12,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.vad.modulchit.R;
+import com.vad.modulchit.utils.RSAmod;
+
+import java.util.HashMap;
 
 public class FragmentRSAcrypt extends Fragment {
 
@@ -20,6 +23,12 @@ public class FragmentRSAcrypt extends Fragment {
     private EditText editTextE;
     private EditText editTextN;
     private TextView textViewResult;
+    private HashMap<Character, Integer> hashMapAlphavite;
+    private RSAmod rsaMod;
+
+    public FragmentRSAcrypt(HashMap<Character, Integer> hashMapAlphavite) {
+        this.hashMapAlphavite = hashMapAlphavite;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,6 +40,7 @@ public class FragmentRSAcrypt extends Fragment {
         editTextE = (EditText) v.findViewById(R.id.editTextE);
         editTextN = (EditText) v.findViewById(R.id.editTextN);
         textViewResult = (TextView) v.findViewById(R.id.textViewResultCrypt);
+        rsaMod = new RSAmod();
 
         btnOk.setOnClickListener(clickListener);
         return v;
@@ -39,6 +49,7 @@ public class FragmentRSAcrypt extends Fragment {
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            char[] strCrypt = enterTextToCrypt.getText().toString().toCharArray();
 
         }
     };

@@ -51,6 +51,8 @@ public class AddAlphaviteFragment extends Fragment {
         numberCodes = new ArrayList<>();
 
         hashMap.keySet().addAll(shiphr.getAlphabyte());
+        hashMap.values().addAll(numberCodes);
+        adapterRSAalphabyte.setHashMap(hashMap);
 
         ArrayAdapter<?> adapterSpinner = ArrayAdapter.createFromResource(getContext(), R.array.modifyRsaAlpabyte, android.R.layout.simple_spinner_item);
         adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -58,6 +60,8 @@ public class AddAlphaviteFragment extends Fragment {
         spinner.setOnItemSelectedListener(onItemSelectedListener);
         btnNext.setOnClickListener(clickListener);
         numberForFirstLetter.addTextChangedListener(textWatcher);
+
+        numberCodes = shiphr.getNumberShiphr();
 
         mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         return v;
@@ -80,7 +84,7 @@ public class AddAlphaviteFragment extends Fragment {
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            getFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentRSAcrypt()).commit();
+            getFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentRSAcrypt(hashMap)).commit();
         }
     };
 
@@ -100,15 +104,18 @@ public class AddAlphaviteFragment extends Fragment {
         public void afterTextChanged(Editable editable) {
             switch (theChoice){
                 case 0:
-                    shiphr.getNumberShiphr(Integer.parseInt(numberForFirstLetter.getText().toString()), 10);
+                    numberCodes = shiphr.getNumberShiphr(Integer.parseInt(numberForFirstLetter.getText().toString()), 10);
                     break;
                 case 1:
-                    shiphr.getNumberShiphr(Integer.parseInt(numberForFirstLetter.getText().toString()));
+                    numberCodes = shiphr.getNumberShiphr(Integer.parseInt(numberForFirstLetter.getText().toString()));
                     break;
                 case 2:
-                    shiphr.getNumberShiphr();
+                    numberCodes = shiphr.getNumberShiphr();
                     break;
             }
+
+            hashMap.values().addAll(numberCodes);
+            adapterRSAalphabyte.setHashMap(hashMap);
         }
     };
 }
