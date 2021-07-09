@@ -15,7 +15,7 @@ public class FragmentRSAdecrypt extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_r_s_a, container, false);
+        View v = inflater.inflate(R.layout.fragment_rsa_crypt, container, false);
         return v;
     }
 }
