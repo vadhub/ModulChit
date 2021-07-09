@@ -11,6 +11,8 @@ public class RSAshiphr {
             alphabyte.add(i);
         }
 
+        alphabyte.add('_');
+
         return alphabyte;
     }
 

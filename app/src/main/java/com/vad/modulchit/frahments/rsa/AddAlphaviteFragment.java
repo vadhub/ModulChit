@@ -21,12 +21,18 @@ import com.vad.modulchit.R;
 import com.vad.modulchit.adapters.AdapterRSAalphabyte;
 import com.vad.modulchit.utils.RSAshiphr;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+
 public class AddAlphaviteFragment extends Fragment {
 
     private Button btnNext;
     private EditText numberForFirstLetter;
     private RecyclerView mRecyclerView;
     private AdapterRSAalphabyte adapterRSAalphabyte;
+    private LinkedHashMap<Character, Integer> hashMap;
+    private List<Integer> numberCodes;
     private Spinner spinner;
     private RSAshiphr shiphr;
     private int theChoice;
@@ -35,13 +41,16 @@ public class AddAlphaviteFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_add_alphavite, container, false);
-
         btnNext = (Button) v.findViewById(R.id.btnNetx);
         numberForFirstLetter = (EditText) v.findViewById(R.id.textViewNumberFirst);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.mRecyclerAlphabyte);
         adapterRSAalphabyte = new AdapterRSAalphabyte();
         spinner = (Spinner) v.findViewById(R.id.spinner);
         shiphr = new RSAshiphr();
+        hashMap = new LinkedHashMap<>();
+        numberCodes = new ArrayList<>();
+
+        hashMap.keySet().addAll(shiphr.getAlphabyte());
 
         ArrayAdapter<?> adapterSpinner = ArrayAdapter.createFromResource(getContext(), R.array.modifyRsaAlpabyte, android.R.layout.simple_spinner_item);
         adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -71,7 +80,7 @@ public class AddAlphaviteFragment extends Fragment {
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            getFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentRSAdecrypt()).commit();
+            getFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentRSAcrypt()).commit();
         }
     };
 

@@ -4,6 +4,7 @@ import com.vad.modulchit.pojos.TableNumberGCDe;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class RSAmod {
@@ -42,13 +43,13 @@ public class RSAmod {
         return simple;
     }
 
-
     //generate private key on visaul gcde
     public List<TableNumberGCDe> getDGraph(int exp, int eller){
         List<TableNumberGCDe> gcdeList = algebraMod.gcdGraph(eller,exp);
         return gcdeList;
     }
 
+    public String crypting(int e, int n, LinkedHashMap<Character, Integer> keys){
 
-
+    }
 }
