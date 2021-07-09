@@ -36,9 +36,8 @@ public class RSAshiphr {
 
     public List<Integer> getNumberShiphr(){
         List<Integer> numbers = new ArrayList<>();
-        int startNumber = (int) (Math.random() * 100);
-        for(int i = startNumber; i < getAlphabyte().size(); i+=(int) (Math.random() * 100)){
-            numbers.add(i);
+        for(int i = 0; i < getAlphabyte().size(); i++){
+            numbers.add((int) (Math.random() * 100));
         }
         return numbers;
     }

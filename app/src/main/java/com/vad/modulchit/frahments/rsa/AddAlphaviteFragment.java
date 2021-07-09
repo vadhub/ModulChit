@@ -23,6 +23,7 @@ import com.vad.modulchit.utils.RSAshiphr;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 public class AddAlphaviteFragment extends Fragment {
@@ -31,8 +32,7 @@ public class AddAlphaviteFragment extends Fragment {
     private EditText numberForFirstLetter;
     private RecyclerView mRecyclerView;
     private AdapterRSAalphabyte adapterRSAalphabyte;
-    private LinkedHashMap<Character, Integer> hashMap;
-    private List<Integer> numberCodes;
+    private List<Integer> numbersCode;
     private Spinner spinner;
     private RSAshiphr shiphr;
     private int theChoice;
@@ -47,12 +47,14 @@ public class AddAlphaviteFragment extends Fragment {
         adapterRSAalphabyte = new AdapterRSAalphabyte();
         spinner = (Spinner) v.findViewById(R.id.spinner);
         shiphr = new RSAshiphr();
-        hashMap = new LinkedHashMap<>();
-        numberCodes = new ArrayList<>();
 
-        hashMap.keySet().addAll(shiphr.getAlphabyte());
-        hashMap.values().addAll(numberCodes);
-        adapterRSAalphabyte.setHashMap(hashMap);
+        numbersCode.addAll(shiphr.getNumberShiphr());
+
+        for(int i = 0; i<shiphr.getNumberShiphr().size(); i++){
+            System.out.println(shiphr.getNumberShiphr().get(i)+"g");
+        }
+
+        adapterRSAalphabyte.setNumbersCode(numbersCode);
 
         ArrayAdapter<?> adapterSpinner = ArrayAdapter.createFromResource(getContext(), R.array.modifyRsaAlpabyte, android.R.layout.simple_spinner_item);
         adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -60,8 +62,6 @@ public class AddAlphaviteFragment extends Fragment {
         spinner.setOnItemSelectedListener(onItemSelectedListener);
         btnNext.setOnClickListener(clickListener);
         numberForFirstLetter.addTextChangedListener(textWatcher);
-
-        numberCodes = shiphr.getNumberShiphr();
 
         mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         return v;
@@ -84,7 +84,7 @@ public class AddAlphaviteFragment extends Fragment {
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            getFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentRSAcrypt(hashMap)).commit();
+            getFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentRSAcrypt(numbersCode)).commit();
         }
     };
 
@@ -102,6 +102,7 @@ public class AddAlphaviteFragment extends Fragment {
 
         @Override
         public void afterTextChanged(Editable editable) {
+            List<Integer> numberCodes = new LinkedList<>();
             switch (theChoice){
                 case 0:
                     numberCodes = shiphr.getNumberShiphr(Integer.parseInt(numberForFirstLetter.getText().toString()), 10);
@@ -114,8 +115,7 @@ public class AddAlphaviteFragment extends Fragment {
                     break;
             }
 
-            hashMap.values().addAll(numberCodes);
-            adapterRSAalphabyte.setHashMap(hashMap);
+            adapterRSAalphabyte.setNumbersCode(numberCodes);
         }
     };
 }

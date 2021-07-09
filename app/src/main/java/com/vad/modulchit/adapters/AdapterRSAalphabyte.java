@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.vad.modulchit.R;
+import com.vad.modulchit.utils.RSAshiphr;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -17,14 +18,19 @@ import java.util.List;
 
 public class AdapterRSAalphabyte extends RecyclerView.Adapter<AdapterRSAalphabyte.MyViewHolder> {
 
-    private LinkedHashMap<Character, Integer> hashMap;
+    private List<Integer> numbersCode;
+    private RSAshiphr shiphr;
 
-    public LinkedHashMap<Character, Integer> getHashMap() {
-        return hashMap;
+    public AdapterRSAalphabyte() {
+        shiphr = new RSAshiphr();
     }
 
-    public void setHashMap(LinkedHashMap<Character, Integer> hashMap) {
-        this.hashMap = hashMap;
+    public List<Integer> getNumbersCode() {
+        return numbersCode;
+    }
+
+    public void setNumbersCode(List<Integer> numbersCode) {
+        this.numbersCode = numbersCode;
         notifyDataSetChanged();
     }
 
@@ -38,15 +44,8 @@ public class AdapterRSAalphabyte extends RecyclerView.Adapter<AdapterRSAalphabyt
     @Override
     public void onBindViewHolder(@NonNull AdapterRSAalphabyte.MyViewHolder holder, int position) {
 
-        //get letters from linkedhashset at keyset
-        List<Character> letters = new ArrayList<>(hashMap.keySet());
-
-        //get numbers from linkedhashset at values
-        List<Integer> numbers = new ArrayList<>(hashMap.values());
-
-        holder.textViewLetter.setText(letters.get(position));
-        holder.editTextNumber.setText(numbers.get(position));
-
+        holder.textViewLetter.setText(shiphr.getAlphabyte().get(position));
+        holder.editTextNumber.setText(numbersCode.get(position));
 
     }
 

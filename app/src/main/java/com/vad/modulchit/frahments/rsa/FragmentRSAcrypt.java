@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.vad.modulchit.R;
 import com.vad.modulchit.utils.RSAmod;
+import com.vad.modulchit.utils.RSAshiphr;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,12 +26,13 @@ public class FragmentRSAcrypt extends Fragment {
     private EditText editTextE;
     private EditText editTextN;
     private TextView textViewResult;
-    private HashMap<Character, Integer> hashMapAlphavite;
-    List<Integer> numbersCodesForCrypt;
+    private List<Integer> alphaviteCodes;
+    private List<Integer> numbersCodesForCrypt;
     private RSAmod rsaMod;
+    private RSAshiphr rsAshiphr;
 
-    public FragmentRSAcrypt(HashMap<Character, Integer> hashMapAlphavite) {
-        this.hashMapAlphavite = hashMapAlphavite;
+    public FragmentRSAcrypt(List<Integer> alphaviteCodes) {
+        this.alphaviteCodes = alphaviteCodes;
     }
 
     @Override
@@ -44,6 +46,7 @@ public class FragmentRSAcrypt extends Fragment {
         editTextN = (EditText) v.findViewById(R.id.editTextN);
         textViewResult = (TextView) v.findViewById(R.id.textViewResultCrypt);
         rsaMod = new RSAmod();
+        rsAshiphr = new RSAshiphr();
 
         btnOk.setOnClickListener(clickListener);
         return v;
@@ -54,10 +57,12 @@ public class FragmentRSAcrypt extends Fragment {
         public void onClick(View view) {
             char[] strCrypt = enterTextToCrypt.getText().toString().toCharArray();
             numbersCodesForCrypt = new ArrayList<>();
-            for (char c : strCrypt) {
-                if (hashMapAlphavite.containsKey(c)) {
-                        int num = hashMapAlphavite.get(c);
-                        numbersCodesForCrypt.add(num);
+            for(int i = 0; i < strCrypt.length; i++){
+                for(int j =0; j < rsAshiphr.getAlphabyte().size(); j++){
+                    if(rsAshiphr.getAlphabyte().get(i).equals(strCrypt[i])){
+                        numbersCodesForCrypt.add(alphaviteCodes.get(j));
+                        break;
+                    }
                 }
             }
 
