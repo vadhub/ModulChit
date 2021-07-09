@@ -68,11 +68,26 @@ public class RSAmod {
         return clasters;
     }
 
-    public List<Integer> getClasters(List<Integer> numberCodes){
+    public List<Integer> getClasters(List<Integer> numberCodes, int n){
+        String strCrypt = "";
 
+        for(Integer a: numberCodes){
+            strCrypt += a;
+        }
+
+        return getClastersFromString(strCrypt, n);
     }
 
     public String crypting(int e, int n, List<Integer> numberCodes){
+        List<Integer> clasters = getClasters(numberCodes, n);
+        String strCrypt = "[";
 
+        for (Integer num: clasters) {
+            strCrypt +=algebraMod.feGraph(num, e, n).get(algebraMod.feGraph(num, e, n).size()-1).getP()+", ";
+        }
+
+        strCrypt+="]";
+
+        return strCrypt;
     }
 }
