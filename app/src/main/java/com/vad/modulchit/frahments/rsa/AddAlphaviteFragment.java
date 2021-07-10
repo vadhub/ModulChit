@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.vad.modulchit.R;
 import com.vad.modulchit.adapters.AdapterRSAalphabyte;
@@ -44,17 +45,15 @@ public class AddAlphaviteFragment extends Fragment {
         btnNext = (Button) v.findViewById(R.id.btnNetx);
         numberForFirstLetter = (EditText) v.findViewById(R.id.textViewNumberFirst);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.mRecyclerAlphabyte);
+        mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         adapterRSAalphabyte = new AdapterRSAalphabyte();
         spinner = (Spinner) v.findViewById(R.id.spinner);
         shiphr = new RSAshiphr();
+        numbersCode = new ArrayList<>();
 
         numbersCode.addAll(shiphr.getNumberShiphr());
-
-        for(int i = 0; i<shiphr.getNumberShiphr().size(); i++){
-            System.out.println(shiphr.getNumberShiphr().get(i)+"g");
-        }
-
         adapterRSAalphabyte.setNumbersCode(numbersCode);
+        mRecyclerView.setAdapter(adapterRSAalphabyte);
 
         ArrayAdapter<?> adapterSpinner = ArrayAdapter.createFromResource(getContext(), R.array.modifyRsaAlpabyte, android.R.layout.simple_spinner_item);
         adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -63,7 +62,6 @@ public class AddAlphaviteFragment extends Fragment {
         btnNext.setOnClickListener(clickListener);
         numberForFirstLetter.addTextChangedListener(textWatcher);
 
-        mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         return v;
     }
 
@@ -84,7 +82,11 @@ public class AddAlphaviteFragment extends Fragment {
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            getFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentRSAcrypt(numbersCode)).commit();
+            if(!numberForFirstLetter.getText().toString().equals("")){
+                getFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentRSAcrypt(numbersCode)).commit();
+            }else {
+                Toast.makeText(getContext(), "", Toast.LENGTH_SHORT).show();
+            }
         }
     };
 
@@ -97,25 +99,32 @@ public class AddAlphaviteFragment extends Fragment {
 
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            List<Integer> numberCodes = new LinkedList<>();
+            if(!numberForFirstLetter.getText().toString().equals("")){
 
+                switch (theChoice){
+                    case 0:
+                        numberCodes = shiphr.getNumberShiphr(Integer.parseInt(numberForFirstLetter.getText().toString()), 10);
+                        break;
+                    case 1:
+                        numberCodes = shiphr.getNumberShiphr(Integer.parseInt(numberForFirstLetter.getText().toString()));
+                        break;
+                    case 2:
+                        numberCodes = shiphr.getNumberShiphr();
+                        break;
+                }
+
+            }else{
+                Toast.makeText(getContext(), "Enete text", Toast.LENGTH_SHORT);
+            }
+
+            adapterRSAalphabyte.setNumbersCode(numberCodes);
+            mRecyclerView.setAdapter(adapterRSAalphabyte);
         }
 
         @Override
         public void afterTextChanged(Editable editable) {
-            List<Integer> numberCodes = new LinkedList<>();
-            switch (theChoice){
-                case 0:
-                    numberCodes = shiphr.getNumberShiphr(Integer.parseInt(numberForFirstLetter.getText().toString()), 10);
-                    break;
-                case 1:
-                    numberCodes = shiphr.getNumberShiphr(Integer.parseInt(numberForFirstLetter.getText().toString()));
-                    break;
-                case 2:
-                    numberCodes = shiphr.getNumberShiphr();
-                    break;
-            }
 
-            adapterRSAalphabyte.setNumbersCode(numberCodes);
         }
     };
 }

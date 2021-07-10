@@ -26,8 +26,6 @@ public class MainActivityMain extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
     private AdView mAdView;
-    private LinkedHashMap<Character, Integer> hashMap;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

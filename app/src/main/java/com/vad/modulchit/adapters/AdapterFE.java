@@ -49,11 +49,11 @@ public class AdapterFE extends RecyclerView.Adapter<AdapterFE.MyViewHolderFE> {
 
     public class MyViewHolderFE extends RecyclerView.ViewHolder {
 
-        private TextView textViewA;
-        private TextView textViewM;
-        private TextView textViewN;
-        private TextView textViewP;
-        private TextView textViewR;
+        TextView textViewA;
+        TextView textViewM;
+        TextView textViewN;
+        TextView textViewP;
+        TextView textViewR;
 
 
         public MyViewHolderFE(@NonNull View itemView) {

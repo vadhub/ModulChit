@@ -44,25 +44,25 @@ public class AdapterRSAalphabyte extends RecyclerView.Adapter<AdapterRSAalphabyt
     @Override
     public void onBindViewHolder(@NonNull AdapterRSAalphabyte.MyViewHolder holder, int position) {
 
-        holder.textViewLetter.setText(shiphr.getAlphabyte().get(position));
-        holder.editTextNumber.setText(numbersCode.get(position));
+        holder.textViewLetterAlpha.setText(shiphr.getAlphabyte().get(position)+"");
+        holder.editTextNumber.setText(numbersCode.get(position)+"");
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return numbersCode.size();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder{
-        private TextView textViewLetter;
-        private EditText editTextNumber;
+    static class MyViewHolder extends RecyclerView.ViewHolder{
+        TextView textViewLetterAlpha;
+        EditText editTextNumber;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            textViewLetter = (TextView) itemView.findViewById(R.id.textViewLitter);
-            textViewLetter = (TextView) itemView.findViewById(R.id.editTextNumber);
+            textViewLetterAlpha = (TextView) itemView.findViewById(R.id.textViewLetterAlpha1);
+            editTextNumber = (EditText) itemView.findViewById(R.id.editTextNumberAlpha);
         }
     }
 }

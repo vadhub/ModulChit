@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/textViewLitter"
+        android:id="@+id/textViewLetterAlpha1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="A"
@@ -16,13 +16,13 @@
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <EditText
-        android:id="@+id/editTextNumber"
+        android:id="@+id/editTextNumberAlpha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/theme_chit"
         android:layout_marginLeft="10sp"
         android:inputType="number"
         android:text="10"
-        app:layout_constraintStart_toEndOf="@+id/textViewLitter"
+        app:layout_constraintStart_toEndOf="@+id/textViewLetterAlpha1"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -66,12 +66,13 @@ public class FragmentRSAcrypt extends Fragment {
                 }
             }
 
-            int e = Integer.parseInt(editTextE.getText().toString());
-            int n = Integer.parseInt(editTextN.getText().toString());
-
-            String str = rsaMod.crypting(e, n, numbersCodesForCrypt);
-
-            textViewResult.setText(str);
+            if(!editTextE.getText().toString().equals("")||!editTextE.getText().toString().equals("")||
+                    (!editTextE.getText().toString().equals("")&&!editTextE.getText().toString().equals(""))){
+                int e = Integer.parseInt(editTextE.getText().toString());
+                int n = Integer.parseInt(editTextN.getText().toString());
+                String str = rsaMod.crypting(e, n, numbersCodesForCrypt);
+                textViewResult.setText(str);
+            }
         }
     };
 }
