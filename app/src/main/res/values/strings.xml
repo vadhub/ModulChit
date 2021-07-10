@@ -16,9 +16,9 @@
     <string name="other">other</string>
 
     <string-array name="modifyRsaAlpabyte">
-        <item>add 10</item>
-        <item>your</item>
         <item>random</item>
+        <item>your</item>
+
     </string-array>
 
 </resources>

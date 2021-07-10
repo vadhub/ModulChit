@@ -34,9 +34,10 @@ public class AddAlphaviteFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private AdapterRSAalphabyte adapterRSAalphabyte;
     private List<Integer> numbersCode;
+    private List<Integer> numberCodes;
     private Spinner spinner;
     private RSAshiphr shiphr;
-    private int theChoice;
+    private int theChoice = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,6 +56,7 @@ public class AddAlphaviteFragment extends Fragment {
         adapterRSAalphabyte.setNumbersCode(numbersCode);
         mRecyclerView.setAdapter(adapterRSAalphabyte);
 
+
         ArrayAdapter<?> adapterSpinner = ArrayAdapter.createFromResource(getContext(), R.array.modifyRsaAlpabyte, android.R.layout.simple_spinner_item);
         adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapterSpinner);
@@ -69,7 +71,11 @@ public class AddAlphaviteFragment extends Fragment {
     private AdapterView.OnItemSelectedListener onItemSelectedListener = new AdapterView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+            numberCodes = new LinkedList<>();
             theChoice = i;
+
+            update(i);
+
         }
 
         @Override
@@ -99,32 +105,36 @@ public class AddAlphaviteFragment extends Fragment {
 
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            List<Integer> numberCodes = new LinkedList<>();
-            if(!numberForFirstLetter.getText().toString().equals("")){
 
-                switch (theChoice){
-                    case 0:
-                        numberCodes = shiphr.getNumberShiphr(Integer.parseInt(numberForFirstLetter.getText().toString()), 10);
-                        break;
-                    case 1:
-                        numberCodes = shiphr.getNumberShiphr(Integer.parseInt(numberForFirstLetter.getText().toString()));
-                        break;
-                    case 2:
-                        numberCodes = shiphr.getNumberShiphr();
-                        break;
-                }
-
-            }else{
-                Toast.makeText(getContext(), "Enete text", Toast.LENGTH_SHORT);
-            }
-
-            adapterRSAalphabyte.setNumbersCode(numberCodes);
-            mRecyclerView.setAdapter(adapterRSAalphabyte);
         }
 
         @Override
         public void afterTextChanged(Editable editable) {
-
+            spinner.setSelection(1);
+            update(theChoice);
         }
     };
+
+    private void update(int i){
+
+        if(numberForFirstLetter.getText().toString().equals("")){
+            if(i!=0){
+                Toast.makeText(getContext(), "Enete text", Toast.LENGTH_SHORT).show();
+            }
+        }else{
+            switch (i){
+                case 0:
+                    numberCodes = shiphr.getNumberShiphr();
+                    break;
+                case 1:
+                    numberCodes = shiphr.getNumberShiphr(Integer.parseInt(numberForFirstLetter.getText().toString()));
+                    break;
+            }
+            adapterRSAalphabyte.setNumbersCode(numberCodes);
+            mRecyclerView.setAdapter(adapterRSAalphabyte);
+
+        }
+
+
+    }
 }
