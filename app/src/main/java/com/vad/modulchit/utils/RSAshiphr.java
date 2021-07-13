@@ -20,7 +20,6 @@ public class RSAshiphr {
         for(int i = 0; i < getAlphabyte().size(); i++){
             numbers.add(i+modify+startNumber);
         }
-        System.out.println(getAlphabyte().size());
 
         return numbers;
     }
@@ -30,7 +29,6 @@ public class RSAshiphr {
         for(int i = 0; i < getAlphabyte().size(); i++){
             numbers.add(i+startNumber);
         }
-        System.out.println(getAlphabyte().size());
 
         return numbers;
     }
@@ -40,7 +38,6 @@ public class RSAshiphr {
         for(int i = 0; i < getAlphabyte().size(); i++){
             numbers.add((int) (Math.random() * 100));
         }
-        System.out.println(getAlphabyte().size());
         return numbers;
     }
 

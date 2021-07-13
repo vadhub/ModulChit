@@ -91,7 +91,7 @@ public class AddAlphaviteFragment extends Fragment {
             if(!numberForFirstLetter.getText().toString().equals("")){
                 getFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentRSAcrypt(numbersCode)).commit();
             }else {
-                Toast.makeText(getContext(), "", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Enter text", Toast.LENGTH_SHORT).show();
             }
         }
     };
@@ -119,7 +119,7 @@ public class AddAlphaviteFragment extends Fragment {
 
         if(numberForFirstLetter.getText().toString().equals("")){
             if(i!=0){
-                Toast.makeText(getContext(), "Enete text", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Enter text", Toast.LENGTH_SHORT).show();
             }
         }else{
             switch (i){
