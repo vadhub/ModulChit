@@ -70,9 +70,8 @@ public class FragmentRSAcrypt extends Fragment {
                     (!editTextE.getText().toString().equals("")&&!editTextE.getText().toString().equals(""))){
                 int e = Integer.parseInt(editTextE.getText().toString());
                 int n = Integer.parseInt(editTextN.getText().toString());
-                System.out.println(numbersCodesForCrypt);
+
                 String str = rsaMod.crypting(e, n, numbersCodesForCrypt);
-                System.out.println(str);
                 textViewResult.setText(str);
             }
         }

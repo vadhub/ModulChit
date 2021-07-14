@@ -43,6 +43,10 @@ public class RSAmod {
         return simple;
     }
 
+    public int getDPrivate(int exponent, int eller){
+        return algebraMod.gcdGraph(exponent, eller).get(algebraMod.gcdGraph(exponent, eller).size()-1).getY2();
+    }
+
     //generate private key on visaul gcde
     public List<TableNumberGCDe> getDGraph(int exp, int eller){
         List<TableNumberGCDe> gcdeList = algebraMod.gcdGraph(eller,exp);
@@ -54,36 +58,40 @@ public class RSAmod {
         char[] charNumb = strCrypt.toCharArray();
 
         String numberClaster = String.valueOf(charNumb[0]);
-        int number;
 
-        for(int i = 1; i<charNumb.length; i++){
-            number = Character.getNumericValue(charNumb[i]);
-            if(number<n){
-                numberClaster+=charNumb[0];
+        for(int i = 0; i<charNumb.length; i++){
+
+            if(Integer.parseInt(numberClaster)<n){
+                numberClaster+=charNumb[i];
+                System.out.println(numberClaster);
             }else{
                 clasters.add(Integer.parseInt(numberClaster));
-                numberClaster="";
+                numberClaster=String.valueOf(charNumb[i]);
             }
         }
-
+        System.out.println(clasters);
         return clasters;
     }
 
     public List<Integer> getClasters(List<Integer> numberCodes, int n){
         String strCrypt = "";
 
-        for(Integer a: numberCodes){
+        for(int a: numberCodes){
             strCrypt += a;
         }
+
+        System.out.println(strCrypt);
 
         return getClastersFromString(strCrypt, n);
     }
 
     public String crypting(int e, int n, List<Integer> numberCodes){
         List<Integer> clasters = getClasters(numberCodes, n);
+        System.out.println("crypt");
         String strCrypt = "[";
 
-        for (Integer num: clasters) {
+        for (int num: clasters) {
+            System.out.println(num);
             strCrypt +=algebraMod.feGraph(num, e, n).get(algebraMod.feGraph(num, e, n).size()-1).getP()+", ";
         }
 
