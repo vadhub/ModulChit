@@ -59,7 +59,7 @@ public class FragmentRSAcrypt extends Fragment {
             numbersCodesForCrypt = new ArrayList<>();
             for(int i = 0; i < strCrypt.length; i++){
                 for(int j =0; j < rsAshiphr.getAlphabyte().size(); j++){
-                    if(rsAshiphr.getAlphabyte().get(i).equals(strCrypt[i])){
+                    if(rsAshiphr.getAlphabyte().get(j).equals(strCrypt[i])){
                         numbersCodesForCrypt.add(alphaviteCodes.get(j));
                         break;
                     }
@@ -70,7 +70,9 @@ public class FragmentRSAcrypt extends Fragment {
                     (!editTextE.getText().toString().equals("")&&!editTextE.getText().toString().equals(""))){
                 int e = Integer.parseInt(editTextE.getText().toString());
                 int n = Integer.parseInt(editTextN.getText().toString());
+                System.out.println(numbersCodesForCrypt);
                 String str = rsaMod.crypting(e, n, numbersCodesForCrypt);
+                System.out.println(str);
                 textViewResult.setText(str);
             }
         }

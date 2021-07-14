@@ -33,7 +33,6 @@ public class AddAlphaviteFragment extends Fragment {
     private EditText numberForFirstLetter;
     private RecyclerView mRecyclerView;
     private AdapterRSAalphabyte adapterRSAalphabyte;
-    private List<Integer> numbersCode;
     private List<Integer> numberCodes;
     private Spinner spinner;
     private RSAshiphr shiphr;
@@ -50,10 +49,10 @@ public class AddAlphaviteFragment extends Fragment {
         adapterRSAalphabyte = new AdapterRSAalphabyte();
         spinner = (Spinner) v.findViewById(R.id.spinner);
         shiphr = new RSAshiphr();
-        numbersCode = new ArrayList<>();
+        numberCodes = new ArrayList<>();
 
-        numbersCode.addAll(shiphr.getNumberShiphr());
-        adapterRSAalphabyte.setNumbersCode(numbersCode);
+        numberCodes.addAll(shiphr.getNumberShiphr());
+        adapterRSAalphabyte.setNumbersCode(numberCodes);
         mRecyclerView.setAdapter(adapterRSAalphabyte);
 
 
@@ -71,7 +70,6 @@ public class AddAlphaviteFragment extends Fragment {
     private AdapterView.OnItemSelectedListener onItemSelectedListener = new AdapterView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-            numberCodes = new LinkedList<>();
             theChoice = i;
 
             update(i);
@@ -88,11 +86,16 @@ public class AddAlphaviteFragment extends Fragment {
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if(!numberForFirstLetter.getText().toString().equals("")){
-                getFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentRSAcrypt(numbersCode)).commit();
-            }else {
-                Toast.makeText(getContext(), "Enter text", Toast.LENGTH_SHORT).show();
+            if(numberForFirstLetter.getText().toString().equals("")){
+                if(theChoice==0){
+                    getFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentRSAcrypt(numberCodes)).commit();
+                }else {
+                    Toast.makeText(getContext(), "Enter text", Toast.LENGTH_SHORT).show();
+                }
+            }else{
+                getFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentRSAcrypt(numberCodes)).commit();
             }
+
         }
     };
 
@@ -130,6 +133,7 @@ public class AddAlphaviteFragment extends Fragment {
                     numberCodes = shiphr.getNumberShiphr(Integer.parseInt(numberForFirstLetter.getText().toString()));
                     break;
             }
+
             adapterRSAalphabyte.setNumbersCode(numberCodes);
             mRecyclerView.setAdapter(adapterRSAalphabyte);
 

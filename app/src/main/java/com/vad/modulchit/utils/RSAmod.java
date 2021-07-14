@@ -52,6 +52,7 @@ public class RSAmod {
     public List<Integer> getClastersFromString(String strCrypt, int n){
         List<Integer> clasters = new ArrayList<>();
         char[] charNumb = strCrypt.toCharArray();
+
         String numberClaster = String.valueOf(charNumb[0]);
         int number;
 

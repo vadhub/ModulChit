@@ -46,7 +46,7 @@ public class AdapterRSAalphabyte extends RecyclerView.Adapter<AdapterRSAalphabyt
     @Override
     public void onBindViewHolder(@NonNull AdapterRSAalphabyte.MyViewHolder holder, int position) {
 
-        holder.listener.updatePosition(holder.getAdapterPosition());
+        holder.listener.updatePosition(position);
         holder.textViewLetterAlpha.setText(shiphr.getAlphabyte().get(position)+"");
         holder.editTextNumber.setText(numbersCode.get(position)+"");
 
@@ -92,7 +92,6 @@ public class AdapterRSAalphabyte extends RecyclerView.Adapter<AdapterRSAalphabyt
             if(!charSequence.toString().equals("")){
                 numbersCode.set(position, Integer.parseInt(charSequence.toString()));
             }
-            System.out.println(charSequence.toString());
         }
 
         @Override
