@@ -57,18 +57,28 @@ public class RSAmod {
         List<Integer> clasters = new ArrayList<>();
         char[] charNumb = strCrypt.toCharArray();
 
-        String numberClaster = String.valueOf(charNumb[0]);
+        String numberClaster = "";
+        int temp = 0;
 
         for(int i = 0; i<charNumb.length; i++){
 
-            if(Integer.parseInt(numberClaster)<n){
-                numberClaster+=charNumb[i];
-                System.out.println(numberClaster);
-            }else{
-                clasters.add(Integer.parseInt(numberClaster));
-                numberClaster=String.valueOf(charNumb[i]);
+            if(!numberClaster.equals("")){
+                if(Integer.parseInt(numberClaster)>n){
+                    clasters.add(temp);
+                    System.out.println(numberClaster+" "+temp);
+                    numberClaster=charNumb[i-1]+"";
+                }
             }
+
+            if(!numberClaster.equals("")){
+                temp = Integer.parseInt(numberClaster);
+            }
+
+            numberClaster+=charNumb[i];
+
         }
+
+        clasters.add(Integer.parseInt(numberClaster));
         System.out.println(clasters);
         return clasters;
     }
@@ -87,16 +97,12 @@ public class RSAmod {
 
     public String crypting(int e, int n, List<Integer> numberCodes){
         List<Integer> clasters = getClasters(numberCodes, n);
-        System.out.println("crypt");
-        String strCrypt = "[";
+        List<String> result = new ArrayList<>();
 
         for (int num: clasters) {
-            System.out.println(num);
-            strCrypt +=algebraMod.feGraph(num, e, n).get(algebraMod.feGraph(num, e, n).size()-1).getP()+", ";
+            result.add(algebraMod.feGraph(num, e, n).get(algebraMod.feGraph(num, e, n).size()-1).getP()+"");
         }
 
-        strCrypt+="]";
-
-        return strCrypt;
+        return result.toString();
     }
 }
