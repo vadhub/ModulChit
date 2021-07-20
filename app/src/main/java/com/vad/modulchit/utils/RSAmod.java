@@ -79,7 +79,6 @@ public class RSAmod {
                     clast = Integer.parseInt(claster);
                 }
             }
-
         }
 
         clasters.add(clast);

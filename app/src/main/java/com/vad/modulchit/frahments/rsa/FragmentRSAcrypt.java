@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.vad.modulchit.R;
 import com.vad.modulchit.utils.RSAmod;
@@ -55,24 +56,32 @@ public class FragmentRSAcrypt extends Fragment {
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            char[] strCrypt = enterTextToCrypt.getText().toString().toCharArray();
-            numbersCodesForCrypt = new ArrayList<>();
-            for(int i = 0; i < strCrypt.length; i++){
-                for(int j =0; j < rsAshiphr.getAlphabyte().size(); j++){
-                    if(rsAshiphr.getAlphabyte().get(j).equals(strCrypt[i])){
-                        numbersCodesForCrypt.add(alphaviteCodes.get(j));
-                        break;
+            if(enterTextToCrypt.getText().toString().matches("[a-zA-Z]+")){
+                char[] strCrypt = enterTextToCrypt.getText().toString().toLowerCase().toCharArray();
+                numbersCodesForCrypt = new ArrayList<>();
+                for(int i = 0; i < strCrypt.length; i++){
+                    for(int j =0; j < rsAshiphr.getAlphabyte().size(); j++){
+                        if(rsAshiphr.getAlphabyte().get(j).equals(strCrypt[i])){
+                            numbersCodesForCrypt.add(alphaviteCodes.get(j));
+                            break;
+                        }
                     }
                 }
-            }
 
-            if(!editTextE.getText().toString().equals("")||!editTextE.getText().toString().equals("")||
+                if(!editTextE.getText().toString().equals("")||!editTextE.getText().toString().equals("")||
                     (!editTextE.getText().toString().equals("")&&!editTextE.getText().toString().equals(""))){
-                int e = Integer.parseInt(editTextE.getText().toString());
-                int n = Integer.parseInt(editTextN.getText().toString());
+                     int e = Integer.parseInt(editTextE.getText().toString());
+                     int n = Integer.parseInt(editTextN.getText().toString());
 
-                String str = rsaMod.crypting(e, n, numbersCodesForCrypt);
-                textViewResult.setText(str);
+                    String str = rsaMod.crypting(e, n, numbersCodesForCrypt);
+                    textViewResult.setText(str);
+
+                }else{
+                    Toast.makeText(getContext(), "Enter text", Toast.LENGTH_SHORT).show();
+                }
+
+            }else {
+                Toast.makeText(getContext(), "Enter only letters", Toast.LENGTH_SHORT).show();
             }
         }
     };
