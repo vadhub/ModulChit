@@ -53,7 +53,6 @@ public class RSAmod {
         return gcdeList;
     }
 
-
     public List<Integer> getClastersFromString(String strCrypt, int n){
         List<Integer> clasters = new ArrayList<>();
         char[] charsCrypt = strCrypt.toCharArray();
@@ -68,13 +67,18 @@ public class RSAmod {
                 clasters.add(temp);
                 claster=String.valueOf(charsCrypt[i-1]);
             }
-
-            if(!claster.equals("")){
-                temp = Integer.parseInt(claster);
-            }
+            temp = Integer.parseInt(claster);
 
             claster+=charsCrypt[i];
             clast = Integer.parseInt(claster);
+
+            if(i == charsCrypt.length-1){
+                if(clast>n){
+                    clasters.add(Integer.parseInt(charsCrypt[i-1]+""));
+                    claster=String.valueOf(charsCrypt[i]);
+                    clast = Integer.parseInt(claster);
+                }
+            }
 
         }
 
