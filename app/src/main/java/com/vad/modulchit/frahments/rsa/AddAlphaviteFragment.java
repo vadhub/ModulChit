@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.vad.modulchit.R;
 import com.vad.modulchit.adapters.AdapterRSAalphabyte;
+import com.vad.modulchit.utils.RSAmod;
 import com.vad.modulchit.utils.RSAshiphr;
 
 import java.util.ArrayList;
@@ -38,6 +39,7 @@ public class AddAlphaviteFragment extends Fragment {
     private List<Integer> numberCodes;
     private Spinner spinner;
     private RSAshiphr shiphr;
+    private RSAmod rsaMod;
     private int theChoice = 0;
 
     @Override
@@ -53,6 +55,7 @@ public class AddAlphaviteFragment extends Fragment {
         numberP = (EditText) v.findViewById(R.id.editTextNumberP);
         numberQ = (EditText) v.findViewById(R.id.editTextNumberQ);
         shiphr = new RSAshiphr();
+        rsaMod = new RSAmod();
         numberCodes = new ArrayList<>();
 
         numberCodes.addAll(shiphr.getNumberShiphr());
@@ -75,7 +78,6 @@ public class AddAlphaviteFragment extends Fragment {
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
             theChoice = i;
-
             update(i);
         }
 
@@ -89,14 +91,25 @@ public class AddAlphaviteFragment extends Fragment {
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if(numberForFirstLetter.getText().toString().equals("")){
-                if(theChoice==0){
-                    getFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentRSAcrypt(numberCodes, Integer.parseInt(numberP.getText().toString()), Integer.parseInt(numberQ.getText().toString()))).commit();
-                }else {
-                    Toast.makeText(getContext(), "Enter text", Toast.LENGTH_SHORT).show();
+            if(!numberP.getText().toString().equals("")&&!numberQ.getText().toString().equals("")){
+                int p = Integer.parseInt(numberP.getText().toString());
+                int q = Integer.parseInt(numberQ.getText().toString());
+
+                if(!rsaMod.isSimpleNumber(p)&&!rsaMod.isSimpleNumber(q)){
+                    Toast.makeText(getContext(), "Enter simple numbers", Toast.LENGTH_SHORT).show();
                 }
             }else{
-                getFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentRSAcrypt(numberCodes, Integer.parseInt(numberP.getText().toString()), Integer.parseInt(numberQ.getText().toString()))).commit();
+
+                if(numberForFirstLetter.getText().toString().equals("")){
+
+                    if(theChoice==0){
+                        getFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentRSAcrypt(numberCodes, Integer.parseInt(numberP.getText().toString()), Integer.parseInt(numberQ.getText().toString()))).commit();
+                    }else {
+                        Toast.makeText(getContext(), "Enter text", Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+                    getFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentRSAcrypt(numberCodes, Integer.parseInt(numberP.getText().toString()), Integer.parseInt(numberQ.getText().toString()))).commit();
+                }
             }
 
         }

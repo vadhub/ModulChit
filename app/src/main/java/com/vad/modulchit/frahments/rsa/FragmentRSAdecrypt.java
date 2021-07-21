@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.vad.modulchit.R;
+import com.vad.modulchit.utils.RSAmod;
 
 public class FragmentRSAdecrypt extends Fragment {
 
@@ -20,6 +21,17 @@ public class FragmentRSAdecrypt extends Fragment {
     private EditText editTextN;
     private TextView resultDecrypt;
     private Button btnResult;
+    private int p;
+    private int q;
+    private int eller;
+    private int e;
+    private int d;
+    private RSAmod rsaMod;
+
+    public FragmentRSAdecrypt(int p, int q) {
+        this.p=p;
+        this.q=q;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,6 +43,11 @@ public class FragmentRSAdecrypt extends Fragment {
         editTextN = (EditText) v.findViewById(R.id.editTextNdecrypt);
         resultDecrypt = (TextView) v.findViewById(R.id.textViewResultDecrypt);
         btnResult = (Button) v.findViewById(R.id.buttonDecrypt);
+        rsaMod = new RSAmod();
+
+        eller = rsaMod.functionEller(p,q);
+        e = rsaMod.exponenta(eller);
+        d = rsaMod.getDPrivate(e, eller);
 
         btnResult.setOnClickListener(clickListener);
 

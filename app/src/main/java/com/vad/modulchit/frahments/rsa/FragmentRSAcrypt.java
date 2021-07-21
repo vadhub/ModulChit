@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +31,9 @@ public class FragmentRSAcrypt extends Fragment {
     private EditText editTextN;
     private int p;
     private int q;
+    int eller;
+    int e;
+    String privateKey = "";
     private TextView textViewResult;
     private List<Integer> alphaviteCodes;
     private List<Integer> numbersCodesForCrypt;
@@ -53,12 +58,18 @@ public class FragmentRSAcrypt extends Fragment {
         textViewResult = (TextView) v.findViewById(R.id.textViewResultCrypt);
         rsaMod = new RSAmod();
         rsAshiphr = new RSAshiphr();
-        int n = rsaMod.getN(p, q);
-        int eller = rsaMod.functionEller(p, q);
-        int e = rsaMod.exponenta(eller);
 
-        editTextE.setText(String.valueOf(e));
-        editTextN.setText(String.valueOf(n));
+        if(p!=0&&q!=0||(p!=0||q!=0)){
+            int n = rsaMod.getN(p, q);
+            eller = rsaMod.functionEller(p, q);
+            e = rsaMod.exponenta(eller);
+            privateKey = "\n"+"private key: {"+rsaMod.getDPrivate(e, eller)+", "+n+"}";
+            editTextE.setText(String.valueOf(e));
+            editTextN.setText(String.valueOf(n));
+        }
+
+        editTextN.addTextChangedListener(listenerWatchText);
+        editTextE.addTextChangedListener(listenerWatchText);
         btnOk.setOnClickListener(clickListener);
         return v;
     }
@@ -83,7 +94,7 @@ public class FragmentRSAcrypt extends Fragment {
                      int e = Integer.parseInt(editTextE.getText().toString());
                      int n = Integer.parseInt(editTextN.getText().toString());
 
-                    String str = rsaMod.encrypting(e, n, numbersCodesForCrypt);
+                    String str = rsaMod.encrypting(e, n, numbersCodesForCrypt)+privateKey;
                     textViewResult.setText(str);
 
                 }else{
@@ -93,6 +104,23 @@ public class FragmentRSAcrypt extends Fragment {
             }else {
                 Toast.makeText(getContext(), "Enter only letters", Toast.LENGTH_SHORT).show();
             }
+        }
+    };
+
+    private TextWatcher listenerWatchText = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+            privateKey = "";
         }
     };
 }
