@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vad.modulchit.R;
+import com.vad.modulchit.utils.AlgebraMod;
 import com.vad.modulchit.utils.RSAmod;
 import com.vad.modulchit.utils.RSAshiphr;
 
@@ -52,7 +53,12 @@ public class FragmentRSAcrypt extends Fragment {
         textViewResult = (TextView) v.findViewById(R.id.textViewResultCrypt);
         rsaMod = new RSAmod();
         rsAshiphr = new RSAshiphr();
+        int n = rsaMod.getN(p, q);
+        int eller = rsaMod.functionEller(p, q);
+        int e = rsaMod.exponenta(eller);
 
+        editTextE.setText(String.valueOf(e));
+        editTextN.setText(String.valueOf(n));
         btnOk.setOnClickListener(clickListener);
         return v;
     }

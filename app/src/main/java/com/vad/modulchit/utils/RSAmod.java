@@ -22,7 +22,11 @@ public class RSAmod {
     }
 
     public int getDPrivate(int exponent, int eller){
-        return algebraMod.gcdGraph(exponent, eller).get(algebraMod.gcdGraph(exponent, eller).size()-1).getY2();
+        int d = algebraMod.gcdGraph(exponent, eller).get(algebraMod.gcdGraph(exponent, eller).size()-1).getY2();
+        if(d<0){
+            d=+exponent;
+        }
+        return d;
     }
 
     //check is simple number
