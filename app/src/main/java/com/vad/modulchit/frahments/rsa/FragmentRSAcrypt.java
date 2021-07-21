@@ -26,14 +26,18 @@ public class FragmentRSAcrypt extends Fragment {
     private EditText enterTextToCrypt;
     private EditText editTextE;
     private EditText editTextN;
+    private int p;
+    private int q;
     private TextView textViewResult;
     private List<Integer> alphaviteCodes;
     private List<Integer> numbersCodesForCrypt;
     private RSAmod rsaMod;
     private RSAshiphr rsAshiphr;
 
-    public FragmentRSAcrypt(List<Integer> alphaviteCodes) {
+    public FragmentRSAcrypt(List<Integer> alphaviteCodes, int p, int q) {
         this.alphaviteCodes = alphaviteCodes;
+        this.p=p;
+        this.q=q;
     }
 
     @Override
@@ -73,7 +77,7 @@ public class FragmentRSAcrypt extends Fragment {
                      int e = Integer.parseInt(editTextE.getText().toString());
                      int n = Integer.parseInt(editTextN.getText().toString());
 
-                    String str = rsaMod.crypting(e, n, numbersCodesForCrypt);
+                    String str = rsaMod.encrypting(e, n, numbersCodesForCrypt);
                     textViewResult.setText(str);
 
                 }else{

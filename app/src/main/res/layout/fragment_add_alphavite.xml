@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".frahments.rsa.AddAlphaviteFragment">
 
-
     <Button
         android:id="@+id/btnNetx"
         android:layout_width="wrap_content"
@@ -26,6 +25,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:hint="first number"
+        style="@style/theme_chit"
         android:inputType="number"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -53,6 +53,51 @@
             android:text="Decrypt" />
     </RadioGroup>
 
+    <LinearLayout
+        android:id="@+id/linearLayoutEncrypt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/radiogroup"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/theme_chit"
+            android:text="p: " />
+
+        <EditText
+            android:id="@+id/editTextNumberP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/theme_chit"
+            android:ems="3"
+            android:gravity="center"
+            android:hint="p"
+            android:inputType="number" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/theme_chit"
+            android:text="q: " />
+
+        <EditText
+            android:id="@+id/editTextNumberQ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="q"
+            style="@style/theme_chit"
+            android:ems="3"
+            android:inputType="number" />
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/mRecyclerAlphabyte"
         android:layout_width="match_parent"
@@ -60,7 +105,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radiogroup" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutEncrypt" />
 
     <Spinner
         android:id="@+id/spinner"

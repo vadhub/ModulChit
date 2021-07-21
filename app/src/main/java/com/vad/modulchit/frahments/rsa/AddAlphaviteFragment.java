@@ -31,6 +31,8 @@ public class AddAlphaviteFragment extends Fragment {
 
     private Button btnNext;
     private EditText numberForFirstLetter;
+    private EditText numberP;
+    private EditText numberQ;
     private RecyclerView mRecyclerView;
     private AdapterRSAalphabyte adapterRSAalphabyte;
     private List<Integer> numberCodes;
@@ -48,6 +50,8 @@ public class AddAlphaviteFragment extends Fragment {
         mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         adapterRSAalphabyte = new AdapterRSAalphabyte();
         spinner = (Spinner) v.findViewById(R.id.spinner);
+        numberP = (EditText) v.findViewById(R.id.editTextNumberP);
+        numberQ = (EditText) v.findViewById(R.id.editTextNumberQ);
         shiphr = new RSAshiphr();
         numberCodes = new ArrayList<>();
 
@@ -73,7 +77,6 @@ public class AddAlphaviteFragment extends Fragment {
             theChoice = i;
 
             update(i);
-
         }
 
         @Override
@@ -88,12 +91,12 @@ public class AddAlphaviteFragment extends Fragment {
         public void onClick(View view) {
             if(numberForFirstLetter.getText().toString().equals("")){
                 if(theChoice==0){
-                    getFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentRSAcrypt(numberCodes)).commit();
+                    getFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentRSAcrypt(numberCodes, Integer.parseInt(numberP.getText().toString()), Integer.parseInt(numberQ.getText().toString()))).commit();
                 }else {
                     Toast.makeText(getContext(), "Enter text", Toast.LENGTH_SHORT).show();
                 }
             }else{
-                getFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentRSAcrypt(numberCodes)).commit();
+                getFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentRSAcrypt(numberCodes, Integer.parseInt(numberP.getText().toString()), Integer.parseInt(numberQ.getText().toString()))).commit();
             }
 
         }

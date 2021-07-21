@@ -16,15 +16,19 @@ public class RSAmod {
         return p*q;
     }
 
+    //function eller for public key
+    public int functionEller(int p, int q){
+        return (p-1)*(q-1);
+    }
+
+    public int getDPrivate(int exponent, int eller){
+        return algebraMod.gcdGraph(exponent, eller).get(algebraMod.gcdGraph(exponent, eller).size()-1).getY2();
+    }
+
     //check is simple number
     public boolean isSimpleNumber(int number){
         BigInteger bigInteger = BigInteger.valueOf(number);
         return bigInteger.isProbablePrime(number);
-    }
-
-    //function eller for public key
-    public int functionEller(int p, int q){
-        return (p-1)*(q-1);
     }
 
     //open exponenta for public key
@@ -41,10 +45,6 @@ public class RSAmod {
             }
         }
         return simple;
-    }
-
-    public int getDPrivate(int exponent, int eller){
-        return algebraMod.gcdGraph(exponent, eller).get(algebraMod.gcdGraph(exponent, eller).size()-1).getY2();
     }
 
     //generate private key on visaul gcde
@@ -98,7 +98,7 @@ public class RSAmod {
         return getClastersFromString(strCrypt, n);
     }
 
-    public String crypting(int e, int n, List<Integer> numberCodes){
+    public String encrypting(int e, int n, List<Integer> numberCodes){
         List<Integer> clasters = getClasters(numberCodes, n);
         List<String> result = new ArrayList<>();
 
@@ -107,5 +107,9 @@ public class RSAmod {
         }
 
         return result.toString();
+    }
+
+    public String decrypting(int d, int n, String strCode){
+        return "";
     }
 }
