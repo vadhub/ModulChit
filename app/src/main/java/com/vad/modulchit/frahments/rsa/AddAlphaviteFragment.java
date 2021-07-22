@@ -15,6 +15,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -37,10 +39,13 @@ public class AddAlphaviteFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private AdapterRSAalphabyte adapterRSAalphabyte;
     private List<Integer> numberCodes;
+    private RadioButton radioButtonEncript;
+    private RadioButton radioButtonDecript;
     private Spinner spinner;
     private RSAshiphr shiphr;
     private RSAmod rsaMod;
     private int theChoice = 0;
+    private boolean isEncrypt = true;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,8 +57,13 @@ public class AddAlphaviteFragment extends Fragment {
         mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         adapterRSAalphabyte = new AdapterRSAalphabyte();
         spinner = (Spinner) v.findViewById(R.id.spinner);
+
         numberP = (EditText) v.findViewById(R.id.editTextNumberP);
         numberQ = (EditText) v.findViewById(R.id.editTextNumberQ);
+
+        radioButtonEncript = (RadioButton) v.findViewById(R.id.radioButtonEncrypt);
+        radioButtonDecript = (RadioButton) v.findViewById(R.id.radioButtonDecrypt);
+
         shiphr = new RSAshiphr();
         rsaMod = new RSAmod();
         numberCodes = new ArrayList<>();
@@ -69,9 +79,24 @@ public class AddAlphaviteFragment extends Fragment {
         spinner.setOnItemSelectedListener(onItemSelectedListener);
         btnNext.setOnClickListener(clickListener);
         numberForFirstLetter.addTextChangedListener(textWatcher);
+        radioButtonDecript.setOnClickListener(radioButtonClick);
+        radioButtonEncript.setOnClickListener(radioButtonClick);
 
         return v;
     }
+
+    private View.OnClickListener radioButtonClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            RadioButton radioButton = (RadioButton)view;
+            switch (radioButton.getId()){
+                case R.id.radioButtonEncrypt: isEncrypt = true;
+                break;
+                case R.id.radioButtonDecrypt: isEncrypt = false;
+                break;
+            }
+        }
+    };
 
     //selecting modification on aphavite
     private AdapterView.OnItemSelectedListener onItemSelectedListener = new AdapterView.OnItemSelectedListener() {
@@ -91,6 +116,15 @@ public class AddAlphaviteFragment extends Fragment {
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+
+            Fragment fragment;
+
+            if(isEncrypt){
+                fragment = new FragmentRSAcrypt(numberCodes, Integer.parseInt(numberP.getText().toString()), Integer.parseInt(numberQ.getText().toString()));
+            }else{
+                fragment = new FragmentRSAdecrypt(Integer.parseInt(numberP.getText().toString()), Integer.parseInt(numberQ.getText().toString()));
+            }
+
             if(!numberP.getText().toString().equals("")&&!numberQ.getText().toString().equals("")){
                 int p = Integer.parseInt(numberP.getText().toString());
                 int q = Integer.parseInt(numberQ.getText().toString());
@@ -103,12 +137,12 @@ public class AddAlphaviteFragment extends Fragment {
                 if(numberForFirstLetter.getText().toString().equals("")){
 
                     if(theChoice==0){
-                        getFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentRSAcrypt(numberCodes, Integer.parseInt(numberP.getText().toString()), Integer.parseInt(numberQ.getText().toString()))).commit();
+                        getFragmentManager().beginTransaction().replace(R.id.frame_replace, fragment).commit();
                     }else {
                         Toast.makeText(getContext(), "Enter text", Toast.LENGTH_SHORT).show();
                     }
                 }else{
-                    getFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentRSAcrypt(numberCodes, Integer.parseInt(numberP.getText().toString()), Integer.parseInt(numberQ.getText().toString()))).commit();
+                    getFragmentManager().beginTransaction().replace(R.id.frame_replace, fragment).commit();
                 }
             }
 

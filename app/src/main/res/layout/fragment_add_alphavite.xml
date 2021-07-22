@@ -40,14 +40,14 @@
         app:layout_constraintTop_toBottomOf="@id/btnNetx">
 
         <RadioButton
-            android:id="@+id/radioButtonDecrypt"
+            android:id="@+id/radioButtonEncrypt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="Cryp" />
+            android:text="Encrypt" />
 
         <RadioButton
-            android:id="@+id/radioButtonCrypt"
+            android:id="@+id/radioButtonDecrypt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Decrypt" />

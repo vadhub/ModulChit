@@ -61,12 +61,6 @@ public class FragmentGCDe extends Fragment {
         adapterGCDe = new AdapterGCDe();
         algebraMod = new AlgebraMod();
 
-        List<TableNumberGCDe> ta = algebraMod.gcdGraph(12990, 991);
-
-        for(TableNumberGCDe t: ta){
-            System.out.println(t.getA()+" "+t.getB()+" "+t.getQ()+" "+t.getR()+" "+t.getX1()+" "+t.getX2()+" "+t.getY1()+" "+t.getY2());
-        }
-
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

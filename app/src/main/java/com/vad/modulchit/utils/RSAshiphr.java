@@ -10,7 +10,7 @@ public class RSAshiphr {
         for(char i = 'a'; i<='z'; i++){
             alphabyte.add(i);
         }
-        alphabyte.add('_');
+        alphabyte.add(' ');
 
         return alphabyte;
     }

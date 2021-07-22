@@ -21,6 +21,7 @@ public class FragmentRSAdecrypt extends Fragment {
     private EditText editTextN;
     private TextView resultDecrypt;
     private Button btnResult;
+    private int n;
     private int p;
     private int q;
     private int eller;
@@ -45,6 +46,7 @@ public class FragmentRSAdecrypt extends Fragment {
         btnResult = (Button) v.findViewById(R.id.buttonDecrypt);
         rsaMod = new RSAmod();
 
+        n= rsaMod.getN(p,q);
         eller = rsaMod.functionEller(p,q);
         e = rsaMod.exponenta(eller);
         d = rsaMod.getDPrivate(e, eller);
@@ -57,6 +59,8 @@ public class FragmentRSAdecrypt extends Fragment {
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            String strResult = rsaMod.decrypting(d, n, enterCodeDecrypt.getText().toString());
+            resultDecrypt.setText(strResult);
 
         }
     };
