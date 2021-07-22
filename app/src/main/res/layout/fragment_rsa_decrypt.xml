@@ -16,8 +16,8 @@
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:gravity="center"
-        android:hint="text for decrypting"
-        android:inputType="textPersonName"
+        android:hint="[132, 345, 2, 35]"
+        android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -37,7 +37,7 @@
             style="@style/theme_chit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="D: " />
+            android:text="d: " />
 
         <EditText
             android:id="@+id/editTextDdecript"
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:ems="3"
             android:gravity="center"
-            android:hint="d"
+            android:hint="17"
             android:inputType="textPersonName" />
 
         <TextView
@@ -54,7 +54,7 @@
             style="@style/theme_chit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="N: "/>
+            android:text="n: "/>
 
         <EditText
             android:id="@+id/editTextNdecrypt"
@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:ems="3"
             android:gravity="center"
-            android:hint="n"
+            android:hint="21"
             android:inputType="textPersonName" />
     </LinearLayout>
 

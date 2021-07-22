@@ -6,6 +6,7 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Scanner;
 
 public class RSAmod {
 
@@ -107,13 +108,29 @@ public class RSAmod {
         List<String> result = new ArrayList<>();
 
         for (int num: clasters) {
-            result.add(algebraMod.feGraph(num, e, n).get(algebraMod.feGraph(num, e, n).size()-1).getP()+"");
+            result.add(algebraMod.feGraph(num, e, n).get(algebraMod.feGraph(num, e, n).size()).getP()+"");
         }
 
         return result.toString();
     }
 
+    private List<Integer> getNumberCodes(String strCode){
+        List<Integer> numberCodes = new ArrayList<>();
+        String[] numbers = strCode.split(",");
+
+        for (String number : numbers) {
+            numberCodes.add(Integer.parseInt(number));
+        }
+
+        return numberCodes;
+    }
+
     public String decrypting(int d, int n, String strCode){
+        List<Integer> numberCodes = getNumberCodes(strCode);
+
+        for (Integer i: numberCodes){
+            String str = String.valueOf(algebraMod.feGraph(i, d, n).get(algebraMod.feGraph(i, d, n).size()-1).getP());
+        }
         return "";
     }
 }

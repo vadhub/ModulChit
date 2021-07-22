@@ -34,6 +34,9 @@ public class FragmentRSAdecrypt extends Fragment {
         this.q=q;
     }
 
+    public FragmentRSAdecrypt() {
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -46,10 +49,12 @@ public class FragmentRSAdecrypt extends Fragment {
         btnResult = (Button) v.findViewById(R.id.buttonDecrypt);
         rsaMod = new RSAmod();
 
-        n= rsaMod.getN(p,q);
-        eller = rsaMod.functionEller(p,q);
-        e = rsaMod.exponenta(eller);
-        d = rsaMod.getDPrivate(e, eller);
+        if(q!=0&&p!=0||(q!=0||p!=0)){
+            n= rsaMod.getN(p,q);
+            eller = rsaMod.functionEller(p,q);
+            e = rsaMod.exponenta(eller);
+            d = rsaMod.getDPrivate(e, eller);
+        }
 
         btnResult.setOnClickListener(clickListener);
 

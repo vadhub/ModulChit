@@ -46,6 +46,10 @@ public class FragmentRSAcrypt extends Fragment {
         this.q=q;
     }
 
+    public FragmentRSAcrypt(List<Integer> alphaviteCodes) {
+        this.alphaviteCodes = alphaviteCodes;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

@@ -39,8 +39,8 @@ public class AddAlphaviteFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private AdapterRSAalphabyte adapterRSAalphabyte;
     private List<Integer> numberCodes;
-    private RadioButton radioButtonEncript;
-    private RadioButton radioButtonDecript;
+    private RadioButton radioButtonEncrypt;
+    private RadioButton radioButtonDecrypt;
     private Spinner spinner;
     private RSAshiphr shiphr;
     private RSAmod rsaMod;
@@ -61,8 +61,8 @@ public class AddAlphaviteFragment extends Fragment {
         numberP = (EditText) v.findViewById(R.id.editTextNumberP);
         numberQ = (EditText) v.findViewById(R.id.editTextNumberQ);
 
-        radioButtonEncript = (RadioButton) v.findViewById(R.id.radioButtonEncrypt);
-        radioButtonDecript = (RadioButton) v.findViewById(R.id.radioButtonDecrypt);
+        radioButtonEncrypt = (RadioButton) v.findViewById(R.id.radioButtonEncrypt);
+        radioButtonDecrypt = (RadioButton) v.findViewById(R.id.radioButtonDecrypt);
 
         shiphr = new RSAshiphr();
         rsaMod = new RSAmod();
@@ -79,8 +79,8 @@ public class AddAlphaviteFragment extends Fragment {
         spinner.setOnItemSelectedListener(onItemSelectedListener);
         btnNext.setOnClickListener(clickListener);
         numberForFirstLetter.addTextChangedListener(textWatcher);
-        radioButtonDecript.setOnClickListener(radioButtonClick);
-        radioButtonEncript.setOnClickListener(radioButtonClick);
+        radioButtonDecrypt.setOnClickListener(radioButtonClick);
+        radioButtonEncrypt.setOnClickListener(radioButtonClick);
 
         return v;
     }
@@ -116,36 +116,39 @@ public class AddAlphaviteFragment extends Fragment {
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-
-            Fragment fragment;
-
-            if(isEncrypt){
-                fragment = new FragmentRSAcrypt(numberCodes, Integer.parseInt(numberP.getText().toString()), Integer.parseInt(numberQ.getText().toString()));
-            }else{
-                fragment = new FragmentRSAdecrypt(Integer.parseInt(numberP.getText().toString()), Integer.parseInt(numberQ.getText().toString()));
-            }
-
+            Fragment fragment = null;
             if(!numberP.getText().toString().equals("")&&!numberQ.getText().toString().equals("")){
                 int p = Integer.parseInt(numberP.getText().toString());
                 int q = Integer.parseInt(numberQ.getText().toString());
 
+                if(isEncrypt){
+                    fragment = new FragmentRSAcrypt(numberCodes, p, q);
+                }else{
+                    fragment = new FragmentRSAdecrypt(p, q);
+                }
                 if(!rsaMod.isSimpleNumber(p)&&!rsaMod.isSimpleNumber(q)){
                     Toast.makeText(getContext(), "Enter simple numbers", Toast.LENGTH_SHORT).show();
                 }
-            }else{
-
-                if(numberForFirstLetter.getText().toString().equals("")){
-
-                    if(theChoice==0){
+                if(theChoice==0){
+                    if(!numberForFirstLetter.getText().toString().equals("")){
                         getFragmentManager().beginTransaction().replace(R.id.frame_replace, fragment).commit();
-                    }else {
+                    }else{
                         Toast.makeText(getContext(), "Enter text", Toast.LENGTH_SHORT).show();
                     }
+                }
+            }else{
+                if(isEncrypt){
+                    fragment = new FragmentRSAcrypt(numberCodes);
                 }else{
+                    fragment = new FragmentRSAdecrypt();
+                }
+
+                if(!numberForFirstLetter.getText().toString().equals("")){
                     getFragmentManager().beginTransaction().replace(R.id.frame_replace, fragment).commit();
+                }else{
+                    Toast.makeText(getContext(), "Enter text", Toast.LENGTH_SHORT).show();
                 }
             }
-
         }
     };
 
