@@ -16,7 +16,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -26,8 +25,6 @@ import com.vad.modulchit.utils.RSAmod;
 import com.vad.modulchit.utils.RSAshiphr;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
 
 public class AddAlphaviteFragment extends Fragment {
@@ -38,7 +35,7 @@ public class AddAlphaviteFragment extends Fragment {
     private EditText numberQ;
     private RecyclerView mRecyclerView;
     private AdapterRSAalphabyte adapterRSAalphabyte;
-    private List<Integer> numberCodes;
+    private List<Integer> alphaviteCodes;
     private RadioButton radioButtonEncrypt;
     private RadioButton radioButtonDecrypt;
     private Spinner spinner;
@@ -66,10 +63,10 @@ public class AddAlphaviteFragment extends Fragment {
 
         shiphr = new RSAshiphr();
         rsaMod = new RSAmod();
-        numberCodes = new ArrayList<>();
+        alphaviteCodes = new ArrayList<>();
 
-        numberCodes.addAll(shiphr.getNumberShiphr());
-        adapterRSAalphabyte.setNumbersCode(numberCodes);
+        alphaviteCodes.addAll(shiphr.getNumberShiphr());
+        adapterRSAalphabyte.setNumbersCode(alphaviteCodes);
         mRecyclerView.setAdapter(adapterRSAalphabyte);
 
         ArrayAdapter<?> adapterSpinner = ArrayAdapter.createFromResource(getContext(), R.array.modifyRsaAlpabyte, android.R.layout.simple_spinner_item);
@@ -118,28 +115,38 @@ public class AddAlphaviteFragment extends Fragment {
         public void onClick(View view) {
             Fragment fragment = null;
 
+            int n;
+            int eller;
+            int exponent;
             if(isEncrypt){
                 if(!numberQ.getText().toString().equals("")&&!numberP.getText().toString().equals("")){
                     int p = Integer.parseInt(numberP.getText().toString());
                     int q = Integer.parseInt(numberQ.getText().toString());
 
+                    n = rsaMod.getN(p,q);
+                    eller = rsaMod.functionEller(p,q);
+                    exponent = rsaMod.exponenta(eller);
+
                     if(rsaMod.isSimpleNumber(p)&&rsaMod.isSimpleNumber(q)){
-                        fragment = new FragmentRSAcrypt(numberCodes, p, q);
-                        System.out.println(numberCodes+"is");
+                        fragment = new FragmentRSAcrypt(alphaviteCodes, n, exponent);
                     }else{
                         Toast.makeText(getContext(), "Enter simple number", Toast.LENGTH_SHORT).show();
                     }
                 }else{
-                    fragment = new FragmentRSAcrypt(numberCodes);
-                    System.out.println(numberCodes);
+                    fragment = new FragmentRSAcrypt(alphaviteCodes);
                 }
             }else{
                 if(!numberQ.getText().toString().equals("")&&!numberP.getText().toString().equals("")){
                     int p = Integer.parseInt(numberP.getText().toString());
                     int q = Integer.parseInt(numberQ.getText().toString());
 
+                    n =rsaMod.getN(p,q);
+                    eller = rsaMod.functionEller(p,q);
+                    exponent = rsaMod.exponenta(eller);
+                    int d = rsaMod.getDPrivate(eller, exponent);
+
                     if(rsaMod.isSimpleNumber(p)&&rsaMod.isSimpleNumber(q)){
-                        fragment = new FragmentRSAdecrypt(p, q);
+                        fragment = new FragmentRSAdecrypt(alphaviteCodes, n, d);
                     }else{
                         Toast.makeText(getContext(), "Enter simple number", Toast.LENGTH_SHORT).show();
                     }
@@ -182,14 +189,14 @@ public class AddAlphaviteFragment extends Fragment {
         }else{
             switch (i){
                 case 0:
-                    numberCodes = shiphr.getNumberShiphr();
+                    alphaviteCodes = shiphr.getNumberShiphr();
                     break;
                 case 1:
-                    numberCodes = shiphr.getNumberShiphr(Integer.parseInt(numberForFirstLetter.getText().toString()));
+                    alphaviteCodes = shiphr.getNumberShiphr(Integer.parseInt(numberForFirstLetter.getText().toString()));
                     break;
             }
 
-            adapterRSAalphabyte.setNumbersCode(numberCodes);
+            adapterRSAalphabyte.setNumbersCode(alphaviteCodes);
             mRecyclerView.setAdapter(adapterRSAalphabyte);
 
         }

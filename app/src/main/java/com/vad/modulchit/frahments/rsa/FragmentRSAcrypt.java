@@ -29,10 +29,8 @@ public class FragmentRSAcrypt extends Fragment {
     private EditText enterTextToCrypt;
     private EditText editTextE;
     private EditText editTextN;
-    private int p;
-    private int q;
-    int eller;
-    int e;
+    private int n;
+    private int e;
     String privateKey = "";
     private TextView textViewResult;
     private List<Integer> alphaviteCodes;
@@ -40,10 +38,10 @@ public class FragmentRSAcrypt extends Fragment {
     private RSAmod rsaMod;
     private RSAshiphr rsAshiphr;
 
-    public FragmentRSAcrypt(List<Integer> alphaviteCodes, int p, int q) {
+    public FragmentRSAcrypt(List<Integer> alphaviteCodes, int n, int e) {
         this.alphaviteCodes = alphaviteCodes;
-        this.p=p;
-        this.q=q;
+        this.n=n;
+        this.e=e;
     }
 
     public FragmentRSAcrypt(List<Integer> alphaviteCodes) {
@@ -63,14 +61,8 @@ public class FragmentRSAcrypt extends Fragment {
         rsaMod = new RSAmod();
         rsAshiphr = new RSAshiphr();
 
-        if(p!=0&&q!=0||(p!=0||q!=0)){
-            int n = rsaMod.getN(p, q);
-            eller = rsaMod.functionEller(p, q);
-            e = rsaMod.exponenta(eller);
-            privateKey = "\n"+"private key: {"+rsaMod.getDPrivate(e, eller)+", "+n+"}";
-            editTextE.setText(String.valueOf(e));
-            editTextN.setText(String.valueOf(n));
-        }
+        editTextE.setText(String.valueOf(e));
+        editTextN.setText(String.valueOf(n));
 
         editTextN.addTextChangedListener(listenerWatchText);
         editTextE.addTextChangedListener(listenerWatchText);

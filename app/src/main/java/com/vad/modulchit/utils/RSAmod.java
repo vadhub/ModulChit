@@ -4,9 +4,7 @@ import com.vad.modulchit.pojos.TableNumberGCDe;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Scanner;
 
 public class RSAmod {
 
@@ -22,10 +20,12 @@ public class RSAmod {
         return (p-1)*(q-1);
     }
 
-    public int getDPrivate(int exponent, int eller){
-        int d = algebraMod.gcdGraph(exponent, eller).get(algebraMod.gcdGraph(exponent, eller).size()-1).getY2();
+    public int getDPrivate(int eller, int exponent){
+        int d = algebraMod.gcdGraph(eller, exponent).get(algebraMod.gcdGraph(eller,exponent).size()-1).getY2();
+
+        System.out.println(d+" eller: "+eller+" e: "+exponent);
         if(d<0){
-            d=+exponent;
+            d+=eller;
         }
         return d;
     }
@@ -68,7 +68,6 @@ public class RSAmod {
         for(int i = 1; i<charsCrypt.length; i++){
 
             if(clast>n){
-                System.out.println(clast+" "+temp);
                 clasters.add(temp);
                 claster=String.valueOf(charsCrypt[i-1]);
             }
@@ -87,7 +86,6 @@ public class RSAmod {
         }
 
         clasters.add(clast);
-        System.out.println(clasters);
         return clasters;
     }
 
@@ -97,8 +95,6 @@ public class RSAmod {
         for(int a: numberCodes){
             strCrypt += a;
         }
-
-        System.out.println(strCrypt);
 
         return getClastersFromString(strCrypt, n);
     }
@@ -129,12 +125,21 @@ public class RSAmod {
         return numberCodes;
     }
 
-    public String decrypting(int d, int n, String strCode){
+    public String decrypting(List<Integer> alphaviteCodes,int d, int n, String strCode){
         List<Integer> numberCodes = getNumberCodes(strCode);
+        RSAshiphr rsAshiphr = new RSAshiphr();
+
         System.out.println(numberCodes);
+        int temp = 0;
         String str = "";
         for (Integer i: numberCodes){
-            System.out.println(algebraMod.feGraph(i, d, n).size()+"i: "+i+"d: "+d+"n: "+n);
+            temp = algebraMod.feGraph(i, d, n).get(algebraMod.feGraph(i, d, n).size()-1).getP();
+
+            if(alphaviteCodes.contains(temp)){
+                str += rsAshiphr.getAlphabyte().get(alphaviteCodes.indexOf(temp))+", ";
+            }else {
+                str += temp+", ";
+            }
         }
         return str;
     }

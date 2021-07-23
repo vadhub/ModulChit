@@ -14,6 +14,8 @@ import android.widget.TextView;
 import com.vad.modulchit.R;
 import com.vad.modulchit.utils.RSAmod;
 
+import java.util.List;
+
 public class FragmentRSAdecrypt extends Fragment {
 
     private EditText enterCodeDecrypt;
@@ -22,19 +24,14 @@ public class FragmentRSAdecrypt extends Fragment {
     private TextView resultDecrypt;
     private Button btnResult;
     private int n;
-    private int p;
-    private int q;
-    private int eller;
-    private int e;
     private int d;
     private RSAmod rsaMod;
+    private List<Integer> alphaviteCodes;
 
-    public FragmentRSAdecrypt(int p, int q) {
-        this.p=p;
-        this.q=q;
-    }
-
-    public FragmentRSAdecrypt() {
+    public FragmentRSAdecrypt(List<Integer> alphaviteCodes,int n, int d) {
+        this.alphaviteCodes = alphaviteCodes;
+        this.n=n;
+        this.d=d;
     }
 
     @Override
@@ -49,12 +46,9 @@ public class FragmentRSAdecrypt extends Fragment {
         btnResult = (Button) v.findViewById(R.id.buttonDecrypt);
         rsaMod = new RSAmod();
 
-        if(q!=0&&p!=0||(q!=0||p!=0)){
-            n= rsaMod.getN(p,q);
-            eller = rsaMod.functionEller(p,q);
-            e = rsaMod.exponenta(eller);
-            d = rsaMod.getDPrivate(e, eller);
-        }
+        System.out.println(alphaviteCodes+"encrypt");
+        editTextD.setText(d+"");
+        editTextN.setText(n+"");
 
         btnResult.setOnClickListener(clickListener);
 
@@ -64,7 +58,7 @@ public class FragmentRSAdecrypt extends Fragment {
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            String strResult = rsaMod.decrypting(d, n, enterCodeDecrypt.getText().toString());
+            String strResult = rsaMod.decrypting(alphaviteCodes,Integer.parseInt(editTextD.getText().toString()), n, enterCodeDecrypt.getText().toString())+"\n";
             resultDecrypt.setText(strResult);
 
         }
