@@ -17,7 +17,7 @@
         android:ems="10"
         android:gravity="center"
         android:hint="[132, 345, 2, 35]"
-        android:inputType="numberDecimal"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -37,10 +37,10 @@
             style="@style/theme_chit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="d: " />
+            android:text="n: " />
 
         <EditText
-            android:id="@+id/editTextDdecript"
+            android:id="@+id/editTextNdecrypt"
             style="@style/theme_chit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -54,10 +54,10 @@
             style="@style/theme_chit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="n: "/>
+            android:text="d: "/>
 
         <EditText
-            android:id="@+id/editTextNdecrypt"
+            android:id="@+id/editTextDdecript"
             style="@style/theme_chit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

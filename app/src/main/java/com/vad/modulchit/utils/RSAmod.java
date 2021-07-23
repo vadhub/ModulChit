@@ -106,9 +106,9 @@ public class RSAmod {
     public String encrypting(int e, int n, List<Integer> numberCodes){
         List<Integer> clasters = getClasters(numberCodes, n);
         List<String> result = new ArrayList<>();
-
+        
         for (int num: clasters) {
-            result.add(algebraMod.feGraph(num, e, n).get(algebraMod.feGraph(num, e, n).size()).getP()+"");
+            result.add(algebraMod.feGraph(num, e, n).get(algebraMod.feGraph(num, e, n).size()-1).getP()+"");
         }
 
         return result.toString();
@@ -116,6 +116,10 @@ public class RSAmod {
 
     private List<Integer> getNumberCodes(String strCode){
         List<Integer> numberCodes = new ArrayList<>();
+        strCode = strCode.replaceAll("\\[", "");
+        strCode = strCode.replaceAll("]", "");
+        strCode = strCode.replaceAll("\\s", "");
+
         String[] numbers = strCode.split(",");
 
         for (String number : numbers) {
@@ -127,10 +131,11 @@ public class RSAmod {
 
     public String decrypting(int d, int n, String strCode){
         List<Integer> numberCodes = getNumberCodes(strCode);
-
+        System.out.println(numberCodes);
+        String str = "";
         for (Integer i: numberCodes){
-            String str = String.valueOf(algebraMod.feGraph(i, d, n).get(algebraMod.feGraph(i, d, n).size()-1).getP());
+            System.out.println(algebraMod.feGraph(i, d, n).size()+"i: "+i+"d: "+d+"n: "+n);
         }
-        return "";
+        return str;
     }
 }

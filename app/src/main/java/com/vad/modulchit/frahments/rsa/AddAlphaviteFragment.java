@@ -72,12 +72,12 @@ public class AddAlphaviteFragment extends Fragment {
         adapterRSAalphabyte.setNumbersCode(numberCodes);
         mRecyclerView.setAdapter(adapterRSAalphabyte);
 
-
         ArrayAdapter<?> adapterSpinner = ArrayAdapter.createFromResource(getContext(), R.array.modifyRsaAlpabyte, android.R.layout.simple_spinner_item);
         adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapterSpinner);
         spinner.setOnItemSelectedListener(onItemSelectedListener);
         btnNext.setOnClickListener(clickListener);
+
         numberForFirstLetter.addTextChangedListener(textWatcher);
         radioButtonDecrypt.setOnClickListener(radioButtonClick);
         radioButtonEncrypt.setOnClickListener(radioButtonClick);
@@ -117,37 +117,39 @@ public class AddAlphaviteFragment extends Fragment {
         @Override
         public void onClick(View view) {
             Fragment fragment = null;
-            if(!numberP.getText().toString().equals("")&&!numberQ.getText().toString().equals("")){
-                int p = Integer.parseInt(numberP.getText().toString());
-                int q = Integer.parseInt(numberQ.getText().toString());
 
-                if(isEncrypt){
-                    fragment = new FragmentRSAcrypt(numberCodes, p, q);
-                }else{
-                    fragment = new FragmentRSAdecrypt(p, q);
-                }
-                if(!rsaMod.isSimpleNumber(p)&&!rsaMod.isSimpleNumber(q)){
-                    Toast.makeText(getContext(), "Enter simple numbers", Toast.LENGTH_SHORT).show();
-                }
-                if(theChoice==0){
-                    if(!numberForFirstLetter.getText().toString().equals("")){
-                        getFragmentManager().beginTransaction().replace(R.id.frame_replace, fragment).commit();
+            if(isEncrypt){
+                if(!numberQ.getText().toString().equals("")&&!numberP.getText().toString().equals("")){
+                    int p = Integer.parseInt(numberP.getText().toString());
+                    int q = Integer.parseInt(numberQ.getText().toString());
+
+                    if(rsaMod.isSimpleNumber(p)&&rsaMod.isSimpleNumber(q)){
+                        fragment = new FragmentRSAcrypt(numberCodes, p, q);
+                        System.out.println(numberCodes+"is");
                     }else{
-                        Toast.makeText(getContext(), "Enter text", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Enter simple number", Toast.LENGTH_SHORT).show();
                     }
+                }else{
+                    fragment = new FragmentRSAcrypt(numberCodes);
+                    System.out.println(numberCodes);
                 }
             }else{
-                if(isEncrypt){
-                    fragment = new FragmentRSAcrypt(numberCodes);
-                }else{
-                    fragment = new FragmentRSAdecrypt();
-                }
+                if(!numberQ.getText().toString().equals("")&&!numberP.getText().toString().equals("")){
+                    int p = Integer.parseInt(numberP.getText().toString());
+                    int q = Integer.parseInt(numberQ.getText().toString());
 
-                if(!numberForFirstLetter.getText().toString().equals("")){
-                    getFragmentManager().beginTransaction().replace(R.id.frame_replace, fragment).commit();
+                    if(rsaMod.isSimpleNumber(p)&&rsaMod.isSimpleNumber(q)){
+                        fragment = new FragmentRSAdecrypt(p, q);
+                    }else{
+                        Toast.makeText(getContext(), "Enter simple number", Toast.LENGTH_SHORT).show();
+                    }
                 }else{
-                    Toast.makeText(getContext(), "Enter text", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Enter p and q", Toast.LENGTH_SHORT).show();
                 }
+            }
+
+            if(fragment!=null){
+                getFragmentManager().beginTransaction().replace(R.id.frame_replace, fragment).commit();
             }
         }
     };
