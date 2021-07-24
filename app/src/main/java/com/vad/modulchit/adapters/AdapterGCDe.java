@@ -59,8 +59,6 @@ public class AdapterGCDe extends RecyclerView.Adapter<AdapterGCDe.MyViewHolder> 
 
         TextView textViewX;
         TextView textViewY;
-
-
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 

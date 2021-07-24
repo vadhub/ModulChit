@@ -47,7 +47,7 @@ public class AdapterRSAalphabyte extends RecyclerView.Adapter<AdapterRSAalphabyt
     public void onBindViewHolder(@NonNull AdapterRSAalphabyte.MyViewHolder holder, int position) {
 
         holder.listener.updatePosition(position);
-        holder.textViewLetterAlpha.setText(shiphr.getAlphabyte().get(position)+"");
+        holder.textViewLetterAlpha.setText(shiphr.getAlphabyteEN().get(position)+"");
         holder.editTextNumber.setText(numbersCode.get(position)+"");
 
     }

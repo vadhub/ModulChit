@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="a"
-                android:layout_gravity="center"
+                android:gravity="right"
                 style="@style/Theme.ModulChit"
                 android:textSize="20sp" />
 
@@ -37,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="b"
-                android:layout_gravity="center"
+                android:gravity="right"
                 style="@style/Theme.ModulChit"
                 android:textSize="20sp" />
 
@@ -46,7 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="q"
-                android:layout_gravity="center"
+                android:gravity="right"
                 style="@style/Theme.ModulChit"
                 android:textSize="20sp" />
 
@@ -55,7 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="r"
-                android:layout_gravity="center"
+                android:gravity="right"
                 style="@style/Theme.ModulChit"
                 android:textSize="20sp" />
 
@@ -64,7 +64,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="x"
-                android:layout_gravity="center"
+                android:gravity="right"
                 style="@style/Theme.ModulChit"
                 android:textSize="20sp" />
 
@@ -73,9 +73,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="y"
-                android:layout_gravity="center"
+                android:gravity="center"
                 style="@style/Theme.ModulChit"
                 android:textSize="20sp" />
         </TableRow>
     </TableLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

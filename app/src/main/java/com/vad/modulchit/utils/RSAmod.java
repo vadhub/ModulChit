@@ -1,10 +1,10 @@
 package com.vad.modulchit.utils;
 
+import com.vad.modulchit.pojos.TableNumberFE;
 import com.vad.modulchit.pojos.TableNumberGCDe;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class RSAmod {
@@ -124,6 +124,17 @@ public class RSAmod {
         return result.toString();
     }
 
+    public List<List<TableNumberFE>> encryptingFE(int e, int n, List<Integer> numberCodes){
+        List<Integer> clasters = getClasters(numberCodes, n);
+        List<List<TableNumberFE>> result = new ArrayList<>();
+
+        for(int num: clasters){
+            result.add(algebraMod.feGraph(num, e, n));
+        }
+
+        return result;
+    }
+
     private List<Integer> getNumberCodes(String strCode){
         List<Integer> numberCodes = new ArrayList<>();
         strCode = strCode.replaceAll("\\[", "");
@@ -156,7 +167,7 @@ public class RSAmod {
         str+=clasters+"\n";
         for(Integer i: clasters){
             if(alphaviteCodes.contains(i)){
-                str+=rsAshiphr.getAlphabyte().get(alphaviteCodes.indexOf(i));
+                str+=rsAshiphr.getAlphabyteEN().get(alphaviteCodes.indexOf(i));
             }else{
                 str+=" ("+i+") ";
             }

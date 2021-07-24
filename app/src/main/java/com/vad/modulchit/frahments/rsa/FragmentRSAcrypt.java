@@ -3,6 +3,8 @@ package com.vad.modulchit.frahments.rsa;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vad.modulchit.R;
+import com.vad.modulchit.adapters.AdapterFE;
 import com.vad.modulchit.utils.AlgebraMod;
 import com.vad.modulchit.utils.RSAmod;
 import com.vad.modulchit.utils.RSAshiphr;
@@ -29,9 +32,11 @@ public class FragmentRSAcrypt extends Fragment {
     private EditText enterTextToCrypt;
     private EditText editTextE;
     private EditText editTextN;
+    private TextView textViewMfere;
+    private RecyclerView mRecyclerFeCrypt;
+    private AdapterFE adapterFE;
     private int n;
     private int e;
-    String privateKey = "";
     private TextView textViewResult;
     private List<Integer> alphaviteCodes;
     private List<Integer> numbersCodesForCrypt;
@@ -58,14 +63,18 @@ public class FragmentRSAcrypt extends Fragment {
         editTextE = (EditText) v.findViewById(R.id.editTextE);
         editTextN = (EditText) v.findViewById(R.id.editTextN);
         textViewResult = (TextView) v.findViewById(R.id.textViewResultCrypt);
+        textViewMfere = (TextView) v.findViewById(R.id.textViewMfere);
+        mRecyclerFeCrypt = (RecyclerView) v.findViewById(R.id.cryptRecycler);
+        adapterFE = new AdapterFE();
+        mRecyclerFeCrypt.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        textViewMfere.setText("e");
         rsaMod = new RSAmod();
         rsAshiphr = new RSAshiphr();
 
         editTextE.setText(String.valueOf(e));
         editTextN.setText(String.valueOf(n));
 
-        editTextN.addTextChangedListener(listenerWatchText);
-        editTextE.addTextChangedListener(listenerWatchText);
         btnOk.setOnClickListener(clickListener);
         return v;
     }
@@ -77,8 +86,8 @@ public class FragmentRSAcrypt extends Fragment {
                 char[] strCrypt = enterTextToCrypt.getText().toString().toLowerCase().toCharArray();
                 numbersCodesForCrypt = new ArrayList<>();
                 for(int i = 0; i < strCrypt.length; i++){
-                    for(int j =0; j < rsAshiphr.getAlphabyte().size(); j++){
-                        if(rsAshiphr.getAlphabyte().get(j).equals(strCrypt[i])){
+                    for(int j =0; j < rsAshiphr.getAlphabyteEN().size(); j++){
+                        if(rsAshiphr.getAlphabyteEN().get(j).equals(strCrypt[i])){
                             numbersCodesForCrypt.add(alphaviteCodes.get(j));
                             break;
                         }
@@ -90,7 +99,8 @@ public class FragmentRSAcrypt extends Fragment {
                      int e = Integer.parseInt(editTextE.getText().toString());
                      int n = Integer.parseInt(editTextN.getText().toString());
 
-                    String str = rsaMod.encrypting(e, n, numbersCodesForCrypt)+privateKey;
+                    String str = rsaMod.encrypting(e, n, numbersCodesForCrypt);
+
                     textViewResult.setText(str);
 
                 }else{
@@ -100,23 +110,6 @@ public class FragmentRSAcrypt extends Fragment {
             }else {
                 Toast.makeText(getContext(), "Enter only letters", Toast.LENGTH_SHORT).show();
             }
-        }
-    };
-
-    private TextWatcher listenerWatchText = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-        }
-
-        @Override
-        public void afterTextChanged(Editable editable) {
-            privateKey = "";
         }
     };
 }
