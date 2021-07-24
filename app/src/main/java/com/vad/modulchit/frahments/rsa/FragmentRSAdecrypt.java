@@ -25,13 +25,21 @@ public class FragmentRSAdecrypt extends Fragment {
     private Button btnResult;
     private int n;
     private int d;
+    private int eller;
+    private int exponent;
+    private int p;
+    private int q;
     private RSAmod rsaMod;
     private List<Integer> alphaviteCodes;
 
-    public FragmentRSAdecrypt(List<Integer> alphaviteCodes,int n, int d) {
+    public FragmentRSAdecrypt(List<Integer> alphaviteCodes,int n, int d, int eller, int exponent, int p, int q) {
         this.alphaviteCodes = alphaviteCodes;
-        this.n=n;
-        this.d=d;
+        this.n = n;
+        this.d = d;
+        this.eller = eller;
+        this.exponent = exponent;
+        this.p = p;
+        this.q = q;
     }
 
     @Override
@@ -46,7 +54,6 @@ public class FragmentRSAdecrypt extends Fragment {
         btnResult = (Button) v.findViewById(R.id.buttonDecrypt);
         rsaMod = new RSAmod();
 
-        System.out.println(alphaviteCodes+"encrypt");
         editTextD.setText(d+"");
         editTextN.setText(n+"");
 
@@ -59,8 +66,10 @@ public class FragmentRSAdecrypt extends Fragment {
         @Override
         public void onClick(View view) {
             String strResult = rsaMod.decrypting(alphaviteCodes,Integer.parseInt(editTextD.getText().toString()), n, enterCodeDecrypt.getText().toString())+"\n";
+            strResult+="n = "+p+"*"+q+" = "+n+"\n"+
+                    "eller = ("+p+"-1"+"*"+q+"-1"+") = "+eller+"\n"+
+                    "exponent: "+exponent;
             resultDecrypt.setText(strResult);
-
         }
     };
 }

@@ -29,15 +29,12 @@ import java.util.List;
 
 public class AddAlphaviteFragment extends Fragment {
 
-    private Button btnNext;
     private EditText numberForFirstLetter;
     private EditText numberP;
     private EditText numberQ;
     private RecyclerView mRecyclerView;
     private AdapterRSAalphabyte adapterRSAalphabyte;
     private List<Integer> alphaviteCodes;
-    private RadioButton radioButtonEncrypt;
-    private RadioButton radioButtonDecrypt;
     private Spinner spinner;
     private RSAshiphr shiphr;
     private RSAmod rsaMod;
@@ -47,8 +44,9 @@ public class AddAlphaviteFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View v = inflater.inflate(R.layout.fragment_add_alphavite, container, false);
-        btnNext = (Button) v.findViewById(R.id.btnNetx);
+        Button btnNext = (Button) v.findViewById(R.id.btnNetx);
         numberForFirstLetter = (EditText) v.findViewById(R.id.textViewNumberFirst);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.mRecyclerAlphabyte);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
@@ -58,8 +56,8 @@ public class AddAlphaviteFragment extends Fragment {
         numberP = (EditText) v.findViewById(R.id.editTextNumberP);
         numberQ = (EditText) v.findViewById(R.id.editTextNumberQ);
 
-        radioButtonEncrypt = (RadioButton) v.findViewById(R.id.radioButtonEncrypt);
-        radioButtonDecrypt = (RadioButton) v.findViewById(R.id.radioButtonDecrypt);
+        RadioButton radioButtonEncrypt = (RadioButton) v.findViewById(R.id.radioButtonEncrypt);
+        RadioButton radioButtonDecrypt = (RadioButton) v.findViewById(R.id.radioButtonDecrypt);
 
         shiphr = new RSAshiphr();
         rsaMod = new RSAmod();
@@ -82,7 +80,7 @@ public class AddAlphaviteFragment extends Fragment {
         return v;
     }
 
-    private View.OnClickListener radioButtonClick = new View.OnClickListener() {
+    private final View.OnClickListener radioButtonClick = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             RadioButton radioButton = (RadioButton)view;
@@ -96,7 +94,7 @@ public class AddAlphaviteFragment extends Fragment {
     };
 
     //selecting modification on aphavite
-    private AdapterView.OnItemSelectedListener onItemSelectedListener = new AdapterView.OnItemSelectedListener() {
+    private final AdapterView.OnItemSelectedListener onItemSelectedListener = new AdapterView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
             theChoice = i;
@@ -110,7 +108,7 @@ public class AddAlphaviteFragment extends Fragment {
     };
 
     //btn next
-    private View.OnClickListener clickListener = new View.OnClickListener() {
+    private final View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             Fragment fragment = null;
@@ -125,7 +123,7 @@ public class AddAlphaviteFragment extends Fragment {
 
                     n = rsaMod.getN(p,q);
                     eller = rsaMod.functionEller(p,q);
-                    exponent = rsaMod.exponenta(eller);
+                    exponent = rsaMod.exponenta(eller).get(0);
 
                     if(rsaMod.isSimpleNumber(p)&&rsaMod.isSimpleNumber(q)){
                         fragment = new FragmentRSAcrypt(alphaviteCodes, n, exponent);
@@ -142,11 +140,11 @@ public class AddAlphaviteFragment extends Fragment {
 
                     n =rsaMod.getN(p,q);
                     eller = rsaMod.functionEller(p,q);
-                    exponent = rsaMod.exponenta(eller);
+                    exponent = rsaMod.exponenta(eller).get(0);
                     int d = rsaMod.getDPrivate(eller, exponent);
 
                     if(rsaMod.isSimpleNumber(p)&&rsaMod.isSimpleNumber(q)){
-                        fragment = new FragmentRSAdecrypt(alphaviteCodes, n, d);
+                        fragment = new FragmentRSAdecrypt(alphaviteCodes, n, d, eller, exponent, p, q);
                     }else{
                         Toast.makeText(getContext(), "Enter simple number", Toast.LENGTH_SHORT).show();
                     }
@@ -162,7 +160,7 @@ public class AddAlphaviteFragment extends Fragment {
     };
 
     //on edittext to enter start number
-    private TextWatcher textWatcher = new TextWatcher() {
+    private final TextWatcher textWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
