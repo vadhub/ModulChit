@@ -6,87 +6,123 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".frahments.rsa.FragmentRSAdecrypt">
 
-    <EditText
-        android:id="@+id/editTextCodeDecrypt"
-        style="@style/theme_chit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="[132, 345, 2, 35]"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout4"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@+id/editTextCodeDecrypt">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textView14"
-            style="@style/theme_chit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="n: " />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
 
-        <EditText
-            android:id="@+id/editTextNdecrypt"
-            style="@style/theme_chit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="3"
-            android:gravity="center"
-            android:hint="17"
-            android:inputType="textPersonName" />
+            <EditText
+                android:id="@+id/editTextCodeDecrypt"
+                style="@style/theme_chit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="[132, 345, 2, 35]"
+                android:inputType="text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView15"
-            style="@style/theme_chit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="d: "/>
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@+id/editTextCodeDecrypt">
 
-        <EditText
-            android:id="@+id/editTextDdecript"
-            style="@style/theme_chit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="3"
-            android:gravity="center"
-            android:hint="21"
-            android:inputType="textPersonName" />
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/textView14"
+                    style="@style/theme_chit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="n: " />
 
-    <Button
-        android:id="@+id/buttonDecrypt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="OK"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+                <EditText
+                    android:id="@+id/editTextNdecrypt"
+                    style="@style/theme_chit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="3"
+                    android:gravity="center"
+                    android:hint="17"
+                    android:inputType="textPersonName" />
 
-    <TextView
-        android:id="@+id/textViewResultDecrypt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:gravity="left"
-        style="@style/theme_chit"
-        android:text=""
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonDecrypt" />
+                <TextView
+                    android:id="@+id/textView15"
+                    style="@style/theme_chit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="d: "/>
+
+                <EditText
+                    android:id="@+id/editTextDdecript"
+                    style="@style/theme_chit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="3"
+                    android:gravity="center"
+                    android:hint="21"
+                    android:inputType="textPersonName" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/buttonDecrypt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="OK"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+
+            <TextView
+                android:id="@+id/textViewResultDecrypt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="left"
+                style="@style/theme_chit"
+                android:text=""
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buttonDecrypt" />
+
+            <include
+                android:id="@+id/includeFeDec"
+                layout="@layout/table_counter_fe_tite"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewResultDecrypt" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/decryptRecycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toBottomOf="@+id/includeFeDec"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

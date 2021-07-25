@@ -172,6 +172,20 @@ public class RSAmod {
         return result;
     }
 
+    public List<TableNumberFE> decryptingFE(int d, int n, String strEncrypt){
+        List<Integer> numberForDecrypt = getNumberCodes(strEncrypt);
+        List<List<TableNumberFE>> temp = new ArrayList<>();
+        List<TableNumberFE> result = new ArrayList<>();
+
+        for (Integer i : numberForDecrypt) {
+            temp.add(algebraMod.feGraph(i, d, n));
+        }
+
+        temp.forEach(result::addAll);
+
+        return result;
+    }
+
     private List<Integer> getNumberCodes(String strCode){
         List<Integer> numberCodes = new ArrayList<>();
         strCode = strCode.replaceAll("\\[", "");
@@ -187,11 +201,10 @@ public class RSAmod {
         return numberCodes;
     }
 
-    public String decrypting(List<Integer> alphaviteCodes,int d, int n, String strCode){
+    public String decrypting(List<Integer> alphaviteCodes, int d, int n, String strCode){
         List<Integer> numberCodes = getNumberCodes(strCode);
         RSAshiphr rsAshiphr = new RSAshiphr();
 
-        System.out.println(numberCodes);
         int temp = 0;
         String str = "";
         for (Integer i: numberCodes) {
