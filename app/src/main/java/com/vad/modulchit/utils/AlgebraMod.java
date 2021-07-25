@@ -147,11 +147,6 @@ public class AlgebraMod {
         return tmp;
     }
 
-//    public List<Integer> feGraph(int degree, int baseNumber, int mod){
-//        List<Integer> ls = new ArrayList<>();
-//        return ls;
-//    }
-
     public List<TableNumberFE> feGraph(int a, int m, int n){
 
         List<TableNumberFE> tableNumberFES = new ArrayList<>();
@@ -162,20 +157,16 @@ public class AlgebraMod {
         int p = 1;
         int tmpP = 1;
         int r = 0;
-        while (true){
-            if(tempM==0){
-                break;
-            }
-            r = tempM%2;
-            if(r==1){
-                p = (tmpP * tempA)%n;
+        while (tempM != 0) {
+            r = tempM % 2;
+            if (r == 1) {
+                p = (tmpP * tempA) % n;
                 tmpP = p;
             }
             tableNumberFE = new TableNumberFE(tempA, tempM, n, p, r);
             tableNumberFES.add(tableNumberFE);
-            tempM = tempM/2;
-            tempA = (tempA*tempA)%n;
-
+            tempM = tempM / 2;
+            tempA = (tempA * tempA) % n;
         }
 
         return tableNumberFES;
