@@ -40,6 +40,14 @@ public class AdapterFE extends RecyclerView.Adapter<AdapterFE.MyViewHolderFE> {
         holder.textViewN.setText(tableNumberFES.get(position).getN()+"");
         holder.textViewP.setText(tableNumberFES.get(position).getP()+"");
         holder.textViewR.setText(tableNumberFES.get(position).getRfe()+"");
+
+        if(tableNumberFES.get(position).getAfe() == -1 && tableNumberFES.get(position).getN()==-1){
+            holder.textViewA.setText("");
+            holder.textViewM.setText("");
+            holder.textViewN.setText("");
+            holder.textViewP.setText("");
+            holder.textViewR.setText("");
+        }
     }
 
     @Override

@@ -100,7 +100,8 @@ public class FragmentRSAcrypt extends Fragment {
                      int n = Integer.parseInt(editTextN.getText().toString());
 
                     String str = rsaMod.encrypting(e, n, numbersCodesForCrypt);
-
+                    adapterFE.setTableNumberFES(rsaMod.encryptingFE(e, n, numbersCodesForCrypt));
+                    mRecyclerFeCrypt.setAdapter(adapterFE);
                     textViewResult.setText(str);
 
                 }else{

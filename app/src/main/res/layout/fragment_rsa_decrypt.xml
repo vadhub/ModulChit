@@ -79,10 +79,10 @@
 
     <TextView
         android:id="@+id/textViewResultDecrypt"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:gravity="center"
+        android:gravity="left"
         style="@style/theme_chit"
         android:text=""
         app:layout_constraintEnd_toEndOf="parent"

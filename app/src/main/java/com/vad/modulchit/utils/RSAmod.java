@@ -75,33 +75,68 @@ public class RSAmod {
     private List<Integer> getClastersFromString(String strCrypt, int n){
         List<Integer> clasters = new ArrayList<>();
         char[] charsCrypt = strCrypt.toCharArray();
-        String claster = String.valueOf(charsCrypt[0]);
+        String claster = "";
         int clast = 0;
         int temp = 0;
 
-        for(int i = 1; i<charsCrypt.length; i++){
+        for(int i = 0; i<charsCrypt.length; i++){
 
-            if(clast>n){
-                clasters.add(temp);
-                claster=String.valueOf(charsCrypt[i-1]);
+            if(!claster.equals("")){
+                temp = Integer.parseInt(claster);
             }
-            temp = Integer.parseInt(claster);
 
             claster+=charsCrypt[i];
             clast = Integer.parseInt(claster);
 
-            if(i == charsCrypt.length-1){
-                if(clast>n){
-                    clasters.add(Integer.parseInt(charsCrypt[i-1]+""));
-                    claster=String.valueOf(charsCrypt[i]);
-                    clast = Integer.parseInt(claster);
-                }
+            if(clast>n){
+                clasters.add(temp);
+                claster=String.valueOf(charsCrypt[i]);
+                clast = Integer.parseInt(claster);
             }
         }
-
         clasters.add(clast);
         return clasters;
     }
+
+    //experimental
+//    public void minimumSets(String strCrypt, int n){
+//        int count = 0;
+//        int num = 0;
+//        String strNumber = "";
+//
+//        int length = strCrypt.length();
+//        boolean isMore = false;
+//
+//        for(int i = 0; i<length;i++){
+//            num = num * 10 + (strCrypt.charAt(i) - '0');
+//
+//            if(num <=n){
+//                isMore = true;
+//            }else {
+//                if(isMore){
+//                    count+=1;
+//                    strNumber+=num+",";
+//                }
+//
+//                num = strCrypt.charAt(i) - '0';
+//                isMore = false;
+//
+//                if(num<=n){
+//                    isMore = true;
+//                }else{
+//                    count+=1;
+//                    strNumber+=num+",";
+//                }
+//            }
+//        }
+//
+//        if(isMore){
+//            count+=1;
+//            strNumber+=num+",";
+//        }
+//
+//        System.out.println("blocks: "+strNumber+"; sets"+count);
+//    }
 
     private List<Integer> getClasters(List<Integer> numberCodes, int n){
         String strCrypt = "";
@@ -118,19 +153,21 @@ public class RSAmod {
         List<String> result = new ArrayList<>();
         
         for (int num: clasters) {
-            result.add(algebraMod.feGraph(num, e, n).get(algebraMod.feGraph(num, e, n).size()-1).getP()+"");
+            result.add(algebraMod.feGraph(num, e, n).get(algebraMod.feGraph(num, e, n).size()-2).getP()+"");
         }
 
         return result.toString();
     }
 
-    public List<List<TableNumberFE>> encryptingFE(int e, int n, List<Integer> numberCodes){
+    public List<TableNumberFE> encryptingFE(int e, int n, List<Integer> numberCodes){
         List<Integer> clasters = getClasters(numberCodes, n);
-        List<List<TableNumberFE>> result = new ArrayList<>();
+        List<List<TableNumberFE>> temp = new ArrayList<>();
+        List<TableNumberFE> result = new ArrayList<>();
 
         for(int num: clasters){
-            result.add(algebraMod.feGraph(num, e, n));
+            temp.add(algebraMod.feGraph(num, e, n));
         }
+        temp.forEach(result::addAll);
 
         return result;
     }
@@ -158,7 +195,7 @@ public class RSAmod {
         int temp = 0;
         String str = "";
         for (Integer i: numberCodes) {
-            temp = algebraMod.feGraph(i, d, n).get(algebraMod.feGraph(i, d, n).size() - 1).getP();
+            temp = algebraMod.feGraph(i, d, n).get(algebraMod.feGraph(i, d, n).size() - 2).getP();
             str += temp;
         }
 

@@ -92,10 +92,10 @@
 
             <TextView
                 android:id="@+id/textViewResultCrypt"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:gravity="center"
+                android:gravity="right"
                 style="@style/theme_chit"
                 android:textIsSelectable="true"
                 android:text="[]"

@@ -169,6 +169,9 @@ public class AlgebraMod {
             tempA = (tempA * tempA) % n;
         }
 
+        tableNumberFE = new TableNumberFE(-1, -1, -1, -1,-1);
+        tableNumberFES.add(tableNumberFE);
+
         return tableNumberFES;
     }
 
