@@ -167,6 +167,8 @@ public class RSAmod {
         for(int num: clasters){
             temp.add(algebraMod.feGraph(num, e, n));
         }
+
+        //from double list to one
         temp.forEach(result::addAll);
 
         return result;

@@ -115,7 +115,7 @@ public class AddAlphaviteFragment extends Fragment {
 
             int n;
             int eller;
-            int exponent;
+            List<Integer> exponents;
             if(isEncrypt){
                 if(!numberQ.getText().toString().equals("")&&!numberP.getText().toString().equals("")){
                     int p = Integer.parseInt(numberP.getText().toString());
@@ -123,10 +123,10 @@ public class AddAlphaviteFragment extends Fragment {
 
                     n = rsaMod.getN(p,q);
                     eller = rsaMod.functionEller(p,q);
-                    exponent = rsaMod.exponenta(eller).get(0);
+                    exponents = rsaMod.exponenta(eller);
 
                     if(rsaMod.isSimpleNumber(p)&&rsaMod.isSimpleNumber(q)){
-                        fragment = new FragmentRSAcrypt(alphaviteCodes, n, exponent);
+                        fragment = new FragmentRSAcrypt(alphaviteCodes, n, exponents);
                     }else{
                         Toast.makeText(getContext(), "Enter prime number", Toast.LENGTH_SHORT).show();
                     }
@@ -140,11 +140,11 @@ public class AddAlphaviteFragment extends Fragment {
 
                     n =rsaMod.getN(p,q);
                     eller = rsaMod.functionEller(p,q);
-                    exponent = rsaMod.exponenta(eller).get(0);
-                    int d = rsaMod.getDPrivate(eller, exponent);
+                    exponents = rsaMod.exponenta(eller);
+                    int d = rsaMod.getDPrivate(eller, exponents.get(0));
 
                     if(rsaMod.isSimpleNumber(p)&&rsaMod.isSimpleNumber(q)){
-                        fragment = new FragmentRSAdecrypt(alphaviteCodes, n, d, eller, exponent, p, q);
+                        fragment = new FragmentRSAdecrypt(alphaviteCodes, n, d, eller, exponents.get(0), p, q);
                     }else{
                         Toast.makeText(getContext(), "Enter prime number", Toast.LENGTH_SHORT).show();
                     }

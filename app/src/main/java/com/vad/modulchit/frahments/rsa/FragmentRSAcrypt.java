@@ -36,17 +36,17 @@ public class FragmentRSAcrypt extends Fragment {
     private RecyclerView mRecyclerFeCrypt;
     private AdapterFE adapterFE;
     private int n;
-    private int e;
+    private List<Integer> exponents;
     private TextView textViewResult;
     private List<Integer> alphaviteCodes;
     private List<Integer> numbersCodesForCrypt;
     private RSAmod rsaMod;
     private RSAshiphr rsAshiphr;
 
-    public FragmentRSAcrypt(List<Integer> alphaviteCodes, int n, int e) {
+    public FragmentRSAcrypt(List<Integer> alphaviteCodes, int n, List<Integer> exponents) {
         this.alphaviteCodes = alphaviteCodes;
         this.n=n;
-        this.e=e;
+        this.exponents=exponents;
     }
 
     public FragmentRSAcrypt(List<Integer> alphaviteCodes) {
@@ -72,7 +72,7 @@ public class FragmentRSAcrypt extends Fragment {
         rsaMod = new RSAmod();
         rsAshiphr = new RSAshiphr();
 
-        editTextE.setText(String.valueOf(e));
+        editTextE.setText(String.valueOf(exponents.get(0)));
         editTextN.setText(String.valueOf(n));
 
         btnOk.setOnClickListener(clickListener);
@@ -100,7 +100,8 @@ public class FragmentRSAcrypt extends Fragment {
                      int e = Integer.parseInt(editTextE.getText().toString());
                      int n = Integer.parseInt(editTextN.getText().toString());
 
-                    String str = rsaMod.encrypting(e, n, numbersCodesForCrypt);
+                    String str = rsaMod.encrypting(e, n, numbersCodesForCrypt)+"\n";
+                    str+="from list "+exponents+" get first: "+ e;
                     adapterFE.setTableNumberFES(rsaMod.encryptingFE(e, n, numbersCodesForCrypt));
                     mRecyclerFeCrypt.setAdapter(adapterFE);
                     textViewResult.setText(str);

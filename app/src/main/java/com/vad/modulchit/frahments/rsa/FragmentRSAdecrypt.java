@@ -3,6 +3,7 @@ package com.vad.modulchit.frahments.rsa;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -59,6 +60,7 @@ public class FragmentRSAdecrypt extends Fragment {
         btnResult = (Button) v.findViewById(R.id.buttonDecrypt);
         textViewMfere = (TextView) v.findViewById(R.id.textViewMfere);
         mRecyclerDecrypt = (RecyclerView) v.findViewById(R.id.decryptRecycler);
+        mRecyclerDecrypt.setLayoutManager(new LinearLayoutManager(getContext()));
         adapterFE = new AdapterFE();
 
         textViewMfere.setText("d");
