@@ -57,21 +57,6 @@ public class RSAmod {
         return gcdeList;
     }
 
-    private List<Integer> getClastersFromString(String strCrypt){
-        List<Integer> clasters = new ArrayList<>();
-        int lengthSymbol = 2;
-
-        for(int i = 0; i<strCrypt.length(); i+=lengthSymbol){
-            if(i+lengthSymbol<=strCrypt.length()){
-                clasters.add(Integer.parseInt(strCrypt.substring(i, i+lengthSymbol)));
-            }else{
-                clasters.add(Integer.parseInt(strCrypt.substring(i)));
-            }
-        }
-        System.out.println(clasters);
-        return clasters;
-    }
-
     private List<Integer> getClastersFromString(String strCrypt, int n){
         List<Integer> clasters = new ArrayList<>();
         char[] charsCrypt = strCrypt.toCharArray();
@@ -205,23 +190,28 @@ public class RSAmod {
 
     public String decrypting(List<Integer> alphaviteCodes, int d, int n, String strCode){
         List<Integer> numberCodes = getNumberCodes(strCode);
+        List<Integer> tempNumbersCode = new ArrayList<>();
         RSAshiphr rsAshiphr = new RSAshiphr();
 
         int temp = 0;
-        String str = "";
+        String strCodes = "";
         for (Integer i: numberCodes) {
             temp = algebraMod.feGraph(i, d, n).get(algebraMod.feGraph(i, d, n).size() - 2).getP();
-            str += temp;
+            strCodes += temp;
+            tempNumbersCode.add(temp);
         }
 
-        List<Integer> clasters = getClastersFromString(str);
-        str="";
-        str+=clasters+"\n";
-        for(Integer i: clasters){
-            if(alphaviteCodes.contains(i)){
-                str+=rsAshiphr.getAlphabyteEN().get(alphaviteCodes.indexOf(i));
-            }else{
-                str+=" ("+i+") ";
+        return tempNumbersCode+"\n"+getNumberAlphavite(alphaviteCodes, strCodes, rsAshiphr);
+    }
+
+    private String getNumberAlphavite(List<Integer> alphaviteCodes, String strCode, RSAshiphr rsAshiphr){
+        String temp = "";
+        String str = "";
+        for(int i = 0; i<strCode.length();i++){
+            temp += strCode.charAt(i);
+            if(alphaviteCodes.contains(Integer.parseInt(temp))){
+                str += rsAshiphr.getAlphabyteEN().get(alphaviteCodes.indexOf(Integer.parseInt(temp)));
+                temp="";
             }
         }
 

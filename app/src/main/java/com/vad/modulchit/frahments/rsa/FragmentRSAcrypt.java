@@ -82,7 +82,6 @@ public class FragmentRSAcrypt extends Fragment {
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            long timeStart = System.currentTimeMillis();
             if(enterTextToCrypt.getText().toString().matches("[a-zA-Z]+")){
                 char[] strCrypt = enterTextToCrypt.getText().toString().toLowerCase().toCharArray();
                 numbersCodesForCrypt = new ArrayList<>();
@@ -114,9 +113,6 @@ public class FragmentRSAcrypt extends Fragment {
                 Toast.makeText(getContext(), "Enter only letters", Toast.LENGTH_SHORT).show();
             }
 
-            long timeStop = System.currentTimeMillis();
-
-            System.out.println(timeStop-timeStart);
         }
     };
 }
