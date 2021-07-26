@@ -42,7 +42,6 @@ public class FragmentRSAdecrypt extends Fragment {
     private AdapterFE adapterFE;
     private AdapterGCDe adapterGCDe;
     private AlgebraMod algebraMod;
-    private TextView textViewExtraReverse;
 
     private View includeFeDec;
     private View includeGCDEreverse;
@@ -77,7 +76,6 @@ public class FragmentRSAdecrypt extends Fragment {
         adapterGCDe = new AdapterGCDe();
         includeFeDec = (View) v.findViewById(R.id.includeFeDec);
         includeGCDEreverse = (View) v.findViewById(R.id.includeGCDEreverse);
-        textViewExtraReverse = (TextView) v.findViewById(R.id.textViewExtraReverse);
 
         textViewMfere.setText("d");
         rsaMod = new RSAmod();
@@ -97,14 +95,14 @@ public class FragmentRSAdecrypt extends Fragment {
 
             includeFeDec.setVisibility(View.VISIBLE);
             includeGCDEreverse.setVisibility(View.VISIBLE);
-            int dView = rsaMod.decryptingFE(d, n, enterCodeDecrypt.getText().toString()).get(rsaMod.decryptingFE(d, n, enterCodeDecrypt.getText().toString()).size() - 1).getP();
+            int dView = algebraMod.gcdGraph(eller, exponent).get(algebraMod.gcdGraph(eller, exponent).size()-1).getY2();
             String strResult = rsaMod.decrypting(alphaviteCodes,Integer.parseInt(editTextD.getText().toString()), n, enterCodeDecrypt.getText().toString()).toUpperCase()+"\n"+"\n";
             strResult+="n = "+p+"*"+q+" = "+n+";\n"+
                     "eller = ("+p+"-1"+"*"+q+"-1"+") = "+eller+";\n"+
-                    "exponent: "+exponent+";";
+                    "exponent: "+exponent+";\n";
 
-            if (rsaMod.decryptingFE(d, n, enterCodeDecrypt.getText().toString()).get(rsaMod.decryptingFE(d, n, enterCodeDecrypt.getText().toString()).size() - 1).getP() < 0) {
-                textViewExtraReverse.setText("d = "+dView+" + "+eller+";");
+            if (algebraMod.gcdGraph(eller, exponent).get(algebraMod.gcdGraph(eller, exponent).size()-1).getY2() < 0) {
+                strResult += "d = "+eller+" "+dView+";";
             }
 
             adapterGCDe.setTableNumbers(algebraMod.gcdGraph(eller, exponent));

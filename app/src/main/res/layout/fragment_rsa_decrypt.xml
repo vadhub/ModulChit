@@ -104,8 +104,8 @@
             <include
                 android:id="@+id/includeGCDEreverse"
                 layout="@layout/tablet_counter_title"
-                android:layout_width="0dp"
                 android:visibility="invisible"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -119,22 +119,8 @@
                 app:layout_constraintTop_toBottomOf="@+id/includeGCDEreverse"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="@id/textViewExtraReverse"
                 >
             </androidx.recyclerview.widget.RecyclerView>
-
-            <TextView
-                android:id="@+id/textViewExtraReverse"
-                style="@style/theme_chit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:visibility="gone"
-                android:text="TextView"
-                app:layout_constraintBottom_toTopOf="@+id/includeFeDec"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/gcdeDecryptRecycler" />
 
             <include
                 android:id="@+id/includeFeDec"
@@ -145,7 +131,7 @@
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewExtraReverse" />
+                app:layout_constraintTop_toBottomOf="@+id/gcdeDecryptRecycler" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/decryptRecycler"

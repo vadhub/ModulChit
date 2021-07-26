@@ -86,7 +86,7 @@ public class FragmentRSAcrypt extends Fragment {
         public void onClick(View view) {
 
             includeFeCrypt.setVisibility(View.VISIBLE);
-            if(enterTextToCrypt.getText().toString().matches("[a-zA-Z]+")){
+            if(enterTextToCrypt.getText().toString().matches("[a-zA-Z\\s]+")){
                 char[] strCrypt = enterTextToCrypt.getText().toString().toLowerCase().toCharArray();
                 numbersCodesForCrypt = new ArrayList<>();
                 for(int i = 0; i < strCrypt.length; i++){

@@ -44,7 +44,6 @@ public class RSAmod {
             if (isSimpleNumber(i)) {
                 if (AlgebraMod.gcd(eller, i) == 1) {
                     simpleNumber.add(i);
-                    break;
                 }
             }
         }
