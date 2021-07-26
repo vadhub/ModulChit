@@ -37,6 +37,7 @@ public class FragmentRSAdecrypt extends Fragment {
     private List<Integer> alphaviteCodes;
     private RecyclerView mRecyclerDecrypt;
     private AdapterFE adapterFE;
+    private View includeFeDec;
 
     public FragmentRSAdecrypt(List<Integer> alphaviteCodes,int n, int d, int eller, int exponent, int p, int q) {
         this.alphaviteCodes = alphaviteCodes;
@@ -62,6 +63,7 @@ public class FragmentRSAdecrypt extends Fragment {
         mRecyclerDecrypt = (RecyclerView) v.findViewById(R.id.decryptRecycler);
         mRecyclerDecrypt.setLayoutManager(new LinearLayoutManager(getContext()));
         adapterFE = new AdapterFE();
+        includeFeDec = (View) v.findViewById(R.id.includeFeDec);
 
         textViewMfere.setText("d");
         rsaMod = new RSAmod();
@@ -77,6 +79,9 @@ public class FragmentRSAdecrypt extends Fragment {
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+
+            includeFeDec.setVisibility(View.VISIBLE);
+
             String strResult = rsaMod.decrypting(alphaviteCodes,Integer.parseInt(editTextD.getText().toString()), n, enterCodeDecrypt.getText().toString()).toUpperCase()+"\n"+"\n";
             strResult+="n = "+p+"*"+q+" = "+n+";\n"+
                     "eller = ("+p+"-1"+"*"+q+"-1"+") = "+eller+";\n"+

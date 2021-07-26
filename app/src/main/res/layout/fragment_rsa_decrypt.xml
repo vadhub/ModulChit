@@ -105,6 +105,7 @@
                 android:id="@+id/includeFeDec"
                 layout="@layout/table_counter_fe_tite"
                 android:layout_width="0dp"
+                android:visibility="invisible"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

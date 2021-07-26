@@ -42,6 +42,7 @@ public class FragmentRSAcrypt extends Fragment {
     private List<Integer> numbersCodesForCrypt;
     private RSAmod rsaMod;
     private RSAshiphr rsAshiphr;
+    private View includeFeCrypt;
 
     public FragmentRSAcrypt(List<Integer> alphaviteCodes, int n, List<Integer> exponents) {
         this.alphaviteCodes = alphaviteCodes;
@@ -66,6 +67,7 @@ public class FragmentRSAcrypt extends Fragment {
         textViewMfere = (TextView) v.findViewById(R.id.textViewMfere);
         mRecyclerFeCrypt = (RecyclerView) v.findViewById(R.id.cryptRecycler);
         adapterFE = new AdapterFE();
+        includeFeCrypt = (View) v.findViewById(R.id.includeFe);
         mRecyclerFeCrypt.setLayoutManager(new LinearLayoutManager(getContext()));
 
         textViewMfere.setText("e");
@@ -82,6 +84,8 @@ public class FragmentRSAcrypt extends Fragment {
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+
+            includeFeCrypt.setVisibility(View.VISIBLE);
             if(enterTextToCrypt.getText().toString().matches("[a-zA-Z]+")){
                 char[] strCrypt = enterTextToCrypt.getText().toString().toLowerCase().toCharArray();
                 numbersCodesForCrypt = new ArrayList<>();

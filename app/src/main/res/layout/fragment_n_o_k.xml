@@ -71,9 +71,10 @@
                 app:layout_constraintTop_toBottomOf="@id/buttonNOK" />
 
             <include
-                android:id="@+id/include3"
+                android:id="@+id/includeMG"
                 layout="@layout/table_counter_nok_title"
                 android:layout_width="0dp"
+                android:visibility="invisible"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -86,7 +87,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/include3" />
+                app:layout_constraintTop_toBottomOf="@id/includeMG" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -31,6 +31,7 @@ public class FragmentGCDe extends Fragment {
     private AdapterGCDe adapterGCDe;
 
     private AlgebraMod algebraMod;
+    private View includeTitle;
 
 
 //    @Override
@@ -55,6 +56,7 @@ public class FragmentGCDe extends Fragment {
         editTextA = (EditText) v.findViewById(R.id.editTextA);
         editTextB = (EditText) v.findViewById(R.id.editTextB);
         btnOk = (Button) v.findViewById(R.id.button);
+        includeTitle = (View) v.findViewById(R.id.includeGCDE);
 
         mRecyclerView = (RecyclerView) v.findViewById(R.id.myRecycler);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -70,6 +72,8 @@ public class FragmentGCDe extends Fragment {
 
                     int a = Integer.parseInt(editTextA.getText().toString());
                     int b = Integer.parseInt(editTextB.getText().toString());
+
+                    includeTitle.setVisibility(View.VISIBLE);
 
                     if(a!=0||b!=0){
                         if(a!=0&&b!=0){

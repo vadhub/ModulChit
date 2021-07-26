@@ -31,6 +31,7 @@ public class FragmentNOK extends Fragment {
     private AdapterNOK adapterNOK;
     private AlgebraMod algebraMod;
     private TextView textViewResult;
+    private View includeMG;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,6 +43,7 @@ public class FragmentNOK extends Fragment {
         btnNok = (Button) v.findViewById(R.id.buttonNOK);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.mRecyclerNok);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        includeMG = (View) v.findViewById(R.id.includeMG);
         adapterNOK = new AdapterNOK();
         algebraMod = new AlgebraMod();
 
@@ -50,6 +52,8 @@ public class FragmentNOK extends Fragment {
             public void onClick(View view) {
                 if(!editTextMod.getText().toString().equals("")){
                     int m = Integer.parseInt(editTextMod.getText().toString());
+
+                    includeMG.setVisibility(View.VISIBLE);
                     if(m!=0){
                         List<TableNumberNOK> numberNOKS = algebraMod.nokGraph(m);
                         textViewResult.setText(getResult(numberNOKS));

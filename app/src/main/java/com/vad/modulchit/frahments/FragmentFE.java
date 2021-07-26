@@ -31,6 +31,7 @@ public class FragmentFE extends Fragment {
     private AdapterFE adapterFE;
 
     private Button btnOk;
+    private View includeFE;
 
     private AlgebraMod algebraMod;
 
@@ -45,6 +46,7 @@ public class FragmentFE extends Fragment {
 
         mRecyclerView = (RecyclerView) v.findViewById(R.id.mRecyclerFE);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        includeFE = (View) v.findViewById(R.id.includeFE);
         adapterFE = new AdapterFE();
 
         btnOk = (Button) v.findViewById(R.id.buttonFE);
@@ -64,6 +66,8 @@ public class FragmentFE extends Fragment {
                     int a = Integer.parseInt(editTextA.getText().toString());
                     int m = Integer.parseInt(editTextM.getText().toString());
                     int n = Integer.parseInt(editTextN.getText().toString());
+
+                    includeFE.setVisibility(View.VISIBLE);
 
                     if(m!=0||n!=0){
                         if(m!=0&&n!=0){
