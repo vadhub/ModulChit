@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import com.vad.modulchit.R;
 import com.vad.modulchit.adapters.AdapterFE;
+import com.vad.modulchit.adapters.AdapterGCDe;
+import com.vad.modulchit.utils.AlgebraMod;
 import com.vad.modulchit.utils.RSAmod;
 
 import java.util.List;
@@ -36,8 +38,13 @@ public class FragmentRSAdecrypt extends Fragment {
     private RSAmod rsaMod;
     private List<Integer> alphaviteCodes;
     private RecyclerView mRecyclerDecrypt;
+    private RecyclerView mRecyclerGCDe;
     private AdapterFE adapterFE;
+    private AdapterGCDe adapterGCDe;
+    private AlgebraMod algebraMod;
+
     private View includeFeDec;
+    private View includeGCDEreverse;
 
     public FragmentRSAdecrypt(List<Integer> alphaviteCodes,int n, int d, int eller, int exponent, int p, int q) {
         this.alphaviteCodes = alphaviteCodes;
@@ -62,11 +69,17 @@ public class FragmentRSAdecrypt extends Fragment {
         textViewMfere = (TextView) v.findViewById(R.id.textViewMfere);
         mRecyclerDecrypt = (RecyclerView) v.findViewById(R.id.decryptRecycler);
         mRecyclerDecrypt.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        mRecyclerGCDe = (RecyclerView) v.findViewById(R.id.gcdeDecryptRecycler);
+        mRecyclerGCDe.setLayoutManager(new LinearLayoutManager(getContext()));
         adapterFE = new AdapterFE();
+        adapterGCDe = new AdapterGCDe();
         includeFeDec = (View) v.findViewById(R.id.includeFeDec);
+        includeGCDEreverse = (View) v.findViewById(R.id.includeGCDEreverse);
 
         textViewMfere.setText("d");
         rsaMod = new RSAmod();
+        algebraMod = new AlgebraMod();
 
         editTextD.setText(d+"");
         editTextN.setText(n+"");
@@ -81,12 +94,15 @@ public class FragmentRSAdecrypt extends Fragment {
         public void onClick(View view) {
 
             includeFeDec.setVisibility(View.VISIBLE);
+            includeGCDEreverse.setVisibility(View.VISIBLE);
 
             String strResult = rsaMod.decrypting(alphaviteCodes,Integer.parseInt(editTextD.getText().toString()), n, enterCodeDecrypt.getText().toString()).toUpperCase()+"\n"+"\n";
             strResult+="n = "+p+"*"+q+" = "+n+";\n"+
                     "eller = ("+p+"-1"+"*"+q+"-1"+") = "+eller+";\n"+
                     "exponent: "+exponent+";";
 
+            adapterGCDe.setTableNumbers(algebraMod.gcdGraph(eller, exponent));
+            mRecyclerGCDe.setAdapter(adapterGCDe);
             adapterFE.setTableNumberFES(rsaMod.decryptingFE(d, n, enterCodeDecrypt.getText().toString()));
             mRecyclerDecrypt.setAdapter(adapterFE);
             resultDecrypt.setText(strResult);
