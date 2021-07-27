@@ -41,6 +41,9 @@ public class RSAmod {
         List<Integer> simpleNumber = new ArrayList<>();
 
         for(int i = 2; i<eller; i++) {
+            if(i==15){
+                break;
+            }
             if (isSimpleNumber(i)) {
                 if (AlgebraMod.gcd(eller, i) == 1) {
                     simpleNumber.add(i);

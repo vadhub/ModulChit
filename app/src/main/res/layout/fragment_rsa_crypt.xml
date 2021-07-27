@@ -4,11 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    style="@style/modulechit_style"
     tools:context=".frahments.rsa.FragmentRSAcrypt">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginStart="8sp"
+        android:layout_marginEnd="8sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,16 +23,16 @@
 
             <EditText
                 android:id="@+id/editTextTextCrypt"
+                style="@style/theme_chit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                style="@style/theme_chit"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="abc"
                 android:gravity="center"
+                android:hint="abc"
+                android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -90,41 +93,56 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
-            <TextView
-                android:id="@+id/textViewResultCrypt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:gravity="left"
-                style="@style/theme_chit"
-                android:textIsSelectable="true"
-                android:text="[]"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/buttonCrypt" />
-
-            <include
-                android:id="@+id/includeFe"
-                layout="@layout/table_counter_fe_tite"
-                android:visibility="invisible"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewResultCrypt" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/cryptRecycler"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardResultCrypt"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginEnd="8sp"
-                android:layout_marginStart="8sp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buttonCrypt">
+
+                <TextView
+                    android:id="@+id/textViewResultCrypt"
+                    style="@style/theme_chit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="[]"
+                    android:textIsSelectable="true" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                app:cardElevation="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/includeFe">
+                app:layout_constraintTop_toBottomOf="@+id/cardResultCrypt">
 
-            </androidx.recyclerview.widget.RecyclerView>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <include
+                        android:id="@+id/includeFe"
+                        layout="@layout/table_counter_fe_tite"
+                        android:layout_width="match_parent"
+                        android:visibility="invisible"
+                        android:layout_height="match_parent" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/cryptRecycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/includeFe" />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

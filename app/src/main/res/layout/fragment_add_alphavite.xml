@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    style="@style/modulechit_style"
     tools:context=".frahments.rsa.AddAlphaviteFragment">
 
     <Button
@@ -25,6 +26,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:hint="first number"
+        android:ems="4"
         style="@style/theme_chit"
         android:inputType="number"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +37,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/linearLayoutEncrypt">
@@ -44,6 +47,7 @@
             android:id="@+id/radioButtonEncrypt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:checked="true"
             android:text="Encrypt" />
 
@@ -99,16 +103,25 @@
             android:inputType="number" />
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/mRecyclerAlphabyte"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginEnd="8sp"
         android:layout_marginStart="8sp"
+        android:layout_marginTop="8sp"
+        app:cardCornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radiogroup" />
+        app:layout_constraintTop_toBottomOf="@+id/radiogroup">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/mRecyclerAlphabyte"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+    </androidx.cardview.widget.CardView>
+
 
     <Spinner
         android:id="@+id/spinner"
