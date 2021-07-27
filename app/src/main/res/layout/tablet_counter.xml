@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="a"
-                android:gravity="right"
+
                 style="@style/Theme.ModulChit"
                 android:textSize="20sp" />
 
@@ -37,7 +37,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="b"
-                android:gravity="right"
                 style="@style/Theme.ModulChit"
                 android:textSize="20sp" />
 
@@ -46,7 +45,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="q"
-                android:gravity="right"
                 style="@style/Theme.ModulChit"
                 android:textSize="20sp" />
 
@@ -55,7 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="r"
-                android:gravity="right"
+                android:gravity="center"
                 style="@style/Theme.ModulChit"
                 android:textSize="20sp" />
 

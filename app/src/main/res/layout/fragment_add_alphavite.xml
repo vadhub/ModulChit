@@ -37,7 +37,8 @@
         android:orientation="horizontal"
         android:layout_marginStart="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnNetx">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayoutEncrypt">
 
         <RadioButton
             android:id="@+id/radioButtonEncrypt"
@@ -59,7 +60,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/radiogroup"
+        app:layout_constraintTop_toBottomOf="@id/textViewNumberFirst"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -82,9 +83,9 @@
 
         <TextView
             android:id="@+id/textView17"
+            style="@style/theme_chit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/theme_chit"
             android:text="q: " />
 
         <EditText
@@ -102,10 +103,12 @@
         android:id="@+id/mRecyclerAlphabyte"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginEnd="8sp"
+        android:layout_marginStart="8sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayoutEncrypt" />
+        app:layout_constraintTop_toBottomOf="@+id/radiogroup" />
 
     <Spinner
         android:id="@+id/spinner"
