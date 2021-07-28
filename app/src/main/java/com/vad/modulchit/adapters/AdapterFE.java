@@ -23,7 +23,7 @@ public class AdapterFE extends RecyclerView.Adapter<AdapterFE.MyViewHolderFE> {
 
     public void setTableNumberFES(List<TableNumberFE> tableNumberFES) {
         this.tableNumberFES = tableNumberFES;
-        notifyDataSetChanged();
+        notifyItemChanged(5);
     }
 
     @NonNull

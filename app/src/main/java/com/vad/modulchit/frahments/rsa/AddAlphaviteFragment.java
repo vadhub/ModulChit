@@ -64,8 +64,20 @@ public class AddAlphaviteFragment extends Fragment {
         alphaviteCodes = new ArrayList<>();
 
         alphaviteCodes.addAll(shiphr.getNumberShiphr());
-        adapterRSAalphabyte.setNumbersCode(alphaviteCodes);
-        mRecyclerView.setAdapter(adapterRSAalphabyte);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapterRSAalphabyte.setNumbersCode(alphaviteCodes);
+                        mRecyclerView.setAdapter(adapterRSAalphabyte);
+                    }
+                });
+            }
+        }).start();
+
 
         ArrayAdapter<?> adapterSpinner = ArrayAdapter.createFromResource(getContext(), R.array.modifyRsaAlpabyte, android.R.layout.simple_spinner_item);
         adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -177,7 +189,19 @@ public class AddAlphaviteFragment extends Fragment {
         @Override
         public void afterTextChanged(Editable editable) {
             spinner.setSelection(1);
-            update(theChoice);
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            update(theChoice);
+                        }
+                    });
+                }
+            }).start();
+
         }
     };
 

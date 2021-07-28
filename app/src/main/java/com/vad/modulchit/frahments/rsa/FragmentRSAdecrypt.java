@@ -70,9 +70,12 @@ public class FragmentRSAdecrypt extends Fragment {
         textViewMfere = (TextView) v.findViewById(R.id.textViewMfere);
         mRecyclerDecrypt = (RecyclerView) v.findViewById(R.id.decryptRecycler);
         mRecyclerDecrypt.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRecyclerDecrypt.setNestedScrollingEnabled(false);
 
         mRecyclerGCDe = (RecyclerView) v.findViewById(R.id.gcdeDecryptRecycler);
         mRecyclerGCDe.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRecyclerGCDe.setNestedScrollingEnabled(false);
+
         adapterFE = new AdapterFE();
         adapterGCDe = new AdapterGCDe();
         includeFeDec = (View) v.findViewById(R.id.includeFeDec);
@@ -96,14 +99,14 @@ public class FragmentRSAdecrypt extends Fragment {
 
             String dStr = editTextD.getText().toString();
             String nStr = editTextN.getText().toString();
+            int dInt = -1;
+            int nInt = -1;
+            final String[] strResult = {""};
 
             if(!dStr.equals("")&&!nStr.equals("")){
 
                 includeFeDec.setVisibility(View.VISIBLE);
                 includeGCDEreverse.setVisibility(View.VISIBLE);
-
-                int dInt = -1;
-                int nInt = -1;
 
                 try{
                     dInt = Integer.parseInt(dStr);
@@ -111,26 +114,48 @@ public class FragmentRSAdecrypt extends Fragment {
                 }catch (NumberFormatException e){
                     Toast.makeText(getContext(), getResources().getString(R.string.warning_out_bounds), Toast.LENGTH_SHORT).show();
                 }
+                int finalDInt = dInt;
+                int finalNInt = nInt;
 
-                int dView = algebraMod.gcdGraph(eller, exponent).get(algebraMod.gcdGraph(eller, exponent).size()-1).getY2();
-                String strResult = rsaMod.decrypting(alphaviteCodes,dInt, nInt, enterCodeDecrypt.getText().toString()).toUpperCase()+"\n"+"\n";
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
 
-                if(n==nInt){
-                    strResult+="n = "+p+"*"+q+" = "+n+";\n";
-                }
+                        int dView = algebraMod.gcdGraph(eller, exponent).get(algebraMod.gcdGraph(eller, exponent).size()-1).getY2();
+                        strResult[0] ="result : "+ rsaMod.decrypting(alphaviteCodes,finalDInt, finalNInt, enterCodeDecrypt.getText().toString()).toUpperCase()+"\n"+"\n";
 
-                strResult+="eller = ("+p+"-1"+"*"+q+"-1"+") = "+eller+";\n"+
-                        "exponent: "+exponent+";\n";
+                        if(n==finalNInt){
+                            strResult[0] +="n = "+p+"*"+q+" = "+n+";\n";
+                        }
 
-                if (algebraMod.gcdGraph(eller, exponent).get(algebraMod.gcdGraph(eller, exponent).size()-1).getY2() < 0) {
-                    strResult += "d = "+eller+" "+dView+";";
-                }
+                        strResult[0] +="eller = ("+p+"-1"+"*"+q+"-1"+") = "+eller+";\n"+
+                                "exponent: "+exponent+";\n";
+
+                        if (algebraMod.gcdGraph(eller, exponent).get(algebraMod.gcdGraph(eller, exponent).size()-1).getY2() < 0) {
+                            strResult[0] += "d = "+eller+" "+dView+";";
+                        }
+
+                    }
+                }).start();
+
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                adapterFE.setTableNumberFES(rsaMod.decryptingFE(finalDInt, finalNInt, enterCodeDecrypt.getText().toString()));
+                                mRecyclerDecrypt.setAdapter(adapterFE);
+                            }
+                        });
+                    }
+                }).start();
 
                 adapterGCDe.setTableNumbers(algebraMod.gcdGraph(eller, exponent));
                 mRecyclerGCDe.setAdapter(adapterGCDe);
-                adapterFE.setTableNumberFES(rsaMod.decryptingFE(dInt, nInt, enterCodeDecrypt.getText().toString()));
-                mRecyclerDecrypt.setAdapter(adapterFE);
-                resultDecrypt.setText(strResult);
+
+                resultDecrypt.setText(strResult[0]);
             }else{
                 Toast.makeText(getContext(), getResources().getString(R.string.warning_enter_text), Toast.LENGTH_SHORT).show();
             }
