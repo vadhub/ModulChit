@@ -56,20 +56,21 @@ public class FragmentFE extends Fragment {
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(
-                        (!editTextA.getText().toString().equals("")||!editTextM.getText().toString().equals("")||!editTextN.getText().toString().equals(""))
-                        &&(!editTextA.getText().toString().equals("")&&!editTextM.getText().toString().equals("")||!editTextN.getText().toString().equals(""))
-                        &&(!editTextA.getText().toString().equals("")||!editTextM.getText().toString().equals("")&&!editTextN.getText().toString().equals(""))
-                        &&(!editTextA.getText().toString().equals("")&&!editTextM.getText().toString().equals("")&&!editTextN.getText().toString().equals(""))
-                ){
 
-                    int a = Integer.parseInt(editTextA.getText().toString());
-                    int m = Integer.parseInt(editTextM.getText().toString());
-                    int n = Integer.parseInt(editTextN.getText().toString());
+                String aStr = editTextA.getText().toString();
+                String mStr = editTextM.getText().toString();
+                String nStr = editTextN.getText().toString();
 
-                    includeFE.setVisibility(View.VISIBLE);
+                if(!aStr.equals("")&&!mStr.equals("")&&!nStr.equals("")){
 
-                    if(m!=0||n!=0){
+                    if(aStr.length()<2147483647&&mStr.length()<2147483647&&nStr.length()<2147483647){
+
+                        int a = Integer.parseInt(aStr);
+                        int m = Integer.parseInt(mStr);
+                        int n = Integer.parseInt(nStr);
+
+                        includeFE.setVisibility(View.VISIBLE);
+
                         if(m!=0&&n!=0){
                             List<TableNumberFE> tableNumberFES = algebraMod.feGraph(a, m, n);
                             adapterFE.setTableNumberFES(tableNumberFES);
@@ -77,10 +78,10 @@ public class FragmentFE extends Fragment {
                         }else{
                             Toast.makeText(getContext(), "Zero is invalid!", Toast.LENGTH_SHORT).show();
                         }
-
                     }else{
-                        Toast.makeText(getContext(), "Zero is invalid!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Number more 2147483646!", Toast.LENGTH_SHORT).show();
                     }
+
                 }else {
                     Toast.makeText(getContext(), "Enter the number!", Toast.LENGTH_SHORT).show();
                 }

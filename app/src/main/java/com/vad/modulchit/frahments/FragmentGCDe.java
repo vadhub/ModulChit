@@ -67,23 +67,20 @@ public class FragmentGCDe extends Fragment {
             @Override
             public void onClick(View view) {
 
-                if((!editTextA.getText().toString().equals("")&&!editTextB.getText().toString().equals(""))
-                    &&(!editTextA.getText().toString().equals("")||!editTextB.getText().toString().equals(""))){
+                String aStr = editTextA.getText().toString();
+                String bStr = editTextB.getText().toString();
+
+                if((!aStr.equals("")&&!bStr.equals(""))){
 
                     int a = Integer.parseInt(editTextA.getText().toString());
                     int b = Integer.parseInt(editTextB.getText().toString());
 
                     includeTitle.setVisibility(View.VISIBLE);
 
-                    if(a!=0||b!=0){
-                        if(a!=0&&b!=0){
-                            List<TableNumberGCDe> tempTableNumberGCDes = algebraMod.gcdGraph(a, b);
-                            adapterGCDe.setTableNumbers(tempTableNumberGCDes);
-                            mRecyclerView.setAdapter(adapterGCDe);
-
-                        }else{
-                            Toast.makeText(getContext(), "Zero is invalid!", Toast.LENGTH_SHORT).show();
-                        }
+                    if(a!=0&&b!=0){
+                        List<TableNumberGCDe> tempTableNumberGCDes = algebraMod.gcdGraph(a, b);
+                        adapterGCDe.setTableNumbers(tempTableNumberGCDes);
+                        mRecyclerView.setAdapter(adapterGCDe);
                     }else{
                         Toast.makeText(getContext(), "Zero is invalid!", Toast.LENGTH_SHORT).show();
                     }

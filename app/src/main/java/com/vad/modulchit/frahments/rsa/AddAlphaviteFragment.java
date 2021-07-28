@@ -113,13 +113,16 @@ public class AddAlphaviteFragment extends Fragment {
         public void onClick(View view) {
             Fragment fragment = null;
 
+            String qStr = numberQ.getText().toString();
+            String pStr = numberP.getText().toString();
+
             int n;
             int eller;
             List<Integer> exponents;
             if(isEncrypt){
-                if(!numberQ.getText().toString().equals("")&&!numberP.getText().toString().equals("")){
-                    int p = Integer.parseInt(numberP.getText().toString());
-                    int q = Integer.parseInt(numberQ.getText().toString());
+                if(!qStr.equals("")&&!pStr.equals("")){
+                    int p = Integer.parseInt(qStr);
+                    int q = Integer.parseInt(pStr);
 
                     n = rsaMod.getN(p,q);
                     eller = rsaMod.functionEller(p,q);
@@ -134,9 +137,9 @@ public class AddAlphaviteFragment extends Fragment {
                     fragment = new FragmentRSAcrypt(alphaviteCodes);
                 }
             }else{
-                if(!numberQ.getText().toString().equals("")&&!numberP.getText().toString().equals("")){
-                    int p = Integer.parseInt(numberP.getText().toString());
-                    int q = Integer.parseInt(numberQ.getText().toString());
+                if(!qStr.equals("")&&!pStr.equals("")){
+                    int p = Integer.parseInt(pStr);
+                    int q = Integer.parseInt(qStr);
 
                     n =rsaMod.getN(p,q);
                     eller = rsaMod.functionEller(p,q);

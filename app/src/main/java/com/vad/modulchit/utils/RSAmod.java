@@ -1,5 +1,7 @@
 package com.vad.modulchit.utils;
 
+import android.widget.Toast;
+
 import com.vad.modulchit.pojos.TableNumberFE;
 import com.vad.modulchit.pojos.TableNumberGCDe;
 
@@ -211,9 +213,11 @@ public class RSAmod {
         String str = "";
         for(int i = 0; i<strCode.length();i++){
             temp += strCode.charAt(i);
-            if(alphaviteCodes.contains(Integer.parseInt(temp))){
-                str += rsAshiphr.getAlphabyteEN().get(alphaviteCodes.indexOf(Integer.parseInt(temp)));
-                temp="";
+            if(temp.length()<2147483647){
+                if(alphaviteCodes.contains(Integer.parseInt(temp))){
+                    str += rsAshiphr.getAlphabyteEN().get(alphaviteCodes.indexOf(Integer.parseInt(temp)));
+                    temp="";
+                }
             }
         }
 

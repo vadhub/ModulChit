@@ -85,6 +85,9 @@ public class FragmentRSAcrypt extends Fragment {
         @Override
         public void onClick(View view) {
 
+            String eStr = editTextE.getText().toString();
+            String nStr = editTextN.getText().toString();
+
             includeFeCrypt.setVisibility(View.VISIBLE);
             if(enterTextToCrypt.getText().toString().matches("[a-zA-Z\\s]+")){
                 char[] strCrypt = enterTextToCrypt.getText().toString().toLowerCase().toCharArray();
@@ -98,10 +101,9 @@ public class FragmentRSAcrypt extends Fragment {
                     }
                 }
 
-                if(!editTextE.getText().toString().equals("")||!editTextE.getText().toString().equals("")||
-                    (!editTextE.getText().toString().equals("")&&!editTextE.getText().toString().equals(""))){
-                     int e = Integer.parseInt(editTextE.getText().toString());
-                     int n = Integer.parseInt(editTextN.getText().toString());
+                if(!eStr.equals("")&&!nStr.equals("")){
+                     int e = Integer.parseInt(eStr);
+                     int n = Integer.parseInt(nStr);
 
                     String str = rsaMod.encrypting(e, n, numbersCodesForCrypt)+"\n";
                     str+="from list "+exponents+" get first: "+ e;
