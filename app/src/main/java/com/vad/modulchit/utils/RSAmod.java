@@ -213,12 +213,15 @@ public class RSAmod {
         String str = "";
         for(int i = 0; i<strCode.length();i++){
             temp += strCode.charAt(i);
-            if(temp.length()<2147483647){
+            try {
                 if(alphaviteCodes.contains(Integer.parseInt(temp))){
                     str += rsAshiphr.getAlphabyteEN().get(alphaviteCodes.indexOf(Integer.parseInt(temp)));
                     temp="";
                 }
+            }catch (NumberFormatException e){
+                temp = "-1";
             }
+
         }
 
         return str;

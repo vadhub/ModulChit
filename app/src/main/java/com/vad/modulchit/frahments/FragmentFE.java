@@ -62,26 +62,26 @@ public class FragmentFE extends Fragment {
                 String nStr = editTextN.getText().toString();
 
                 if(!aStr.equals("")&&!mStr.equals("")&&!nStr.equals("")){
+                    int a =-1;
+                    int m =-1;
+                    int n =-1;
 
-                    if(aStr.length()<2147483647&&mStr.length()<2147483647&&nStr.length()<2147483647){
-
-                        int a = Integer.parseInt(aStr);
-                        int m = Integer.parseInt(mStr);
-                        int n = Integer.parseInt(nStr);
-
-                        includeFE.setVisibility(View.VISIBLE);
-
-                        if(m!=0&&n!=0){
-                            List<TableNumberFE> tableNumberFES = algebraMod.feGraph(a, m, n);
-                            adapterFE.setTableNumberFES(tableNumberFES);
-                            mRecyclerView.setAdapter(adapterFE);
-                        }else{
-                            Toast.makeText(getContext(), "Zero is invalid!", Toast.LENGTH_SHORT).show();
-                        }
-                    }else{
+                    try {
+                        a = Integer.parseInt(aStr);
+                        m = Integer.parseInt(mStr);
+                        n = Integer.parseInt(nStr);
+                    }catch (NumberFormatException e){
                         Toast.makeText(getContext(), "Number more 2147483646!", Toast.LENGTH_SHORT).show();
                     }
 
+                    includeFE.setVisibility(View.VISIBLE);
+                    if(m!=0&&n!=0){
+                        List<TableNumberFE> tableNumberFES = algebraMod.feGraph(a, m, n);
+                        adapterFE.setTableNumberFES(tableNumberFES);
+                        mRecyclerView.setAdapter(adapterFE);
+                    }else{
+                        Toast.makeText(getContext(), "Zero is invalid!", Toast.LENGTH_SHORT).show();
+                    }
                 }else {
                     Toast.makeText(getContext(), "Enter the number!", Toast.LENGTH_SHORT).show();
                 }

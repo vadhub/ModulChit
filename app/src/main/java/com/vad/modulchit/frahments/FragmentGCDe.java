@@ -71,22 +71,28 @@ public class FragmentGCDe extends Fragment {
                 String bStr = editTextB.getText().toString();
 
                 if((!aStr.equals("")&&!bStr.equals(""))){
+                    int a = -1;
+                    int b = -1;
 
-                    int a = Integer.parseInt(editTextA.getText().toString());
-                    int b = Integer.parseInt(editTextB.getText().toString());
-
-                    includeTitle.setVisibility(View.VISIBLE);
-
-                    if(a!=0&&b!=0){
-                        List<TableNumberGCDe> tempTableNumberGCDes = algebraMod.gcdGraph(a, b);
-                        adapterGCDe.setTableNumbers(tempTableNumberGCDes);
-                        mRecyclerView.setAdapter(adapterGCDe);
-                    }else{
-                        Toast.makeText(getContext(), "Zero is invalid!", Toast.LENGTH_SHORT).show();
+                    try{
+                        a = Integer.parseInt(editTextA.getText().toString());
+                        b = Integer.parseInt(editTextB.getText().toString());
+                    }catch (NumberFormatException e){
+                        Toast.makeText(getContext(), "Number more 2147483646!", Toast.LENGTH_SHORT).show();
                     }
-                }else{
-                    Toast.makeText(getContext(), "Enter the number!", Toast.LENGTH_SHORT).show();
-                }
+
+                        includeTitle.setVisibility(View.VISIBLE);
+
+                        if(a!=0&&b!=0){
+                            List<TableNumberGCDe> tempTableNumberGCDes = algebraMod.gcdGraph(a, b);
+                            adapterGCDe.setTableNumbers(tempTableNumberGCDes);
+                            mRecyclerView.setAdapter(adapterGCDe);
+                        }else{
+                            Toast.makeText(getContext(), "Zero is invalid!", Toast.LENGTH_SHORT).show();
+                        }
+                    }else{
+                        Toast.makeText(getContext(), "Enter the number!", Toast.LENGTH_SHORT).show();
+                    }
             }
         });
 

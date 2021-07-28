@@ -102,9 +102,15 @@ public class FragmentRSAcrypt extends Fragment {
                 }
 
                 if(!eStr.equals("")&&!nStr.equals("")){
-                     int e = Integer.parseInt(eStr);
-                     int n = Integer.parseInt(nStr);
+                    int e = -1;
+                    int n = -1;
 
+                    try {
+                        e = Integer.parseInt(eStr);
+                        n = Integer.parseInt(nStr);
+                    }catch (NumberFormatException ex){
+                        Toast.makeText(getContext(), "Number more 2147483646!", Toast.LENGTH_SHORT).show();
+                    }
                     String str = rsaMod.encrypting(e, n, numbersCodesForCrypt)+"\n";
                     str+="from list "+exponents+" get first: "+ e;
                     adapterFE.setTableNumberFES(rsaMod.encryptingFE(e, n, numbersCodesForCrypt));

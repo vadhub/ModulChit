@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.vad.modulchit.R;
 import com.vad.modulchit.adapters.AdapterFE;
@@ -93,23 +94,43 @@ public class FragmentRSAdecrypt extends Fragment {
         @Override
         public void onClick(View view) {
 
-            includeFeDec.setVisibility(View.VISIBLE);
-            includeGCDEreverse.setVisibility(View.VISIBLE);
-            int dView = algebraMod.gcdGraph(eller, exponent).get(algebraMod.gcdGraph(eller, exponent).size()-1).getY2();
-            String strResult = rsaMod.decrypting(alphaviteCodes,Integer.parseInt(editTextD.getText().toString()), n, enterCodeDecrypt.getText().toString()).toUpperCase()+"\n"+"\n";
-            strResult+="n = "+p+"*"+q+" = "+n+";\n"+
-                    "eller = ("+p+"-1"+"*"+q+"-1"+") = "+eller+";\n"+
-                    "exponent: "+exponent+";\n";
+            String dStr = editTextD.getText().toString();
+            String nStr = editTextN.getText().toString();
 
-            if (algebraMod.gcdGraph(eller, exponent).get(algebraMod.gcdGraph(eller, exponent).size()-1).getY2() < 0) {
-                strResult += "d = "+eller+" "+dView+";";
+            if(!dStr.equals("")&&!nStr.equals("")){
+                includeFeDec.setVisibility(View.VISIBLE);
+                includeGCDEreverse.setVisibility(View.VISIBLE);
+
+                int dInt = -1;
+                int nInt = -1;
+
+                try{
+                    dInt = Integer.parseInt(dStr);
+                    nInt = Integer.parseInt(nStr);
+                }catch (NumberFormatException e){
+                    Toast.makeText(getContext(), "Number more 2147483646!", Toast.LENGTH_SHORT).show();
+                }
+
+                int dView = algebraMod.gcdGraph(eller, exponent).get(algebraMod.gcdGraph(eller, exponent).size()-1).getY2();
+                String strResult = rsaMod.decrypting(alphaviteCodes,dInt, nInt, enterCodeDecrypt.getText().toString()).toUpperCase()+"\n"+"\n";
+
+                if(n==nInt){
+                    strResult+="n = "+p+"*"+q+" = "+n+";\n";
+                }
+
+                strResult+="eller = ("+p+"-1"+"*"+q+"-1"+") = "+eller+";\n"+
+                        "exponent: "+exponent+";\n";
+
+                if (algebraMod.gcdGraph(eller, exponent).get(algebraMod.gcdGraph(eller, exponent).size()-1).getY2() < 0) {
+                    strResult += "d = "+eller+" "+dView+";";
+                }
+
+                adapterGCDe.setTableNumbers(algebraMod.gcdGraph(eller, exponent));
+                mRecyclerGCDe.setAdapter(adapterGCDe);
+                adapterFE.setTableNumberFES(rsaMod.decryptingFE(dInt, nInt, enterCodeDecrypt.getText().toString()));
+                mRecyclerDecrypt.setAdapter(adapterFE);
+                resultDecrypt.setText(strResult);
             }
-
-            adapterGCDe.setTableNumbers(algebraMod.gcdGraph(eller, exponent));
-            mRecyclerGCDe.setAdapter(adapterGCDe);
-            adapterFE.setTableNumberFES(rsaMod.decryptingFE(d, n, enterCodeDecrypt.getText().toString()));
-            mRecyclerDecrypt.setAdapter(adapterFE);
-            resultDecrypt.setText(strResult);
         }
     };
 }

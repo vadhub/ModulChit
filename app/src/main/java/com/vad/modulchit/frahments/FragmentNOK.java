@@ -50,10 +50,19 @@ public class FragmentNOK extends Fragment {
         btnNok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!editTextMod.getText().toString().equals("")){
-                    int m = Integer.parseInt(editTextMod.getText().toString());
 
+                String modStr =editTextMod.getText().toString();
+
+                if(!modStr.equals("")){
+                    int m = -1;
+
+                    try{
+                        m = Integer.parseInt(modStr);
+                    }catch (NumberFormatException e){
+                        Toast.makeText(getContext(), "Number more 2147483646!", Toast.LENGTH_SHORT).show();
+                    }
                     includeMG.setVisibility(View.VISIBLE);
+
                     if(m!=0){
                         List<TableNumberNOK> numberNOKS = algebraMod.nokGraph(m);
                         textViewResult.setText(getResult(numberNOKS));
@@ -66,6 +75,7 @@ public class FragmentNOK extends Fragment {
                     Toast.makeText(getContext(), "Enter the number!", Toast.LENGTH_SHORT).show();
                 }
             }
+
         });
 
         return v;
