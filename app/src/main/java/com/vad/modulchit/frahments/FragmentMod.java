@@ -37,23 +37,17 @@ public class FragmentMod extends Fragment {
         btnMod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if((!editTextA.getText().toString().equals("")&&!editTextB.getText().toString().equals(""))
-                    &&(!editTextA.getText().toString().equals("")||!editTextB.getText().toString().equals(""))
-                ){
+                if(!editTextA.getText().toString().equals("")&&!editTextB.getText().toString().equals("")){
                     int a = Integer.parseInt(editTextA.getText().toString());
                     int b = Integer.parseInt(editTextB.getText().toString());
 
-                    if(a != 0 || b != 0) {
-                        if(a!=0 && b!=0){
-                            textViewResult.setText(AlgebraMod.mod(a, b)+"");
-                        }else{
-                            Toast.makeText(getContext(), "Zero is invalid!", Toast.LENGTH_SHORT).show();
-                        }
+                    if(a!=0 && b!=0) {
+                        textViewResult.setText(AlgebraMod.mod(a, b)+"");
                     }else{
-                        Toast.makeText(getContext(), "Zero is invalid!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), getResources().getString(R.string.warning_zero), Toast.LENGTH_SHORT).show();
                     }
                 }else{
-                    Toast.makeText(getContext(), "Enter the number!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getResources().getString(R.string.warning_enter_text), Toast.LENGTH_SHORT).show();
                 }
             }
         });

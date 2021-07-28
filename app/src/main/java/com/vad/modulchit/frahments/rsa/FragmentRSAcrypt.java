@@ -6,8 +6,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +16,10 @@ import android.widget.Toast;
 
 import com.vad.modulchit.R;
 import com.vad.modulchit.adapters.AdapterFE;
-import com.vad.modulchit.utils.AlgebraMod;
 import com.vad.modulchit.utils.RSAmod;
 import com.vad.modulchit.utils.RSAshiphr;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class FragmentRSAcrypt extends Fragment {
@@ -109,7 +105,7 @@ public class FragmentRSAcrypt extends Fragment {
                         e = Integer.parseInt(eStr);
                         n = Integer.parseInt(nStr);
                     }catch (NumberFormatException ex){
-                        Toast.makeText(getContext(), "Number more 2147483646!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), getResources().getString(R.string.warning_out_bounds), Toast.LENGTH_SHORT).show();
                     }
                     String str = rsaMod.encrypting(e, n, numbersCodesForCrypt)+"\n";
                     str+="from list "+exponents+" get first: "+ e;
@@ -118,11 +114,11 @@ public class FragmentRSAcrypt extends Fragment {
                     textViewResult.setText(str);
 
                 }else{
-                    Toast.makeText(getContext(), "Enter text", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getResources().getString(R.string.warning_enter_text), Toast.LENGTH_SHORT).show();
                 }
 
             }else {
-                Toast.makeText(getContext(), "Enter only letters", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getResources().getString(R.string.warning_enter_letter), Toast.LENGTH_SHORT).show();
             }
 
         }

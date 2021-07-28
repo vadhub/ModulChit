@@ -59,7 +59,7 @@ public class FragmentNOK extends Fragment {
                     try{
                         m = Integer.parseInt(modStr);
                     }catch (NumberFormatException e){
-                        Toast.makeText(getContext(), "Number more 2147483646!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), getResources().getString(R.string.warning_out_bounds), Toast.LENGTH_SHORT).show();
                     }
                     includeMG.setVisibility(View.VISIBLE);
 
@@ -69,10 +69,10 @@ public class FragmentNOK extends Fragment {
                         adapterNOK.setTableNumberNOKS(numberNOKS);
                         mRecyclerView.setAdapter(adapterNOK);
                     }else{
-                        Toast.makeText(getContext(), "Zero is invalid!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), getResources().getString(R.string.warning_zero), Toast.LENGTH_SHORT).show();
                     }
                 }else{
-                    Toast.makeText(getContext(), "Enter the number!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getResources().getString(R.string.warning_enter_text), Toast.LENGTH_SHORT).show();
                 }
             }
 

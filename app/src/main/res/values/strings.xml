@@ -15,12 +15,17 @@
     <string name="rsa">RSA</string>
     <string name="other">other</string>
 
+    <string name="warning_out_bounds">Number more 2147483646!</string>
+    <string name="warning_enter_text">Enter the number!</string>
+    <string name="warning_zero">Zero is invalid!</string>
+    <string name="warning_enter_letter">Enter only letters</string>
+    <string name="warning_prime">Enter prime number 3, 5, 7...!</string>
+    <string name="warning_enter_p_q">Enter p and q number!</string>
+
     <string-array name="modifyRsaAlpabyte">
         <item>random</item>
         <item>your</item>
 
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

@@ -71,7 +71,7 @@ public class FragmentFE extends Fragment {
                         m = Integer.parseInt(mStr);
                         n = Integer.parseInt(nStr);
                     }catch (NumberFormatException e){
-                        Toast.makeText(getContext(), "Number more 2147483646!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), getResources().getString(R.string.warning_out_bounds), Toast.LENGTH_SHORT).show();
                     }
 
                     includeFE.setVisibility(View.VISIBLE);
@@ -80,10 +80,10 @@ public class FragmentFE extends Fragment {
                         adapterFE.setTableNumberFES(tableNumberFES);
                         mRecyclerView.setAdapter(adapterFE);
                     }else{
-                        Toast.makeText(getContext(), "Zero is invalid!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), getResources().getString(R.string.warning_zero), Toast.LENGTH_SHORT).show();
                     }
                 }else {
-                    Toast.makeText(getContext(), "Enter the number!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getResources().getString(R.string.warning_enter_text), Toast.LENGTH_SHORT).show();
                 }
 
 

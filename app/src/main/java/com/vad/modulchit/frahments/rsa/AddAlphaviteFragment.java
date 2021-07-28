@@ -131,7 +131,7 @@ public class AddAlphaviteFragment extends Fragment {
                     if(rsaMod.isSimpleNumber(p)&&rsaMod.isSimpleNumber(q)){
                         fragment = new FragmentRSAcrypt(alphaviteCodes, n, exponents);
                     }else{
-                        Toast.makeText(getContext(), "Enter prime number", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), getResources().getString(R.string.warning_prime), Toast.LENGTH_SHORT).show();
                     }
                 }else{
                     fragment = new FragmentRSAcrypt(alphaviteCodes);
@@ -149,10 +149,10 @@ public class AddAlphaviteFragment extends Fragment {
                     if(rsaMod.isSimpleNumber(p)&&rsaMod.isSimpleNumber(q)){
                         fragment = new FragmentRSAdecrypt(alphaviteCodes, n, d, eller, exponents.get(0), p, q);
                     }else{
-                        Toast.makeText(getContext(), "Enter prime number", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), getResources().getString(R.string.warning_prime), Toast.LENGTH_SHORT).show();
                     }
                 }else{
-                    Toast.makeText(getContext(), "Enter p and q number", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getResources().getString(R.string.warning_enter_p_q), Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -185,7 +185,7 @@ public class AddAlphaviteFragment extends Fragment {
 
         if(numberForFirstLetter.getText().toString().equals("")){
             if(i!=0){
-                Toast.makeText(getContext(), "Enter text", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getResources().getString(R.string.warning_enter_text), Toast.LENGTH_SHORT).show();
             }
         }else{
             switch (i){

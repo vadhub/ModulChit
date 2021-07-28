@@ -15,4 +15,15 @@
     <string name="fast_exponentiation">Возведение в степень</string>
     <string name="other">другое</string>
     <string name="rsa">RSA</string>
+
+    <string-array name="modifyRsaAlpabyte">
+    <item>Случайно</item>
+    <item>ваше</item>
+    </string-array>
+    <string name="warning_out_bounds">Число больше 2147483646!</string>
+    <string name="warning_enter_text">Введите число!</string>
+    <string name="warning_zero">0 не допустим!</string>
+    <string name="warning_enter_letter">Введите только буквы!</string>
+    <string name="warning_prime">Введите простые числа 3, 5, 7...!</string>
+    <string name="warning_enter_p_q">Введите p и q!</string>
 </resources>

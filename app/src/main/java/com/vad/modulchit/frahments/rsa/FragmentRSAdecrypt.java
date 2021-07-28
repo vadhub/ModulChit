@@ -98,6 +98,7 @@ public class FragmentRSAdecrypt extends Fragment {
             String nStr = editTextN.getText().toString();
 
             if(!dStr.equals("")&&!nStr.equals("")){
+
                 includeFeDec.setVisibility(View.VISIBLE);
                 includeGCDEreverse.setVisibility(View.VISIBLE);
 
@@ -108,7 +109,7 @@ public class FragmentRSAdecrypt extends Fragment {
                     dInt = Integer.parseInt(dStr);
                     nInt = Integer.parseInt(nStr);
                 }catch (NumberFormatException e){
-                    Toast.makeText(getContext(), "Number more 2147483646!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getResources().getString(R.string.warning_out_bounds), Toast.LENGTH_SHORT).show();
                 }
 
                 int dView = algebraMod.gcdGraph(eller, exponent).get(algebraMod.gcdGraph(eller, exponent).size()-1).getY2();
@@ -130,6 +131,8 @@ public class FragmentRSAdecrypt extends Fragment {
                 adapterFE.setTableNumberFES(rsaMod.decryptingFE(dInt, nInt, enterCodeDecrypt.getText().toString()));
                 mRecyclerDecrypt.setAdapter(adapterFE);
                 resultDecrypt.setText(strResult);
+            }else{
+                Toast.makeText(getContext(), getResources().getString(R.string.warning_enter_text), Toast.LENGTH_SHORT).show();
             }
         }
     };
