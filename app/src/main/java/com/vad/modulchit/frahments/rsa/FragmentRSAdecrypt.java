@@ -132,9 +132,9 @@ public class FragmentRSAdecrypt extends Fragment {
                                 "exponent: "+exponent+";\n";
 
                         if (algebraMod.gcdGraph(eller, exponent).get(algebraMod.gcdGraph(eller, exponent).size()-1).getY2() < 0) {
-                            strResult[0] += "d = "+eller+" "+dView+";";
+                            strResult[0] += "d = "+eller+" "+dView+"="+finalDInt+";";
                         }
-
+                        resultDecrypt.setText(strResult[0]);
                     }
                 }).start();
 
@@ -155,7 +155,6 @@ public class FragmentRSAdecrypt extends Fragment {
                 adapterGCDe.setTableNumbers(algebraMod.gcdGraph(eller, exponent));
                 mRecyclerGCDe.setAdapter(adapterGCDe);
 
-                resultDecrypt.setText(strResult[0]);
             }else{
                 Toast.makeText(getContext(), getResources().getString(R.string.warning_enter_text), Toast.LENGTH_SHORT).show();
             }

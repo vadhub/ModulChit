@@ -18,7 +18,7 @@
 
     <string-array name="modifyRsaAlpabyte">
     <item>Случайно</item>
-    <item>ваше</item>
+    <item>Ваше</item>
     </string-array>
     <string name="warning_out_bounds">Число больше 2147483646!</string>
     <string name="warning_enter_text">Введите число!</string>
@@ -26,4 +26,10 @@
     <string name="warning_enter_letter">Введите только буквы!</string>
     <string name="warning_prime">Введите простые числа 3, 5, 7...!</string>
     <string name="warning_enter_p_q">Введите p и q!</string>
+    <string name="encrypt">Шифровать</string>
+    <string name="decrypt">Расшифровать</string>
+    <string name="first_number">первое число</string>
+    <string name="next">дальше</string>
+    <string name="from_list">"из списка "</string>
+    <string name="get_first">"берем "</string>
 </resources>

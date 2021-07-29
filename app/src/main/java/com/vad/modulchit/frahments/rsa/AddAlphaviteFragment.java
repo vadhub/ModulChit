@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -40,6 +41,7 @@ public class AddAlphaviteFragment extends Fragment {
     private RSAmod rsaMod;
     private int theChoice = 0;
     private boolean isEncrypt = true;
+    private ProgressBar progressBar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,6 +54,7 @@ public class AddAlphaviteFragment extends Fragment {
         mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         adapterRSAalphabyte = new AdapterRSAalphabyte();
         spinner = (Spinner) v.findViewById(R.id.spinner);
+        progressBar = (ProgressBar) v.findViewById(R.id.progressBarAlpha);
 
         numberP = (EditText) v.findViewById(R.id.editTextNumberP);
         numberQ = (EditText) v.findViewById(R.id.editTextNumberQ);
@@ -71,8 +74,10 @@ public class AddAlphaviteFragment extends Fragment {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        progressBar.setVisibility(View.VISIBLE);
                         adapterRSAalphabyte.setNumbersCode(alphaviteCodes);
                         mRecyclerView.setAdapter(adapterRSAalphabyte);
+                        progressBar.setVisibility(View.INVISIBLE);
                     }
                 });
             }
@@ -196,7 +201,9 @@ public class AddAlphaviteFragment extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            progressBar.setVisibility(View.VISIBLE);
                             update(theChoice);
+                            progressBar.setVisibility(View.INVISIBLE);
                         }
                     });
                 }

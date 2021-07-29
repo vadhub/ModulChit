@@ -21,6 +21,12 @@
     <string name="warning_enter_letter">Enter only letters</string>
     <string name="warning_prime">Enter prime number 3, 5, 7...!</string>
     <string name="warning_enter_p_q">Enter p and q number!</string>
+    <string name="encrypt">Encrypt</string>
+    <string name="decrypt">Decrypt</string>
+    <string name="first_number">first number</string>
+    <string name="next">next</string>
+    <string name="from_list">"from list "</string>
+    <string name="get_first">" get: "</string>
 
     <string-array name="modifyRsaAlpabyte">
         <item>random</item>
