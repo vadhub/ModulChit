@@ -55,6 +55,8 @@ public class FragmentRSAcrypt extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_rsa_crypt, container, false);
 
+        getActivity().setTitle("RSA Encrypt");
+
         btnOk = (Button) v.findViewById(R.id.buttonCrypt);
         enterTextToCrypt = (EditText) v.findViewById(R.id.editTextTextCrypt);
         editTextE = (EditText) v.findViewById(R.id.editTextE);
@@ -70,8 +72,10 @@ public class FragmentRSAcrypt extends Fragment {
         rsaMod = new RSAmod();
         rsAshiphr = new RSAshiphr();
 
-        editTextE.setText(String.valueOf(exponents.get(0)));
-        editTextN.setText(String.valueOf(n));
+        if(exponents!=null){
+            editTextE.setText(String.valueOf(exponents.get(0)));
+            editTextN.setText(String.valueOf(n));
+        }
 
         btnOk.setOnClickListener(clickListener);
         return v;

@@ -62,6 +62,8 @@ public class FragmentRSAdecrypt extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_rsa_decrypt, container, false);
 
+        getActivity().setTitle("RSA Decrypt");
+
         enterCodeDecrypt = (EditText) v.findViewById(R.id.editTextCodeDecrypt);
         editTextD = (EditText) v.findViewById(R.id.editTextDdecript);
         editTextN = (EditText) v.findViewById(R.id.editTextNdecrypt);
