@@ -86,14 +86,14 @@ public class FragmentRSAcrypt extends Fragment {
 
             includeFeCrypt.setVisibility(View.VISIBLE);
 
-
             if(enterTextToCrypt.getText().toString().matches("[a-zA-Z\\s]+")){
                 char[] strCrypt = enterTextToCrypt.getText().toString().toLowerCase().toCharArray();
+
+                numbersCodesForCrypt = new ArrayList<>();
 
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        numbersCodesForCrypt = new ArrayList<>();
                         for(int i = 0; i < strCrypt.length; i++){
                             for(int j =0; j < rsAshiphr.getAlphabyteEN().size(); j++){
                                 if(rsAshiphr.getAlphabyteEN().get(j).equals(strCrypt[i])){
@@ -104,7 +104,6 @@ public class FragmentRSAcrypt extends Fragment {
                         }
                     }
                 }).start();
-
 
                 if(!eStr.equals("")&&!nStr.equals("")){
                     int e = -1;

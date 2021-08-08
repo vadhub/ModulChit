@@ -82,13 +82,13 @@ public class FragmentNOK extends Fragment {
     }
 
     private String getResult(List<TableNumberNOK> noks){
-        String txtRes = "(1";
+        StringBuilder txtRes = new StringBuilder("(1");
 
         int tmp = 0;
         for(TableNumberNOK nok: noks){
             if(nok.getBn()==0&&nok.getAn()==1){
                 if(tmp!=nok.getI()){
-                    txtRes+="; "+ nok.getI();
+                    txtRes.append("; ").append(nok.getI());
                 }
             }
         }

@@ -1,7 +1,5 @@
 package com.vad.modulchit.utils;
 
-import android.widget.Toast;
-
 import com.vad.modulchit.pojos.TableNumberFE;
 import com.vad.modulchit.pojos.TableNumberGCDe;
 
@@ -128,13 +126,15 @@ public class RSAmod {
 //    }
 
     private List<Integer> getClasters(List<Integer> numberCodes, int n){
-        String strCrypt = "";
+        StringBuilder strCrypt = new StringBuilder();
 
-        for(int a: numberCodes){
-            strCrypt += a;
+        if(numberCodes!=null){
+            for(int a: numberCodes){
+                strCrypt.append(a);
+            }
         }
 
-        return getClastersFromString(strCrypt, n);
+        return getClastersFromString(strCrypt.toString(), n);
     }
 
     public String encrypting(int e, int n, List<Integer> numberCodes){
@@ -198,32 +198,30 @@ public class RSAmod {
         RSAshiphr rsAshiphr = new RSAshiphr();
 
         int temp = 0;
-        String strCodes = "";
+        StringBuilder strCodes = new StringBuilder();
         for (Integer i: numberCodes) {
             temp = algebraMod.feGraph(i, d, n).get(algebraMod.feGraph(i, d, n).size() - 2).getP();
-            strCodes += temp;
+            strCodes.append(temp);
             tempNumbersCode.add(temp);
         }
 
-        return tempNumbersCode+"\n"+getNumberAlphavite(alphaviteCodes, strCodes, rsAshiphr);
+        return tempNumbersCode+"\n"+getNumberAlphavite(alphaviteCodes, strCodes.toString(), rsAshiphr);
     }
 
     private String getNumberAlphavite(List<Integer> alphaviteCodes, String strCode, RSAshiphr rsAshiphr){
         String temp = "";
-        String str = "";
+        StringBuilder str = new StringBuilder();
         for(int i = 0; i<strCode.length();i++){
             temp += strCode.charAt(i);
             try {
                 if(alphaviteCodes.contains(Integer.parseInt(temp))){
-                    str += rsAshiphr.getAlphabyteEN().get(alphaviteCodes.indexOf(Integer.parseInt(temp)));
+                    str.append(rsAshiphr.getAlphabyteEN().get(alphaviteCodes.indexOf(Integer.parseInt(temp))));
                     temp="";
                 }
             }catch (NumberFormatException e){
                 temp = "-1";
             }
-
         }
-
-        return str;
+        return str.toString();
     }
 }

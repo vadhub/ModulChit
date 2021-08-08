@@ -7,7 +7,7 @@ import com.vad.modulchit.pojos.TableNumberNOK;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AlgebraMod {
+public class   AlgebraMod {
 
     public static int gcd(int a, int b) {
         while (b !=0) {
