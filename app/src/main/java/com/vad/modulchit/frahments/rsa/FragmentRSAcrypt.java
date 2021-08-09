@@ -95,15 +95,12 @@ public class FragmentRSAcrypt extends Fragment {
 
                 numbersCodesForCrypt = new ArrayList<>();
 
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        for(int i = 0; i < strCrypt.length; i++){
-                            for(int j =0; j < rsAshiphr.getAlphabyteEN().size(); j++){
-                                if(rsAshiphr.getAlphabyteEN().get(j).equals(strCrypt[i])){
-                                    numbersCodesForCrypt.add(alphaviteCodes.get(j));
-                                    break;
-                                }
+                new Thread(() -> {
+                    for(int i = 0; i < strCrypt.length; i++){
+                        for(int j =0; j < rsAshiphr.getAlphabyteEN().size(); j++){
+                            if(rsAshiphr.getAlphabyteEN().get(j).equals(strCrypt[i])){
+                                numbersCodesForCrypt.add(alphaviteCodes.get(j));
+                                break;
                             }
                         }
                     }
@@ -122,27 +119,18 @@ public class FragmentRSAcrypt extends Fragment {
 
                     int finalE = e;
                     int finalN = n;
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            getActivity().runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    adapterFE.setTableNumberFES(rsaMod.encryptingFE(finalE, finalN, numbersCodesForCrypt));
-                                    mRecyclerFeCrypt.setAdapter(adapterFE);
+                    new Thread(() -> getActivity().runOnUiThread(() -> {
+                        adapterFE.setTableNumberFES(rsaMod.encryptingFE(finalE, finalN, numbersCodesForCrypt));
+                        mRecyclerFeCrypt.setAdapter(adapterFE);
 
-                                    System.out.println(numbersCodesForCrypt);
+                        System.out.println(numbersCodesForCrypt);
 
-                                    String str = rsaMod.encrypting(finalE, finalN, numbersCodesForCrypt)+"\n";
-                                    str+=getString(R.string.from_list)+exponents+getString(R.string.get_first)+ finalE;
+                        String str = rsaMod.encrypting(finalE, finalN, numbersCodesForCrypt)+"\n";
+                        str+=getString(R.string.from_list)+exponents+getString(R.string.get_first)+ finalE;
 
-                                    textViewResult.setText(str);
-                                    numbersCodesForCrypt=null;
-                                }
-                            });
-
-                        }
-                    }).start();
+                        textViewResult.setText(str);
+                        numbersCodesForCrypt=null;
+                    })).start();
 
                 }else{
                     Toast.makeText(getContext(), getResources().getString(R.string.warning_enter_text), Toast.LENGTH_SHORT).show();

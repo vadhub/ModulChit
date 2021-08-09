@@ -119,40 +119,29 @@ public class FragmentRSAdecrypt extends Fragment {
                 int finalDInt = dInt;
                 int finalNInt = nInt;
 
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
+                new Thread(() -> {
 
-                        int dView = algebraMod.gcdGraph(eller, exponent).get(algebraMod.gcdGraph(eller, exponent).size()-1).getY2();
-                        strResult[0] ="result : "+ rsaMod.decrypting(alphaviteCodes,finalDInt, finalNInt, enterCodeDecrypt.getText().toString()).toUpperCase()+"\n"+"\n";
+                    int dView = algebraMod.gcdGraph(eller, exponent).get(algebraMod.gcdGraph(eller, exponent).size()-1).getY2();
+                    strResult[0] ="result : "+ rsaMod.decrypting(alphaviteCodes,finalDInt, finalNInt, enterCodeDecrypt.getText().toString()).toUpperCase()+"\n"+"\n";
 
-                        if(n==finalNInt){
-                            strResult[0] +="n = "+p+"*"+q+" = "+n+";\n";
-                        }
-
-                        strResult[0] +="eller = ("+p+"-1"+"*"+q+"-1"+") = "+eller+";\n"+
-                                "exponent: "+exponent+";\n";
-
-                        if (algebraMod.gcdGraph(eller, exponent).get(algebraMod.gcdGraph(eller, exponent).size()-1).getY2() < 0) {
-                            strResult[0] += "d = "+eller+" "+dView+"="+finalDInt+";";
-                        }
-                        resultDecrypt.setText(strResult[0]);
+                    if(n==finalNInt){
+                        strResult[0] +="n = "+p+"*"+q+" = "+n+";\n";
                     }
+
+                    strResult[0] +="eller = ("+p+"-1"+"*"+q+"-1"+") = "+eller+";\n"+
+                            "exponent: "+exponent+";\n";
+
+                    if (algebraMod.gcdGraph(eller, exponent).get(algebraMod.gcdGraph(eller, exponent).size()-1).getY2() < 0) {
+                        strResult[0] += "d = "+eller+" "+dView+"="+finalDInt+";";
+                    }
+                    resultDecrypt.setText(strResult[0]);
                 }).start();
 
 
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                adapterFE.setTableNumberFES(rsaMod.decryptingFE(finalDInt, finalNInt, enterCodeDecrypt.getText().toString()));
-                                mRecyclerDecrypt.setAdapter(adapterFE);
-                            }
-                        });
-                    }
-                }).start();
+                new Thread(() -> getActivity().runOnUiThread(() -> {
+                    adapterFE.setTableNumberFES(rsaMod.decryptingFE(finalDInt, finalNInt, enterCodeDecrypt.getText().toString()));
+                    mRecyclerDecrypt.setAdapter(adapterFE);
+                })).start();
 
                 adapterGCDe.setTableNumbers(algebraMod.gcdGraph(eller, exponent));
                 mRecyclerGCDe.setAdapter(adapterGCDe);

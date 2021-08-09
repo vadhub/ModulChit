@@ -21,6 +21,7 @@ import com.vad.modulchit.frahments.FragmentNOK;
 import com.vad.modulchit.frahments.rsa.AddAlphaviteFragment;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 
 public class MainActivityMain extends AppCompatActivity {
 
@@ -34,10 +35,7 @@ public class MainActivityMain extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main_main);
 
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-            }
+        MobileAds.initialize(this, initializationStatus -> {
         });
 
         mAdView = findViewById(R.id.adView);
@@ -50,36 +48,33 @@ public class MainActivityMain extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentGCDe()).commit();
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener listener = new BottomNavigationView.OnNavigationItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+    private BottomNavigationView.OnNavigationItemSelectedListener listener = item -> {
 
-            Fragment fragment = null;
+        Fragment fragment = null;
 
-            switch (item.getItemId()){
-                case R.id.gcdItem:
-                    fragment = new FragmentGCDe();
-                    setTitle(R.string.gcd_e);
-                    break;
+        switch (item.getItemId()){
+            case R.id.gcdItem:
+                fragment = new FragmentGCDe();
+                setTitle(R.string.gcd_e);
+                break;
 
-                case R.id.nokItem:
-                    fragment = new FragmentNOK();
-                    setTitle(R.string.multiplicative_group);
-                    break;
-                case R.id.feItem:
-                    fragment = new FragmentFE();
-                    setTitle(R.string.fast_exponentiation);
-                    break;
+            case R.id.nokItem:
+                fragment = new FragmentNOK();
+                setTitle(R.string.multiplicative_group);
+                break;
+            case R.id.feItem:
+                fragment = new FragmentFE();
+                setTitle(R.string.fast_exponentiation);
+                break;
 
-                case R.id.modItem:
-                    fragment = new AddAlphaviteFragment();
-                    setTitle(R.string.rsa);
-                    break;
-            }
-
-            getSupportFragmentManager().beginTransaction().replace(R.id.frame_replace, fragment).commit();
-
-            return true;
+            case R.id.modItem:
+                fragment = new AddAlphaviteFragment();
+                setTitle(R.string.rsa);
+                break;
         }
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_replace, fragment).commit();
+
+        return true;
     };
 }

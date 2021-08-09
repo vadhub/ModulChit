@@ -2,6 +2,8 @@ package com.vad.modulchit.frahments.rsa;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,7 +30,7 @@ import com.vad.modulchit.utils.RSAshiphr;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddAlphaviteFragment extends Fragment {
+public class AddAlphaviteFragment extends Fragment{
 
     private EditText numberForFirstLetter;
     private EditText numberP;
@@ -68,20 +70,17 @@ public class AddAlphaviteFragment extends Fragment {
 
         alphaviteCodes.addAll(shiphr.getNumberShiphr());
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        progressBar.setVisibility(View.VISIBLE);
-                        adapterRSAalphabyte.setNumbersCode(alphaviteCodes);
-                        mRecyclerView.setAdapter(adapterRSAalphabyte);
-                        progressBar.setVisibility(View.INVISIBLE);
-                    }
-                });
+        new Thread(() -> getActivity().runOnUiThread(() -> {
+            progressBar.setVisibility(View.VISIBLE);
+
+            if(savedInstanceState!=null){
+                adapterRSAalphabyte.setNumbersCode(savedInstanceState.getIntegerArrayList("alphavite"));
+            }else{
+                adapterRSAalphabyte.setNumbersCode(alphaviteCodes);
             }
-        }).start();
+            mRecyclerView.setAdapter(adapterRSAalphabyte);
+            progressBar.setVisibility(View.INVISIBLE);
+        })).start();
 
 
         ArrayAdapter<?> adapterSpinner = ArrayAdapter.createFromResource(getContext(), R.array.modifyRsaAlpabyte, android.R.layout.simple_spinner_item);
@@ -97,16 +96,13 @@ public class AddAlphaviteFragment extends Fragment {
         return v;
     }
 
-    private final View.OnClickListener radioButtonClick = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            RadioButton radioButton = (RadioButton)view;
-            switch (radioButton.getId()){
-                case R.id.radioButtonEncrypt: isEncrypt = true;
-                break;
-                case R.id.radioButtonDecrypt: isEncrypt = false;
-                break;
-            }
+    private final View.OnClickListener radioButtonClick = view -> {
+        RadioButton radioButton = (RadioButton)view;
+        switch (radioButton.getId()){
+            case R.id.radioButtonEncrypt: isEncrypt = true;
+            break;
+            case R.id.radioButtonDecrypt: isEncrypt = false;
+            break;
         }
     };
 
@@ -195,19 +191,11 @@ public class AddAlphaviteFragment extends Fragment {
         public void afterTextChanged(Editable editable) {
             spinner.setSelection(1);
 
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            progressBar.setVisibility(View.VISIBLE);
-                            update(theChoice);
-                            progressBar.setVisibility(View.INVISIBLE);
-                        }
-                    });
-                }
-            }).start();
+            new Thread(() -> getActivity().runOnUiThread(() -> {
+                progressBar.setVisibility(View.VISIBLE);
+                update(theChoice);
+                progressBar.setVisibility(View.INVISIBLE);
+            })).start();
 
         }
     };
@@ -230,9 +218,13 @@ public class AddAlphaviteFragment extends Fragment {
 
             adapterRSAalphabyte.setNumbersCode(alphaviteCodes);
             mRecyclerView.setAdapter(adapterRSAalphabyte);
-
         }
 
+    }
 
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putIntegerArrayList("alphavite", (ArrayList<Integer>) alphaviteCodes);
     }
 }
