@@ -21,7 +21,7 @@ import com.vad.modulchit.utils.AlgebraMod;
 
 import java.util.List;
 
-public class FragmentGCDe extends Fragment {
+public class FragmentGCDe extends Fragment implements ListGCDEView{
 
     private EditText editTextA;
     private EditText editTextB;
@@ -32,6 +32,7 @@ public class FragmentGCDe extends Fragment {
 
     private AlgebraMod algebraMod;
     private View includeTitle;
+    private ListGCDEpresenter presenter;
 
 
 //    @Override
@@ -53,6 +54,7 @@ public class FragmentGCDe extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_main, container, false);
 
+        presenter = new ListGCDEpresenter(this);
         editTextA = (EditText) v.findViewById(R.id.editTextA);
         editTextB = (EditText) v.findViewById(R.id.editTextB);
         btnOk = (Button) v.findViewById(R.id.button);
@@ -84,9 +86,7 @@ public class FragmentGCDe extends Fragment {
                         includeTitle.setVisibility(View.VISIBLE);
 
                         if(a!=0&&b!=0){
-                            List<TableNumberGCDe> tempTableNumberGCDes = algebraMod.gcdGraph(a, b);
-                            adapterGCDe.setTableNumbers(tempTableNumberGCDes);
-                            mRecyclerView.setAdapter(adapterGCDe);
+                            presenter.loadListGCDE(a, b);
                         }else{
                             Toast.makeText(getContext(), getResources().getString(R.string.warning_zero), Toast.LENGTH_SHORT).show();
                         }
@@ -97,5 +97,11 @@ public class FragmentGCDe extends Fragment {
         });
 
         return v;
+    }
+
+    @Override
+    public void showData(List<TableNumberGCDe> tableNumberGCDeList) {
+        adapterGCDe.setTableNumbers(tableNumberGCDeList);
+        mRecyclerView.setAdapter(adapterGCDe);
     }
 }
