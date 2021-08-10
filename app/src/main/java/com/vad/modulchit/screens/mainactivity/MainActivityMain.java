@@ -15,7 +15,7 @@ import com.vad.modulchit.R;
 import com.vad.modulchit.screens.fe.FragmentFE;
 import com.vad.modulchit.screens.gcde.FragmentGCDe;
 import com.vad.modulchit.screens.mg.FragmentMG;
-import com.vad.modulchit.screens.rsa.AddAlphaviteFragment;
+import com.vad.modulchit.screens.rsa.alphavite.AddAlphaviteFragment;
 
 public class MainActivityMain extends AppCompatActivity{
 
