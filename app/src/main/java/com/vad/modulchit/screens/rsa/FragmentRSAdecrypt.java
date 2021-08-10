@@ -1,4 +1,4 @@
-package com.vad.modulchit.frahments.rsa;
+package com.vad.modulchit.screens.rsa;
 
 import android.os.Bundle;
 

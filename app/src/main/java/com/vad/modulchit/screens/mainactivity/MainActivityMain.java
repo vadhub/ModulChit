@@ -1,4 +1,4 @@
-package com.vad.modulchit;
+package com.vad.modulchit.screens.mainactivity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,32 +6,27 @@ import androidx.fragment.app.Fragment;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.view.MenuItem;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.vad.modulchit.frahments.FragmentFE;
-import com.vad.modulchit.frahments.FragmentGCDe;
-import com.vad.modulchit.frahments.FragmentMod;
-import com.vad.modulchit.frahments.FragmentNOK;
-import com.vad.modulchit.frahments.rsa.AddAlphaviteFragment;
+import com.vad.modulchit.R;
+import com.vad.modulchit.screens.fe.FragmentFE;
+import com.vad.modulchit.screens.gcde.FragmentGCDe;
+import com.vad.modulchit.screens.mg.FragmentMG;
+import com.vad.modulchit.screens.rsa.AddAlphaviteFragment;
 
-import java.util.LinkedHashMap;
-import java.util.List;
-
-public class MainActivityMain extends AppCompatActivity {
+public class MainActivityMain extends AppCompatActivity{
 
     private BottomNavigationView bottomNavigationView;
     private AdView mAdView;
+    private Fragment fragment = null;
+    private Bundle state;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main_main);
 
@@ -45,12 +40,15 @@ public class MainActivityMain extends AppCompatActivity {
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigate);
         bottomNavigationView.setOnNavigationItemSelectedListener(listener);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentGCDe()).commit();
+        if(savedInstanceState!=null){
+            fragment = getSupportFragmentManager().getFragment(savedInstanceState, "mFragment");
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_replace, fragment).commit();
+        }else{
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentGCDe()).commit();
+        }
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener listener = item -> {
-
-        Fragment fragment = null;
 
         switch (item.getItemId()){
             case R.id.gcdItem:
@@ -59,7 +57,7 @@ public class MainActivityMain extends AppCompatActivity {
                 break;
 
             case R.id.nokItem:
-                fragment = new FragmentNOK();
+                fragment = new FragmentMG();
                 setTitle(R.string.multiplicative_group);
                 break;
             case R.id.feItem:
@@ -69,6 +67,9 @@ public class MainActivityMain extends AppCompatActivity {
 
             case R.id.modItem:
                 fragment = new AddAlphaviteFragment();
+                state = ((AddAlphaviteFragment)fragment).getArguments();
+                if(state!=null)
+                System.out.println(state.getIntegerArrayList("alalist"));
                 setTitle(R.string.rsa);
                 break;
         }
@@ -77,4 +78,28 @@ public class MainActivityMain extends AppCompatActivity {
 
         return true;
     };
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        System.out.println("des");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        System.out.println("res");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        System.out.println("rest");
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        getSupportFragmentManager().putFragment(outState, "mFragment", fragment);
+    }
 }

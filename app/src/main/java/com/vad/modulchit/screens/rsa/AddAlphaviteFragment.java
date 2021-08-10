@@ -1,9 +1,8 @@
-package com.vad.modulchit.frahments.rsa;
+package com.vad.modulchit.screens.rsa;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -51,6 +50,8 @@ public class AddAlphaviteFragment extends Fragment{
 
         View v = inflater.inflate(R.layout.fragment_add_alphavite, container, false);
         Button btnNext = (Button) v.findViewById(R.id.btnNetx);
+        setRetainInstance(true);
+
         numberForFirstLetter = (EditText) v.findViewById(R.id.textViewNumberFirst);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.mRecyclerAlphabyte);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
@@ -60,24 +61,24 @@ public class AddAlphaviteFragment extends Fragment{
 
         numberP = (EditText) v.findViewById(R.id.editTextNumberP);
         numberQ = (EditText) v.findViewById(R.id.editTextNumberQ);
-
-        RadioButton radioButtonEncrypt = (RadioButton) v.findViewById(R.id.radioButtonEncrypt);
-        RadioButton radioButtonDecrypt = (RadioButton) v.findViewById(R.id.radioButtonDecrypt);
-
         shiphr = new RSAshiphr();
         rsaMod = new RSAmod();
+
         alphaviteCodes = new ArrayList<>();
 
         alphaviteCodes.addAll(shiphr.getNumberShiphr());
 
+        if(savedInstanceState!=null){
+            alphaviteCodes.clear();
+            alphaviteCodes.addAll(savedInstanceState.getIntegerArrayList("alphavite"));
+        }
+
+        RadioButton radioButtonEncrypt = (RadioButton) v.findViewById(R.id.radioButtonEncrypt);
+        RadioButton radioButtonDecrypt = (RadioButton) v.findViewById(R.id.radioButtonDecrypt);
+
         new Thread(() -> getActivity().runOnUiThread(() -> {
             progressBar.setVisibility(View.VISIBLE);
-
-            if(savedInstanceState!=null){
-                adapterRSAalphabyte.setNumbersCode(savedInstanceState.getIntegerArrayList("alphavite"));
-            }else{
-                adapterRSAalphabyte.setNumbersCode(alphaviteCodes);
-            }
+            adapterRSAalphabyte.setNumbersCode(alphaviteCodes);
             mRecyclerView.setAdapter(adapterRSAalphabyte);
             progressBar.setVisibility(View.INVISIBLE);
         })).start();
@@ -226,5 +227,18 @@ public class AddAlphaviteFragment extends Fragment{
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putIntegerArrayList("alphavite", (ArrayList<Integer>) alphaviteCodes);
+    }
+
+    private void saveList(List<Integer> list){
+        Bundle state = new Bundle();
+        state.putIntegerArrayList("alalist", (ArrayList<Integer>) list);
+        this.setArguments(state);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        System.out.println("des");
+        saveList(alphaviteCodes);
     }
 }

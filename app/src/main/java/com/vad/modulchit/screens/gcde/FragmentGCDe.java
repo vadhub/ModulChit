@@ -1,4 +1,4 @@
-package com.vad.modulchit.frahments;
+package com.vad.modulchit.screens.gcde;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

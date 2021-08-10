@@ -1,4 +1,4 @@
-package com.vad.modulchit.frahments;
+package com.vad.modulchit.screens.fe;
 
 import android.os.Bundle;
 

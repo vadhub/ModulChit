@@ -1,4 +1,4 @@
-package com.vad.modulchit.frahments.rsa;
+package com.vad.modulchit.screens.rsa;
 
 import android.os.Bundle;
 
@@ -96,9 +96,9 @@ public class FragmentRSAcrypt extends Fragment {
                 numbersCodesForCrypt = new ArrayList<>();
 
                 new Thread(() -> {
-                    for(int i = 0; i < strCrypt.length; i++){
-                        for(int j =0; j < rsAshiphr.getAlphabyteEN().size(); j++){
-                            if(rsAshiphr.getAlphabyteEN().get(j).equals(strCrypt[i])){
+                    for (char c : strCrypt) {
+                        for (int j = 0; j < rsAshiphr.getAlphabyteEN().size(); j++) {
+                            if (rsAshiphr.getAlphabyteEN().get(j).equals(c)) {
                                 numbersCodesForCrypt.add(alphaviteCodes.get(j));
                                 break;
                             }
