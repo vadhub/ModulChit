@@ -21,7 +21,7 @@ import com.vad.modulchit.utils.AlgebraMod;
 import java.util.List;
 
 
-public class FragmentFE extends Fragment {
+public class FragmentFE extends Fragment implements ListFEView{
 
     private EditText editTextA;
     private EditText editTextM;
@@ -32,14 +32,14 @@ public class FragmentFE extends Fragment {
 
     private Button btnOk;
     private View includeFE;
-
-    private AlgebraMod algebraMod;
+    private ListFEpresenter presenter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_f_e, container, false);
 
+        presenter = new ListFEpresenter(this);
         editTextA = (EditText) v.findViewById(R.id.editTextNumberAFe);
         editTextM = (EditText) v.findViewById(R.id.editTextNumberMFe);
         editTextN = (EditText) v.findViewById(R.id.editTextNumberNFe);
@@ -51,12 +51,9 @@ public class FragmentFE extends Fragment {
 
         btnOk = (Button) v.findViewById(R.id.buttonFE);
 
-        algebraMod = new AlgebraMod();
-
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 String aStr = editTextA.getText().toString();
                 String mStr = editTextM.getText().toString();
                 String nStr = editTextN.getText().toString();
@@ -76,20 +73,21 @@ public class FragmentFE extends Fragment {
 
                     includeFE.setVisibility(View.VISIBLE);
                     if(m!=0&&n!=0){
-                        List<TableNumberFE> tableNumberFES = algebraMod.feGraph(a, m, n);
-                        adapterFE.setTableNumberFES(tableNumberFES);
-                        mRecyclerView.setAdapter(adapterFE);
+                        presenter.loadListFE(a, m, n);
                     }else{
                         Toast.makeText(getContext(), getResources().getString(R.string.warning_zero), Toast.LENGTH_SHORT).show();
                     }
                 }else {
                     Toast.makeText(getContext(), getResources().getString(R.string.warning_enter_text), Toast.LENGTH_SHORT).show();
                 }
-
-
             }
         });
-
         return v;
+    }
+
+    @Override
+    public void showData(List<TableNumberFE> tableNumberFEList) {
+        adapterFE.setTableNumberFES(tableNumberFEList);
+        mRecyclerView.setAdapter(adapterFE);
     }
 }
