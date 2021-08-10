@@ -22,13 +22,14 @@ import com.vad.modulchit.utils.AlgebraMod;
 import java.util.List;
 
 
-public class FragmentMG extends Fragment {
+public class FragmentMG extends Fragment implements ListMGView{
 
     private EditText editTextMod;
     private Button btnNok;
     private RecyclerView mRecyclerView;
     private AdapterNOK adapterNOK;
-    private AlgebraMod algebraMod;
+    private ListMGpresenter presenter;
+
     private TextView textViewResult;
     private View includeMG;
 
@@ -37,6 +38,8 @@ public class FragmentMG extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_n_o_k, container, false);
 
+        presenter = new ListMGpresenter(this);
+
         editTextMod = (EditText) v.findViewById(R.id.editTextTextMod);
         textViewResult = (TextView) v.findViewById(R.id.textViewResult);
         btnNok = (Button) v.findViewById(R.id.buttonNOK);
@@ -44,8 +47,6 @@ public class FragmentMG extends Fragment {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         includeMG = (View) v.findViewById(R.id.includeMG);
         adapterNOK = new AdapterNOK();
-        algebraMod = new AlgebraMod();
-
         btnNok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,10 +64,7 @@ public class FragmentMG extends Fragment {
                     includeMG.setVisibility(View.VISIBLE);
 
                     if(m!=0){
-                        List<TableNumberNOK> numberNOKS = algebraMod.nokGraph(m);
-                        textViewResult.setText(getResult(numberNOKS));
-                        adapterNOK.setTableNumberNOKS(numberNOKS);
-                        mRecyclerView.setAdapter(adapterNOK);
+                        presenter.loadListMG(m);
                     }else{
                         Toast.makeText(getContext(), getResources().getString(R.string.warning_zero), Toast.LENGTH_SHORT).show();
                     }
@@ -79,6 +77,8 @@ public class FragmentMG extends Fragment {
 
         return v;
     }
+
+
 
     private String getResult(List<TableNumberNOK> noks){
         StringBuilder txtRes = new StringBuilder("(1");
@@ -93,5 +93,12 @@ public class FragmentMG extends Fragment {
         }
 
         return txtRes+")";
+    }
+
+    @Override
+    public void showData(List<TableNumberNOK> numberNOKS) {
+        textViewResult.setText(getResult(numberNOKS));
+        adapterNOK.setTableNumberNOKS(numberNOKS);
+        mRecyclerView.setAdapter(adapterNOK);
     }
 }
