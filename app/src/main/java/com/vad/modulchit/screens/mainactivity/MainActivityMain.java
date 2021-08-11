@@ -22,7 +22,6 @@ public class MainActivityMain extends AppCompatActivity{
     private BottomNavigationView bottomNavigationView;
     private AdView mAdView;
     private Fragment fragment = null;
-    private Bundle state;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,9 +66,6 @@ public class MainActivityMain extends AppCompatActivity{
 
             case R.id.modItem:
                 fragment = new AddAlphaviteFragment();
-                state = ((AddAlphaviteFragment)fragment).getArguments();
-                if(state!=null)
-                System.out.println(state.getIntegerArrayList("alalist"));
                 setTitle(R.string.rsa);
                 break;
         }
@@ -78,24 +74,6 @@ public class MainActivityMain extends AppCompatActivity{
 
         return true;
     };
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        System.out.println("des");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        System.out.println("res");
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        System.out.println("rest");
-    }
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {

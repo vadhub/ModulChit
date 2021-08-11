@@ -1,5 +1,14 @@
 package com.vad.modulchit.screens.rsa.alphavite;
 
+import android.content.Context;
+import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+
+import com.vad.modulchit.R;
+import com.vad.modulchit.screens.rsa.FragmentRSAcrypt;
+import com.vad.modulchit.screens.rsa.FragmentRSAdecrypt;
+import com.vad.modulchit.utils.RSAmod;
 import com.vad.modulchit.utils.RSAshiphr;
 
 import java.util.List;
@@ -8,6 +17,8 @@ public class AlphavitePresenter {
 
     private AlphaviteView alphaviteView;
     private RSAshiphr shiphr = new RSAshiphr();
+    private RSAmod rsaMod = new RSAmod();
+    private List<Integer> alphaviteCodes;
 
     public AlphavitePresenter(AlphaviteView alphaviteView) {
         this.alphaviteView = alphaviteView;
@@ -20,8 +31,6 @@ public class AlphavitePresenter {
 
     public void alphaviteChosen(int i, int numberForFirstLetter){
 
-        List<Integer> alphaviteCodes;
-
         switch (i){
             case 0:
                 alphaviteCodes = shiphr.getNumberShiphr();
@@ -32,6 +41,51 @@ public class AlphavitePresenter {
                 alphaviteView.alphaviteLoad(alphaviteCodes);
                 break;
         }
+    }
+
+    public void fragmentChoosen(boolean isEncrypt, String qStr, String pStr){
+        Fragment fragment = null;
+        int n;
+        int eller;
+        List<Integer> exponents;
+        if(isEncrypt){
+            if(!qStr.equals("")&&!pStr.equals("")){
+                int p = Integer.parseInt(qStr);
+                int q = Integer.parseInt(pStr);
+
+                n = rsaMod.getN(p,q);
+                eller = rsaMod.functionEller(p,q);
+                exponents = rsaMod.exponenta(eller);
+
+                if(rsaMod.isSimpleNumber(p)&&rsaMod.isSimpleNumber(q)){
+                    fragment = new FragmentRSAcrypt(alphaviteCodes, n, exponents);
+                }else{
+                    alphaviteView.showError(R.string.warning_prime);
+                }
+            }else{
+                fragment = new FragmentRSAcrypt(alphaviteCodes);
+            }
+        }else{
+            if(!qStr.equals("")&&!pStr.equals("")){
+                int p = Integer.parseInt(pStr);
+                int q = Integer.parseInt(qStr);
+
+                n =rsaMod.getN(p,q);
+                eller = rsaMod.functionEller(p,q);
+                exponents = rsaMod.exponenta(eller);
+                int d = rsaMod.getDPrivate(eller, exponents.get(0));
+
+                if(rsaMod.isSimpleNumber(p)&&rsaMod.isSimpleNumber(q)){
+                    fragment = new FragmentRSAdecrypt(alphaviteCodes, n, d, eller, exponents.get(0), p, q);
+                }else{
+                    alphaviteView.showError(R.string.warning_prime);
+                }
+            }else{
+                alphaviteView.showError(R.string.warning_enter_p_q);
+            }
+        }
+
+        alphaviteView.fragmentLoad(fragment);
     }
 
 }

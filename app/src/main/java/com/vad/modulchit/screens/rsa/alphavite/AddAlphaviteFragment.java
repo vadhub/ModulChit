@@ -40,7 +40,6 @@ public class AddAlphaviteFragment extends Fragment implements AlphaviteView{
     private AdapterRSAalphabyte adapterRSAalphabyte;
     private Spinner spinner;
 
-    private RSAmod rsaMod;
     private int theChoice = 0;
     private boolean isEncrypt = true;
     private ProgressBar progressBar;
@@ -65,8 +64,6 @@ public class AddAlphaviteFragment extends Fragment implements AlphaviteView{
 
         numberP = (EditText) v.findViewById(R.id.editTextNumberP);
         numberQ = (EditText) v.findViewById(R.id.editTextNumberQ);
-
-        rsaMod = new RSAmod();
 
         RadioButton radioButtonEncrypt = (RadioButton) v.findViewById(R.id.radioButtonEncrypt);
         RadioButton radioButtonDecrypt = (RadioButton) v.findViewById(R.id.radioButtonDecrypt);
@@ -113,54 +110,10 @@ public class AddAlphaviteFragment extends Fragment implements AlphaviteView{
     private final View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Fragment fragment = null;
 
             String qStr = numberQ.getText().toString();
             String pStr = numberP.getText().toString();
-
-            int n;
-            int eller;
-            List<Integer> exponents;
-            if(isEncrypt){
-                if(!qStr.equals("")&&!pStr.equals("")){
-                    int p = Integer.parseInt(qStr);
-                    int q = Integer.parseInt(pStr);
-
-                    n = rsaMod.getN(p,q);
-                    eller = rsaMod.functionEller(p,q);
-                    exponents = rsaMod.exponenta(eller);
-
-                    if(rsaMod.isSimpleNumber(p)&&rsaMod.isSimpleNumber(q)){
-                        fragment = new FragmentRSAcrypt(alphaviteCodes, n, exponents);
-                    }else{
-                        Toast.makeText(getContext(), getResources().getString(R.string.warning_prime), Toast.LENGTH_SHORT).show();
-                    }
-                }else{
-                    fragment = new FragmentRSAcrypt(alphaviteCodes);
-                }
-            }else{
-                if(!qStr.equals("")&&!pStr.equals("")){
-                    int p = Integer.parseInt(pStr);
-                    int q = Integer.parseInt(qStr);
-
-                    n =rsaMod.getN(p,q);
-                    eller = rsaMod.functionEller(p,q);
-                    exponents = rsaMod.exponenta(eller);
-                    int d = rsaMod.getDPrivate(eller, exponents.get(0));
-
-                    if(rsaMod.isSimpleNumber(p)&&rsaMod.isSimpleNumber(q)){
-                        fragment = new FragmentRSAdecrypt(alphaviteCodes, n, d, eller, exponents.get(0), p, q);
-                    }else{
-                        Toast.makeText(getContext(), getResources().getString(R.string.warning_prime), Toast.LENGTH_SHORT).show();
-                    }
-                }else{
-                    Toast.makeText(getContext(), getResources().getString(R.string.warning_enter_p_q), Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            if(fragment!=null){
-                getFragmentManager().beginTransaction().replace(R.id.frame_replace, fragment).commit();
-            }
+            presenter.fragmentChoosen(isEncrypt, qStr, pStr);
         }
     };
 
@@ -205,4 +158,18 @@ public class AddAlphaviteFragment extends Fragment implements AlphaviteView{
             progressBar.setVisibility(View.INVISIBLE);
         })).start();
     }
+
+    @Override
+    public void fragmentLoad(Fragment fragment) {
+        if(fragment!=null){
+            getFragmentManager().beginTransaction().replace(R.id.frame_replace, fragment).commit();
+        }
+    }
+
+    @Override
+    public void showError(int pathToResource) {
+        Toast.makeText(getContext(), getContext().getResources().getString(pathToResource), Toast.LENGTH_SHORT).show();
+    }
+
+
 }
