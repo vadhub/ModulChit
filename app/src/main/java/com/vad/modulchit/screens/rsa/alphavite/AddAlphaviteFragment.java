@@ -2,7 +2,6 @@ package com.vad.modulchit.screens.rsa.alphavite;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,12 +22,7 @@ import android.widget.Toast;
 
 import com.vad.modulchit.R;
 import com.vad.modulchit.adapters.AdapterRSAalphabyte;
-import com.vad.modulchit.screens.rsa.FragmentRSAcrypt;
-import com.vad.modulchit.screens.rsa.FragmentRSAdecrypt;
-import com.vad.modulchit.utils.RSAmod;
-import com.vad.modulchit.utils.RSAshiphr;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AddAlphaviteFragment extends Fragment implements AlphaviteView{

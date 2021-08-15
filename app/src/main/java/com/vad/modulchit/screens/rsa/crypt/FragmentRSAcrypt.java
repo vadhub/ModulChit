@@ -1,4 +1,4 @@
-package com.vad.modulchit.screens.rsa;
+package com.vad.modulchit.screens.rsa.crypt;
 
 import android.os.Bundle;
 
@@ -16,13 +16,14 @@ import android.widget.Toast;
 
 import com.vad.modulchit.R;
 import com.vad.modulchit.adapters.AdapterFE;
+import com.vad.modulchit.pojos.TableNumberFE;
 import com.vad.modulchit.utils.RSAmod;
 import com.vad.modulchit.utils.RSAshiphr;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FragmentRSAcrypt extends Fragment {
+public class FragmentRSAcrypt extends Fragment implements CryptView{
 
     private Button btnOk;
     private EditText enterTextToCrypt;
@@ -35,9 +36,8 @@ public class FragmentRSAcrypt extends Fragment {
     private List<Integer> exponents;
     private TextView textViewResult;
     private List<Integer> alphaviteCodes;
-    private List<Integer> numbersCodesForCrypt;
-    private RSAmod rsaMod;
-    private RSAshiphr rsAshiphr;
+    private CryptPresenter cryptPresenter;
+
     private View includeFeCrypt;
 
     public FragmentRSAcrypt(List<Integer> alphaviteCodes, int n, List<Integer> exponents) {
@@ -57,6 +57,7 @@ public class FragmentRSAcrypt extends Fragment {
 
         getActivity().setTitle("RSA Encrypt");
 
+        cryptPresenter = new CryptPresenter(this);
         btnOk = (Button) v.findViewById(R.id.buttonCrypt);
         enterTextToCrypt = (EditText) v.findViewById(R.id.editTextTextCrypt);
         editTextE = (EditText) v.findViewById(R.id.editTextE);
@@ -69,8 +70,6 @@ public class FragmentRSAcrypt extends Fragment {
         mRecyclerFeCrypt.setLayoutManager(new LinearLayoutManager(getContext()));
 
         textViewMfere.setText("e");
-        rsaMod = new RSAmod();
-        rsAshiphr = new RSAshiphr();
 
         if(exponents!=null){
             editTextE.setText(String.valueOf(exponents.get(0)));
@@ -88,58 +87,28 @@ public class FragmentRSAcrypt extends Fragment {
             String eStr = editTextE.getText().toString();
             String nStr = editTextN.getText().toString();
 
+            String textToEncrypt = enterTextToCrypt.getText().toString();
+
             includeFeCrypt.setVisibility(View.VISIBLE);
-
-            if(enterTextToCrypt.getText().toString().matches("[a-zA-Z\\s]+")){
-                char[] strCrypt = enterTextToCrypt.getText().toString().toLowerCase().toCharArray();
-
-                numbersCodesForCrypt = new ArrayList<>();
-
-                new Thread(() -> {
-                    for (char c : strCrypt) {
-                        for (int j = 0; j < rsAshiphr.getAlphabyteEN().size(); j++) {
-                            if (rsAshiphr.getAlphabyteEN().get(j).equals(c)) {
-                                numbersCodesForCrypt.add(alphaviteCodes.get(j));
-                                break;
-                            }
-                        }
-                    }
-                }).start();
-
-                if(!eStr.equals("")&&!nStr.equals("")){
-                    int e = -1;
-                    int n = -1;
-
-                    try {
-                        e = Integer.parseInt(eStr);
-                        n = Integer.parseInt(nStr);
-                    }catch (NumberFormatException ex){
-                        Toast.makeText(getContext(), getResources().getString(R.string.warning_out_bounds), Toast.LENGTH_SHORT).show();
-                    }
-
-                    int finalE = e;
-                    int finalN = n;
-                    new Thread(() -> getActivity().runOnUiThread(() -> {
-                        adapterFE.setTableNumberFES(rsaMod.encryptingFE(finalE, finalN, numbersCodesForCrypt));
-                        mRecyclerFeCrypt.setAdapter(adapterFE);
-
-                        System.out.println(numbersCodesForCrypt);
-
-                        String str = rsaMod.encrypting(finalE, finalN, numbersCodesForCrypt)+"\n";
-                        str+=getString(R.string.from_list)+exponents+getString(R.string.get_first)+ finalE;
-
-                        textViewResult.setText(str);
-                        numbersCodesForCrypt=null;
-                    })).start();
-
-                }else{
-                    Toast.makeText(getContext(), getResources().getString(R.string.warning_enter_text), Toast.LENGTH_SHORT).show();
-                }
-
-            }else {
-                Toast.makeText(getContext(), getResources().getString(R.string.warning_enter_letter), Toast.LENGTH_SHORT).show();
-            }
-
+            cryptPresenter.result(alphaviteCodes, textToEncrypt, eStr, nStr);
         }
     };
+
+    @Override
+    public void showError(int resource) {
+        Toast.makeText(getContext(), ""+getString(resource), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showCalculating(List<TableNumberFE> tableNumberFEList) {
+        adapterFE.setTableNumberFES(tableNumberFEList);
+        mRecyclerFeCrypt.setAdapter(adapterFE);
+    }
+
+    @Override
+    public void showCalculatingExtra(String encrypt) {
+        String str = encrypt + getString(R.string.from_list)+exponents+getString(R.string.get_first)+ editTextE.getText().toString();
+
+        textViewResult.setText(str);
+    }
 }

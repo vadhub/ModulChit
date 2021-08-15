@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     style="@style/modulechit_style"
-    tools:context=".screens.rsa.FragmentRSAcrypt">
+    tools:context=".screens.rsa.crypt.FragmentRSAcrypt">
 
     <ScrollView
         android:layout_width="match_parent"

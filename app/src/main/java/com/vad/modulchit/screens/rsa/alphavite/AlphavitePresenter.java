@@ -1,12 +1,8 @@
 package com.vad.modulchit.screens.rsa.alphavite;
 
-import android.content.Context;
-import android.widget.Toast;
-
 import androidx.fragment.app.Fragment;
-
 import com.vad.modulchit.R;
-import com.vad.modulchit.screens.rsa.FragmentRSAcrypt;
+import com.vad.modulchit.screens.rsa.crypt.FragmentRSAcrypt;
 import com.vad.modulchit.screens.rsa.FragmentRSAdecrypt;
 import com.vad.modulchit.utils.RSAmod;
 import com.vad.modulchit.utils.RSAshiphr;
@@ -87,5 +83,4 @@ public class AlphavitePresenter {
 
         alphaviteView.fragmentLoad(fragment);
     }
-
 }
