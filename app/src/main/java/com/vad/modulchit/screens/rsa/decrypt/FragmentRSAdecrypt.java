@@ -1,4 +1,4 @@
-package com.vad.modulchit.screens.rsa;
+package com.vad.modulchit.screens.rsa.decrypt;
 
 import android.os.Bundle;
 

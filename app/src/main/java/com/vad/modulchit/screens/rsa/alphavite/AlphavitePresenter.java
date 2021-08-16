@@ -3,7 +3,7 @@ package com.vad.modulchit.screens.rsa.alphavite;
 import androidx.fragment.app.Fragment;
 import com.vad.modulchit.R;
 import com.vad.modulchit.screens.rsa.crypt.FragmentRSAcrypt;
-import com.vad.modulchit.screens.rsa.FragmentRSAdecrypt;
+import com.vad.modulchit.screens.rsa.decrypt.FragmentRSAdecrypt;
 import com.vad.modulchit.utils.RSAmod;
 import com.vad.modulchit.utils.RSAshiphr;
 

@@ -1,6 +1,5 @@
 package com.vad.modulchit.screens.rsa.crypt;
 
-import android.widget.Toast;
 
 import com.vad.modulchit.R;
 import com.vad.modulchit.utils.RSAmod;

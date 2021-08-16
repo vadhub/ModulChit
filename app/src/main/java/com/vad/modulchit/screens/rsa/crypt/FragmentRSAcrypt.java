@@ -108,7 +108,6 @@ public class FragmentRSAcrypt extends Fragment implements CryptView{
     @Override
     public void showCalculatingExtra(String encrypt) {
         String str = encrypt + getString(R.string.from_list)+exponents+getString(R.string.get_first)+ editTextE.getText().toString();
-
         textViewResult.setText(str);
     }
 }
