@@ -16,7 +16,6 @@ import android.widget.Toast;
 import com.vad.modulchit.R;
 import com.vad.modulchit.adapters.AdapterFE;
 import com.vad.modulchit.pojos.TableNumberFE;
-import com.vad.modulchit.utils.AlgebraMod;
 
 import java.util.List;
 
@@ -58,36 +57,25 @@ public class FragmentFE extends Fragment implements ListFEView{
                 String mStr = editTextM.getText().toString();
                 String nStr = editTextN.getText().toString();
 
-                if(!aStr.equals("")&&!mStr.equals("")&&!nStr.equals("")){
-                    int a =-1;
-                    int m =-1;
-                    int n =-1;
-
-                    try {
-                        a = Integer.parseInt(aStr);
-                        m = Integer.parseInt(mStr);
-                        n = Integer.parseInt(nStr);
-                    }catch (NumberFormatException e){
-                        Toast.makeText(getContext(), getResources().getString(R.string.warning_out_bounds), Toast.LENGTH_SHORT).show();
-                    }
-
-                    includeFE.setVisibility(View.VISIBLE);
-                    if(m!=0&&n!=0){
-                        presenter.loadListFE(a, m, n);
-                    }else{
-                        Toast.makeText(getContext(), getResources().getString(R.string.warning_zero), Toast.LENGTH_SHORT).show();
-                    }
-                }else {
-                    Toast.makeText(getContext(), getResources().getString(R.string.warning_enter_text), Toast.LENGTH_SHORT).show();
-                }
+                presenter.viewResult(aStr, mStr, nStr);
             }
         });
         return v;
     }
 
     @Override
+    public void showError(int resource) {
+        Toast.makeText(getContext(), ""+getString(resource), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
     public void showData(List<TableNumberFE> tableNumberFEList) {
         adapterFE.setTableNumberFES(tableNumberFEList);
         mRecyclerView.setAdapter(adapterFE);
+    }
+
+    @Override
+    public void showTitle() {
+        includeFE.setVisibility(View.VISIBLE);
     }
 }

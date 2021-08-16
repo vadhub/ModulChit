@@ -33,7 +33,6 @@ public class AddAlphaviteFragment extends Fragment implements AlphaviteView{
     private RecyclerView mRecyclerView;
     private AdapterRSAalphabyte adapterRSAalphabyte;
     private Spinner spinner;
-
     private int theChoice = 0;
     private boolean isEncrypt = true;
     private ProgressBar progressBar;
@@ -104,7 +103,6 @@ public class AddAlphaviteFragment extends Fragment implements AlphaviteView{
     private final View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-
             String qStr = numberQ.getText().toString();
             String pStr = numberP.getText().toString();
             presenter.fragmentChoosen(isEncrypt, qStr, pStr);
@@ -165,5 +163,8 @@ public class AddAlphaviteFragment extends Fragment implements AlphaviteView{
         Toast.makeText(getContext(), getContext().getResources().getString(pathToResource), Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void showTitle() {
 
+    }
 }

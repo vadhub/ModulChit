@@ -52,33 +52,13 @@ public class FragmentMG extends Fragment implements ListMGView{
             public void onClick(View view) {
 
                 String modStr =editTextMod.getText().toString();
-
-                if(!modStr.equals("")){
-                    int m = -1;
-
-                    try{
-                        m = Integer.parseInt(modStr);
-                    }catch (NumberFormatException e){
-                        Toast.makeText(getContext(), getResources().getString(R.string.warning_out_bounds), Toast.LENGTH_SHORT).show();
-                    }
-                    includeMG.setVisibility(View.VISIBLE);
-
-                    if(m!=0){
-                        presenter.loadListMG(m);
-                    }else{
-                        Toast.makeText(getContext(), getResources().getString(R.string.warning_zero), Toast.LENGTH_SHORT).show();
-                    }
-                }else{
-                    Toast.makeText(getContext(), getResources().getString(R.string.warning_enter_text), Toast.LENGTH_SHORT).show();
-                }
+                presenter.showResult(modStr);
             }
 
         });
 
         return v;
     }
-
-
 
     private String getResult(List<TableNumberNOK> noks){
         StringBuilder txtRes = new StringBuilder("(1");
@@ -100,5 +80,15 @@ public class FragmentMG extends Fragment implements ListMGView{
         textViewResult.setText(getResult(numberNOKS));
         adapterNOK.setTableNumberNOKS(numberNOKS);
         mRecyclerView.setAdapter(adapterNOK);
+    }
+
+    @Override
+    public void showError(int resource) {
+        Toast.makeText(getContext(), ""+getString(resource), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showTitle() {
+        includeMG.setVisibility(View.VISIBLE);
     }
 }

@@ -72,27 +72,7 @@ public class FragmentGCDe extends Fragment implements ListGCDEView{
                 String aStr = editTextA.getText().toString();
                 String bStr = editTextB.getText().toString();
 
-                if((!aStr.equals("")&&!bStr.equals(""))){
-                    int a = -1;
-                    int b = -1;
-
-                    try{
-                        a = Integer.parseInt(editTextA.getText().toString());
-                        b = Integer.parseInt(editTextB.getText().toString());
-                    }catch (NumberFormatException e){
-                        Toast.makeText(getContext(), getResources().getString(R.string.warning_out_bounds), Toast.LENGTH_SHORT).show();
-                    }
-
-                        includeTitle.setVisibility(View.VISIBLE);
-
-                        if(a!=0&&b!=0){
-                            presenter.loadListGCDE(a, b);
-                        }else{
-                            Toast.makeText(getContext(), getResources().getString(R.string.warning_zero), Toast.LENGTH_SHORT).show();
-                        }
-                    }else{
-                        Toast.makeText(getContext(), getResources().getString(R.string.warning_enter_text), Toast.LENGTH_SHORT).show();
-                    }
+                presenter.showResult(aStr, bStr);
             }
         });
 
@@ -103,5 +83,15 @@ public class FragmentGCDe extends Fragment implements ListGCDEView{
     public void showData(List<TableNumberGCDe> tableNumberGCDeList) {
         adapterGCDe.setTableNumbers(tableNumberGCDeList);
         mRecyclerView.setAdapter(adapterGCDe);
+    }
+
+    @Override
+    public void showError(int resource) {
+        Toast.makeText(getContext(), ""+getString(resource), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showTitle() {
+        includeTitle.setVisibility(View.VISIBLE);
     }
 }

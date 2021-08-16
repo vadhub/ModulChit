@@ -48,6 +48,8 @@ public class CryptPresenter {
                     view.showError(R.string.warning_out_bounds);
                 }
 
+                view.showTitle();
+
                 int finalE = e;
                 int finalN = n;
 

@@ -117,9 +117,6 @@ public class FragmentRSAdecrypt extends Fragment implements DecryptView {
     @Override
     public void showCalculating(List<TableNumberFE> tableNumberFEList) {
 
-        includeFeDec.setVisibility(View.VISIBLE);
-        includeGCDEreverse.setVisibility(View.VISIBLE);
-
         adapterFE.setTableNumberFES(tableNumberFEList);
         mRecyclerDecrypt.setAdapter(adapterFE);
     }
@@ -133,5 +130,11 @@ public class FragmentRSAdecrypt extends Fragment implements DecryptView {
     @Override
     public void showCalculatingExtra(String decrypt) {
         resultDecrypt.setText(decrypt);
+    }
+
+    @Override
+    public void showTitle() {
+        includeFeDec.setVisibility(View.VISIBLE);
+        includeGCDEreverse.setVisibility(View.VISIBLE);
     }
 }
