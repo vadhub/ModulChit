@@ -17,10 +17,6 @@ import android.widget.Toast;
 import com.vad.modulchit.R;
 import com.vad.modulchit.adapters.AdapterFE;
 import com.vad.modulchit.pojos.TableNumberFE;
-import com.vad.modulchit.utils.RSAmod;
-import com.vad.modulchit.utils.RSAshiphr;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentRSAcrypt extends Fragment implements CryptView{
