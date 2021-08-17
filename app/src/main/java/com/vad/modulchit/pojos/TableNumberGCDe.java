@@ -15,6 +15,24 @@ public class TableNumberGCDe {
     private int y1;
     private int y2;
 
+    private String extra;
+
+    //state of the element
+    private boolean expanded;
+
+    public TableNumberGCDe(int a, int b, int q, int r, int x1, int x2, int y1, int y2, String extra) {
+        this.a = a;
+        this.b = b;
+        this.q = q;
+        this.r = r;
+        this.x1 = x1;
+        this.x2 = x2;
+        this.y1 = y1;
+        this.y2 = y2;
+
+        this.extra = extra;
+    }
+
     public int getA() {
         return a;
     }
@@ -79,17 +97,19 @@ public class TableNumberGCDe {
         this.y2 = y2;
     }
 
-    public TableNumberGCDe() {
+    public String getExtra() {
+        return extra;
     }
 
-    public TableNumberGCDe(int a, int b, int q, int r, int x1, int x2, int y1, int y2) {
-        this.a = a;
-        this.b = b;
-        this.q = q;
-        this.r = r;
-        this.x1 = x1;
-        this.x2 = x2;
-        this.y1 = y1;
-        this.y2 = y2;
+    public void setExtra(String extra) {
+        this.extra = extra;
+    }
+
+    public boolean isExpanded(){
+        return expanded;
+    }
+
+    public void setExpanded(boolean expanded) {
+        this.expanded = expanded;
     }
 }

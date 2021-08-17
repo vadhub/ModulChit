@@ -34,7 +34,9 @@ public class AdapterGCDe extends RecyclerView.Adapter<AdapterGCDe.MyViewHolder> 
     @NonNull
     @Override
     public AdapterGCDe.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.tablet_counter, parent, false);
+        View v = LayoutInflater
+                .from(parent.getContext())
+                .inflate(R.layout.tablet_counter, parent, false);
         return new MyViewHolder(v);
     }
 
