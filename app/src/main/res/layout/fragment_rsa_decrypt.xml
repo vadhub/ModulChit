@@ -130,7 +130,7 @@
 
                     <include
                         android:id="@+id/includeGCDEreverse"
-                        layout="@layout/tablet_counter_title"
+                        layout="@layout/gcde_title"
                         android:visibility="invisible"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -166,7 +166,7 @@
 
                     <include
                         android:id="@+id/includeFeDec"
-                        layout="@layout/table_counter_fe_tite"
+                        layout="@layout/item_fe_tite"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="8dp"

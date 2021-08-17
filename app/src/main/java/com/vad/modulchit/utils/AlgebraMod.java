@@ -30,6 +30,8 @@ public class AlgebraMod {
         List<TableNumberGCDe> tempTableNumberGCDes = new ArrayList<>();
         TableNumberGCDe tableNumberGCDe;
 
+        String extra = "";
+
         int aTemp = 0;
         int bTemp = 0;
         int tmpQ = 0;
@@ -50,7 +52,7 @@ public class AlgebraMod {
             x2 = 1;
             y1=1;
             y2=0;
-            tableNumberGCDe = new TableNumberGCDe(a, b, tmpQ, tmpR, x1, x2, y1, y2);
+            tableNumberGCDe = new TableNumberGCDe(a, b, tmpQ, tmpR, x1, x2, y1, y2, extra);
             tempTableNumberGCDes.add(tableNumberGCDe);
         }else{
             aTemp=a;
@@ -64,7 +66,9 @@ public class AlgebraMod {
             int tmpX1 = x1;
             int tmpX2 = x2;
 
-            tableNumberGCDe = new TableNumberGCDe(aTemp, bTemp, tmpQ, tmpR, x1, x2, y1, y2);
+
+
+            tableNumberGCDe = new TableNumberGCDe(aTemp, bTemp, tmpQ, tmpR, x1, x2, y1, y2, extra);
             tempTableNumberGCDes.add(tableNumberGCDe);
 
             aTemp = tableNumberGCDe.getB();

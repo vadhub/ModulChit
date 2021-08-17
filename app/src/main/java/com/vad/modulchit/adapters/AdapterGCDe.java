@@ -16,11 +16,6 @@ import java.util.List;
 public class AdapterGCDe extends RecyclerView.Adapter<AdapterGCDe.MyViewHolder> {
 
     private List<TableNumberGCDe> tableNumberGCDes;
-    private OnItemClickListener onItemClickListener;
-
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
-        this.onItemClickListener = onItemClickListener;
-    }
 
     public List<TableNumberGCDe> getTableNumbers() {
         return tableNumberGCDes;
@@ -36,7 +31,7 @@ public class AdapterGCDe extends RecyclerView.Adapter<AdapterGCDe.MyViewHolder> 
     public AdapterGCDe.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater
                 .from(parent.getContext())
-                .inflate(R.layout.tablet_counter, parent, false);
+                .inflate(R.layout.item_gcde, parent, false);
         return new MyViewHolder(v);
     }
 
@@ -57,7 +52,7 @@ public class AdapterGCDe extends RecyclerView.Adapter<AdapterGCDe.MyViewHolder> 
         return tableNumberGCDes.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView textViewA;
         TextView textViewB;
@@ -67,11 +62,11 @@ public class AdapterGCDe extends RecyclerView.Adapter<AdapterGCDe.MyViewHolder> 
         TextView textViewX;
         TextView textViewY;
 
+        TextView textViewExtra;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            onItemClickListener.onClickItem(getAdapterPosition());
-            itemView.setOnClickListener(this);
             textViewA = (TextView) itemView.findViewById(R.id.textViewA);
             textViewB = (TextView) itemView.findViewById(R.id.textViewB);
             textViewQ = (TextView) itemView.findViewById(R.id.textViewQ);
@@ -80,17 +75,8 @@ public class AdapterGCDe extends RecyclerView.Adapter<AdapterGCDe.MyViewHolder> 
             textViewX = (TextView) itemView.findViewById(R.id.textViewX);
             textViewY = (TextView) itemView.findViewById(R.id.textViewY);
 
-        }
+            textViewExtra = (TextView) itemView.findViewById(R.id.extra_gcde);
 
-        @Override
-        public void onClick(View view) {
-            if(onItemClickListener!=null){
-                onItemClickListener.onClickItem(getAdapterPosition());
-            }
         }
-    }
-
-    public interface OnItemClickListener{
-        void onClickItem(int position);
     }
 }

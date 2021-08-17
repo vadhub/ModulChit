@@ -29,7 +29,7 @@ public class AdapterNOK extends RecyclerView.Adapter<AdapterNOK.MyViewHolderNOK>
     @NonNull
     @Override
     public MyViewHolderNOK onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.table_counter_nok, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_mg, parent, false);
         return new MyViewHolderNOK(v);
     }
 

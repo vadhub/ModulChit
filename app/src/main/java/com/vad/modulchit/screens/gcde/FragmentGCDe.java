@@ -52,7 +52,7 @@ public class FragmentGCDe extends Fragment implements ListGCDEView{
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.activity_gcde, container, false);
+        View v = inflater.inflate(R.layout.fragment_gcde, container, false);
 
         presenter = new ListGCDEpresenter(this);
         editTextA = (EditText) v.findViewById(R.id.editTextA);
@@ -64,13 +64,6 @@ public class FragmentGCDe extends Fragment implements ListGCDEView{
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapterGCDe = new AdapterGCDe();
         algebraMod = new AlgebraMod();
-
-        adapterGCDe.setOnItemClickListener(new AdapterGCDe.OnItemClickListener() {
-            @Override
-            public void onClickItem(int position) {
-                Toast.makeText(getContext(), ""+position, Toast.LENGTH_SHORT).show();
-            }
-        });
 
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
