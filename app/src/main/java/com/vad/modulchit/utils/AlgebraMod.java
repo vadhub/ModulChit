@@ -30,7 +30,7 @@ public class AlgebraMod {
         List<TableNumberGCDe> tempTableNumberGCDes = new ArrayList<>();
         TableNumberGCDe tableNumberGCDe;
 
-        String extra = "";
+        String extra = "YOU PIDER";
 
         int aTemp = 0;
         int bTemp = 0;

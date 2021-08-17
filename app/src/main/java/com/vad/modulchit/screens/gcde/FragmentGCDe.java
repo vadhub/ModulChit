@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -30,7 +31,6 @@ public class FragmentGCDe extends Fragment implements ListGCDEView{
     private RecyclerView mRecyclerView;
     private AdapterGCDe adapterGCDe;
 
-    private AlgebraMod algebraMod;
     private View includeTitle;
     private ListGCDEpresenter presenter;
 
@@ -61,9 +61,10 @@ public class FragmentGCDe extends Fragment implements ListGCDEView{
         includeTitle = (View) v.findViewById(R.id.includeGCDE);
 
         mRecyclerView = (RecyclerView) v.findViewById(R.id.myRecycler);
+
+        ((SimpleItemAnimator)mRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapterGCDe = new AdapterGCDe();
-        algebraMod = new AlgebraMod();
 
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -5,17 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-
     <TableLayout
         android:id="@+id/table_gcde"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
         android:stretchColumns="0,1,2,3,4,5"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
