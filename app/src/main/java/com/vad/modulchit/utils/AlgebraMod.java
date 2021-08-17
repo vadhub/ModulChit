@@ -48,12 +48,13 @@ public class AlgebraMod {
             bTemp = a;
             tmpQ = 0;
             tmpR = aTemp;
+
+            tableNumberGCDe = new TableNumberGCDe(a, b, tmpQ, tmpR, x1, x2, y1, y2, extra);
+            tempTableNumberGCDes.add(tableNumberGCDe);
             x1 = 0;
             x2 = 1;
             y1=1;
             y2=0;
-            tableNumberGCDe = new TableNumberGCDe(a, b, tmpQ, tmpR, x1, x2, y1, y2, extra);
-            tempTableNumberGCDes.add(tableNumberGCDe);
         }else{
             aTemp=a;
             bTemp=b;
@@ -65,8 +66,6 @@ public class AlgebraMod {
 
             int tmpX1 = x1;
             int tmpX2 = x2;
-
-
 
             tableNumberGCDe = new TableNumberGCDe(aTemp, bTemp, tmpQ, tmpR, x1, x2, y1, y2, extra);
             tempTableNumberGCDes.add(tableNumberGCDe);
