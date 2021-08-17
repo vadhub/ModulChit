@@ -17,7 +17,6 @@ import android.widget.Toast;
 import com.vad.modulchit.R;
 import com.vad.modulchit.adapters.AdapterNOK;
 import com.vad.modulchit.pojos.TableNumberNOK;
-import com.vad.modulchit.utils.AlgebraMod;
 
 import java.util.List;
 
@@ -36,7 +35,7 @@ public class FragmentMG extends Fragment implements ListMGView{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_n_o_k, container, false);
+        View v = inflater.inflate(R.layout.fragment_mg, container, false);
 
         presenter = new ListMGpresenter(this);
 

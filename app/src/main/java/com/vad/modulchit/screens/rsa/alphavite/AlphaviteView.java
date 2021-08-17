@@ -2,7 +2,7 @@ package com.vad.modulchit.screens.rsa.alphavite;
 
 import androidx.fragment.app.Fragment;
 
-import com.vad.modulchit.screens.Supportable;
+import com.vad.modulchit.screens.supportable.Supportable;
 
 import java.util.List;
 

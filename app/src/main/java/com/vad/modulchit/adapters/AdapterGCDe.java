@@ -16,6 +16,11 @@ import java.util.List;
 public class AdapterGCDe extends RecyclerView.Adapter<AdapterGCDe.MyViewHolder> {
 
     private List<TableNumberGCDe> tableNumberGCDes;
+    private OnItemClickListener onItemClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
 
     public List<TableNumberGCDe> getTableNumbers() {
         return tableNumberGCDes;
@@ -50,7 +55,7 @@ public class AdapterGCDe extends RecyclerView.Adapter<AdapterGCDe.MyViewHolder> 
         return tableNumberGCDes.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView textViewA;
         TextView textViewB;
@@ -59,9 +64,12 @@ public class AdapterGCDe extends RecyclerView.Adapter<AdapterGCDe.MyViewHolder> 
 
         TextView textViewX;
         TextView textViewY;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            onItemClickListener.onClickItem(getAdapterPosition());
+            itemView.setOnClickListener(this);
             textViewA = (TextView) itemView.findViewById(R.id.textViewA);
             textViewB = (TextView) itemView.findViewById(R.id.textViewB);
             textViewQ = (TextView) itemView.findViewById(R.id.textViewQ);
@@ -69,6 +77,18 @@ public class AdapterGCDe extends RecyclerView.Adapter<AdapterGCDe.MyViewHolder> 
 
             textViewX = (TextView) itemView.findViewById(R.id.textViewX);
             textViewY = (TextView) itemView.findViewById(R.id.textViewY);
+
         }
+
+        @Override
+        public void onClick(View view) {
+            if(onItemClickListener!=null){
+                onItemClickListener.onClickItem(getAdapterPosition());
+            }
+        }
+    }
+
+    public interface OnItemClickListener{
+        void onClickItem(int position);
     }
 }

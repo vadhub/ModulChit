@@ -2,7 +2,7 @@ package com.vad.modulchit.screens.rsa.decrypt;
 
 import com.vad.modulchit.pojos.TableNumberFE;
 import com.vad.modulchit.pojos.TableNumberGCDe;
-import com.vad.modulchit.screens.Supportable;
+import com.vad.modulchit.screens.supportable.Supportable;
 
 import java.util.List;
 
