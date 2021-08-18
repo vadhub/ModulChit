@@ -9,6 +9,8 @@ import java.util.List;
 
 public class AlgebraMod {
 
+    private StringExtraData extraData = new StringExtraData();
+
     public static int gcd(int a, int b) {
         while (b !=0) {
             int tmp = a%b;
@@ -30,6 +32,8 @@ public class AlgebraMod {
         List<TableNumberGCDe> tempTableNumberGCDes = new ArrayList<>();
         TableNumberGCDe tableNumberGCDe;
 
+        String extra = "";
+
         int aTemp = 0;
         int bTemp = 0;
         int tmpQ = 0;
@@ -44,14 +48,16 @@ public class AlgebraMod {
         if(a<b){
             aTemp = b;
             bTemp = a;
-            tmpQ = 0;
             tmpR = aTemp;
+
+            extra = "a = "+aTemp+";\n"+"b = "+bTemp+";\n";
+            tableNumberGCDe = new TableNumberGCDe(a, b, tmpQ, tmpR, x1, x2, y1, y2, extra);
+            tempTableNumberGCDes.add(tableNumberGCDe);
             x1 = 0;
             x2 = 1;
             y1=1;
             y2=0;
-            tableNumberGCDe = new TableNumberGCDe(a, b, tmpQ, tmpR, x1, x2, y1, y2);
-            tempTableNumberGCDes.add(tableNumberGCDe);
+
         }else{
             aTemp=a;
             bTemp=b;
@@ -64,8 +70,10 @@ public class AlgebraMod {
             int tmpX1 = x1;
             int tmpX2 = x2;
 
-            tableNumberGCDe = new TableNumberGCDe(aTemp, bTemp, tmpQ, tmpR, x1, x2, y1, y2);
+            tableNumberGCDe = new TableNumberGCDe(aTemp, bTemp, tmpQ, tmpR, x1, x2, y1, y2, extra);
             tempTableNumberGCDes.add(tableNumberGCDe);
+
+            extra = extraData.extraGCDE(aTemp, bTemp, tmpQ, tmpR, tmpX1, tmpX2, y1, y2);
 
             aTemp = tableNumberGCDe.getB();
             bTemp = tableNumberGCDe.getR();
@@ -152,6 +160,7 @@ public class AlgebraMod {
         List<TableNumberFE> tableNumberFES = new ArrayList<>();
         TableNumberFE tableNumberFE;
 
+        String extra = "";
         int tempA = a;
         int tempM = m;
         int p = 1;
@@ -163,13 +172,13 @@ public class AlgebraMod {
                 p = (tmpP * tempA) % n;
                 tmpP = p;
             }
-            tableNumberFE = new TableNumberFE(tempA, tempM, n, p, r);
+            tableNumberFE = new TableNumberFE(tempA, tempM, n, p, r, extra);
             tableNumberFES.add(tableNumberFE);
             tempM = tempM / 2;
             tempA = (tempA * tempA) % n;
         }
 
-        tableNumberFE = new TableNumberFE(-1, -1, -1, -1,-1);
+        tableNumberFE = new TableNumberFE(-1, -1, -1, -1,-1, "");
         tableNumberFES.add(tableNumberFE);
 
         return tableNumberFES;

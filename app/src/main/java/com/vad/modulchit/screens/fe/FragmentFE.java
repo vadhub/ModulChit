@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,6 +46,9 @@ public class FragmentFE extends Fragment implements ListFEView{
 
         mRecyclerView = (RecyclerView) v.findViewById(R.id.mRecyclerFE);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        ((SimpleItemAnimator)mRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
+
         includeFE = (View) v.findViewById(R.id.includeFE);
         adapterFE = new AdapterFE();
 

@@ -3,78 +3,87 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
+    android:layout_height="wrap_content"
+    >
 
     <TableLayout
+        android:id="@+id/table_fe"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
         android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
-        android:stretchColumns="0,1,2,3,4,5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:stretchColumns="0,1,2,3,4,5">
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
             <TextView
-                android:id="@+id/textViewA"
-                android:layout_width="match_parent"
+                android:id="@+id/textViewAfe"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="a"
 
+                android:gravity="center"
                 style="@style/Theme.ModulChit"
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/textViewB"
-                android:layout_width="match_parent"
+                android:id="@+id/textViewMfe"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="b"
+                android:text="m"
+                android:gravity="center"
                 style="@style/Theme.ModulChit"
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/textViewQ"
-                android:layout_width="match_parent"
+                android:id="@+id/textViewNfe"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="q"
+                android:text="n"
+                android:gravity="center"
                 style="@style/Theme.ModulChit"
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/textViewR"
-                android:layout_width="match_parent"
+                android:id="@+id/textViewPfe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="p"
+                android:gravity="center"
+                style="@style/Theme.ModulChit"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textViewRfe"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="r"
                 android:gravity="center"
                 style="@style/Theme.ModulChit"
                 android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/textViewX"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="x"
-                android:gravity="right"
-                style="@style/Theme.ModulChit"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/textViewY"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="y"
-                android:gravity="center"
-                style="@style/Theme.ModulChit"
-                android:textSize="20sp" />
         </TableRow>
+
     </TableLayout>
 
+    <LinearLayout
+        android:id="@+id/subItemFE"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/table_fe"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="10dp">
+        <TextView
+            android:id="@+id/extra_fe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ffff"/>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

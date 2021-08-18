@@ -43,7 +43,7 @@
 
             <include
                 android:id="@+id/includeGCDE"
-                layout="@layout/tablet_counter_title"
+                layout="@layout/gcde_title"
                 android:visibility="invisible"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

@@ -127,7 +127,7 @@
 
             <include
                 android:id="@+id/includeFE"
-                layout="@layout/table_counter_fe_tite"
+                layout="@layout/item_fe_tite"
                 android:layout_width="0dp"
                 android:visibility="invisible"
                 android:layout_height="wrap_content"

@@ -16,11 +16,6 @@ import java.util.List;
 public class AdapterGCDe extends RecyclerView.Adapter<AdapterGCDe.MyViewHolder> {
 
     private List<TableNumberGCDe> tableNumberGCDes;
-    private OnItemClickListener onItemClickListener;
-
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
-        this.onItemClickListener = onItemClickListener;
-    }
 
     public List<TableNumberGCDe> getTableNumbers() {
         return tableNumberGCDes;
@@ -34,20 +29,35 @@ public class AdapterGCDe extends RecyclerView.Adapter<AdapterGCDe.MyViewHolder> 
     @NonNull
     @Override
     public AdapterGCDe.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.tablet_counter, parent, false);
+        View v = LayoutInflater
+                .from(parent.getContext())
+                .inflate(R.layout.item_gcde, parent, false);
         return new MyViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(AdapterGCDe.MyViewHolder holder, int position) {
-        holder.textViewA.setText(tableNumberGCDes.get(position).getA()+"");
-        holder.textViewB.setText(tableNumberGCDes.get(position).getB()+"");
-        holder.textViewQ.setText(tableNumberGCDes.get(position).getQ()+"");
-        holder.textViewR.setText(tableNumberGCDes.get(position).getR()+"");
 
-        holder.textViewX.setText("("+ tableNumberGCDes.get(position).getX1()+"; "+ tableNumberGCDes.get(position).getX2()+")");
-        holder.textViewY.setText("("+ tableNumberGCDes.get(position).getY1()+"; "+ tableNumberGCDes.get(position).getY2()+")");
+        TableNumberGCDe tableNumberGCDe = tableNumberGCDes.get(position);
+        holder.bind(tableNumberGCDe);
 
+//        holder.textViewA.setText(tableNumberGCDes.get(position).getA()+"");
+//        holder.textViewB.setText(tableNumberGCDes.get(position).getB()+"");
+//        holder.textViewQ.setText(tableNumberGCDes.get(position).getQ()+"");
+//        holder.textViewR.setText(tableNumberGCDes.get(position).getR()+"");
+//
+//        holder.textViewX.setText("("+ tableNumberGCDes.get(position).getX1()+"; "+ tableNumberGCDes.get(position).getX2()+")");
+//        holder.textViewY.setText("("+ tableNumberGCDes.get(position).getY1()+"; "+ tableNumberGCDes.get(position).getY2()+")");
+
+        holder.itemView.setOnClickListener(view -> {
+            boolean expanded = tableNumberGCDes.get(position).isExpanded();
+
+            if(!tableNumberGCDes.get(position).getExtra().equals("")){
+                tableNumberGCDe.setExpanded(!expanded);
+                notifyItemChanged(position);
+            }
+
+        });
     }
 
     @Override
@@ -55,7 +65,7 @@ public class AdapterGCDe extends RecyclerView.Adapter<AdapterGCDe.MyViewHolder> 
         return tableNumberGCDes.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView textViewA;
         TextView textViewB;
@@ -65,30 +75,37 @@ public class AdapterGCDe extends RecyclerView.Adapter<AdapterGCDe.MyViewHolder> 
         TextView textViewX;
         TextView textViewY;
 
+        TextView textViewExtra;
+
+        View subItem;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            onItemClickListener.onClickItem(getAdapterPosition());
-            itemView.setOnClickListener(this);
             textViewA = (TextView) itemView.findViewById(R.id.textViewA);
             textViewB = (TextView) itemView.findViewById(R.id.textViewB);
             textViewQ = (TextView) itemView.findViewById(R.id.textViewQ);
             textViewR = (TextView) itemView.findViewById(R.id.textViewR);
-
             textViewX = (TextView) itemView.findViewById(R.id.textViewX);
             textViewY = (TextView) itemView.findViewById(R.id.textViewY);
+            textViewExtra = (TextView) itemView.findViewById(R.id.extra_gcde);
 
+            subItem = (View) itemView.findViewById(R.id.subItem);
         }
 
-        @Override
-        public void onClick(View view) {
-            if(onItemClickListener!=null){
-                onItemClickListener.onClickItem(getAdapterPosition());
-            }
-        }
-    }
+        private void bind(TableNumberGCDe gcde) {
+            // Get the state
+            boolean expanded = gcde.isExpanded();
+            // Set the visibility based on state
+            subItem.setVisibility(expanded ? View.VISIBLE : View.GONE);
 
-    public interface OnItemClickListener{
-        void onClickItem(int position);
+            textViewA.setText(gcde.getA()+"");
+            textViewB.setText(gcde.getB()+"");
+            textViewQ.setText(gcde.getQ()+"");
+            textViewR.setText(gcde.getR()+"");
+            textViewX.setText("("+ gcde.getX1()+"; "+ gcde.getX2()+")");
+            textViewY.setText("("+ gcde.getY1()+"; "+ gcde.getY2()+")");
+            textViewExtra.setText(gcde.getExtra());
+        }
     }
 }
