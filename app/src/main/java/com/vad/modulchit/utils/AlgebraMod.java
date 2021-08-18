@@ -161,21 +161,28 @@ public class AlgebraMod {
         TableNumberFE tableNumberFE;
 
         String extra = "";
+
         int tempA = a;
         int tempM = m;
         int p = 1;
         int tmpP = 1;
         int r = 0;
+
+        extra = "r = "+m+"%2 = "+m%2+";\n";
+
         while (tempM != 0) {
             r = tempM % 2;
             if (r == 1) {
                 p = (tmpP * tempA) % n;
                 tmpP = p;
             }
+
             tableNumberFE = new TableNumberFE(tempA, tempM, n, p, r, extra);
             tableNumberFES.add(tableNumberFE);
+            extra = extraData.extraFE(tempA, tempM, n, p);
             tempM = tempM / 2;
             tempA = (tempA * tempA) % n;
+
         }
 
         tableNumberFE = new TableNumberFE(-1, -1, -1, -1,-1, "");

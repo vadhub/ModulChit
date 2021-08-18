@@ -10,8 +10,19 @@ public class StringExtraData {
         return result;
     }
 
-    public String extraFE(){
-        String result = "";
+    public String extraFE(int a, int m, int n, int pe){
+        int p = pe;
+        int r = m%2;
+        String pExtra = "p ="+p+"(pre);\n";
+
+        if(r==1){
+            p = (p*a)%n;
+            pExtra = "p = ("+pe+"*"+a+")%"+n+"="+p+";\n";
+        }
+        String result = "a = ("+a +"*"+a+")%"+n+"="+(a*a)%n+";\n"
+                +"m = "+m+"/2 = "+m/2+";\n"
+                +"r = "+m+"%2 = "+r+";\n"
+                +pExtra;
         return result;
     }
 }
