@@ -63,6 +63,7 @@ public class FragmentGCDe extends Fragment implements ListGCDEView{
         mRecyclerView = (RecyclerView) v.findViewById(R.id.myRecycler);
 
         ((SimpleItemAnimator)mRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
+
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapterGCDe = new AdapterGCDe();
 
