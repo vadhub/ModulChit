@@ -12,16 +12,19 @@ public class StringExtraData {
 
     public String extraFE(int a, int m, int n, int pe){
         int p = pe;
-        int r = m%2;
+        int r = (m/2)%2;
+        int aTmp;
         String pExtra = "p ="+p+"(pre);\n";
 
         if(r==1){
-            p = (p*a)%n;
-            pExtra = "p = ("+pe+"*"+a+")%"+n+"="+p+";\n";
+            aTmp = (a*a)%n;
+            p = (p*aTmp)%n;
+            pExtra = "p = ("+pe+"*"+aTmp+")%"+n+"="+p+";\n";
         }
+
         String result = "a = ("+a +"*"+a+")%"+n+"="+(a*a)%n+";\n"
                 +"m = "+m+"/2 = "+m/2+";\n"
-                +"r = "+m+"%2 = "+r+";\n"
+                +"r = "+(m/2)+"%2 = "+r+";\n"
                 +pExtra;
         return result;
     }

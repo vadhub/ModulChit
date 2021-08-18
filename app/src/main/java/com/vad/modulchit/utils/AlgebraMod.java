@@ -172,16 +172,18 @@ public class AlgebraMod {
 
         while (tempM != 0) {
             r = tempM % 2;
+            System.out.println(p +" "+tmpP+" "+tempA);
             if (r == 1) {
                 p = (tmpP * tempA) % n;
+                System.out.println(p +" "+tmpP+" "+tempA+" i");
                 tmpP = p;
             }
 
             tableNumberFE = new TableNumberFE(tempA, tempM, n, p, r, extra);
             tableNumberFES.add(tableNumberFE);
             extra = extraData.extraFE(tempA, tempM, n, p);
-            tempM = tempM / 2;
             tempA = (tempA * tempA) % n;
+            tempM = tempM / 2;
 
         }
 
