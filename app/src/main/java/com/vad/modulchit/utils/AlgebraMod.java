@@ -160,6 +160,7 @@ public class AlgebraMod {
         List<TableNumberFE> tableNumberFES = new ArrayList<>();
         TableNumberFE tableNumberFE;
 
+        String extra = "";
         int tempA = a;
         int tempM = m;
         int p = 1;
@@ -171,13 +172,13 @@ public class AlgebraMod {
                 p = (tmpP * tempA) % n;
                 tmpP = p;
             }
-            tableNumberFE = new TableNumberFE(tempA, tempM, n, p, r);
+            tableNumberFE = new TableNumberFE(tempA, tempM, n, p, r, extra);
             tableNumberFES.add(tableNumberFE);
             tempM = tempM / 2;
             tempA = (tempA * tempA) % n;
         }
 
-        tableNumberFE = new TableNumberFE(-1, -1, -1, -1,-1);
+        tableNumberFE = new TableNumberFE(-1, -1, -1, -1,-1, "");
         tableNumberFES.add(tableNumberFE);
 
         return tableNumberFES;

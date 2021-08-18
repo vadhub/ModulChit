@@ -9,4 +9,9 @@ public class StringExtraData {
 
         return result;
     }
+
+    public String extraFE(){
+        String result = "";
+        return result;
+    }
 }
