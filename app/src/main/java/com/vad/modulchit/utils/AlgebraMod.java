@@ -9,6 +9,8 @@ import java.util.List;
 
 public class AlgebraMod {
 
+    private StringExtraData extraData = new StringExtraData();
+
     public static int gcd(int a, int b) {
         while (b !=0) {
             int tmp = a%b;
@@ -30,7 +32,7 @@ public class AlgebraMod {
         List<TableNumberGCDe> tempTableNumberGCDes = new ArrayList<>();
         TableNumberGCDe tableNumberGCDe;
 
-        String extra = "YOU PIDER";
+        String extra = "";
 
         int aTemp = 0;
         int bTemp = 0;
@@ -46,15 +48,16 @@ public class AlgebraMod {
         if(a<b){
             aTemp = b;
             bTemp = a;
-            tmpQ = 0;
             tmpR = aTemp;
 
+            extra = "a = "+aTemp+"\n;"+"b = "+bTemp+"\n;";
             tableNumberGCDe = new TableNumberGCDe(a, b, tmpQ, tmpR, x1, x2, y1, y2, extra);
             tempTableNumberGCDes.add(tableNumberGCDe);
             x1 = 0;
             x2 = 1;
             y1=1;
             y2=0;
+
         }else{
             aTemp=a;
             bTemp=b;
@@ -75,6 +78,8 @@ public class AlgebraMod {
 
             x1 = tableNumberGCDe.getY1();
             x2 = tableNumberGCDe.getY2();
+
+            extra = extraData.extraGCDE(aTemp, bTemp, tmpQ, tmpR, tmpX1, tmpX2, y1, y2);
 
             y1 = tmpX1 - tmpQ*y1;
             y2 = tmpX2 - tmpQ*y2;

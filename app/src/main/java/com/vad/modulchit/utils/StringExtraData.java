@@ -5,7 +5,7 @@ public class StringExtraData {
         String result =
                 "r = "+a+" - "+b+"*"+q+" = "+ r+";\n" //r = 56 - 11*5 = 1;
                         +"x = ("+x1+","+x2+");\n" //x = (1,0);
-                        +"y = ("+x1+","+x2+") - "+ q +"*("+y1+","+y2+")";
+                        +"y = ("+x1+","+x2+") - "+ q +"*("+y1+","+y2+")"; // y = (1,0) - 1*(0,1)
 
         return result;
     }

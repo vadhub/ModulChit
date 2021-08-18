@@ -1,7 +1,5 @@
 package com.vad.modulchit.adapters;
 
-import android.annotation.SuppressLint;
-import android.graphics.Movie;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,8 +51,12 @@ public class AdapterGCDe extends RecyclerView.Adapter<AdapterGCDe.MyViewHolder> 
 
         holder.itemView.setOnClickListener(view -> {
             boolean expanded = tableNumberGCDes.get(position).isExpanded();
-            tableNumberGCDe.setExpanded(!expanded);
-            notifyItemChanged(position);
+
+            if(!tableNumberGCDes.get(position).getExtra().equals("")){
+                tableNumberGCDe.setExpanded(!expanded);
+                notifyItemChanged(position);
+            }
+
         });
     }
 
