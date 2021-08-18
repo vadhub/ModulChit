@@ -50,7 +50,7 @@ public class AlgebraMod {
             bTemp = a;
             tmpR = aTemp;
 
-            extra = "a = "+aTemp+"\n;"+"b = "+bTemp+"\n;";
+            extra = "a = "+aTemp+";\n"+"b = "+bTemp+";\n";
             tableNumberGCDe = new TableNumberGCDe(a, b, tmpQ, tmpR, x1, x2, y1, y2, extra);
             tempTableNumberGCDes.add(tableNumberGCDe);
             x1 = 0;
@@ -73,13 +73,13 @@ public class AlgebraMod {
             tableNumberGCDe = new TableNumberGCDe(aTemp, bTemp, tmpQ, tmpR, x1, x2, y1, y2, extra);
             tempTableNumberGCDes.add(tableNumberGCDe);
 
+            extra = extraData.extraGCDE(aTemp, bTemp, tmpQ, tmpR, tmpX1, tmpX2, y1, y2);
+
             aTemp = tableNumberGCDe.getB();
             bTemp = tableNumberGCDe.getR();
 
             x1 = tableNumberGCDe.getY1();
             x2 = tableNumberGCDe.getY2();
-
-            extra = extraData.extraGCDE(aTemp, bTemp, tmpQ, tmpR, tmpX1, tmpX2, y1, y2);
 
             y1 = tmpX1 - tmpQ*y1;
             y2 = tmpX2 - tmpQ*y2;
