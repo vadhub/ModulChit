@@ -49,10 +49,9 @@ public class AlgebraMod {
             aTemp = b;
             bTemp = a;
             tmpR = aTemp;
-
-            extra = "a = "+aTemp+";\n"+"b = "+bTemp+";\n";
             tableNumberGCDe = new TableNumberGCDe(a, b, tmpQ, tmpR, x1, x2, y1, y2, extra);
             tempTableNumberGCDes.add(tableNumberGCDe);
+            extra = "a = "+aTemp+";\n"+"b = "+bTemp+";\n";
             x1 = 0;
             x2 = 1;
             y1=1;
@@ -161,21 +160,28 @@ public class AlgebraMod {
         TableNumberFE tableNumberFE;
 
         String extra = "";
+
         int tempA = a;
         int tempM = m;
         int p = 1;
         int tmpP = 1;
         int r = 0;
+
+        extra = "r = "+m+"%2 = "+m%2+";\n";
+
         while (tempM != 0) {
             r = tempM % 2;
             if (r == 1) {
                 p = (tmpP * tempA) % n;
                 tmpP = p;
             }
+
             tableNumberFE = new TableNumberFE(tempA, tempM, n, p, r, extra);
             tableNumberFES.add(tableNumberFE);
-            tempM = tempM / 2;
+            extra = extraData.extraFE(tempA, tempM, n, p);
             tempA = (tempA * tempA) % n;
+            tempM = tempM / 2;
+
         }
 
         tableNumberFE = new TableNumberFE(-1, -1, -1, -1,-1, "");
