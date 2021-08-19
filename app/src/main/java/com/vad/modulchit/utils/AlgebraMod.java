@@ -107,6 +107,8 @@ public class AlgebraMod {
             b = i;
             q = a/b;
             r = a%b;
+
+            extra = extraData.extraGCD(a, b, q, r);
             tableNumberNOK = new TableNumberNOK(a, b, q, r, i, extra);
             tempTableNumberNOKs.add(tableNumberNOK);
             while (true){
@@ -121,6 +123,7 @@ public class AlgebraMod {
                 q = a/b;
                 r = a%b;
 
+                extra = extraData.extraGCD(a, b, q, r);
                 tableNumberNOK = new TableNumberNOK(a, b, q, r, i, extra);
                 tempTableNumberNOKs.add(tableNumberNOK);
             }

@@ -99,11 +99,14 @@ public class AdapterNOK extends RecyclerView.Adapter<AdapterNOK.MyViewHolderNOK>
             textViewQn.setText(tableNumberNOK.getQn()+"");
             textViewRn.setText(tableNumberNOK.getRn()+"");
 
+            textViewextra.setText(tableNumberNOK.getExtra());
+
             if(tableNumberNOK.getBn()==0){
                 textViewAn.setText("-");
                 textViewBn.setText("-");
                 textViewQn.setText("-");
                 textViewRn.setText("-");
+
             }
 
         }
