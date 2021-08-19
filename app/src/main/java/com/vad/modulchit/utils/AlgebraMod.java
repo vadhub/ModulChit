@@ -49,10 +49,9 @@ public class AlgebraMod {
             aTemp = b;
             bTemp = a;
             tmpR = aTemp;
-
-            extra = "a = "+aTemp+";\n"+"b = "+bTemp+";\n";
             tableNumberGCDe = new TableNumberGCDe(a, b, tmpQ, tmpR, x1, x2, y1, y2, extra);
             tempTableNumberGCDes.add(tableNumberGCDe);
+            extra = "a = "+aTemp+";\n"+"b = "+bTemp+";\n";
             x1 = 0;
             x2 = 1;
             y1=1;
@@ -172,10 +171,8 @@ public class AlgebraMod {
 
         while (tempM != 0) {
             r = tempM % 2;
-            System.out.println(p +" "+tmpP+" "+tempA);
             if (r == 1) {
                 p = (tmpP * tempA) % n;
-                System.out.println(p +" "+tmpP+" "+tempA+" i");
                 tmpP = p;
             }
 

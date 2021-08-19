@@ -78,7 +78,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginStart="10dp">
+        android:layout_marginStart="30dp">
         <TextView
             android:id="@+id/extra_fe"
             android:layout_width="match_parent"
