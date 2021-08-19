@@ -95,6 +95,8 @@ public class AlgebraMod {
     public List<TableNumberNOK> nokGraph(int mod){
         List<TableNumberNOK> tempTableNumberNOKs = new ArrayList<>();
         TableNumberNOK tableNumberNOK;
+
+        String extra = "";
         int a = 0;
         int b = 0;
         int q = 0;
@@ -105,11 +107,11 @@ public class AlgebraMod {
             b = i;
             q = a/b;
             r = a%b;
-            tableNumberNOK = new TableNumberNOK(a, b, q, r, i);
+            tableNumberNOK = new TableNumberNOK(a, b, q, r, i, extra);
             tempTableNumberNOKs.add(tableNumberNOK);
             while (true){
                 if(r==0){
-                    tableNumberNOK = new TableNumberNOK(gcd(mod, i), 0, 0, 0, i);
+                    tableNumberNOK = new TableNumberNOK(gcd(mod, i), 0, 0, 0, i, "");
                     tempTableNumberNOKs.add(tableNumberNOK);
                     break;
                 };
@@ -119,7 +121,7 @@ public class AlgebraMod {
                 q = a/b;
                 r = a%b;
 
-                tableNumberNOK = new TableNumberNOK(a, b, q, r, i);
+                tableNumberNOK = new TableNumberNOK(a, b, q, r, i, extra);
                 tempTableNumberNOKs.add(tableNumberNOK);
             }
         }

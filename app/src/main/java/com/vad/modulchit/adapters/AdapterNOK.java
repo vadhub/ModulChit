@@ -35,17 +35,30 @@ public class AdapterNOK extends RecyclerView.Adapter<AdapterNOK.MyViewHolderNOK>
 
     @Override
     public void onBindViewHolder(@NonNull AdapterNOK.MyViewHolderNOK holder, int position) {
-        holder.textViewAn.setText(tableNumberNOKS.get(position).getAn()+"");
-        holder.textViewBn.setText(tableNumberNOKS.get(position).getBn()+"");
-        holder.textViewQn.setText(tableNumberNOKS.get(position).getQn()+"");
-        holder.textViewRn.setText(tableNumberNOKS.get(position).getRn()+"");
 
-        if(tableNumberNOKS.get(position).getBn()==0){
-            holder.textViewAn.setText("-");
-            holder.textViewBn.setText("-");
-            holder.textViewQn.setText("-");
-            holder.textViewRn.setText("-");
-        }
+        TableNumberNOK tableNumberNOK = tableNumberNOKS.get(position);
+        holder.bind(tableNumberNOK);
+
+        holder.itemView.setOnClickListener(view -> {
+            boolean expanded = tableNumberNOK.isExpanded();
+
+            if(!tableNumberNOK.getExtra().equals("")){
+                tableNumberNOK.setExpanded(!expanded);
+                notifyItemChanged(position);
+            }
+        });
+
+//        holder.textViewAn.setText(tableNumberNOKS.get(position).getAn()+"");
+//        holder.textViewBn.setText(tableNumberNOKS.get(position).getBn()+"");
+//        holder.textViewQn.setText(tableNumberNOKS.get(position).getQn()+"");
+//        holder.textViewRn.setText(tableNumberNOKS.get(position).getRn()+"");
+//
+//        if(tableNumberNOKS.get(position).getBn()==0){
+//            holder.textViewAn.setText("-");
+//            holder.textViewBn.setText("-");
+//            holder.textViewQn.setText("-");
+//            holder.textViewRn.setText("-");
+//        }
     }
 
     @Override
@@ -59,6 +72,8 @@ public class AdapterNOK extends RecyclerView.Adapter<AdapterNOK.MyViewHolderNOK>
         private TextView textViewBn;
         private TextView textViewQn;
         private TextView textViewRn;
+        private View subItem;
+        private TextView textViewextra;
 
         public MyViewHolderNOK(@NonNull View itemView) {
             super(itemView);
@@ -67,6 +82,30 @@ public class AdapterNOK extends RecyclerView.Adapter<AdapterNOK.MyViewHolderNOK>
             textViewBn = (TextView) itemView.findViewById(R.id.textViewBn);
             textViewQn = (TextView) itemView.findViewById(R.id.textViewQn);
             textViewRn = (TextView) itemView.findViewById(R.id.textViewRn);
+
+            subItem = (View) itemView.findViewById(R.id.subItemGCD);
+
+            textViewextra = (TextView) itemView.findViewById(R.id.extra_gcd);
+        }
+
+        private void bind(TableNumberNOK tableNumberNOK){
+
+            boolean expanded = tableNumberNOK.isExpanded();
+
+            subItem.setVisibility(expanded ? View.VISIBLE : View.GONE);
+
+            textViewAn.setText(tableNumberNOK.getAn()+"");
+            textViewBn.setText(tableNumberNOK.getBn()+"");
+            textViewQn.setText(tableNumberNOK.getQn()+"");
+            textViewRn.setText(tableNumberNOK.getRn()+"");
+
+            if(tableNumberNOK.getBn()==0){
+                textViewAn.setText("-");
+                textViewBn.setText("-");
+                textViewQn.setText("-");
+                textViewRn.setText("-");
+            }
+
         }
     }
 }

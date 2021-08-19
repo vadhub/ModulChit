@@ -8,6 +8,19 @@ public class TableNumberNOK {
 
     private int i;
 
+    private boolean expanded;
+    private String extra;
+
+    public TableNumberNOK(int a, int b, int q, int r, int i, String extra) {
+        this.a = a;
+        this.b = b;
+        this.q = q;
+        this.r = r;
+        this.i=i;
+
+        this.extra = extra;
+    }
+
     public int getI() {
         return i;
     }
@@ -48,14 +61,19 @@ public class TableNumberNOK {
         this.r = r;
     }
 
-    public TableNumberNOK() {
+    public boolean isExpanded() {
+        return expanded;
     }
 
-    public TableNumberNOK(int a, int b, int q, int r, int i) {
-        this.a = a;
-        this.b = b;
-        this.q = q;
-        this.r = r;
-        this.i=i;
+    public void setExpanded(boolean expanded) {
+        this.expanded = expanded;
+    }
+
+    public String getExtra() {
+        return extra;
+    }
+
+    public void setExtra(String extra) {
+        this.extra = extra;
     }
 }

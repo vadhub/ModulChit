@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,6 +44,9 @@ public class FragmentMG extends Fragment implements ListMGView{
         textViewResult = (TextView) v.findViewById(R.id.textViewResult);
         btnNok = (Button) v.findViewById(R.id.buttonNOK);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.mRecyclerNok);
+
+        ((SimpleItemAnimator)mRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
+
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         includeMG = (View) v.findViewById(R.id.includeMG);
         adapterNOK = new AdapterNOK();

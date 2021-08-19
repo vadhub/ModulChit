@@ -28,4 +28,8 @@ public class StringExtraData {
                 +pExtra;
         return result;
     }
+
+    public String extraGCD(){
+        return "";
+    }
 }
