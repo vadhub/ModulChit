@@ -1,7 +1,5 @@
 package com.vad.modulchit.screens.mg;
 
-import android.widget.Toast;
-
 import com.vad.modulchit.R;
 import com.vad.modulchit.pojos.TableNumberNOK;
 import com.vad.modulchit.utils.AlgebraMod;

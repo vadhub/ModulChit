@@ -16,6 +16,7 @@ public class ListFEpresenter {
     }
 
     public void loadListFE(int a, int m, int n){
+
         List<TableNumberFE> tableNumberFES = algebraMod.feGraph(a, m, n);
         listFEView.showData(tableNumberFES);
     }

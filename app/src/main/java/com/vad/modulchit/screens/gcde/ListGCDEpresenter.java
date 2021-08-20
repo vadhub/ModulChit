@@ -1,10 +1,18 @@
 package com.vad.modulchit.screens.gcde;
 
+import android.widget.Toast;
+
 import com.vad.modulchit.R;
 import com.vad.modulchit.pojos.TableNumberGCDe;
 import com.vad.modulchit.utils.AlgebraMod;
 
 import java.util.List;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.functions.Consumer;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class ListGCDEpresenter {
 
@@ -16,11 +24,19 @@ public class ListGCDEpresenter {
     }
 
     public void loadListGCDE(int a, int b){
+
         List<TableNumberGCDe> tempTableNumberGCDes = algebraMod.gcdGraph(a, b);
         listGCDEView.showData(tempTableNumberGCDes);
+
     }
 
     public void showResult(String aStr, String bStr){
+
+        Observable.just(aStr, bStr).isEmpty().subscribe(aBoolean -> {
+            listGCDEView.showError(R.string.warning_enter_text);
+            System.out.println("ggjhjgjkgkjgjhj");
+        });
+
         if((!aStr.equals("")&&!bStr.equals(""))){
             int a = -1;
             int b = -1;
@@ -40,7 +56,7 @@ public class ListGCDEpresenter {
                 listGCDEView.showError(R.string.warning_zero);
             }
         }else{
-            listGCDEView.showError(R.string.warning_enter_text);
+
         }
     }
 }

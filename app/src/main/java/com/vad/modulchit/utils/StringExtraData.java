@@ -34,4 +34,8 @@ public class StringExtraData {
                 +"r = "+a+"%"+b+" = "+r+";\n";
         return result;
     }
+
+    public String extraMG(int a, int b){
+        return "gcd("+a+","+b+") = 1;\n";
+    }
 }
