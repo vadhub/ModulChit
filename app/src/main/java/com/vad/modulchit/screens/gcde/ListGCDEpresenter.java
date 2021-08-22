@@ -6,10 +6,13 @@ import com.vad.modulchit.pojos.TableNumberGCDe;
 import com.vad.modulchit.utils.AlgebraMod;
 
 import java.util.List;
+import java.util.Objects;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.ObservableSource;
 import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.functions.Function;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class ListGCDEpresenter {
@@ -28,12 +31,17 @@ public class ListGCDEpresenter {
 
     public void showResult(String aStr, String bStr){
 
-        Observable.just(aStr, bStr).filter(s -> s.length()==0).subscribe(s -> {
-            listGCDEView.showError(R.string.warning_enter_text);
-        }).dispose();
 
-        Observable.just(aStr, bStr)
-                .filter(s -> s.length()!=0)
+        Observable
+                .just(aStr, bStr)
+                .flatMap((Function<String, ObservableSource<?>>) s -> {
+                    if(s.length()!=0){
+                        listGCDEView.showError(R.string.warning_enter_text);
+                        return null;
+                    }
+                    return Observable.just(aStr, bStr);
+                }
+                ).filter(Objects::nonNull)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(s -> {
@@ -54,6 +62,6 @@ public class ListGCDEpresenter {
                     }else{
                         listGCDEView.showError(R.string.warning_zero);
                     }
-        });
+                });
     }
 }
