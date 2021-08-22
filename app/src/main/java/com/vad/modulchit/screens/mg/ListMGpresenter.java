@@ -6,6 +6,8 @@ import com.vad.modulchit.utils.AlgebraMod;
 
 import java.util.List;
 
+import io.reactivex.rxjava3.core.Observable;
+
 public class ListMGpresenter {
 
     private ListMGView listMGView;
@@ -21,22 +23,28 @@ public class ListMGpresenter {
     }
 
     public void showResult(String modStr){
-        if(!modStr.equals("")){
-            int m = -1;
 
-            try{
-                m = Integer.parseInt(modStr);
-            }catch (NumberFormatException e){
-                listMGView.showError(R.string.warning_out_bounds);
-            }
-                listMGView.showTitle();
-            if(m!=0){
-                loadListMG(m);
-            }else{
-                listMGView.showError(R.string.warning_zero);
-            }
-        }else{
-            listMGView.showError(R.string.warning_enter_text);
-        }
+        Observable.just(modStr).filter(s -> modStr.length()==0).subscribe(s -> {listMGView.showError(R.string.warning_enter_text);}).dispose();
+
+        Observable.just(modStr)
+                .filter(s->s.length()!=0)
+                .subscribe(s -> {
+                    int m = -1;
+
+                    try{
+                        m = Integer.parseInt(modStr);
+                    }catch (NumberFormatException e){
+                        listMGView.showError(R.string.warning_out_bounds);
+                    }
+                    listMGView.showTitle();
+                    if(m!=0){
+                        loadListMG(m);
+                    }else{
+                        listMGView.showError(R.string.warning_zero);
+                    }
+                });
+
+
+
     }
 }
