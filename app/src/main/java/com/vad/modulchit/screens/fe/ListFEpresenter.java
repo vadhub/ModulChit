@@ -6,6 +6,10 @@ import com.vad.modulchit.utils.AlgebraMod;
 
 import java.util.List;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
 public class ListFEpresenter {
 
     private AlgebraMod algebraMod = new AlgebraMod();
@@ -23,27 +27,35 @@ public class ListFEpresenter {
 
 
     public void viewResult(String aStr, String mStr, String nStr){
-        if(!aStr.equals("")&&!mStr.equals("")&&!nStr.equals("")){
-            int a =-1;
-            int m =-1;
-            int n =-1;
 
-            try {
-                a = Integer.parseInt(aStr);
-                m = Integer.parseInt(mStr);
-                n = Integer.parseInt(nStr);
-            }catch (NumberFormatException e){
-                listFEView.showError(R.string.warning_out_bounds);
-            }
-            listFEView.showTitle();
-            if(m!=0&&n!=0){
-                loadListFE(a, m, n);
-            }else{
-                listFEView.showError(R.string.warning_zero);
-            }
-        }else {
-            listFEView.showError(R.string.warning_enter_text);
-        }
+        Observable.just(aStr, mStr, nStr)
+                .filter(s -> s.length()==0)
+                .subscribe(s -> {listFEView.showError(R.string.warning_enter_text); })
+                .dispose();
+
+        Observable.just(aStr, mStr, nStr)
+                .filter(s -> s.length()!=0)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(s -> {
+                    int a =-1;
+                    int m =-1;
+                    int n =-1;
+
+                    try {
+                        a = Integer.parseInt(aStr);
+                        m = Integer.parseInt(mStr);
+                        n = Integer.parseInt(nStr);
+                    }catch (NumberFormatException e){
+                        listFEView.showError(R.string.warning_out_bounds);
+                    }
+                    listFEView.showTitle();
+                    if(m!=0&&n!=0){
+                        loadListFE(a, m, n);
+                    }else{
+                        listFEView.showError(R.string.warning_zero);
+                    }
+                });
 
     }
 

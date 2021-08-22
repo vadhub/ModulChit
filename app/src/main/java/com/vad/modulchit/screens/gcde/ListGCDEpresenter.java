@@ -35,7 +35,8 @@ public class ListGCDEpresenter {
         Observable.just(aStr, bStr)
                 .filter(s -> s.length()!=0)
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread()).subscribe(s -> {
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(s -> {
                     int a = -1;
                     int b = -1;
 

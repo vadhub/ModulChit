@@ -6,7 +6,9 @@ import com.vad.modulchit.utils.AlgebraMod;
 
 import java.util.List;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class ListMGpresenter {
 
@@ -28,6 +30,8 @@ public class ListMGpresenter {
 
         Observable.just(modStr)
                 .filter(s->s.length()!=0)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(s -> {
                     int m = -1;
 
