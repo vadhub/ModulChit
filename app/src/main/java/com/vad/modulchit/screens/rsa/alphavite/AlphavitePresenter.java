@@ -9,6 +9,10 @@ import com.vad.modulchit.utils.RSAshiphr;
 
 import java.util.List;
 
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.functions.Function;
+
 public class AlphavitePresenter {
 
     private AlphaviteView alphaviteView;
@@ -44,10 +48,11 @@ public class AlphavitePresenter {
         int n;
         int eller;
         List<Integer> exponents;
+
         if(isEncrypt){
             if(!qStr.equals("")&&!pStr.equals("")){
-                int p = Integer.parseInt(qStr);
-                int q = Integer.parseInt(pStr);
+                int p = Integer.parseInt(pStr);
+                int q = Integer.parseInt(qStr);
 
                 n = rsaMod.getN(p,q);
                 eller = rsaMod.functionEller(p,q);
