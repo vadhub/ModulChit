@@ -29,6 +29,7 @@ public class MainActivityMain extends AppCompatActivity{
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main_main);
 
+
         MobileAds.initialize(this, initializationStatus -> {
         });
 

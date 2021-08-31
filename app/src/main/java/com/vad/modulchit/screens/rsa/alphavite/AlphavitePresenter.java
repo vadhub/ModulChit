@@ -9,6 +9,10 @@ import com.vad.modulchit.utils.RSAshiphr;
 
 import java.util.List;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
 public class AlphavitePresenter {
 
     private AlphaviteView alphaviteView;
@@ -40,47 +44,57 @@ public class AlphavitePresenter {
     }
 
     public void fragmentChoosen(boolean isEncrypt, String qStr, String pStr){
-        Fragment fragment = null;
-        int n;
-        int eller;
-        List<Integer> exponents;
-        if(isEncrypt){
-            if(!qStr.equals("")&&!pStr.equals("")){
-                int p = Integer.parseInt(qStr);
-                int q = Integer.parseInt(pStr);
 
-                n = rsaMod.getN(p,q);
-                eller = rsaMod.functionEller(p,q);
-                exponents = rsaMod.exponenta(eller);
 
-                if(rsaMod.isSimpleNumber(p)&&rsaMod.isSimpleNumber(q)){
-                    fragment = new FragmentRSAcrypt(alphaviteCodes, n, exponents);
-                }else{
-                    alphaviteView.showError(R.string.warning_prime);
-                }
-            }else{
-                fragment = new FragmentRSAcrypt(alphaviteCodes);
-            }
-        }else{
-            if(!qStr.equals("")&&!pStr.equals("")){
-                int p = Integer.parseInt(pStr);
-                int q = Integer.parseInt(qStr);
+        Observable.just(isEncrypt)
+                .subscribeOn(Schedulers.computation())
+                .groupBy(aBoolean -> true)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(booleanGroupedObservable -> {
+                    Fragment fragment = null;
+                    int n;
+                    int eller;
+                    List<Integer> exponents;
 
-                n =rsaMod.getN(p,q);
-                eller = rsaMod.functionEller(p,q);
-                exponents = rsaMod.exponenta(eller);
-                int d = rsaMod.getDPrivate(eller, exponents.get(0));
+                    if(booleanGroupedObservable.getKey()){
+                        if(!qStr.equals("")&&!pStr.equals("")){
+                            int p = Integer.parseInt(pStr);
+                            int q = Integer.parseInt(qStr);
 
-                if(rsaMod.isSimpleNumber(p)&&rsaMod.isSimpleNumber(q)){
-                    fragment = new FragmentRSAdecrypt(alphaviteCodes, n, d, eller, exponents.get(0), p, q);
-                }else{
-                    alphaviteView.showError(R.string.warning_prime);
-                }
-            }else{
-                alphaviteView.showError(R.string.warning_enter_p_q);
-            }
-        }
+                            n = rsaMod.getN(p,q);
+                            eller = rsaMod.functionEller(p,q);
+                            exponents = rsaMod.exponenta(eller);
 
-        alphaviteView.fragmentLoad(fragment);
+                            if(rsaMod.isSimpleNumber(p)&&rsaMod.isSimpleNumber(q)){
+                                fragment = new FragmentRSAcrypt(alphaviteCodes, n, exponents);
+                            }else{
+                                alphaviteView.showError(R.string.warning_prime);
+                            }
+                        }else{
+                            fragment = new FragmentRSAcrypt(alphaviteCodes);
+                        }
+                    }else {
+                        if(!qStr.equals("")&&!pStr.equals("")){
+                            int p = Integer.parseInt(pStr);
+                            int q = Integer.parseInt(qStr);
+
+                            n =rsaMod.getN(p,q);
+                            eller = rsaMod.functionEller(p,q);
+                            exponents = rsaMod.exponenta(eller);
+                            int d = rsaMod.getDPrivate(eller, exponents.get(0));
+
+                            if(rsaMod.isSimpleNumber(p)&&rsaMod.isSimpleNumber(q)){
+                                fragment = new FragmentRSAdecrypt(alphaviteCodes, n, d, eller, exponents.get(0), p, q);
+                            }else{
+                                alphaviteView.showError(R.string.warning_prime);
+                            }
+                        }else{
+                            alphaviteView.showError(R.string.warning_enter_p_q);
+                        }
+
+                    }
+
+                    alphaviteView.fragmentLoad(fragment);
+                });
     }
 }

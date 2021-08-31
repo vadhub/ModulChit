@@ -20,6 +20,7 @@ public class CryptPresenter {
     }
 
     private void encrypt(List<Integer> alphaviteCodes, String textToEncrypt){
+
         char[] strCrypt = textToEncrypt.toLowerCase().toCharArray();
         for (char c : strCrypt) {
             for (int j = 0; j < rsAshiphr.getAlphabyteEN().size(); j++) {
