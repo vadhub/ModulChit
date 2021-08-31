@@ -1,10 +1,7 @@
 package com.vad.modulchit.screens.mg;
 
 import com.vad.modulchit.R;
-import com.vad.modulchit.pojos.TableNumberNOK;
 import com.vad.modulchit.utils.AlgebraMod;
-
-import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
@@ -20,35 +17,32 @@ public class ListMGpresenter {
     }
 
     public void loadListMG(int m){
-        List<TableNumberNOK> numberNOKS = algebraMod.nokGraph(m);
-        listMGView.showData(numberNOKS);
+
+        Observable.just("")
+                .subscribeOn(Schedulers.computation())
+                .map(o -> algebraMod.nokGraph(m))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(numberNOKS -> listMGView.showData(numberNOKS));
     }
 
     public void showResult(String modStr){
 
-        Observable.just(modStr).filter(s -> modStr.length()==0).subscribe(s -> {listMGView.showError(R.string.warning_enter_text);}).dispose();
+        if(!modStr.equals("")){
+            int m = -1;
 
-        Observable.just(modStr)
-                .filter(s->s.length()!=0)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(s -> {
-                    int m = -1;
-
-                    try{
-                        m = Integer.parseInt(modStr);
-                    }catch (NumberFormatException e){
-                        listMGView.showError(R.string.warning_out_bounds);
-                    }
-                    listMGView.showTitle();
-                    if(m!=0){
-                        loadListMG(m);
-                    }else{
-                        listMGView.showError(R.string.warning_zero);
-                    }
-                });
-
-
-
+            try{
+                m = Integer.parseInt(modStr);
+            }catch (NumberFormatException e){
+                listMGView.showError(R.string.warning_out_bounds);
+            }
+            listMGView.showTitle();
+            if(m!=0){
+                loadListMG(m);
+            }else{
+                listMGView.showError(R.string.warning_zero);
+            }
+        }else {
+            listMGView.showError(R.string.warning_enter_text);
+        }
     }
 }

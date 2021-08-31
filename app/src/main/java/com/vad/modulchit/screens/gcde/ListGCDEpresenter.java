@@ -30,9 +30,9 @@ public class ListGCDEpresenter {
     public void loadListGCDE(int a, int b){
 
         Observable.just("")
-                .observeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
                 .map(objects -> algebraMod.gcdGraph(a, b))
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         tableNumberGCDeList -> listGCDEView.showData(tableNumberGCDeList)
                 );
