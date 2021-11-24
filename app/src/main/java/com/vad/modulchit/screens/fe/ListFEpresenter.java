@@ -31,7 +31,7 @@ public class ListFEpresenter {
 
     public void viewResult(String aStr, String mStr, String nStr){
 
-        if(!aStr.equals("")&&!mStr.equals("")&&nStr.equals("")){
+        if(!aStr.equals("")&&!mStr.equals("")&&!nStr.equals("")){
             int a =-1;
             int m =-1;
             int n =-1;
