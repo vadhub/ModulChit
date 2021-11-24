@@ -48,55 +48,36 @@ public class AlphavitePresenter {
 
     public void fragmentChoosen(boolean isEncrypt, String qStr, String pStr){
 
-        Observable.just(isEncrypt)
-                .subscribeOn(Schedulers.io())
-                .groupBy(aBoolean -> true)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(booleanGroupedObservable -> {
-                    Fragment fragment = null;
-                    int n;
-                    int eller;
-                    List<Integer> exponents;
+        Fragment fragment = null;
+        int n = 0;
+        int eller = 0;
+        List<Integer> exponents = null;
 
-                    if(booleanGroupedObservable.getKey()){
-                        if(!qStr.equals("")&&!pStr.equals("")){
-                            int p = Integer.parseInt(pStr);
-                            int q = Integer.parseInt(qStr);
+        int p = 0;
+        int q = 0;
 
-                            n = rsaMod.getN(p,q);
-                            eller = rsaMod.functionEller(p,q);
-                            exponents = rsaMod.exponenta(eller);
+        if (!qStr.equals("")&&!pStr.equals("")) {
+            p = Integer.parseInt(pStr);
+            q = Integer.parseInt(qStr);
+            n = rsaMod.getN(p,q);
+            eller = rsaMod.functionEller(p,q);
+            exponents = rsaMod.exponenta(eller);
 
-                            if(rsaMod.isSimpleNumber(p)&&rsaMod.isSimpleNumber(q)){
-                                fragment = new FragmentRSAcrypt(alphaviteCodes, n, exponents);
-                            }else{
-                                alphaviteView.showError(R.string.warning_prime);
-                            }
-                        }else{
-                            fragment = new FragmentRSAcrypt(alphaviteCodes);
-                        }
-                    }else {
-                        if(!qStr.equals("")&&!pStr.equals("")){
-                            int p = Integer.parseInt(pStr);
-                            int q = Integer.parseInt(qStr);
+            if (rsaMod.isSimpleNumber(p)&&rsaMod.isSimpleNumber(q)) {
+                if (isEncrypt) {
+                    fragment = new FragmentRSAcrypt(alphaviteCodes, n, exponents);
+                } else {
+                    int d = rsaMod.getDPrivate(eller, exponents.get(0));
+                    fragment = new FragmentRSAdecrypt(alphaviteCodes, n, d, eller, exponents.get(0), p, q);
+                }
+            } else {
+                alphaviteView.showError(R.string.warning_prime);
+            }
+        } else {
+            alphaviteView.showError(R.string.warning_enter_p_q);
+        }
 
-                            n =rsaMod.getN(p,q);
-                            eller = rsaMod.functionEller(p,q);
-                            exponents = rsaMod.exponenta(eller);
-                            int d = rsaMod.getDPrivate(eller, exponents.get(0));
+        alphaviteView.fragmentLoad(fragment);
 
-                            if(rsaMod.isSimpleNumber(p)&&rsaMod.isSimpleNumber(q)){
-                                fragment = new FragmentRSAdecrypt(alphaviteCodes, n, d, eller, exponents.get(0), p, q);
-                            }else{
-                                alphaviteView.showError(R.string.warning_prime);
-                            }
-                        }else{
-                            alphaviteView.showError(R.string.warning_enter_p_q);
-                        }
-
-                    }
-
-                    alphaviteView.fragmentLoad(fragment);
-                });
     }
 }
