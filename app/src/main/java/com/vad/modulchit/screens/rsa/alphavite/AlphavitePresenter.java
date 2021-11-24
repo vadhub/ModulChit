@@ -49,7 +49,7 @@ public class AlphavitePresenter {
     public void fragmentChoosen(boolean isEncrypt, String qStr, String pStr){
 
         Observable.just(isEncrypt)
-                .subscribeOn(Schedulers.computation())
+                .subscribeOn(Schedulers.io())
                 .groupBy(aBoolean -> true)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(booleanGroupedObservable -> {
