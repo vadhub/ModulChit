@@ -1,10 +1,12 @@
 package com.vad.modulchit.screens.rsa.decrypt;
 
 
+import android.os.Handler;
+import android.os.Looper;
+
 import com.vad.modulchit.R;
 import com.vad.modulchit.utils.AlgebraMod;
 import com.vad.modulchit.utils.RSAmod;
-
 import java.util.List;
 
 public class DecryptPresenter {
@@ -33,8 +35,13 @@ public class DecryptPresenter {
             int finalNInt = nInt;
 
             view.showTitle();
+            Handler handler = new Handler(Looper.getMainLooper());
 
-            calculateExtraData(eller, exponent, alphaviteCodes, finalNInt, finalDInt, p, q, enterCodeDecrypt);
+            new Thread(() -> {
+                handler.post(() -> {
+                    calculateExtraData(eller, exponent, alphaviteCodes, finalNInt, finalDInt, p, q, enterCodeDecrypt);
+                });
+            }).start();
 
             view.showCalculating(rsaMod.decryptingFE(finalDInt, finalNInt, enterCodeDecrypt));
 
@@ -51,9 +58,7 @@ public class DecryptPresenter {
 
         StringBuilder builder = new StringBuilder();
 
-        new Thread(() -> {
-                builder.append("result : ").append(rsaMod.decrypting(alphaviteCodes, d, n, enterCodeDecrypt).toUpperCase()).append("\n").append("\n");
-        }).start();
+        builder.append("result : ").append(rsaMod.decrypting(alphaviteCodes, d, n, enterCodeDecrypt).toUpperCase()).append("\n").append("\n");
 
         builder.append("n = ").append(p).append("*").append(q).append(" = ").append(n).append(";\n");
 
