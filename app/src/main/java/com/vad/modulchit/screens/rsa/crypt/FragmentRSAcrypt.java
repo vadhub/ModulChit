@@ -82,9 +82,7 @@ public class FragmentRSAcrypt extends Fragment implements CryptView{
 
             String eStr = editTextE.getText().toString();
             String nStr = editTextN.getText().toString();
-
             String textToEncrypt = enterTextToCrypt.getText().toString();
-
             cryptPresenter.result(alphaviteCodes, textToEncrypt, eStr, nStr);
         }
     };

@@ -19,7 +19,7 @@ public class ListMGpresenter {
     public void loadListMG(int m){
 
         Observable.just("")
-                .subscribeOn(Schedulers.computation())
+                .subscribeOn(Schedulers.io())
                 .map(o -> algebraMod.nokGraph(m))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(numberNOKS -> listMGView.showData(numberNOKS));
