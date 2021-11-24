@@ -39,9 +39,7 @@ public class ListGCDEpresenter {
     }
 
     public void showResult(String aStr, String bStr){
-        if (aStr.equals("")&&bStr.equals("")){
-            listGCDEView.showError(R.string.warning_enter_text);
-        }else {
+        if (aStr.trim().length()!=0&&bStr.trim().length()!=0){
             int a = -1;
             int b = -1;
             try{
@@ -56,6 +54,8 @@ public class ListGCDEpresenter {
             }else{
                 listGCDEView.showError(R.string.warning_zero);
             }
+        }else {
+            listGCDEView.showError(R.string.warning_enter_text);
         }
 
     }

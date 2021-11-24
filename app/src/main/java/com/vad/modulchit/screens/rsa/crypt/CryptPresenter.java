@@ -7,6 +7,11 @@ import com.vad.modulchit.utils.RSAshiphr;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class CryptPresenter {
 
@@ -22,18 +27,30 @@ public class CryptPresenter {
     private void encrypt(List<Integer> alphaviteCodes, String textToEncrypt){
 
         char[] strCrypt = textToEncrypt.toLowerCase().toCharArray();
-        for (char c : strCrypt) {
-            for (int j = 0; j < rsAshiphr.getAlphabyteEN().size(); j++) {
-                if (rsAshiphr.getAlphabyteEN().get(j).equals(c)) {
-                    numbersCodesForCrypt.add(alphaviteCodes.get(j));
-                    break;
-                }
-            }
-        }
+
+        Observable.fromArray(strCrypt)
+                .subscribeOn(Schedulers.io())
+                .flatMap(arr -> {
+                    for (char s: arr) {
+                        return Observable.just(s);
+                    }
+                    return null;
+                }).filter(Objects::nonNull)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(s -> {
+                    System.out.println(s);
+                });
+
+//        for (int j = 0; j < rsAshiphr.getAlphabyteEN().size(); j++) {
+//            if (rsAshiphr.getAlphabyteEN().get(j).equals(chars)) {
+//                numbersCodesForCrypt.add(alphaviteCodes.get(j));
+//                break;
+//            }
+//        }
     }
 
     public void result(List<Integer> alphaviteCodes, String textToEncrypt, String eStr, String nStr){
-        //encrypt text
+        //is letters?
         if(textToEncrypt.matches("[a-zA-Z\\s]+")){
 
             encrypt(alphaviteCodes, textToEncrypt);

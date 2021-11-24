@@ -22,7 +22,7 @@ public class ListFEpresenter {
     public void loadListFE(int a, int m, int n){
 
         Observable.just("")
-                .subscribeOn(Schedulers.computation())
+                .subscribeOn(Schedulers.io())
                 .map(o -> algebraMod.feGraph(a, m, n))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(tableNumberFES -> listFEView.showData(tableNumberFES));

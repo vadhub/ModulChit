@@ -25,8 +25,11 @@ public class AlphavitePresenter {
     }
 
     public void alphaviteLoad(){
-        List<Integer> alphaviteCodes = shiphr.getNumberShiphr();
-        alphaviteView.alphaviteLoad(alphaviteCodes);
+        Observable.just("")
+                .subscribeOn(Schedulers.io())
+                .map(o -> shiphr.getNumberShiphr())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(shph -> alphaviteView.alphaviteLoad(shph));
     }
 
     public void alphaviteChosen(int i, int numberForFirstLetter){
@@ -44,7 +47,6 @@ public class AlphavitePresenter {
     }
 
     public void fragmentChoosen(boolean isEncrypt, String qStr, String pStr){
-
 
         Observable.just(isEncrypt)
                 .subscribeOn(Schedulers.computation())
