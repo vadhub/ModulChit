@@ -17,7 +17,6 @@ public class CryptPresenter {
 
     private CryptView view;
     private List<Integer> numbersCodesForCrypt = new ArrayList<>();
-    private RSAshiphr rsAshiphr = new RSAshiphr();
     private RSAmod rsaMod = new RSAmod();
 
     public CryptPresenter(CryptView view) {
