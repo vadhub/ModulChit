@@ -9,9 +9,9 @@ import java.util.List;
 
 public class DecryptPresenter {
 
-    private DecryptView view;
-    private AlgebraMod algebraMod = new AlgebraMod();
-    private RSAmod rsaMod = new RSAmod();
+    private final DecryptView view;
+    private final AlgebraMod algebraMod = new AlgebraMod();
+    private final RSAmod rsaMod = new RSAmod();
 
     public DecryptPresenter(DecryptView view) {
         this.view = view;
@@ -48,17 +48,21 @@ public class DecryptPresenter {
     private void calculateExtraData(int eller, int exponent, List<Integer> alphaviteCodes, int n, int d, int p, int q, String enterCodeDecrypt){
 
         int dView = algebraMod.gcdGraph(eller, exponent).get(algebraMod.gcdGraph(eller, exponent).size()-1).getY2();
-        final String[] strResult = {""};
-        strResult[0] ="result : "+ rsaMod.decrypting(alphaviteCodes,d, n, enterCodeDecrypt).toUpperCase()+"\n"+"\n";
 
-        strResult[0] +="n = "+p+"*"+q+" = "+n+";\n";
+        StringBuilder builder = new StringBuilder();
 
-        strResult[0] +="eller = ("+p+"-1"+"*"+q+"-1"+") = "+eller+";\n"+
-                "exponent: "+exponent+";\n";
+        new Thread(() -> {
+                builder.append("result : ").append(rsaMod.decrypting(alphaviteCodes, d, n, enterCodeDecrypt).toUpperCase()).append("\n").append("\n");
+        }).start();
 
-        if (algebraMod.gcdGraph(eller, exponent).get(algebraMod.gcdGraph(eller, exponent).size()-1).getY2() < 0) {
-            strResult[0] += "d = "+eller+" "+dView+"="+d+";";
+        builder.append("n = ").append(p).append("*").append(q).append(" = ").append(n).append(";\n");
+
+        builder.append("eller = (").append(p).append("-1").append("*").append(q).append("-1").append(") = ")
+                .append(eller).append(";\n").append("exponent: ").append(exponent).append(";\n");
+
+        if (dView < 0) {
+            builder.append("d = ").append(eller).append(" ").append(dView).append("=").append(d).append(";");
         }
-        view.showCalculatingExtra(strResult[0]);
+        view.showCalculatingExtra(builder.toString());
     }
 }
