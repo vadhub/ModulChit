@@ -17,6 +17,7 @@ public class CryptPresenter {
 
     private CryptView view;
     private List<Integer> numbersCodesForCrypt = new ArrayList<>();
+    private RSAshiphr cypher = new RSAshiphr();
     private RSAmod rsaMod = new RSAmod();
 
     public CryptPresenter(CryptView view) {
@@ -25,27 +26,29 @@ public class CryptPresenter {
 
     private void encrypt(List<Integer> alphaviteCodes, String textToEncrypt){
 
-        char[] strCrypt = textToEncrypt.toLowerCase().toCharArray();
-
-        Observable.fromArray(strCrypt)
-                .subscribeOn(Schedulers.io())
-                .flatMap(arr -> {
-                    for (char s: arr) {
-                        return Observable.just(s);
-                    }
-                    return null;
-                }).filter(Objects::nonNull)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(s -> {
-                    System.out.println(s);
-                });
-
-//        for (int j = 0; j < rsAshiphr.getAlphabyteEN().size(); j++) {
-//            if (rsAshiphr.getAlphabyteEN().get(j).equals(chars)) {
-//                numbersCodesForCrypt.add(alphaviteCodes.get(j));
-//                break;
-//            }
-//        }
+//        char[] strCrypt = textToEncrypt.toLowerCase().toCharArray();
+//
+//        Observable.fromArray(strCrypt)
+//                .subscribeOn(Schedulers.io())
+//                .flatMap(arr -> {
+//                    for (char s: arr) {
+//                        return Observable.just(s);
+//                    }
+//                    return null;
+//                }).filter(Objects::nonNull)
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(s -> {
+//                    System.out.println(s);
+//                });
+        for (char c : textToEncrypt.toLowerCase().toCharArray()) {
+            for (int j = 0; j < cypher.getAlphabyteEN().size(); j++) {
+                if (cypher.getAlphabyteEN().get(j).equals(c)) {
+                    if (numbersCodesForCrypt != null)
+                    numbersCodesForCrypt.add(alphaviteCodes.get(j));
+                    break;
+                }
+            }
+        }
     }
 
     public void result(List<Integer> alphaviteCodes, String textToEncrypt, String eStr, String nStr){
