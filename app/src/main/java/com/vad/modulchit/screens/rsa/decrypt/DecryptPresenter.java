@@ -44,9 +44,7 @@ public class DecryptPresenter {
             }).start();
 
             view.showCalculating(rsaMod.decryptingFE(finalDInt, finalNInt, enterCodeDecrypt));
-
             view.showCalculatingExtra(algebraMod.gcdGraph(eller, exponent));
-
         }else{
             view.showError(R.string.warning_enter_text);
         }
@@ -57,11 +55,9 @@ public class DecryptPresenter {
         int dView = algebraMod.gcdGraph(eller, exponent).get(algebraMod.gcdGraph(eller, exponent).size()-1).getY2();
 
         StringBuilder builder = new StringBuilder();
-
-        builder.append("result : ").append(rsaMod.decrypting(alphaviteCodes, d, n, enterCodeDecrypt).toUpperCase()).append("\n").append("\n");
-
+        builder.append("result: ").append(rsaMod.decrypting(alphaviteCodes, d, n, enterCodeDecrypt).toUpperCase()).append("\n").append("\n");
+        System.out.println(rsaMod.decrypting(alphaviteCodes, d, n, enterCodeDecrypt).toUpperCase());
         builder.append("n = ").append(p).append("*").append(q).append(" = ").append(n).append(";\n");
-
         builder.append("eller = (").append(p).append("-1").append("*").append(q).append("-1").append(") = ")
                 .append(eller).append(";\n").append("exponent: ").append(exponent).append(";\n");
 

@@ -71,9 +71,7 @@ public class CryptPresenter {
                 int finalN = n;
 
                 view.showCalculating(rsaMod.encryptingFE(finalE, finalN, numbersCodesForCrypt));
-
                 view.showCalculatingExtra(rsaMod.encrypting(finalE, finalN, numbersCodesForCrypt)+"\n");
-
                 numbersCodesForCrypt=null;
 
             }else{
