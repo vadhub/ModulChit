@@ -1,5 +1,6 @@
 package com.vad.modulchit.adapters;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,8 +37,14 @@ public class AdapterNOK extends RecyclerView.Adapter<AdapterNOK.MyViewHolderNOK>
     @Override
     public void onBindViewHolder(@NonNull AdapterNOK.MyViewHolderNOK holder, int position) {
 
+        boolean paint = false;
+
+        if (position % 2 == 0) {
+            paint = true;
+        }
+
         TableNumberNOK tableNumberNOK = tableNumberNOKS.get(position);
-        holder.bind(tableNumberNOK);
+        holder.bind(tableNumberNOK, paint);
 
         holder.itemView.setOnClickListener(view -> {
             boolean expanded = tableNumberNOK.isExpanded();
@@ -48,17 +55,6 @@ public class AdapterNOK extends RecyclerView.Adapter<AdapterNOK.MyViewHolderNOK>
             }
         });
 
-//        holder.textViewAn.setText(tableNumberNOKS.get(position).getAn()+"");
-//        holder.textViewBn.setText(tableNumberNOKS.get(position).getBn()+"");
-//        holder.textViewQn.setText(tableNumberNOKS.get(position).getQn()+"");
-//        holder.textViewRn.setText(tableNumberNOKS.get(position).getRn()+"");
-//
-//        if(tableNumberNOKS.get(position).getBn()==0){
-//            holder.textViewAn.setText("-");
-//            holder.textViewBn.setText("-");
-//            holder.textViewQn.setText("-");
-//            holder.textViewRn.setText("-");
-//        }
     }
 
     @Override
@@ -88,11 +84,20 @@ public class AdapterNOK extends RecyclerView.Adapter<AdapterNOK.MyViewHolderNOK>
             textViewextra = (TextView) itemView.findViewById(R.id.extra_gcd);
         }
 
-        private void bind(TableNumberNOK tableNumberNOK){
+        @SuppressLint("ResourceAsColor")
+        private void bind(TableNumberNOK tableNumberNOK, boolean paint){
 
             boolean expanded = tableNumberNOK.isExpanded();
 
             subItem.setVisibility(expanded ? View.VISIBLE : View.GONE);
+
+            if (paint) {
+                int c = R.color.textViewColor;
+                textViewAn.setBackgroundColor(c);
+                textViewBn.setBackgroundColor(c);
+                textViewQn.setBackgroundColor(c);
+                textViewRn.setBackgroundColor(c);
+            }
 
             textViewAn.setText(tableNumberNOK.getAn()+"");
             textViewBn.setText(tableNumberNOK.getBn()+"");

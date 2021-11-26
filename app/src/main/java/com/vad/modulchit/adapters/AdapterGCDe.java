@@ -1,5 +1,6 @@
 package com.vad.modulchit.adapters;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,16 +39,13 @@ public class AdapterGCDe extends RecyclerView.Adapter<AdapterGCDe.MyViewHolder> 
     @Override
     public void onBindViewHolder(AdapterGCDe.MyViewHolder holder, int position) {
 
-        TableNumberGCDe tableNumberGCDe = tableNumberGCDes.get(position);
-        holder.bind(tableNumberGCDe);
+        boolean paint = false;
 
-//        holder.textViewA.setText(tableNumberGCDes.get(position).getA()+"");
-//        holder.textViewB.setText(tableNumberGCDes.get(position).getB()+"");
-//        holder.textViewQ.setText(tableNumberGCDes.get(position).getQ()+"");
-//        holder.textViewR.setText(tableNumberGCDes.get(position).getR()+"");
-//
-//        holder.textViewX.setText("("+ tableNumberGCDes.get(position).getX1()+"; "+ tableNumberGCDes.get(position).getX2()+")");
-//        holder.textViewY.setText("("+ tableNumberGCDes.get(position).getY1()+"; "+ tableNumberGCDes.get(position).getY2()+")");
+        if (position % 2 == 0) {
+            paint = true;
+        }
+        TableNumberGCDe tableNumberGCDe = tableNumberGCDes.get(position);
+        holder.bind(tableNumberGCDe, paint);
 
         holder.itemView.setOnClickListener(view -> {
             boolean expanded = tableNumberGCDes.get(position).isExpanded();
@@ -93,11 +91,23 @@ public class AdapterGCDe extends RecyclerView.Adapter<AdapterGCDe.MyViewHolder> 
             subItem = (View) itemView.findViewById(R.id.subItem);
         }
 
-        private void bind(TableNumberGCDe gcde) {
+        @SuppressLint("ResourceAsColor")
+        private void bind(TableNumberGCDe gcde, boolean paint) {
             // Get the state
             boolean expanded = gcde.isExpanded();
             // Set the visibility based on state
             subItem.setVisibility(expanded ? View.VISIBLE : View.GONE);
+
+            if (paint) {
+                int c = R.color.textViewColor;
+                textViewA.setBackgroundColor(c);
+                textViewB.setBackgroundColor(c);
+                textViewQ.setBackgroundColor(c);
+                textViewR.setBackgroundColor(c);
+                textViewX.setBackgroundColor(c);
+                textViewY.setBackgroundColor(c);
+                textViewExtra.setBackgroundColor(c);
+            }
 
             textViewA.setText(gcde.getA()+"");
             textViewB.setText(gcde.getB()+"");
