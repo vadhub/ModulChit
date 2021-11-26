@@ -30,6 +30,6 @@
     <string name="decrypt">Расшифровать</string>
     <string name="first_number">первое число</string>
     <string name="next">дальше</string>
-    <string name="from_list">"из списка "</string>
+    <string name="from_list">"из списка экспонент:"</string>
     <string name="get_first">"берем "</string>
 </resources>

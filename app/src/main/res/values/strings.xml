@@ -25,7 +25,7 @@
     <string name="decrypt">Decrypt</string>
     <string name="first_number">first number</string>
     <string name="next">next</string>
-    <string name="from_list">"from list "</string>
+    <string name="from_list">"from list exponents: "</string>
     <string name="get_first">" get: "</string>
 
     <string-array name="modifyRsaAlpabyte">
