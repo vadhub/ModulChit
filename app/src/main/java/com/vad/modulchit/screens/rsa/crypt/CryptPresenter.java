@@ -16,7 +16,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class CryptPresenter {
 
     private CryptView view;
-    private List<Integer> numbersCodesForCrypt = new ArrayList<>();
+    private volatile List<Integer> numbersCodesForCrypt = new ArrayList<>();
     private RSAshiphr cypher = new RSAshiphr();
     private RSAmod rsaMod = new RSAmod();
 
@@ -40,22 +40,25 @@ public class CryptPresenter {
 //                .subscribe(s -> {
 //                    System.out.println(s);
 //                });
-        for (char c : textToEncrypt.toLowerCase().toCharArray()) {
-            for (int j = 0; j < cypher.getAlphabyteEN().size(); j++) {
-                if (cypher.getAlphabyteEN().get(j).equals(c)) {
-                    if (numbersCodesForCrypt != null)
-                    numbersCodesForCrypt.add(alphaviteCodes.get(j));
-                    break;
+
+            for (char c : textToEncrypt.toLowerCase().toCharArray()) {
+                for (int j = 0; j < cypher.getAlphabyteEN().size(); j++) {
+                    if (cypher.getAlphabyteEN().get(j).equals(c)) {
+                        if (numbersCodesForCrypt != null)
+                            numbersCodesForCrypt.add(alphaviteCodes.get(j));
+                        break;
+                    }
                 }
             }
-        }
     }
 
     public void result(List<Integer> alphaviteCodes, String textToEncrypt, String eStr, String nStr){
         //is letters?
         if(textToEncrypt.matches("[a-zA-Z\\s]+")){
 
-            encrypt(alphaviteCodes, textToEncrypt);
+            new Thread(() -> {
+                encrypt(alphaviteCodes, textToEncrypt);
+            }).start();
             //output calculated result
             if(!eStr.equals("")&&!nStr.equals("")){
                 int e = -1;
