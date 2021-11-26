@@ -79,6 +79,7 @@ public class MainActivityMain extends AppCompatActivity{
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
+        if (fragment != null)
         getSupportFragmentManager().putFragment(outState, "mFragment", fragment);
     }
 }
