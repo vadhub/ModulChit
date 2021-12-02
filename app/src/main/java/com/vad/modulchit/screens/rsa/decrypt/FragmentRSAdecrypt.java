@@ -50,6 +50,7 @@ public class FragmentRSAdecrypt extends Fragment implements DecryptView {
     private DecryptPresenter presenter;
     private CardView cardGCDEreverse;
     private CardView cardIncludeFeDec;
+    private CardView cardResultDecrypt;
 
     public FragmentRSAdecrypt(List<Integer> alphaviteCodes,int n, int d, int eller, int exponent, int p, int q) {
         this.alphaviteCodes = alphaviteCodes;
@@ -68,6 +69,7 @@ public class FragmentRSAdecrypt extends Fragment implements DecryptView {
 
         getActivity().setTitle("RSA Decrypt");
 
+        cardResultDecrypt = (CardView) v.findViewById(R.id.cardResultDecrypt);
         cardIncludeFeDec = (CardView) v.findViewById(R.id.cardIncludeFeDec);
         cardGCDEreverse = (CardView) v.findViewById(R.id.cardGCDEreverse);
         presenter = new DecryptPresenter(this);
@@ -110,6 +112,7 @@ public class FragmentRSAdecrypt extends Fragment implements DecryptView {
             presenter.decrypt(dStr, nStr, eller, exponent, alphaviteCodes, enterCodeDecrypt.getText().toString(), p, q);
             cardIncludeFeDec.setVisibility(View.VISIBLE);
             cardGCDEreverse.setVisibility(View.VISIBLE);
+            cardResultDecrypt.setVisibility(View.VISIBLE);
 
         }
     };
