@@ -1,11 +1,15 @@
 package com.vad.modulchit.screens.rsa.crypt;
 
 
+import android.os.Handler;
+import android.os.Looper;
+
 import com.vad.modulchit.R;
 import com.vad.modulchit.utils.RSAmod;
 import com.vad.modulchit.utils.RSAshiphr;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,26 +28,22 @@ public class CryptPresenter {
         this.view = view;
     }
 
-    private void encrypt(List<Integer> alphaviteCodes, String textToEncrypt){
-
+    private List<Integer> encrypt(List<Integer> alphaviteCodes, String textToEncrypt){
+        List<Integer> numbersCodesForCrypt = new ArrayList<>();
             for (char c : textToEncrypt.toLowerCase().toCharArray()) {
                 for (int j = 0; j < cypher.getAlphabyteEN().size(); j++) {
                     if (cypher.getAlphabyteEN().get(j).equals(c)) {
-                        if (numbersCodesForCrypt != null)
-                            numbersCodesForCrypt.add(alphaviteCodes.get(j));
+                        numbersCodesForCrypt.add(alphaviteCodes.get(j));
                         break;
                     }
                 }
             }
+            return numbersCodesForCrypt;
     }
 
     public void result(List<Integer> alphaviteCodes, String textToEncrypt, String eStr, String nStr){
         //is letters?
         if(textToEncrypt.matches("[a-zA-Z\\s]+")){
-
-            new Thread(() -> {
-                encrypt(alphaviteCodes, textToEncrypt);
-            }).start();
             //output calculated result
             if(!eStr.equals("")&&!nStr.equals("")){
                 int e = -1;
@@ -61,8 +61,16 @@ public class CryptPresenter {
                 int finalE = e;
                 int finalN = n;
 
-                view.showCalculating(rsaMod.encryptingFE(finalE, finalN, numbersCodesForCrypt));
-                view.showCalculatingExtra(rsaMod.encrypting(finalE, finalN, numbersCodesForCrypt)+"\n");
+                new Thread(() -> {
+                    numbersCodesForCrypt = encrypt(alphaviteCodes, textToEncrypt);
+
+                    Handler handler = new Handler(Looper.getMainLooper());
+                    handler.post(() -> {
+                        view.showCalculating(rsaMod.encryptingFE(finalE, finalN, numbersCodesForCrypt));
+                        view.showCalculatingExtra(rsaMod.encrypting(finalE, finalN, numbersCodesForCrypt)+"\n");
+                    });
+
+                }).start();
                 numbersCodesForCrypt=null;
 
             }else{
