@@ -114,6 +114,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardIncludeFe"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="8dp"
@@ -134,8 +135,8 @@
                         android:id="@+id/includeFe"
                         layout="@layout/item_fe_tite"
                         android:layout_width="match_parent"
-                        android:visibility="invisible"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:visibility="invisible" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/cryptRecycler"

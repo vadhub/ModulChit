@@ -26,21 +26,6 @@ public class CryptPresenter {
 
     private void encrypt(List<Integer> alphaviteCodes, String textToEncrypt){
 
-//        char[] strCrypt = textToEncrypt.toLowerCase().toCharArray();
-//
-//        Observable.fromArray(strCrypt)
-//                .subscribeOn(Schedulers.io())
-//                .flatMap(arr -> {
-//                    for (char s: arr) {
-//                        return Observable.just(s);
-//                    }
-//                    return null;
-//                }).filter(Objects::nonNull)
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(s -> {
-//                    System.out.println(s);
-//                });
-
             for (char c : textToEncrypt.toLowerCase().toCharArray()) {
                 for (int j = 0; j < cypher.getAlphabyteEN().size(); j++) {
                     if (cypher.getAlphabyteEN().get(j).equals(c)) {

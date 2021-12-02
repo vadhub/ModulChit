@@ -151,6 +151,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardIncludeFeDec"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -179,7 +180,7 @@
                         android:id="@+id/decryptRecycler"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_below="@+id/includeFeDec"/>
+                        android:layout_below="@+id/includeFeDec" />
 
                 </RelativeLayout>
 

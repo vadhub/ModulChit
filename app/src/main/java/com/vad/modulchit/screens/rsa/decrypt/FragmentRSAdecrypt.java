@@ -2,6 +2,7 @@ package com.vad.modulchit.screens.rsa.decrypt;
 
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,10 +45,11 @@ public class FragmentRSAdecrypt extends Fragment implements DecryptView {
     private RecyclerView mRecyclerGCDe;
     private AdapterFE adapterFE;
     private AdapterGCDe adapterGCDe;
-
     private View includeFeDec;
     private View includeGCDEreverse;
     private DecryptPresenter presenter;
+    private CardView cardGCDEreverse;
+    private CardView cardIncludeFeDec;
 
     public FragmentRSAdecrypt(List<Integer> alphaviteCodes,int n, int d, int eller, int exponent, int p, int q) {
         this.alphaviteCodes = alphaviteCodes;
@@ -66,8 +68,9 @@ public class FragmentRSAdecrypt extends Fragment implements DecryptView {
 
         getActivity().setTitle("RSA Decrypt");
 
+        cardIncludeFeDec = (CardView) v.findViewById(R.id.cardIncludeFeDec);
+        cardGCDEreverse = (CardView) v.findViewById(R.id.cardGCDEreverse);
         presenter = new DecryptPresenter(this);
-
         enterCodeDecrypt = v.findViewById(R.id.editTextCodeDecrypt);
         editTextD = v.findViewById(R.id.editTextDdecript);
         editTextN = v.findViewById(R.id.editTextNdecrypt);
@@ -105,6 +108,8 @@ public class FragmentRSAdecrypt extends Fragment implements DecryptView {
             String nStr = editTextN.getText().toString();
 
             presenter.decrypt(dStr, nStr, eller, exponent, alphaviteCodes, enterCodeDecrypt.getText().toString(), p, q);
+            cardIncludeFeDec.setVisibility(View.VISIBLE);
+            cardGCDEreverse.setVisibility(View.VISIBLE);
 
         }
     };

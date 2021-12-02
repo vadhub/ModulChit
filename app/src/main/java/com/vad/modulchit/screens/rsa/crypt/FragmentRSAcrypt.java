@@ -2,6 +2,7 @@ package com.vad.modulchit.screens.rsa.crypt;
 
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,6 +34,8 @@ public class FragmentRSAcrypt extends Fragment implements CryptView{
     private TextView textViewResult;
     private List<Integer> alphaviteCodes;
     private CryptPresenter cryptPresenter;
+    private CardView cardResultCrypt;
+    private CardView cardIncludeFe;
 
     private View includeFeCrypt;
 
@@ -53,6 +56,8 @@ public class FragmentRSAcrypt extends Fragment implements CryptView{
 
         getActivity().setTitle("RSA Encrypt");
 
+        cardIncludeFe = (CardView) v.findViewById(R.id.cardIncludeFe);
+        cardResultCrypt = (CardView) v.findViewById(R.id.cardResultCrypt);
         cryptPresenter = new CryptPresenter(this);
         btnOk = (Button) v.findViewById(R.id.buttonCrypt);
         enterTextToCrypt = (EditText) v.findViewById(R.id.editTextTextCrypt);
@@ -67,7 +72,7 @@ public class FragmentRSAcrypt extends Fragment implements CryptView{
 
         textViewMfere.setText("e");
 
-        if(exponents!=null){
+        if (exponents != null) {
             editTextE.setText(String.valueOf(exponents.get(0)));
             editTextN.setText(String.valueOf(n));
         }
@@ -84,6 +89,8 @@ public class FragmentRSAcrypt extends Fragment implements CryptView{
             String nStr = editTextN.getText().toString();
             String textToEncrypt = enterTextToCrypt.getText().toString();
             cryptPresenter.result(alphaviteCodes, textToEncrypt, eStr, nStr);
+            cardResultCrypt.setVisibility(View.VISIBLE);
+            cardIncludeFe.setVisibility(View.VISIBLE);
         }
     };
 
