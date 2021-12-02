@@ -39,7 +39,7 @@ public class AdapterNOK extends RecyclerView.Adapter<AdapterNOK.MyViewHolderNOK>
 
         boolean paint = false;
 
-        if (position % 2 == 0) {
+        if (position % 2 == 0 && position != tableNumberNOKS.size()) {
             paint = true;
         }
 

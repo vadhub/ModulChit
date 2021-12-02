@@ -41,7 +41,7 @@ public class AdapterGCDe extends RecyclerView.Adapter<AdapterGCDe.MyViewHolder> 
 
         boolean paint = false;
 
-        if (position % 2 == 0) {
+        if (position % 2 == 0 && position != tableNumberGCDes.size()) {
             paint = true;
         }
         TableNumberGCDe tableNumberGCDe = tableNumberGCDes.get(position);
