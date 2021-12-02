@@ -92,11 +92,10 @@ public class AdapterNOK extends RecyclerView.Adapter<AdapterNOK.MyViewHolderNOK>
             subItem.setVisibility(expanded ? View.VISIBLE : View.GONE);
 
             if (paint) {
-                int c = R.color.textViewColor;
-                textViewAn.setBackgroundColor(c);
-                textViewBn.setBackgroundColor(c);
-                textViewQn.setBackgroundColor(c);
-                textViewRn.setBackgroundColor(c);
+                textViewAn.setBackgroundResource(R.color.textViewColor);
+                textViewBn.setBackgroundResource(R.color.textViewColor);
+                textViewQn.setBackgroundResource(R.color.textViewColor);
+                textViewRn.setBackgroundResource(R.color.textViewColor);
             }
 
             textViewAn.setText(tableNumberNOK.getAn()+"");

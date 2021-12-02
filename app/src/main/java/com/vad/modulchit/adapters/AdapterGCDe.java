@@ -99,14 +99,12 @@ public class AdapterGCDe extends RecyclerView.Adapter<AdapterGCDe.MyViewHolder> 
             subItem.setVisibility(expanded ? View.VISIBLE : View.GONE);
 
             if (paint) {
-                int c = R.color.textViewColor;
-                textViewA.setBackgroundColor(c);
-                textViewB.setBackgroundColor(c);
-                textViewQ.setBackgroundColor(c);
-                textViewR.setBackgroundColor(c);
-                textViewX.setBackgroundColor(c);
-                textViewY.setBackgroundColor(c);
-                textViewExtra.setBackgroundColor(c);
+                textViewA.setBackgroundResource(R.color.textViewColor);
+                textViewB.setBackgroundResource(R.color.textViewColor);
+                textViewQ.setBackgroundResource(R.color.textViewColor);
+                textViewR.setBackgroundResource(R.color.textViewColor);
+                textViewX.setBackgroundResource(R.color.textViewColor);
+                textViewY.setBackgroundResource(R.color.textViewColor);
             }
 
             textViewA.setText(gcde.getA()+"");

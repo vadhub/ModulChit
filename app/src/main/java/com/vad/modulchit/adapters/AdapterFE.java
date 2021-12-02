@@ -92,12 +92,11 @@ public class AdapterFE extends RecyclerView.Adapter<AdapterFE.MyViewHolderFE> {
             boolean expanded = tableNumberFE.isExpanded();
 
             if (paint) {
-                int c = R.color.textViewColor;
-                textViewA.setBackgroundColor(c);
-                textViewM.setBackgroundColor(c);
-                textViewN.setBackgroundColor(c);
-                textViewP.setBackgroundColor(c);
-                textViewR.setBackgroundColor(c);
+                textViewA.setBackgroundResource(R.color.textViewColor);
+                textViewM.setBackgroundResource(R.color.textViewColor);
+                textViewN.setBackgroundResource(R.color.textViewColor);
+                textViewP.setBackgroundResource(R.color.textViewColor);
+                textViewR.setBackgroundResource(R.color.textViewColor);
             }
             subItem.setVisibility(expanded ? View.VISIBLE : View.GONE);
 

@@ -8,5 +8,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="background">#f7f7f7</color>
-    <color name="textViewColor">#dbdbdb</color>
+    <color name="textViewColor">#A8CFCFCF</color>
 </resources>
