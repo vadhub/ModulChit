@@ -21,15 +21,15 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <TextView
                 android:id="@+id/textViewAfe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="a"
-
                 android:gravity="center"
-                style="@style/Theme.ModulChit"
-                android:textSize="20sp" />
+                style="@style/theme_chit"
+                />
 
             <TextView
                 android:id="@+id/textViewMfe"
@@ -37,8 +37,8 @@
                 android:layout_height="wrap_content"
                 android:text="m"
                 android:gravity="center"
-                style="@style/Theme.ModulChit"
-                android:textSize="20sp" />
+                style="@style/theme_chit"
+                />
 
             <TextView
                 android:id="@+id/textViewNfe"
@@ -46,8 +46,8 @@
                 android:layout_height="wrap_content"
                 android:text="n"
                 android:gravity="center"
-                style="@style/Theme.ModulChit"
-                android:textSize="20sp" />
+                style="@style/theme_chit"
+                />
 
             <TextView
                 android:id="@+id/textViewPfe"
@@ -55,8 +55,8 @@
                 android:layout_height="wrap_content"
                 android:text="p"
                 android:gravity="center"
-                style="@style/Theme.ModulChit"
-                android:textSize="20sp" />
+                style="@style/theme_chit"
+                />
 
             <TextView
                 android:id="@+id/textViewRfe"
@@ -64,8 +64,8 @@
                 android:layout_height="wrap_content"
                 android:text="r"
                 android:gravity="center"
-                style="@style/Theme.ModulChit"
-                android:textSize="20sp" />
+                style="@style/theme_chit"
+                />
         </TableRow>
 
     </TableLayout>

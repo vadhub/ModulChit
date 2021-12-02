@@ -25,8 +25,8 @@
                 android:layout_height="wrap_content"
                 android:text="a"
                 android:gravity="center"
-                style="@style/Theme.ModulChit"
-                android:textSize="20sp" />
+                style="@style/theme_chit"
+                />
 
             <TextView
                 android:id="@+id/textViewBn"
@@ -34,8 +34,8 @@
                 android:layout_height="wrap_content"
                 android:text="b"
                 android:gravity="center"
-                style="@style/Theme.ModulChit"
-                android:textSize="20sp" />
+                style="@style/theme_chit"
+                />
 
             <TextView
                 android:id="@+id/textViewQn"
@@ -43,8 +43,8 @@
                 android:layout_height="wrap_content"
                 android:text="q"
                 android:gravity="center"
-                style="@style/Theme.ModulChit"
-                android:textSize="20sp" />
+                style="@style/theme_chit"
+                />
 
             <TextView
                 android:id="@+id/textViewRn"
@@ -52,8 +52,8 @@
                 android:layout_height="wrap_content"
                 android:text="r"
                 android:gravity="center"
-                style="@style/Theme.ModulChit"
-                android:textSize="20sp" />
+                style="@style/theme_chit"
+                />
 
         </TableRow>
     </TableLayout>
