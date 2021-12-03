@@ -1,5 +1,8 @@
 package com.vad.modulchit.screens.rsa.alphavite;
 
+import android.os.Handler;
+import android.os.Looper;
+
 import androidx.fragment.app.Fragment;
 import com.vad.modulchit.R;
 import com.vad.modulchit.screens.rsa.crypt.FragmentRSAcrypt;
@@ -24,17 +27,18 @@ public class AlphavitePresenter {
         this.alphaviteView = alphaviteView;
     }
 
-    public void alphaviteLoad(){
-        Observable.just("")
-                .subscribeOn(Schedulers.io())
-                .map(o -> shiphr.getNumberShiphr())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(shph -> alphaviteView.alphaviteLoad(shph));
+    public void alphaviteLoad() {
+        new Thread(() -> {
+            Handler handler = new Handler(Looper.getMainLooper());
+            handler.post(() -> {
+                alphaviteView.alphaviteLoad(shiphr.getNumberShiphr());
+            });
+        }).start();
     }
 
-    public void alphaviteChosen(int i, int numberForFirstLetter){
+    public void alphaviteChosen (int i, int numberForFirstLetter) {
 
-        switch (i){
+        switch (i) {
             case 0:
                 alphaviteCodes = shiphr.getNumberShiphr();
                 alphaviteView.alphaviteLoad(alphaviteCodes);
@@ -46,7 +50,7 @@ public class AlphavitePresenter {
         }
     }
 
-    public void fragmentChoosen(boolean isEncrypt, String qStr, String pStr){
+    public void fragmentChoosen(boolean isEncrypt, String qStr, String pStr) {
 
         Fragment fragment = null;
         int n = 0;
@@ -63,7 +67,7 @@ public class AlphavitePresenter {
             eller = rsaMod.functionEller(p,q);
             exponents = rsaMod.exponenta(eller);
 
-            if (rsaMod.isSimpleNumber(p)&&rsaMod.isSimpleNumber(q)) {
+            if (rsaMod.isSimpleNumber(p) && rsaMod.isSimpleNumber(q)) {
                 if (isEncrypt) {
                     fragment = new FragmentRSAcrypt(alphaviteCodes, n, exponents);
                 } else {
