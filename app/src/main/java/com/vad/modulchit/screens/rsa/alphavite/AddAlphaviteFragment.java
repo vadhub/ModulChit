@@ -129,13 +129,13 @@ public class AddAlphaviteFragment extends Fragment implements AlphaviteView{
         }
     };
 
-    private void update(int i){
+    private void update(int i) {
 
-        if(numberForFirstLetter.getText().toString().equals("")){
-            if(i!=0){
+        if (numberForFirstLetter.getText().toString().equals("")) {
+            if (i != 0) {
                 Toast.makeText(getContext(), getResources().getString(R.string.warning_enter_text), Toast.LENGTH_SHORT).show();
             }
-        }else{
+        } else {
             presenter.alphaviteChosen(i, Integer.parseInt(numberForFirstLetter.getText().toString()));
         }
 
@@ -143,17 +143,15 @@ public class AddAlphaviteFragment extends Fragment implements AlphaviteView{
 
     @Override
     public void alphaviteLoad(List<Integer> alphaviteCodes) {
-        new Thread(() -> getActivity().runOnUiThread(() -> {
-            progressBar.setVisibility(View.VISIBLE);
-            adapterRSAalphabyte.setNumbersCode(alphaviteCodes);
-            mRecyclerView.setAdapter(adapterRSAalphabyte);
-            progressBar.setVisibility(View.INVISIBLE);
-        })).start();
+        progressBar.setVisibility(View.VISIBLE);
+        adapterRSAalphabyte.setNumbersCode(alphaviteCodes);
+        mRecyclerView.setAdapter(adapterRSAalphabyte);
+        progressBar.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void fragmentLoad(Fragment fragment) {
-        if(fragment!=null){
+        if (fragment != null) {
             getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_replace, fragment).commit();
         }
     }
