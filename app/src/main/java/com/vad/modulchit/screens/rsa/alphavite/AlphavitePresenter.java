@@ -31,21 +31,30 @@ public class AlphavitePresenter {
         new Thread(() -> {
             Handler handler = new Handler(Looper.getMainLooper());
             handler.post(() -> {
-                alphaviteView.alphaviteLoad(shiphr.getNumberShiphr());
+                alphaviteCodes = shiphr.getNumberShiphr();
+                alphaviteView.alphaviteLoad(alphaviteCodes);
+            });
+        }).start();
+
+    }
+
+    public void alphaviteLoad(int numberForFirstLetter) {
+        new Thread(() -> {
+            Handler handler = new Handler(Looper.getMainLooper());
+            handler.post(() -> {
+                alphaviteCodes = shiphr.getNumberShiphr(numberForFirstLetter);
+                alphaviteView.alphaviteLoad(alphaviteCodes);
             });
         }).start();
     }
 
-    public void alphaviteChosen (int i, int numberForFirstLetter) {
-
+    public void alphaviteChosen(int i, int numberForFirstLetter) {
         switch (i) {
             case 0:
-                alphaviteCodes = shiphr.getNumberShiphr();
-                alphaviteView.alphaviteLoad(alphaviteCodes);
+                alphaviteLoad();
                 break;
             case 1:
-                alphaviteCodes = shiphr.getNumberShiphr(numberForFirstLetter);
-                alphaviteView.alphaviteLoad(alphaviteCodes);
+                alphaviteLoad(numberForFirstLetter);
                 break;
         }
     }
@@ -60,7 +69,7 @@ public class AlphavitePresenter {
         int p = 0;
         int q = 0;
 
-        if (!qStr.equals("")&&!pStr.equals("")) {
+        if (!qStr.equals("") && !pStr.equals("")) {
             p = Integer.parseInt(pStr);
             q = Integer.parseInt(qStr);
             n = rsaMod.getN(p,q);
