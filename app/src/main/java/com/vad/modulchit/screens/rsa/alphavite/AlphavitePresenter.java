@@ -78,10 +78,10 @@ public class AlphavitePresenter {
 
             if (rsaMod.isSimpleNumber(p) && rsaMod.isSimpleNumber(q)) {
                 if (isEncrypt) {
-                    fragment = new FragmentRSAcrypt(alphaviteCodes, n, exponents);
+                    fragment = FragmentRSAcrypt.newInstance(alphaviteCodes, n, exponents);
                 } else {
                     int d = rsaMod.getDPrivate(eller, exponents.get(0));
-                    fragment = new FragmentRSAdecrypt(alphaviteCodes, n, d, eller, exponents.get(0), p, q);
+                    fragment = FragmentRSAdecrypt.newInstance(alphaviteCodes, n, d, eller, exponents.get(0), p, q);
                 }
             } else {
                 alphaviteView.showError(R.string.warning_prime);
