@@ -2,6 +2,7 @@ package com.vad.modulchit.screens.rsa.crypt;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -43,16 +44,26 @@ public class FragmentRSAcrypt extends Fragment implements CryptView{
 
     private View includeFeCrypt;
 
-    private static String ARG_ALPAVITE_LIST = "alphaviteCodes";
-    private static String ARG_N_INT = "n_int";
-    private static String ARG_EXPONENTS = "exponents";
+    private static final String ARG_ALPAVITE_LIST = "alphaviteCodes";
+    private static final String ARG_N_INT = "n_int";
+    private static final String ARG_EXPONENTS = "exponents";
 
     public static FragmentRSAcrypt newInstance(List<Integer> alphaviteCodes, int n, List<Integer> exponents) {
         Bundle args = new Bundle();
         args.putIntegerArrayList(ARG_ALPAVITE_LIST, (ArrayList<Integer>) alphaviteCodes);
         args.putInt(ARG_N_INT, n);
         args.putIntegerArrayList(ARG_EXPONENTS, (ArrayList<Integer>) exponents);
-        return new FragmentRSAcrypt();
+        FragmentRSAcrypt fragmentRSAcrypt = new FragmentRSAcrypt();
+        fragmentRSAcrypt.setArguments(args);
+        return fragmentRSAcrypt;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        alphaviteCodes = getArguments().getIntegerArrayList(ARG_ALPAVITE_LIST);
+        n = requireArguments().getInt(ARG_N_INT);
+        exponents = requireArguments().getIntegerArrayList(ARG_EXPONENTS);
     }
 
     @Override
@@ -61,10 +72,6 @@ public class FragmentRSAcrypt extends Fragment implements CryptView{
         View v = inflater.inflate(R.layout.fragment_rsa_crypt, container, false);
 
         getActivity().setTitle("RSA Encrypt");
-
-        alphaviteCodes = requireArguments().getIntegerArrayList(ARG_ALPAVITE_LIST);
-        n = requireArguments().getInt(ARG_N_INT);
-        exponents = requireArguments().getIntegerArrayList(ARG_EXPONENTS);
 
         cardIncludeFe = (CardView) v.findViewById(R.id.cardIncludeFe);
         cardResultCrypt = (CardView) v.findViewById(R.id.cardResultCrypt);
