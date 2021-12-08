@@ -152,7 +152,11 @@ public class AddAlphaviteFragment extends Fragment implements AlphaviteView{
     @Override
     public void fragmentLoad(Fragment fragment) {
         if (fragment != null) {
-            getActivity().getSupportFragmentManager().beginTransaction().add(R.id.frame_replace, fragment).commit();
+            getParentFragmentManager()
+                    .beginTransaction()
+                    .addToBackStack(null)
+                    .replace(R.id.frame_replace, fragment)
+                    .commit();
         }
     }
 
