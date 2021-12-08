@@ -2,6 +2,7 @@ package com.vad.modulchit.screens.rsa.decrypt;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,9 +22,11 @@ import com.vad.modulchit.adapters.AdapterGCDe;
 import com.vad.modulchit.pojos.TableNumberFE;
 import com.vad.modulchit.pojos.TableNumberGCDe;
 import com.vad.modulchit.screens.rsa.crypt.CryptView;
+import com.vad.modulchit.screens.rsa.crypt.FragmentRSAcrypt;
 import com.vad.modulchit.utils.AlgebraMod;
 import com.vad.modulchit.utils.RSAmod;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentRSAdecrypt extends Fragment implements DecryptView {
@@ -33,14 +36,16 @@ public class FragmentRSAdecrypt extends Fragment implements DecryptView {
     private EditText editTextN;
     private TextView resultDecrypt;
     private Button btnResult;
-    private final int n;
-    private final int d;
-    private final int eller;
-    private final int exponent;
-    private final int p;
-    private final int q;
+
+    private int n;
+    private int d;
+    private int eller;
+    private int exponent;
+    private int p;
+    private int q;
+    private List<Integer> alphaviteCodes;
     private TextView textViewMfere;
-    private final List<Integer> alphaviteCodes;
+
     private RecyclerView mRecyclerDecrypt;
     private RecyclerView mRecyclerGCDe;
     private AdapterFE adapterFE;
@@ -52,14 +57,38 @@ public class FragmentRSAdecrypt extends Fragment implements DecryptView {
     private CardView cardIncludeFeDec;
     private CardView cardResultDecrypt;
 
-    public FragmentRSAdecrypt(List<Integer> alphaviteCodes,int n, int d, int eller, int exponent, int p, int q) {
-        this.alphaviteCodes = alphaviteCodes;
-        this.n = n;
-        this.d = d;
-        this.eller = eller;
-        this.exponent = exponent;
-        this.p = p;
-        this.q = q;
+    private static final String ARG_ALPAVITE_LIST = "alphaviteCodes";
+    private static final String ARG_N_INT = "n_int";
+    private static final String ARG_D_INT = "d_int";
+    private static final String ARG_ELLER = "eller";
+    private static final String ARG_EXPONENT = "exponent";
+    private static final String ARG_P_INT = "p_int";
+    private static final String ARG_Q_INT = "q_int";
+
+    public static FragmentRSAdecrypt newInstance(List<Integer> alphaviteCodes, int n, int d, int eller, int exponent, int p, int q) {
+        Bundle args = new Bundle();
+        args.putIntegerArrayList(ARG_ALPAVITE_LIST, (ArrayList<Integer>) alphaviteCodes);
+        args.putInt(ARG_N_INT, n);
+        args.putInt(ARG_D_INT, d);
+        args.putInt(ARG_ELLER, eller);
+        args.putInt(ARG_EXPONENT, exponent);
+        args.putInt(ARG_P_INT, p);
+        args.putInt(ARG_Q_INT, q);
+        FragmentRSAdecrypt fragmentRSAdecrypt = new FragmentRSAdecrypt();
+        fragmentRSAdecrypt.setArguments(args);
+        return fragmentRSAdecrypt;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        alphaviteCodes = requireArguments().getIntegerArrayList(ARG_ALPAVITE_LIST);
+        n = requireArguments().getInt(ARG_N_INT);
+        d = requireArguments().getInt(ARG_D_INT);
+        eller = requireArguments().getInt(ARG_ELLER);
+        exponent = requireArguments().getInt(ARG_EXPONENT);
+        p = requireArguments().getInt(ARG_P_INT);
+        q = requireArguments().getInt(ARG_Q_INT);
     }
 
     @Override
