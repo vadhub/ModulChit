@@ -1,5 +1,6 @@
 package com.vad.modulchit.adapters;
 
+import android.annotation.SuppressLint;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -31,6 +32,7 @@ public class AdapterRSAalphabyte extends RecyclerView.Adapter<AdapterRSAalphabyt
         return numbersCode;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void setNumbersCode(List<Integer> numbersCode) {
         this.numbersCode = numbersCode;
         notifyDataSetChanged();
