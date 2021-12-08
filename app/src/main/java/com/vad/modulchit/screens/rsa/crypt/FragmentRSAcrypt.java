@@ -18,6 +18,8 @@ import android.widget.Toast;
 import com.vad.modulchit.R;
 import com.vad.modulchit.adapters.AdapterFE;
 import com.vad.modulchit.pojos.TableNumberFE;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentRSAcrypt extends Fragment implements CryptView{
@@ -39,14 +41,12 @@ public class FragmentRSAcrypt extends Fragment implements CryptView{
 
     private View includeFeCrypt;
 
-    public FragmentRSAcrypt(List<Integer> alphaviteCodes, int n, List<Integer> exponents) {
-        this.alphaviteCodes = alphaviteCodes;
-        this.n=n;
-        this.exponents=exponents;
-    }
-
-    public FragmentRSAcrypt(List<Integer> alphaviteCodes) {
-        this.alphaviteCodes = alphaviteCodes;
+    public static FragmentRSAcrypt newInstance(List<Integer> alphaviteCodes, int n, List<Integer> exponents) {
+        Bundle args = new Bundle();
+        args.putIntegerArrayList("alphaviteCodes", (ArrayList<Integer>) alphaviteCodes);
+        args.putInt("n_int", n);
+        args.putIntegerArrayList("exponents", (ArrayList<Integer>) exponents);
+        return new FragmentRSAcrypt();
     }
 
     @Override
