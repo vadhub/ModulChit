@@ -31,21 +31,27 @@ public class FragmentRSAcrypt extends Fragment implements CryptView{
     private TextView textViewMfere;
     private RecyclerView mRecyclerFeCrypt;
     private AdapterFE adapterFE;
+    private TextView textViewResult;
+
     private int n;
     private List<Integer> exponents;
-    private TextView textViewResult;
     private List<Integer> alphaviteCodes;
+
     private CryptPresenter cryptPresenter;
     private CardView cardResultCrypt;
     private CardView cardIncludeFe;
 
     private View includeFeCrypt;
 
+    private static String ARG_ALPAVITE_LIST = "alphaviteCodes";
+    private static String ARG_N_INT = "n_int";
+    private static String ARG_EXPONENTS = "exponents";
+
     public static FragmentRSAcrypt newInstance(List<Integer> alphaviteCodes, int n, List<Integer> exponents) {
         Bundle args = new Bundle();
-        args.putIntegerArrayList("alphaviteCodes", (ArrayList<Integer>) alphaviteCodes);
-        args.putInt("n_int", n);
-        args.putIntegerArrayList("exponents", (ArrayList<Integer>) exponents);
+        args.putIntegerArrayList(ARG_ALPAVITE_LIST, (ArrayList<Integer>) alphaviteCodes);
+        args.putInt(ARG_N_INT, n);
+        args.putIntegerArrayList(ARG_EXPONENTS, (ArrayList<Integer>) exponents);
         return new FragmentRSAcrypt();
     }
 
@@ -55,6 +61,10 @@ public class FragmentRSAcrypt extends Fragment implements CryptView{
         View v = inflater.inflate(R.layout.fragment_rsa_crypt, container, false);
 
         getActivity().setTitle("RSA Encrypt");
+
+        alphaviteCodes = requireArguments().getIntegerArrayList(ARG_ALPAVITE_LIST);
+        n = requireArguments().getInt(ARG_N_INT);
+        exponents = requireArguments().getIntegerArrayList(ARG_EXPONENTS);
 
         cardIncludeFe = (CardView) v.findViewById(R.id.cardIncludeFe);
         cardResultCrypt = (CardView) v.findViewById(R.id.cardResultCrypt);
