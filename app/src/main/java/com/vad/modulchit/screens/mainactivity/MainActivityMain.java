@@ -107,13 +107,18 @@ public class MainActivityMain extends AppCompatActivity{
     }
 
     private void updateOnUI() {
-        System.out.println(getSupportFragmentManager().getBackStackEntryCount()+"---------------------------------------");
         Fragment fragment = getCurrentFragment();
         if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         } else {
             getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     @Override
