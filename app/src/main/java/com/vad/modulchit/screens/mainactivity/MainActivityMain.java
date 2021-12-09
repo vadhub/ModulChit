@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.view.Menu;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -21,14 +22,13 @@ public class MainActivityMain extends AppCompatActivity{
 
     private BottomNavigationView bottomNavigationView;
     private AdView mAdView;
-    private Fragment fragment = null;
+    private Fragment currentFragment = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main_main);
-
 
         MobileAds.initialize(this, initializationStatus -> {
         });
@@ -40,38 +40,38 @@ public class MainActivityMain extends AppCompatActivity{
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigate);
         bottomNavigationView.setOnNavigationItemSelectedListener(listener);
 
-        if(savedInstanceState!=null){
-            fragment = getSupportFragmentManager().getFragment(savedInstanceState, "mFragment");
-            getSupportFragmentManager().beginTransaction().replace(R.id.frame_replace, fragment).commit();
-        }else{
+//        if(savedInstanceState!=null){
+//            fragment = getSupportFragmentManager().getFragment(savedInstanceState, "mFragment");
+//            getSupportFragmentManager().beginTransaction().replace(R.id.frame_replace, fragment).commit();
+//        }else{
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentGCDe()).commit();
-        }
+//        }
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener listener = item -> {
 
         switch (item.getItemId()){
             case R.id.gcdItem:
-                fragment = new FragmentGCDe();
+                currentFragment = new FragmentGCDe();
                 setTitle(R.string.gcd_e);
                 break;
 
             case R.id.nokItem:
-                fragment = new FragmentMG();
+                currentFragment = new FragmentMG();
                 setTitle(R.string.multiplicative_group);
                 break;
             case R.id.feItem:
-                fragment = new FragmentFE();
+                currentFragment = new FragmentFE();
                 setTitle(R.string.fast_exponentiation);
                 break;
 
             case R.id.modItem:
-                fragment = new AddAlphaviteFragment();
+                currentFragment = new AddAlphaviteFragment();
                 setTitle(R.string.rsa);
                 break;
         }
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame_replace, fragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_replace, currentFragment).commit();
 
         return true;
     };
@@ -79,7 +79,26 @@ public class MainActivityMain extends AppCompatActivity{
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        if (fragment != null)
-        getSupportFragmentManager().putFragment(outState, "mFragment", fragment);
+        if (currentFragment != null)
+        getSupportFragmentManager().putFragment(outState, "mFragment", currentFragment);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        updateOnUI();
+        return true;
+    }
+
+    private Fragment getCurrentFragment() {
+        return getSupportFragmentManager().findFragmentById(R.id.frame_replace);
+    }
+
+    private void updateOnUI() {
+        Fragment fragment = getCurrentFragment();
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        } else {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        }
     }
 }
