@@ -27,13 +27,13 @@
     <string name="next">next</string>
     <string name="from_list">"from list exponents: "</string>
     <string name="get_first">" get: "</string>
+    <string name="rsa_encrypt" translatable="false">"RSA Encrypt</string>
+    <string name="rsa_decrypt" translatable="false">"RSA Decrypt</string>
 
     <string-array name="modifyRsaAlpabyte">
         <item>random</item>
         <item>your</item>
 
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
