@@ -1,12 +1,15 @@
 package com.vad.modulchit.screens.mainactivity;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -36,6 +39,8 @@ public class MainActivityMain extends AppCompatActivity{
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+
+        getSupportFragmentManager().registerFragmentLifecycleCallbacks(fragmentListener, false);
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigate);
         bottomNavigationView.setOnNavigationItemSelectedListener(listener);
@@ -89,16 +94,31 @@ public class MainActivityMain extends AppCompatActivity{
         return true;
     }
 
+    private FragmentManager.FragmentLifecycleCallbacks fragmentListener = new FragmentManager.FragmentLifecycleCallbacks() {
+        @Override
+        public void onFragmentViewCreated(@NonNull FragmentManager fm, @NonNull Fragment f, @NonNull View v, @Nullable Bundle savedInstanceState) {
+            super.onFragmentViewCreated(fm, f, v, savedInstanceState);
+            updateOnUI();
+        }
+    };
+
     private Fragment getCurrentFragment() {
         return getSupportFragmentManager().findFragmentById(R.id.frame_replace);
     }
 
     private void updateOnUI() {
+        System.out.println(getSupportFragmentManager().getBackStackEntryCount()+"---------------------------------------");
         Fragment fragment = getCurrentFragment();
         if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         } else {
             getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        getSupportFragmentManager().unregisterFragmentLifecycleCallbacks(fragmentListener);
     }
 }
