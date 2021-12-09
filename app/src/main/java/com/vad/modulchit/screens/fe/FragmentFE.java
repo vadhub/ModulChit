@@ -17,11 +17,12 @@ import android.widget.Toast;
 import com.vad.modulchit.R;
 import com.vad.modulchit.adapters.AdapterFE;
 import com.vad.modulchit.pojos.TableNumberFE;
+import com.vad.modulchit.screens.contract.HasCustomTitle;
 
 import java.util.List;
 
 
-public class FragmentFE extends Fragment implements ListFEView{
+public class FragmentFE extends Fragment implements ListFEView, HasCustomTitle {
 
     private EditText editTextA;
     private EditText editTextM;
@@ -80,6 +81,11 @@ public class FragmentFE extends Fragment implements ListFEView{
 
     @Override
     public void showTitle() {
-        includeFE.setVisibility(View.VISIBLE);
+        includeFE.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public int getTitle() {
+        return R.string.fast_exponentiation;
     }
 }

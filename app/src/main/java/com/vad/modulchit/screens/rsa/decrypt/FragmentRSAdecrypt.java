@@ -21,6 +21,7 @@ import com.vad.modulchit.adapters.AdapterFE;
 import com.vad.modulchit.adapters.AdapterGCDe;
 import com.vad.modulchit.pojos.TableNumberFE;
 import com.vad.modulchit.pojos.TableNumberGCDe;
+import com.vad.modulchit.screens.contract.HasCustomTitle;
 import com.vad.modulchit.screens.rsa.crypt.CryptView;
 import com.vad.modulchit.screens.rsa.crypt.FragmentRSAcrypt;
 import com.vad.modulchit.utils.AlgebraMod;
@@ -29,7 +30,7 @@ import com.vad.modulchit.utils.RSAmod;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FragmentRSAdecrypt extends Fragment implements DecryptView {
+public class FragmentRSAdecrypt extends Fragment implements DecryptView, HasCustomTitle {
 
     private EditText enterCodeDecrypt;
     private EditText editTextD;
@@ -95,8 +96,6 @@ public class FragmentRSAdecrypt extends Fragment implements DecryptView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_rsa_decrypt, container, false);
-
-        getActivity().setTitle("RSA Decrypt");
 
         cardResultDecrypt = (CardView) v.findViewById(R.id.cardResultDecrypt);
         cardIncludeFeDec = (CardView) v.findViewById(R.id.cardIncludeFeDec);
@@ -173,5 +172,10 @@ public class FragmentRSAdecrypt extends Fragment implements DecryptView {
     public void showTitle() {
         includeFeDec.setVisibility(View.VISIBLE);
         includeGCDEreverse.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public int getTitle() {
+        return R.string.rsa_decrypt;
     }
 }

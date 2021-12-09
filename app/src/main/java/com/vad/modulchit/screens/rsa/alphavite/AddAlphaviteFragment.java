@@ -22,10 +22,11 @@ import android.widget.Toast;
 
 import com.vad.modulchit.R;
 import com.vad.modulchit.adapters.AdapterRSAalphabyte;
+import com.vad.modulchit.screens.contract.HasCustomTitle;
 
 import java.util.List;
 
-public class AddAlphaviteFragment extends Fragment implements AlphaviteView{
+public class AddAlphaviteFragment extends Fragment implements AlphaviteView, HasCustomTitle {
 
     private EditText numberForFirstLetter;
     private EditText numberP;
@@ -168,5 +169,10 @@ public class AddAlphaviteFragment extends Fragment implements AlphaviteView{
     @Override
     public void showTitle() {
 
+    }
+
+    @Override
+    public int getTitle() {
+        return R.string.rsa;
     }
 }

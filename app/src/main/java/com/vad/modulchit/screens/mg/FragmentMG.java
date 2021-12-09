@@ -18,11 +18,12 @@ import android.widget.Toast;
 import com.vad.modulchit.R;
 import com.vad.modulchit.adapters.AdapterNOK;
 import com.vad.modulchit.pojos.TableNumberNOK;
+import com.vad.modulchit.screens.contract.HasCustomTitle;
 
 import java.util.List;
 
 
-public class FragmentMG extends Fragment implements ListMGView{
+public class FragmentMG extends Fragment implements ListMGView, HasCustomTitle {
 
     private EditText editTextMod;
     private Button btnNok;
@@ -93,5 +94,10 @@ public class FragmentMG extends Fragment implements ListMGView{
     @Override
     public void showTitle() {
         includeMG.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public int getTitle() {
+        return R.string.multiplicative_group;
     }
 }

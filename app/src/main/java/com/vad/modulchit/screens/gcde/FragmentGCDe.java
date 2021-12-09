@@ -18,11 +18,12 @@ import android.widget.Toast;
 import com.vad.modulchit.adapters.AdapterGCDe;
 import com.vad.modulchit.R;
 import com.vad.modulchit.pojos.TableNumberGCDe;
+import com.vad.modulchit.screens.contract.HasCustomTitle;
 import com.vad.modulchit.utils.AlgebraMod;
 
 import java.util.List;
 
-public class FragmentGCDe extends Fragment implements ListGCDEView{
+public class FragmentGCDe extends Fragment implements ListGCDEView, HasCustomTitle {
 
     private EditText editTextA;
     private EditText editTextB;
@@ -95,5 +96,10 @@ public class FragmentGCDe extends Fragment implements ListGCDEView{
     @Override
     public void showTitle() {
         includeTitle.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public int getTitle() {
+        return R.string.gcd_e;
     }
 }

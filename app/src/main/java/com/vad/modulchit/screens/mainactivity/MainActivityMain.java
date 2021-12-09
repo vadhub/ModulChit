@@ -16,6 +16,7 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.vad.modulchit.R;
+import com.vad.modulchit.screens.contract.HasCustomTitle;
 import com.vad.modulchit.screens.fe.FragmentFE;
 import com.vad.modulchit.screens.gcde.FragmentGCDe;
 import com.vad.modulchit.screens.mg.FragmentMG;
@@ -58,21 +59,17 @@ public class MainActivityMain extends AppCompatActivity{
         switch (item.getItemId()){
             case R.id.gcdItem:
                 currentFragment = new FragmentGCDe();
-                setTitle(R.string.gcd_e);
                 break;
 
             case R.id.nokItem:
                 currentFragment = new FragmentMG();
-                setTitle(R.string.multiplicative_group);
                 break;
             case R.id.feItem:
                 currentFragment = new FragmentFE();
-                setTitle(R.string.fast_exponentiation);
                 break;
 
             case R.id.modItem:
                 currentFragment = new AddAlphaviteFragment();
-                setTitle(R.string.rsa);
                 break;
         }
 
@@ -108,11 +105,12 @@ public class MainActivityMain extends AppCompatActivity{
 
     private void updateOnUI() {
         Fragment fragment = getCurrentFragment();
-        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        } else {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+
+        if (fragment instanceof HasCustomTitle) {
+            setTitle(((HasCustomTitle) fragment).getTitle());
         }
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(getSupportFragmentManager().getBackStackEntryCount() > 0);
     }
 
     @Override
