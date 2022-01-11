@@ -81,7 +81,7 @@ public class FragmentFE extends Fragment implements ListFEView, HasCustomTitle {
 
     @Override
     public void showTitle() {
-        includeFE.setVisibility(View.INVISIBLE);
+        includeFE.setVisibility(View.VISIBLE);
     }
 
     @Override
