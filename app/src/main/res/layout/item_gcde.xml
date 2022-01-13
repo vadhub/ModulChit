@@ -7,15 +7,15 @@
 
     <TableLayout
         android:id="@+id/table_gcde"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
-        android:stretchColumns="0,1,2,3,4,5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:stretchColumns="0,1,2,3">
 
         <TableRow
             android:layout_width="match_parent"
@@ -23,51 +23,50 @@
 
             <TextView
                 android:id="@+id/textViewA"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_column="0"
                 android:text="a"
-                style="@style/theme_chit" />
+                style="@style/textview_gcde"
+                />
 
             <TextView
                 android:id="@+id/textViewB"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
+                android:textAlignment="center"
+                android:layout_column="1"
                 android:text="b"
-                style="@style/theme_chit" />
+                style="@style/textview_gcde"
+                />
 
             <TextView
                 android:id="@+id/textViewQ"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
+                android:textAlignment="center"
+                android:layout_column="2"
                 android:text="q"
-                style="@style/theme_chit" />
+                style="@style/textview_gcde"
+                />
 
             <TextView
                 android:id="@+id/textViewR"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:layout_column="3"
                 android:text="r"
-                android:gravity="center"
-                style="@style/theme_chit" />
+                style="@style/textview_gcde"
+                />
 
             <TextView
                 android:id="@+id/textViewX"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:layout_column="4"
                 android:text="x"
-                android:gravity="center"
-                style="@style/theme_chit" />
+                style="@style/textview_gcde"
+                />
 
             <TextView
                 android:id="@+id/textViewY"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:layout_column="5"
                 android:text="y"
-                android:gravity="center"
-                style="@style/theme_chit" />
+                style="@style/textview_gcde"
+                />
         </TableRow>
     </TableLayout>
 
