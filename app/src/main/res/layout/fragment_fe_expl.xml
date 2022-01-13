@@ -27,7 +27,8 @@
             android:src="@drawable/fe_5"
             app:layout_constraintTop_toBottomOf="@+id/startTextFE"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            />
 
         <TextView
             android:id="@+id/explTextFE1"
@@ -46,7 +47,8 @@
             android:src="@drawable/fe_1"
             app:layout_constraintTop_toBottomOf="@+id/explTextFE1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            />
 
         <TextView
             android:id="@+id/explTextFE2"
@@ -84,7 +86,8 @@
             android:src="@drawable/fe_3"
             app:layout_constraintTop_toBottomOf="@+id/explTextFE3"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            />
 
         <TextView
             android:id="@+id/explTextFE4"
@@ -103,7 +106,8 @@
             android:src="@drawable/fe_4"
             app:layout_constraintTop_toBottomOf="@+id/explTextFE4"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

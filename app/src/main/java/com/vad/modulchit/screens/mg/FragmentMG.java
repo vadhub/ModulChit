@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SimpleItemAnimator;
 
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,7 +66,7 @@ public class FragmentMG extends Fragment implements ListMGView, HasCustomTitle {
     }
 
     private String getResult(List<TableNumberNOK> noks){
-        StringBuilder txtRes = new StringBuilder("(1");
+        StringBuilder txtRes = new StringBuilder("1");
 
         int tmp = 0;
         for(TableNumberNOK nok: noks){
@@ -76,7 +77,7 @@ public class FragmentMG extends Fragment implements ListMGView, HasCustomTitle {
             }
         }
 
-        return txtRes+")";
+        return txtRes+".";
     }
 
     @Override
@@ -85,6 +86,7 @@ public class FragmentMG extends Fragment implements ListMGView, HasCustomTitle {
         adapterNOK.setTableNumberNOKS(numberNOKS);
         mRecyclerView.setAdapter(adapterNOK);
     }
+
 
     @Override
     public void showError(int resource) {
