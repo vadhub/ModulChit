@@ -61,13 +61,13 @@ public class AlgebraMod {
             aTemp=a;
             bTemp=b;
         }
-        while (true){
-
-            tmpR = aTemp%bTemp;
-            tmpQ = aTemp/bTemp;
+        do {
 
             int tmpX1 = x1;
             int tmpX2 = x2;
+
+            tmpR = aTemp % bTemp;
+            tmpQ = aTemp / bTemp;
 
             tableNumberGCDe = new TableNumberGCDe(aTemp, bTemp, tmpQ, tmpR, x1, x2, y1, y2, extra);
             tempTableNumberGCDes.add(tableNumberGCDe);
@@ -80,14 +80,10 @@ public class AlgebraMod {
             x1 = tableNumberGCDe.getY1();
             x2 = tableNumberGCDe.getY2();
 
-            y1 = tmpX1 - tmpQ*y1;
-            y2 = tmpX2 - tmpQ*y2;
+            y1 = tmpX1 - tmpQ * y1;
+            y2 = tmpX2 - tmpQ * y2;
 
-            if(bTemp==0){
-                break;
-            }
-
-        }
+        } while (bTemp != 0);
 
         return tempTableNumberGCDes;
     }
