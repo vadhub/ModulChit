@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".screens.gcde.explgcde.FragmentGCDexpl">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <TextView
+            android:id="@+id/startTextGCDE"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Entering values into the form: a = 5, b = 3"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageView
+            android:id="@+id/imageViewStartGCDe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/gcde_1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/startTextGCDE"
+            />
+
+        <TextView
+            android:id="@+id/explTextGCDE1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Values are written to the table: a = 5, b =3. Initial vectors x = (1; 0) and y = (0; 1).
+q and r calculated as q = a/b, r = a - b*q"
+            app:layout_constraintTop_toBottomOf="@id/imageViewStartGCDe"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <ImageView
+            android:id="@+id/imageViewGCDE2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/explTextGCDE1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/gcde_2"
+            />
+
+        <TextView
+            android:id="@+id/explTextGCDE2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="x and y calculated as x = y(previous), y = x - q*x"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewGCDE2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <ImageView
+            android:id="@+id/imageViewGCDE3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/gcde_3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/explTextGCDE2" />
+
+        <TextView
+            android:id="@+id/explTextGCDE3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Repeat the algorithm until 'r' is equal to 0. And the result is 2"
+            app:layout_constraintTop_toBottomOf="@id/imageViewGCDE3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <ImageView
+            android:id="@+id/imageViewGCDE4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/explTextGCDE3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/gcde_4"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
