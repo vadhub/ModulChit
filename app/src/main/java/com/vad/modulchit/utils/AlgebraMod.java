@@ -1,5 +1,7 @@
 package com.vad.modulchit.utils;
 
+import android.util.Log;
+
 import com.vad.modulchit.pojos.TableNumberFE;
 import com.vad.modulchit.pojos.TableNumberGCDe;
 import com.vad.modulchit.pojos.TableNumberNOK;
@@ -72,10 +74,12 @@ public class AlgebraMod {
             tableNumberGCDe = new TableNumberGCDe(aTemp, bTemp, tmpQ, tmpR, x1, x2, y1, y2, extra);
             tempTableNumberGCDes.add(tableNumberGCDe);
 
-            extra = extraData.extraGCDE(aTemp, bTemp, tmpQ, tmpR, tmpX1, tmpX2, y1, y2);
-
             aTemp = tableNumberGCDe.getB();
             bTemp = tableNumberGCDe.getR();
+
+            Log.i("gcdGraph", "gcdGraph: "+aTemp+" "+bTemp);
+
+            extra = extraData.extraGCDE(aTemp, bTemp, tmpQ, tmpR, x1, x2, y1, y2);
 
             x1 = tableNumberGCDe.getY1();
             x2 = tableNumberGCDe.getY2();

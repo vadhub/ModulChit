@@ -3,8 +3,10 @@ package com.vad.modulchit.utils;
 public class StringExtraData {
     public String extraGCDE(int a, int b, int q, int r, int x1, int x2, int y1, int y2){
 
-        q = a/b;
-        r = a - (b*q);
+        if (b!=0) {
+            q = a/b;
+            r = a - (b*q);
+        }
 
         String result =
                 "a = "+ a +"(b pre);\n"+
