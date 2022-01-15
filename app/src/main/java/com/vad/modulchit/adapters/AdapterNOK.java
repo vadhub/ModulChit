@@ -39,7 +39,7 @@ public class AdapterNOK extends RecyclerView.Adapter<AdapterNOK.MyViewHolderNOK>
 
         boolean paint = false;
 
-        if (position % 2 == 0 && position != tableNumberNOKS.size()) {
+        if (position % 2 == 0) {
             paint = true;
         }
 
@@ -91,7 +91,7 @@ public class AdapterNOK extends RecyclerView.Adapter<AdapterNOK.MyViewHolderNOK>
 
             subItem.setVisibility(expanded ? View.VISIBLE : View.GONE);
 
-            if (paint) {
+            if (tableNumberNOK.getBn() != 0) {
                 textViewAn.setBackgroundResource(R.color.textViewColor);
                 textViewBn.setBackgroundResource(R.color.textViewColor);
                 textViewQn.setBackgroundResource(R.color.textViewColor);
@@ -105,13 +105,12 @@ public class AdapterNOK extends RecyclerView.Adapter<AdapterNOK.MyViewHolderNOK>
 
             textViewextra.setText(tableNumberNOK.getExtra());
 
-            if(tableNumberNOK.getBn()==0){
-                textViewAn.setText("-");
-                textViewBn.setText("-");
-                textViewQn.setText("-");
-                textViewRn.setText("-");
-
-            }
+//            if (tableNumberNOK.getBn() == 0 ) {
+//                textViewAn.setText(" ");
+//                textViewBn.setText(" ");
+//                textViewQn.setText(" ");
+//                textViewRn.setText(" ");
+//            }
 
         }
     }
