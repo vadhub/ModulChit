@@ -54,7 +54,7 @@ q and r calculated as q = a/b, r = a - b*q"
             android:id="@+id/explTextGCDE2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="x and y calculated as x = y(previous), y = x - q*x"
+            android:text="x and y calculated as x = y(previous), y = x - q*y(previous)"
             app:layout_constraintTop_toBottomOf="@+id/imageViewGCDE2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -73,20 +73,10 @@ q and r calculated as q = a/b, r = a - b*q"
             android:id="@+id/explTextGCDE3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Repeat the algorithm until 'r' is equal to 0. And the result is 2"
+            android:text="Repeat the algorithm until 'r' is equal to 0. And the result is (-1; 2)"
             app:layout_constraintTop_toBottomOf="@id/imageViewGCDE3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            />
-
-        <ImageView
-            android:id="@+id/imageViewGCDE4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/explTextGCDE3"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:src="@drawable/gcde_4"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
