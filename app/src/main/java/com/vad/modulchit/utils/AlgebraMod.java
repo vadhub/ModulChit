@@ -77,7 +77,7 @@ public class AlgebraMod {
             aTemp = tableNumberGCDe.getB();
             bTemp = tableNumberGCDe.getR();
 
-            Log.i("gcdGraph", "gcdGraph: "+aTemp+" "+bTemp);
+//            Log.i("gcdGraph", "gcdGraph: "+aTemp+" "+bTemp);
 
             extra = extraData.extraGCDE(aTemp, bTemp, tmpQ, tmpR, x1, x2, y1, y2);
 
