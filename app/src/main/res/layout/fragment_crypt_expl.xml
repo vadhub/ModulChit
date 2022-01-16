@@ -11,7 +11,7 @@
         android:layout_height="0dp">
 
         <TextView
-            android:id="@+id/startTextFE"
+            android:id="@+id/startTextRsaEncrypt"
             android:text="Enter the message to be encrypted. n and e are calculated automatically if p and q (prime numbers) were entered in the previous window. n = p*q "
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -21,70 +21,70 @@
             />
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/imageViewRSAencrypt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/rsa_encript_1"
-            app:layout_constraintTop_toBottomOf="@+id/startTextFE"
+            app:layout_constraintTop_toBottomOf="@+id/startTextRsaEncrypt"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             />
 
         <TextView
-            android:id="@+id/explTextFE1"
+            android:id="@+id/explTextRsaEncrypt1"
             android:text="e is coprime to n. From list we take first"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView5"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewRSAencrypt"
             />
 
         <ImageView
-            android:id="@+id/imageView1"
+            android:id="@+id/imageViewRSAencrypt2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/rsa_encript_4"
-            app:layout_constraintTop_toBottomOf="@+id/explTextFE1"
+            app:layout_constraintTop_toBottomOf="@+id/explTextRsaEncrypt1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             />
 
         <TextView
-            android:id="@+id/explTextFE2"
+            android:id="@+id/explTextRsaEncrypt2"
             android:text="Encryption is performed as follows: we take the number of a letter from the alphabet and perform a quick exponentiation to the power e modulo n."
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView1"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewRSAencrypt2"
             />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imageViewRSAencrypt3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/rsa_encript_2"
-            app:layout_constraintTop_toBottomOf="@+id/explTextFE2"
+            app:layout_constraintTop_toBottomOf="@+id/explTextRsaEncrypt2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
-            android:id="@+id/explTextFE3"
+            android:id="@+id/explTextRsaEncrypt3"
             android:text="The result of encryption will be a list of numbers:"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewRSAencrypt3"
             />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/imageViewRSAencrypt4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/rsa_encript_3"
-            app:layout_constraintTop_toBottomOf="@+id/explTextFE3"
+            app:layout_constraintTop_toBottomOf="@+id/explTextRsaEncrypt3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             />
