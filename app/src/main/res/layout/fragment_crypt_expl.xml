@@ -12,6 +12,9 @@
 
         <TextView
             android:id="@+id/startTextRsaEncrypt"
+            style="@style/theme_chit"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:text="Enter the message to be encrypted. n and e are calculated automatically if p and q (prime numbers) were entered in the previous window. n = p*q "
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -32,6 +35,9 @@
 
         <TextView
             android:id="@+id/explTextRsaEncrypt1"
+            style="@style/theme_chit"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:text="e is coprime to n. From list we take first"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -52,6 +58,9 @@
 
         <TextView
             android:id="@+id/explTextRsaEncrypt2"
+            style="@style/theme_chit"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:text="Encryption is performed as follows: we take the number of a letter from the alphabet and perform a quick exponentiation to the power e modulo n."
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -71,6 +80,9 @@
 
         <TextView
             android:id="@+id/explTextRsaEncrypt3"
+            style="@style/theme_chit"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:text="The result of encryption will be a list of numbers:"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

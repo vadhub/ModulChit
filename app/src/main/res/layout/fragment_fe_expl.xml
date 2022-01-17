@@ -12,6 +12,9 @@
 
         <TextView
             android:id="@+id/startTextFE"
+            style="@style/theme_chit"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:text="Entering values into the form: base = 4, degree = 13, mod = 497"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -32,6 +35,9 @@
 
         <TextView
             android:id="@+id/explTextFE1"
+            style="@style/theme_chit"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:text="Values are written to the table: a = 4, m = 13, n = 497, p = a = 4, r = m mod 2 = 13 mod 2 = 1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -52,6 +58,9 @@
 
         <TextView
             android:id="@+id/explTextFE2"
+            style="@style/theme_chit"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:text="In the next line, the values are recalculated. If r = 0, then 'p' is the value of 'a' from the previous line. "
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -71,6 +80,9 @@
 
         <TextView
             android:id="@+id/explTextFE3"
+            style="@style/theme_chit"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:text="If r = 1, then p = [p(from the previous line)*a] mod n"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -91,6 +103,9 @@
 
         <TextView
             android:id="@+id/explTextFE4"
+            style="@style/theme_chit"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:text="Repeat the algorithm until 'm' is equal to 1. And the result is 'p = 445'"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

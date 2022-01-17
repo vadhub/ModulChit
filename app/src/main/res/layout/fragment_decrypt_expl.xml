@@ -11,6 +11,9 @@
         android:layout_height="0dp">
         <TextView
             android:id="@+id/startTextRSAdecrypt"
+            style="@style/theme_chit"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:text="Enter a numeric code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,6 +34,9 @@
 
         <TextView
             android:id="@+id/explTextRSAdecrypt1"
+            style="@style/theme_chit"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:text="d(private) is the inverse of e(exponent). If it is negative, then the resulting number d is subtracted from the Euler number. d = gcde(Euler, e), (d*e)%Euler=1 "
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -51,6 +57,9 @@
 
         <TextView
             android:id="@+id/explTextFE2"
+            style="@style/theme_chit"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:text="Next, the program itself will break the cipher code into blocks and, using the fast exponentiation algorithm modulo n, will issue a decrypted message "
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,6 +79,9 @@
 
         <TextView
             android:id="@+id/explTextFE3"
+            style="@style/theme_chit"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:text="Result is numbers of letters in alphabet and decrypted message."
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

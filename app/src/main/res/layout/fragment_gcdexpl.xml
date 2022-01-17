@@ -11,6 +11,7 @@
         android:layout_height="0dp">
 
         <TextView
+            style="@style/theme_chit"
             android:id="@+id/startTextGCDE"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -20,6 +21,7 @@
             app:layout_constraintEnd_toEndOf="parent"/>
 
         <ImageView
+            style="@style/theme_chit"
             android:id="@+id/imageViewStartGCDe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -30,17 +32,21 @@
             />
 
         <TextView
+            style="@style/theme_chit"
             android:id="@+id/explTextGCDE1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Values are written to the table: a = 5, b =3. Initial vectors x = (1; 0) and y = (0; 1).
 q and r calculated as q = a/b, r = a - b*q"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             app:layout_constraintTop_toBottomOf="@id/imageViewStartGCDe"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             />
 
         <ImageView
+            style="@style/theme_chit"
             android:id="@+id/imageViewGCDE2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -51,16 +57,20 @@ q and r calculated as q = a/b, r = a - b*q"
             />
 
         <TextView
+            style="@style/theme_chit"
             android:id="@+id/explTextGCDE2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="x and y calculated as x = y(previous), y = x - q*y(previous)"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             app:layout_constraintTop_toBottomOf="@+id/imageViewGCDE2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             />
 
         <ImageView
+            style="@style/theme_chit"
             android:id="@+id/imageViewGCDE3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,10 +80,13 @@ q and r calculated as q = a/b, r = a - b*q"
             app:layout_constraintTop_toBottomOf="@id/explTextGCDE2" />
 
         <TextView
+            style="@style/theme_chit"
             android:id="@+id/explTextGCDE3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Repeat the algorithm until 'r' is equal to 0. And the result is (-1; 2)"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             app:layout_constraintTop_toBottomOf="@id/imageViewGCDE3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

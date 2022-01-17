@@ -10,8 +10,11 @@
         android:layout_height="0dp">
 
         <TextView
+            style="@style/theme_chit"
             android:id="@+id/startTextMG"
             android:text="Entering values into the form: mod = 5"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
@@ -30,8 +33,11 @@
             />
 
         <TextView
+            style="@style/theme_chit"
             android:id="@+id/explTextMG1"
             android:text="Algorithm is simple gcde. Take numbers that a = 1"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,8 +56,11 @@
             />
 
         <TextView
+            style="@style/theme_chit"
             android:id="@+id/explTextFE2"
             android:text="Result is 1; 2; 3; 4. "
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
