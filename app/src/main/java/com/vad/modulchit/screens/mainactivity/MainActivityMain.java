@@ -3,12 +3,20 @@ package com.vad.modulchit.screens.mainactivity;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.gms.ads.AdRequest;
@@ -16,23 +24,31 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.vad.modulchit.R;
+import com.vad.modulchit.screens.contract.CustomActionFragment;
+import com.vad.modulchit.screens.contract.HasCustomAction;
 import com.vad.modulchit.screens.contract.HasCustomTitle;
+import com.vad.modulchit.screens.contract.Navigator;
 import com.vad.modulchit.screens.fe.FragmentFE;
 import com.vad.modulchit.screens.gcde.FragmentGCDe;
 import com.vad.modulchit.screens.mg.FragmentMG;
 import com.vad.modulchit.screens.rsa.alphavite.AddAlphaviteFragment;
 
-public class MainActivityMain extends AppCompatActivity{
+public class MainActivityMain extends AppCompatActivity implements Navigator {
 
     private BottomNavigationView bottomNavigationView;
     private AdView mAdView;
     private Fragment currentFragment = null;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main_main);
+
+        toolbar = (Toolbar) findViewById(R.id.main_toolbar);
+
+        setSupportActionBar(toolbar);
 
         MobileAds.initialize(this, initializationStatus -> {
         });
@@ -88,6 +104,7 @@ public class MainActivityMain extends AppCompatActivity{
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         updateOnUI();
+
         return true;
     }
 
@@ -110,7 +127,28 @@ public class MainActivityMain extends AppCompatActivity{
             setTitle(((HasCustomTitle) fragment).getTitle());
         }
 
+        if (fragment instanceof HasCustomAction) {
+            createCustomToolbarAction(((HasCustomAction)fragment).setCustomAction(this));
+        } else {
+            toolbar.getMenu().clear();
+        }
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(getSupportFragmentManager().getBackStackEntryCount() > 0);
+    }
+
+    @SuppressLint("ResourceType")
+    private void createCustomToolbarAction(CustomActionFragment customActionFragment) {
+        toolbar.getMenu().clear();
+
+        Drawable iconDrawable = DrawableCompat.wrap(ContextCompat.getDrawable(this, customActionFragment.getIconRes()));
+        iconDrawable.setTint(Color.WHITE);
+        MenuItem menuItem = toolbar.getMenu().add("");
+        menuItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        menuItem.setIcon(iconDrawable);
+        menuItem.setOnMenuItemClickListener(menuItem1 -> {
+            customActionFragment.getOnCustomAction().run();
+            return true;
+        });
     }
 
     @Override
@@ -123,5 +161,21 @@ public class MainActivityMain extends AppCompatActivity{
     protected void onDestroy() {
         super.onDestroy();
         getSupportFragmentManager().unregisterFragmentLifecycleCallbacks(fragmentListener);
+    }
+
+    @Override
+    public void goBack() {
+        onBackPressed();
+    }
+
+    @Override
+    public void startFragment(Fragment fragment) {
+        if (fragment != null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .addToBackStack(null)
+                    .replace(R.id.frame_replace, fragment)
+                    .commit();
+        }
     }
 }
