@@ -21,16 +21,21 @@ import com.vad.modulchit.adapters.AdapterFE;
 import com.vad.modulchit.adapters.AdapterGCDe;
 import com.vad.modulchit.pojos.TableNumberFE;
 import com.vad.modulchit.pojos.TableNumberGCDe;
+import com.vad.modulchit.screens.contract.CustomActionFragment;
+import com.vad.modulchit.screens.contract.HasCustomAction;
 import com.vad.modulchit.screens.contract.HasCustomTitle;
+import com.vad.modulchit.screens.contract.Navigator;
+import com.vad.modulchit.screens.fe.explfe.FragmentFEexpl;
 import com.vad.modulchit.screens.rsa.crypt.CryptView;
 import com.vad.modulchit.screens.rsa.crypt.FragmentRSAcrypt;
+import com.vad.modulchit.screens.rsa.decrypt.expldecrypt.FragmentDecryptExpl;
 import com.vad.modulchit.utils.AlgebraMod;
 import com.vad.modulchit.utils.RSAmod;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FragmentRSAdecrypt extends Fragment implements DecryptView, HasCustomTitle {
+public class FragmentRSAdecrypt extends Fragment implements DecryptView, HasCustomTitle, HasCustomAction {
 
     private EditText enterCodeDecrypt;
     private EditText editTextD;
@@ -177,5 +182,12 @@ public class FragmentRSAdecrypt extends Fragment implements DecryptView, HasCust
     @Override
     public int getTitle() {
         return R.string.rsa_decrypt;
+    }
+
+    @Override
+    public CustomActionFragment setCustomAction(Navigator navigator) {
+        return new CustomActionFragment(R.drawable.ic_baseline_info_24,() -> {
+            ((Navigator) requireActivity()).startFragment(new FragmentDecryptExpl());
+        });
     }
 }

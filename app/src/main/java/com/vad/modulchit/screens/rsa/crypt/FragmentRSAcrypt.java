@@ -19,12 +19,17 @@ import android.widget.Toast;
 import com.vad.modulchit.R;
 import com.vad.modulchit.adapters.AdapterFE;
 import com.vad.modulchit.pojos.TableNumberFE;
+import com.vad.modulchit.screens.contract.CustomActionFragment;
+import com.vad.modulchit.screens.contract.HasCustomAction;
 import com.vad.modulchit.screens.contract.HasCustomTitle;
+import com.vad.modulchit.screens.contract.Navigator;
+import com.vad.modulchit.screens.fe.explfe.FragmentFEexpl;
+import com.vad.modulchit.screens.rsa.crypt.explcrypt.FragmentCryptExpl;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FragmentRSAcrypt extends Fragment implements CryptView, HasCustomTitle {
+public class FragmentRSAcrypt extends Fragment implements CryptView, HasCustomTitle, HasCustomAction {
 
     private Button btnOk;
     private EditText enterTextToCrypt;
@@ -135,5 +140,12 @@ public class FragmentRSAcrypt extends Fragment implements CryptView, HasCustomTi
     @Override
     public int getTitle() {
         return R.string.rsa_encrypt;
+    }
+
+    @Override
+    public CustomActionFragment setCustomAction(Navigator navigator) {
+        return new CustomActionFragment(R.drawable.ic_baseline_info_24,() -> {
+            ((Navigator) requireActivity()).startFragment(new FragmentCryptExpl());
+        });
     }
 }

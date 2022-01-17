@@ -19,12 +19,17 @@ import android.widget.Toast;
 import com.vad.modulchit.R;
 import com.vad.modulchit.adapters.AdapterNOK;
 import com.vad.modulchit.pojos.TableNumberNOK;
+import com.vad.modulchit.screens.contract.CustomActionFragment;
+import com.vad.modulchit.screens.contract.HasCustomAction;
 import com.vad.modulchit.screens.contract.HasCustomTitle;
+import com.vad.modulchit.screens.contract.Navigator;
+import com.vad.modulchit.screens.fe.explfe.FragmentFEexpl;
+import com.vad.modulchit.screens.mg.explmg.FragmentMGexpl;
 
 import java.util.List;
 
 
-public class FragmentMG extends Fragment implements ListMGView, HasCustomTitle {
+public class FragmentMG extends Fragment implements ListMGView, HasCustomTitle, HasCustomAction {
 
     private EditText editTextMod;
     private Button btnNok;
@@ -101,5 +106,12 @@ public class FragmentMG extends Fragment implements ListMGView, HasCustomTitle {
     @Override
     public int getTitle() {
         return R.string.multiplicative_group;
+    }
+
+    @Override
+    public CustomActionFragment setCustomAction(Navigator navigator) {
+        return new CustomActionFragment(R.drawable.ic_baseline_info_24,() -> {
+            ((Navigator) requireActivity()).startFragment(new FragmentMGexpl());
+        });
     }
 }
