@@ -17,12 +17,16 @@ import android.widget.Toast;
 import com.vad.modulchit.R;
 import com.vad.modulchit.adapters.AdapterFE;
 import com.vad.modulchit.pojos.TableNumberFE;
+import com.vad.modulchit.screens.contract.CustomActionFragment;
+import com.vad.modulchit.screens.contract.HasCustomAction;
 import com.vad.modulchit.screens.contract.HasCustomTitle;
+import com.vad.modulchit.screens.contract.Navigator;
+import com.vad.modulchit.screens.fe.explfe.FragmentFEexpl;
 
 import java.util.List;
 
 
-public class FragmentFE extends Fragment implements ListFEView, HasCustomTitle {
+public class FragmentFE extends Fragment implements ListFEView, HasCustomTitle, HasCustomAction {
 
     private EditText editTextA;
     private EditText editTextM;
@@ -87,5 +91,12 @@ public class FragmentFE extends Fragment implements ListFEView, HasCustomTitle {
     @Override
     public int getTitle() {
         return R.string.fast_exponentiation;
+    }
+
+    @Override
+    public CustomActionFragment setCustomAction(Navigator navigator) {
+        return new CustomActionFragment(R.drawable.ic_baseline_info_24,() -> {
+            ((Navigator) requireActivity()).startFragment(new FragmentFEexpl());
+        });
     }
 }
