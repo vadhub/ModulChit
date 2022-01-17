@@ -57,9 +57,9 @@ public class DecryptPresenter {
         StringBuilder builder = new StringBuilder();
         builder.append("result: ").append(rsaMod.decrypting(alphaviteCodes, d, n, enterCodeDecrypt).toUpperCase()).append("\n").append("\n");
         System.out.println(rsaMod.decrypting(alphaviteCodes, d, n, enterCodeDecrypt).toUpperCase());
-        builder.append("exponent: ").append(exponent).append(";\n");
+        builder.append("e: ").append(exponent).append(";\n");
         builder.append("n = ").append(p).append("*").append(q).append(" = ").append(n).append(";\n");
-        builder.append("eller = (").append(p).append("-1").append(")*(").append(q).append("-1").append(") = ")
+        builder.append("Euler = (").append(p).append("-1").append(")*(").append(q).append("-1").append(") = ")
                 .append(eller).append(";\n");
 
         if (dView < 0) {
