@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.vad.modulchit.R;
 import com.vad.modulchit.adapters.AdapterRSAalphabyte;
 import com.vad.modulchit.screens.contract.HasCustomTitle;
+import com.vad.modulchit.screens.contract.Navigator;
 
 import java.util.List;
 
@@ -47,7 +48,7 @@ public class AddAlphaviteFragment extends Fragment implements AlphaviteView, Has
         Button btnNext = (Button) v.findViewById(R.id.btnNetx);
         setRetainInstance(true);
 
-        presenter = new AlphavitePresenter(this);
+        presenter = new AlphavitePresenter(this, (Navigator) requireActivity());
 
         numberForFirstLetter = (EditText) v.findViewById(R.id.textViewNumberFirst);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.mRecyclerAlphabyte);
@@ -150,16 +151,16 @@ public class AddAlphaviteFragment extends Fragment implements AlphaviteView, Has
         progressBar.setVisibility(View.INVISIBLE);
     }
 
-    @Override
-    public void fragmentLoad(Fragment fragment) {
-        if (fragment != null) {
-            getParentFragmentManager()
-                    .beginTransaction()
-                    .addToBackStack(null)
-                    .replace(R.id.frame_replace, fragment)
-                    .commit();
-        }
-    }
+//    @Override
+//    public void fragmentLoad(Fragment fragment) {
+//        if (fragment != null) {
+//            getParentFragmentManager()
+//                    .beginTransaction()
+//                    .addToBackStack(null)
+//                    .replace(R.id.frame_replace, fragment)
+//                    .commit();
+//        }
+//    }
 
     @Override
     public void showError(int pathToResource) {
