@@ -5,6 +5,7 @@ import android.os.Looper;
 
 import androidx.fragment.app.Fragment;
 import com.vad.modulchit.R;
+import com.vad.modulchit.screens.contract.Navigator;
 import com.vad.modulchit.screens.rsa.crypt.FragmentRSAcrypt;
 import com.vad.modulchit.screens.rsa.decrypt.FragmentRSAdecrypt;
 import com.vad.modulchit.utils.RSAmod;
@@ -19,12 +20,14 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class AlphavitePresenter {
 
     private AlphaviteView alphaviteView;
+    private Navigator navigator;
     private RSAshiphr shiphr = new RSAshiphr();
     private RSAmod rsaMod = new RSAmod();
     private List<Integer> alphaviteCodes;
 
-    public AlphavitePresenter(AlphaviteView alphaviteView) {
+    public AlphavitePresenter(AlphaviteView alphaviteView, Navigator navigator) {
         this.alphaviteView = alphaviteView;
+        this.navigator = navigator;
     }
 
     public void alphaviteLoad() {
@@ -90,7 +93,8 @@ public class AlphavitePresenter {
             alphaviteView.showError(R.string.warning_enter_p_q);
         }
 
-        alphaviteView.fragmentLoad(fragment);
+        navigator.startFragment(fragment);
+        //alphaviteView.fragmentLoad(fragment);
 
     }
 }
