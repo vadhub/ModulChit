@@ -18,12 +18,15 @@ import android.widget.Toast;
 import com.vad.modulchit.adapters.AdapterGCDe;
 import com.vad.modulchit.R;
 import com.vad.modulchit.pojos.TableNumberGCDe;
+import com.vad.modulchit.screens.contract.CustomActionFragment;
+import com.vad.modulchit.screens.contract.HasCustomAction;
 import com.vad.modulchit.screens.contract.HasCustomTitle;
-import com.vad.modulchit.utils.AlgebraMod;
+import com.vad.modulchit.screens.contract.Navigator;
+import com.vad.modulchit.screens.gcde.explgcde.FragmentGCDexpl;
 
 import java.util.List;
 
-public class FragmentGCDe extends Fragment implements ListGCDEView, HasCustomTitle {
+public class FragmentGCDe extends Fragment implements ListGCDEView, HasCustomTitle, HasCustomAction {
 
     private EditText editTextA;
     private EditText editTextB;
@@ -101,5 +104,12 @@ public class FragmentGCDe extends Fragment implements ListGCDEView, HasCustomTit
     @Override
     public int getTitle() {
         return R.string.gcd_e;
+    }
+
+    @Override
+    public CustomActionFragment setCustomAction(Navigator navigator) {
+        return new CustomActionFragment(R.drawable.ic_baseline_info_24,() -> {
+            ((Navigator) requireActivity()).startFragment(new FragmentGCDexpl());
+        });
     }
 }
