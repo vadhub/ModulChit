@@ -124,7 +124,7 @@ public class MainActivityMain extends AppCompatActivity implements Navigator {
         Fragment fragment = getCurrentFragment();
 
         if (fragment instanceof HasCustomTitle) {
-            setTitle(((HasCustomTitle) fragment).getTitle());
+            toolbar.setTitle(((HasCustomTitle) fragment).getTitle());
         }
 
         if (fragment instanceof HasCustomAction) {
