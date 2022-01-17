@@ -1,7 +1,8 @@
 package com.vad.modulchit.screens.contract;
 
-public interface Navigator {
-    void showOptionsScreen();
-    void goBack();
+import androidx.fragment.app.Fragment;
 
+public interface Navigator {
+    void goBack();
+    void startFragment(Fragment fragment);
 }
