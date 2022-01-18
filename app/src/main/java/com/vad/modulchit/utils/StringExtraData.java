@@ -4,7 +4,8 @@ public class StringExtraData {
     public String extraGCDE(int a, int b, int q, int r, int x1, int x2, int y1, int y2){
 
         String result =
-                "a = "+ a +"(b pre);\n"+
+                "a = (b pre);\n"+
+                "b = (r pre);\n"+
                 "q = "+a+"/"+b+"= "+q+";\n"+
                 "r = "+a+" - "+b+"*"+q+" = "+r+";\n" //r = 56 - 11*5 = 1;
                         +"x = ("+y1+","+y2+");\n" //x = (1,0);
