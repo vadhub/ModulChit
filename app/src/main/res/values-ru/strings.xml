@@ -32,27 +32,27 @@
     <string name="next">дальше</string>
     <string name="from_list">"из списка экспонент:"</string>
     <string name="get_first">"берем "</string>
-    <string name="entering_10_is_step_in_alphavite_p_and_q_is_primary_number">Вводим 10 — это шаг в алфавите. p и q - первичное число</string>
-    <string name="enter_the_message_to_be_encrypted_n_and_e_are_calculated_automatically_if_p_and_q_prime_numbers_were_entered_in_the_previous_window_n_p_q">Введите сообщение, которое необходимо зашифровать. n и e вычисляются автоматически, если в предыдущем окне были введены p и q (простые числа). п = р * д</string>
-    <string name="e_is_coprime_to_n_from_list_we_take_first">e взаимно простое с n. Из списка берем первый</string>
-    <string name="encryption_is_performed_as_follows_we_take_the_number_of_a_letter_from_the_alphabet_and_perform_a_quick_exponentiation_to_the_power_e_modulo_n">Шифрование выполняется следующим образом: мы берем номер буквы из алфавита и выполняем быстрое возведение в степень e по модулю n.</string>
-    <string name="the_result_of_encryption_will_be_a_list_of_numbers">Результатом шифрования будет список чисел:</string>
-    <string name="enter_a_numeric_code">Введите числовой код</string>
-    <string name="d_private_is_the_inverse_of_e_exponent_if_it_is_negative_then_the_resulting_number_d_is_subtracted_from_the_euler_number_d_gcde_euler_e_d_e_euler_1">d(приватный) является инверсией e(показатель степени). Если оно отрицательное, то полученное число d вычитается из числа Эйлера. d = gcde(Эйлер, e), (d*e)%Euler=1</string>
-    <string name="next_the_program_itself_will_break_the_cipher_code_into_blocks_and_using_the_fast_exponentiation_algorithm_modulo_n_will_issue_a_decrypted_message">Далее программа сама разобьёт код шифра на блоки и, используя алгоритм быстрого возведения в степень по модулю n, выдаст расшифрованное сообщение</string>
-    <string name="result_is_numbers_of_letters_in_alphabet_and_decrypted_message">Результат - чиловое заначение букв в алфавите и расшифрованное сообщение.</string>
-    <string name="entering_values_into_the_form_base_4_degree_13_mod_497">Ввод значений в форму: основание = 4, степень = 13, мод = 497</string>
-    <string name="values_are_written_to_the_table_a_4_m_13_n_497_p_a_4_r_m_mod_2_13_mod_2_1">В таблицу записываются значения: а = 4, m = 13, n = 497, p = a = 4, r = m mod 2 = 13 mod 2 = 1</string>
-    <string name="in_the_next_line_the_values_are_recalculated_if_r_0_then_p_is_the_value_of_a_from_the_previous_line">В следующей строке значения пересчитываются. Если r = 0, то «p» — это значение «a» из предыдущей строки.</string>
-    <string name="if_r_1_then_p_p_from_the_previous_line_a_mod_n">Если r = 1, то p = [p(из предыдущей строки)*a] mod n</string>
-    <string name="repeat_the_algorithm_until_m_is_equal_to_1_and_the_result_is_p_445">Повторяйте алгоритм, пока «m» не станет равным 1. Результатом будет «p = 445».</string>
-    <string name="entering_values_into_the_form_a_5_b_3">Ввод значений в форму: a = 5, b = 3</string>
-    <string name="values_are_written_to_the_table_a_5_b_3_initial_vectors_x_1_0_and_y_0_1_q_and_r_calculated_as_q_a_b_r_a_b_q">В таблицу записываются значения: a = 5, b =3. Начальные векторы x = (1; 0) и y = (0; 1). q и r рассчитываются как q = a/b, r = a - b*q</string>
-    <string name="x_and_y_calculated_as_x_y_previous_y_x_q_y_previous">x и y вычисляются как x = y (предыдущий), y = x - q*y (предыдущий)</string>
-    <string name="repeat_the_algorithm_until_r_is_equal_to_0_and_the_result_is_1_2">Повторяйте алгоритм до тех пор, пока \'r\' не станет равным 0. Результатом будет (-1; 2)</string>
-    <string name="entering_values_into_the_form_mod_5">Ввод значений в форму: mod = 5</string>
-    <string name="algorithm_is_simple_gcde_take_numbers_that_a_1">Алгоритм простой gcde. Возьмем числа, что a = 1</string>
-    <string name="result_is_1_2_3_4">Результат 1; 2; 3; 4.</string>
+    <string name="alpha_1">Вводим 10 — это шаг в алфавите. p и q - первичное число</string>
+    <string name="rsa_1_en">Введите сообщение, которое необходимо зашифровать. n и e вычисляются автоматически, если в предыдущем окне были введены p и q (простые числа). п = р * д</string>
+    <string name="rsa_2_en">e взаимно простое с n. Из списка берем первый</string>
+    <string name="rsa_3_en">Шифрование выполняется следующим образом: мы берем номер буквы из алфавита и выполняем быстрое возведение в степень e по модулю n.</string>
+    <string name="rsa_4_en">Результатом шифрования будет список чисел:</string>
+    <string name="rsa_1_dec">Введите числовой код</string>
+    <string name="rsa_2_dec">d(приватный) является инверсией e(показатель степени). Если оно отрицательное, то полученное число d вычитается из числа Эйлера. d = gcde(Эйлер, e), (d*e)%Euler=1</string>
+    <string name="rsa_3_dec">Далее программа сама разобьёт код шифра на блоки и, используя алгоритм быстрого возведения в степень по модулю n, выдаст расшифрованное сообщение</string>
+    <string name="rsa_4_dec">Результат - чиловое заначение букв в алфавите и расшифрованное сообщение.</string>
+    <string name="fe_1">Ввод значений в форму: основание = 4, степень = 13, мод = 497</string>
+    <string name="fe_2">В таблицу записываются значения: а = 4, m = 13, n = 497, p = a = 4, r = m mod 2 = 13 mod 2 = 1</string>
+    <string name="fe_3">В следующей строке значения пересчитываются. Если r = 0, то «p» — это значение «a» из предыдущей строки.</string>
+    <string name="fe_4">Если r = 1, то p = [p(из предыдущей строки)*a] mod n</string>
+    <string name="fe_5">Повторяйте алгоритм, пока «m» не станет равным 1. Результатом будет «p = 445».</string>
+    <string name="gcde_1">Ввод значений в форму: a = 5, b = 3</string>
+    <string name="gcde_2">В таблицу записываются значения: a = 5, b =3. Начальные векторы x = (1; 0) и y = (0; 1). q и r рассчитываются как q = a/b, r = a - b*q</string>
+    <string name="gcde_3">x и y вычисляются как x = y (предыдущий), y = x - q*y (предыдущий)</string>
+    <string name="gcde_4">Повторяйте алгоритм до тех пор, пока \'r\' не станет равным 0. Результатом будет (-1; 2)</string>
+    <string name="mg_1">Ввод значений в форму: mod = 5</string>
+    <string name="mg_2">Алгоритм простой gcde. Возьмем числа, что a = 1</string>
+    <string name="mg_3">Результат 1; 2; 3; 4.</string>
     <string name="rsa_encrypt">RSA Шифрование</string>
     <string name="rsa_decrypt">RSA Дешифрование</string>
 </resources>

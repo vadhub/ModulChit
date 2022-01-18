@@ -14,7 +14,7 @@
             android:id="@+id/startExplAlpha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/entering_10_is_step_in_alphavite_p_and_q_is_primary_number"
+            android:text="@string/alpha_1"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>

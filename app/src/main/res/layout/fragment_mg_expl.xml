@@ -12,7 +12,7 @@
         <TextView
             style="@style/theme_chit"
             android:id="@+id/startTextMG"
-            android:text="@string/entering_values_into_the_form_mod_5"
+            android:text="@string/mg_1"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
             android:layout_width="wrap_content"
@@ -35,7 +35,7 @@
         <TextView
             style="@style/theme_chit"
             android:id="@+id/explTextMG1"
-            android:text="@string/algorithm_is_simple_gcde_take_numbers_that_a_1"
+            android:text="@string/mg_2"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
             android:layout_width="wrap_content"
@@ -58,7 +58,7 @@
         <TextView
             style="@style/theme_chit"
             android:id="@+id/explTextFE2"
-            android:text="@string/result_is_1_2_3_4"
+            android:text="@string/mg_3"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
             android:layout_width="wrap_content"

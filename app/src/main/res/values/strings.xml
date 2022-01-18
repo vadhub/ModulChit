@@ -37,26 +37,26 @@
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
-    <string name="entering_10_is_step_in_alphavite_p_and_q_is_primary_number">Entering 10 is step in alphavite. p and q is primary number</string>
-    <string name="enter_the_message_to_be_encrypted_n_and_e_are_calculated_automatically_if_p_and_q_prime_numbers_were_entered_in_the_previous_window_n_p_q">Enter the message to be encrypted. n and e are calculated automatically if p and q (prime numbers) were entered in the previous window. n = p*q</string>
-    <string name="e_is_coprime_to_n_from_list_we_take_first">e is coprime to n. From list we take first</string>
-    <string name="encryption_is_performed_as_follows_we_take_the_number_of_a_letter_from_the_alphabet_and_perform_a_quick_exponentiation_to_the_power_e_modulo_n">Encryption is performed as follows: we take the number of a letter from the alphabet and perform a quick exponentiation to the power e modulo n.</string>
-    <string name="the_result_of_encryption_will_be_a_list_of_numbers">The result of encryption will be a list of numbers:</string>
-    <string name="enter_a_numeric_code">Enter a numeric code</string>
-    <string name="d_private_is_the_inverse_of_e_exponent_if_it_is_negative_then_the_resulting_number_d_is_subtracted_from_the_euler_number_d_gcde_euler_e_d_e_euler_1">d(private) is the inverse of e(exponent). If it is negative, then the resulting number d is subtracted from the Euler number. d = gcde(Euler, e), (d*e)%Euler=1</string>
-    <string name="next_the_program_itself_will_break_the_cipher_code_into_blocks_and_using_the_fast_exponentiation_algorithm_modulo_n_will_issue_a_decrypted_message">Next, the program itself will break the cipher code into blocks and, using the fast exponentiation algorithm modulo n, will issue a decrypted message</string>
-    <string name="result_is_numbers_of_letters_in_alphabet_and_decrypted_message">Result is numbers of letters in alphabet and decrypted message.</string>
-    <string name="entering_values_into_the_form_base_4_degree_13_mod_497">Entering values into the form: base = 4, degree = 13, mod = 497</string>
-    <string name="values_are_written_to_the_table_a_4_m_13_n_497_p_a_4_r_m_mod_2_13_mod_2_1">Values are written to the table: a = 4, m = 13, n = 497, p = a = 4, r = m mod 2 = 13 mod 2 = 1</string>
-    <string name="in_the_next_line_the_values_are_recalculated_if_r_0_then_p_is_the_value_of_a_from_the_previous_line">In the next line, the values are recalculated. If r = 0, then \'p\' is the value of \'a\' from the previous line.</string>
-    <string name="if_r_1_then_p_p_from_the_previous_line_a_mod_n">If r = 1, then p = [p(from the previous line)*a] mod n</string>
-    <string name="repeat_the_algorithm_until_m_is_equal_to_1_and_the_result_is_p_445">Repeat the algorithm until \'m\' is equal to 1. And the result is \'p = 445\'</string>
-    <string name="entering_values_into_the_form_a_5_b_3">Entering values into the form: a = 5, b = 3</string>
-    <string name="values_are_written_to_the_table_a_5_b_3_initial_vectors_x_1_0_and_y_0_1_q_and_r_calculated_as_q_a_b_r_a_b_q">Values are written to the table: a = 5, b =3. Initial vectors x = (1; 0) and y = (0; 1). q and r calculated as q = a/b, r = a - b*q</string>
-    <string name="x_and_y_calculated_as_x_y_previous_y_x_q_y_previous">x and y calculated as x = y(previous), y = x - q*y(previous)</string>
-    <string name="repeat_the_algorithm_until_r_is_equal_to_0_and_the_result_is_1_2">Repeat the algorithm until \'r\' is equal to 0. And the result is (-1; 2)</string>
-    <string name="entering_values_into_the_form_mod_5">Entering values into the form: mod = 5</string>
-    <string name="algorithm_is_simple_gcde_take_numbers_that_a_1">Algorithm is simple gcde. Take numbers that a = 1</string>
-    <string name="result_is_1_2_3_4">Result is 1; 2; 3; 4.</string>
+    <string name="alpha_1">Entering 10 is step in alphavite. p and q is primary number</string>
+    <string name="rsa_1_en">Enter the message to be encrypted. n and e are calculated automatically if p and q (prime numbers) were entered in the previous window. n = p*q</string>
+    <string name="rsa_2_en">e is coprime to n. From list we take first</string>
+    <string name="rsa_3_en">Encryption is performed as follows: we take the number of a letter from the alphabet and perform a quick exponentiation to the power e modulo n.</string>
+    <string name="rsa_4_en">The result of encryption will be a list of numbers:</string>
+    <string name="rsa_1_dec">Enter a numeric code</string>
+    <string name="rsa_2_dec">d(private) is the inverse of e(exponent). If it is negative, then the resulting number d is subtracted from the Euler number. d = gcde(Euler, e), (d*e)%Euler=1</string>
+    <string name="rsa_3_dec">Next, the program itself will break the cipher code into blocks and, using the fast exponentiation algorithm modulo n, will issue a decrypted message</string>
+    <string name="rsa_4_dec">Result is numbers of letters in alphabet and decrypted message.</string>
+    <string name="fe_1">Entering values into the form: base = 4, degree = 13, mod = 497</string>
+    <string name="fe_2">Values are written to the table: a = 4, m = 13, n = 497, p = a = 4, r = m mod 2 = 13 mod 2 = 1</string>
+    <string name="fe_3">In the next line, the values are recalculated. If r = 0, then \'p\' is the value of \'a\' from the previous line.</string>
+    <string name="fe_4">If r = 1, then p = [p(from the previous line)*a] mod n</string>
+    <string name="fe_5">Repeat the algorithm until \'m\' is equal to 1. And the result is \'p = 445\'</string>
+    <string name="gcde_1">Entering values into the form: a = 5, b = 3</string>
+    <string name="gcde_2">Values are written to the table: a = 5, b =3. Initial vectors x = (1; 0) and y = (0; 1). q and r calculated as q = a/b, r = a - b*q</string>
+    <string name="gcde_3">x and y calculated as x = y(previous), y = x - q*y(previous)</string>
+    <string name="gcde_4">Repeat the algorithm until \'r\' is equal to 0. And the result is (-1; 2)</string>
+    <string name="mg_1">Entering values into the form: mod = 5</string>
+    <string name="mg_2">Algorithm is simple gcde. Take numbers that a = 1</string>
+    <string name="mg_3">Result is 1; 2; 3; 4.</string>
 
 </resources>
