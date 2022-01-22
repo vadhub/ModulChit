@@ -5,24 +5,31 @@ import com.vad.modulchit.utils.AlgebraMod;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class ListMGpresenter {
 
     private ListMGView listMGView;
-    private AlgebraMod algebraMod = new AlgebraMod();
+    private AlgebraMod algebraMod;
+    private CompositeDisposable compositeDisposable;
+    private Disposable disposable;
 
     public ListMGpresenter(ListMGView listMGView) {
         this.listMGView = listMGView;
+        algebraMod = new AlgebraMod();
+        compositeDisposable = new CompositeDisposable();
     }
 
     public void loadListMG(int m){
 
-        Observable.just(algebraMod)
+        disposable = Observable.just(algebraMod)
                 .subscribeOn(Schedulers.io())
                 .map(o -> o.nokGraph(m))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(numberNOKS -> listMGView.showData(numberNOKS));
+        compositeDisposable.add(disposable);
     }
 
     public void showResult(String modStr){
@@ -43,6 +50,12 @@ public class ListMGpresenter {
             }
         }else {
             listMGView.showError(R.string.warning_enter_text);
+        }
+    }
+
+    public void disposableDispose() {
+        if (compositeDisposable!=null) {
+            compositeDisposable.dispose();
         }
     }
 }

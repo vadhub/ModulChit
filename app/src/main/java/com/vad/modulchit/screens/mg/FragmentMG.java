@@ -114,4 +114,12 @@ public class FragmentMG extends Fragment implements ListMGView, HasCustomTitle, 
             ((Navigator) requireActivity()).startFragment(new FragmentMGexpl());
         });
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (presenter!=null) {
+            presenter.disposableDispose();
+        }
+    }
 }
