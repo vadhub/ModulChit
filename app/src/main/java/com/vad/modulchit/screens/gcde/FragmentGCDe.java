@@ -112,4 +112,12 @@ public class FragmentGCDe extends Fragment implements ListGCDEView, HasCustomTit
             ((Navigator) requireActivity()).startFragment(new FragmentGCDexpl());
         });
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (presenter!=null) {
+            presenter.disposableDispose();
+        }
+    }
 }

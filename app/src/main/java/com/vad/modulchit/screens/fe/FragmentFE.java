@@ -99,4 +99,13 @@ public class FragmentFE extends Fragment implements ListFEView, HasCustomTitle, 
             ((Navigator) requireActivity()).startFragment(new FragmentFEexpl());
         });
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        if (presenter!=null) {
+            presenter.disposableDispose();
+        }
+    }
 }

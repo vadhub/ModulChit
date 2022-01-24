@@ -12,6 +12,7 @@ import java.util.Objects;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.ObservableSource;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.functions.Function;
@@ -20,22 +21,28 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class ListGCDEpresenter {
 
-    private AlgebraMod algebraMod = new AlgebraMod();
+    private AlgebraMod algebraMod;
     private ListGCDEView listGCDEView;
+    private CompositeDisposable compositeDisposable;
+    private Disposable disposable;
 
     public ListGCDEpresenter(ListGCDEView listGCDEView) {
         this.listGCDEView = listGCDEView;
+        algebraMod = new AlgebraMod();
+        compositeDisposable = new CompositeDisposable();
     }
 
     public void loadListGCDE(int a, int b){
 
-        Observable.just(algebraMod)
+        disposable = Observable.just(algebraMod)
                 .subscribeOn(Schedulers.io())
                 .map(o -> o.gcdGraph(a, b))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         tableNumberGCDeList -> listGCDEView.showData(tableNumberGCDeList)
                 );
+
+        compositeDisposable.add(disposable);
     }
 
     public void showResult(String aStr, String bStr){
@@ -58,5 +65,11 @@ public class ListGCDEpresenter {
             listGCDEView.showError(R.string.warning_enter_text);
         }
 
+    }
+
+    public void disposableDispose() {
+        if (compositeDisposable!=null) {
+            compositeDisposable.dispose();
+        }
     }
 }

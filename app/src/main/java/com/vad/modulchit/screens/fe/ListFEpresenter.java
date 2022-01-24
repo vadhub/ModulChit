@@ -8,24 +8,33 @@ import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class ListFEpresenter {
 
-    private AlgebraMod algebraMod = new AlgebraMod();
+    private AlgebraMod algebraMod;
     private ListFEView listFEView;
+    private CompositeDisposable compositeDisposable;
+    private Disposable disposable;
 
     public ListFEpresenter(ListFEView listFEView) {
         this.listFEView = listFEView;
+        algebraMod = new AlgebraMod();
+        compositeDisposable = new CompositeDisposable();
+
     }
 
     public void loadListFE(int a, int m, int n){
 
-        Observable.just(algebraMod)
+        disposable = Observable.just(algebraMod)
                 .subscribeOn(Schedulers.io())
                 .map(o -> o.feGraph(a, m, n))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(tableNumberFES -> listFEView.showData(tableNumberFES));
+
+        compositeDisposable.add(disposable);
 
     }
 
@@ -54,6 +63,12 @@ public class ListFEpresenter {
             listFEView.showError(R.string.warning_enter_text);
         }
 
+    }
+
+    public void disposableDispose() {
+        if (compositeDisposable!=null) {
+            compositeDisposable.dispose();
+        }
     }
 
 }
