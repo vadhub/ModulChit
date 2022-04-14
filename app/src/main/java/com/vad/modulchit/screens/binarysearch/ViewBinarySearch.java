@@ -9,15 +9,24 @@ import android.view.View;
 
 public class ViewBinarySearch extends View {
 
-    private final Paint paint = new Paint();
+    private final Paint paint;
+    private final Paint fontPaint;
 
     public ViewBinarySearch(Context context) {
         super(context);
+        paint = new Paint();
+        fontPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        fontPaint.setTextSize(90);
+        fontPaint.setStyle(Paint.Style.STROKE);
+        paint.setStyle(Paint.Style.STROKE);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
 
+        int[] arr = {1, 2, 3, 4, 5, 6};
+
+        int k = 0;
         for (int i = 200; i < 740; i+=100) {
             paint.setColor(Color.BLACK);
             paint.setStrokeWidth(5);
@@ -26,14 +35,15 @@ public class ViewBinarySearch extends View {
             paint.setColor(Color.GREEN);
             paint.setStrokeWidth(5);
             canvas.drawRect(i-10, 110, i-90,220, paint);
+
+            canvas.drawText(String.valueOf(arr[k]), i-75, 195, fontPaint);
+            k++;
         }
 
         paint.setStrokeWidth(5);
         paint.setColor(Color.BLACK);
 
         canvas.drawLine(400,233, 400, 380, paint);
-
-        paint.setStyle(Paint.Style.STROKE);
 
         paint.setColor(Color.BLACK);
         drawTriangle(canvas, paint, 400, 395, 30);
