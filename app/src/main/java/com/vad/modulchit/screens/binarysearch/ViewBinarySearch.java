@@ -25,6 +25,7 @@ public class ViewBinarySearch extends View {
     protected void onDraw(Canvas canvas) {
 
         int[] arr = {1, 2, 3, 4, 5, 6};
+        int[] arr2 = {4, 5, 6};
         int x = 200;
         int y = 100;
         int width = 100;
@@ -32,6 +33,7 @@ public class ViewBinarySearch extends View {
 
         int length = drawArray(canvas, paint, arr, x, y, width, height);
         drawArrow(canvas, paint, length/2, y+height, length/2, y+height+100);
+        int length2 = drawArray(canvas, paint, arr2, length-arr2.length*width, y+height+125, width, height);
 
     }
 
