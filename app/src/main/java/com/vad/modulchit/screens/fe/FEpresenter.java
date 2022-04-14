@@ -12,14 +12,14 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
-public class ListFEpresenter {
+public class FEpresenter {
 
     private AlgebraMod algebraMod;
     private ListFEView listFEView;
     private CompositeDisposable compositeDisposable;
     private Disposable disposable;
 
-    public ListFEpresenter(ListFEView listFEView) {
+    public FEpresenter(ListFEView listFEView) {
         this.listFEView = listFEView;
         algebraMod = new AlgebraMod();
         compositeDisposable = new CompositeDisposable();

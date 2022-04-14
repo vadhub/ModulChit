@@ -37,14 +37,14 @@ public class FragmentFE extends Fragment implements ListFEView, HasCustomTitle, 
 
     private Button btnOk;
     private View includeFE;
-    private ListFEpresenter presenter;
+    private FEpresenter presenter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_f_e, container, false);
 
-        presenter = new ListFEpresenter(this);
+        presenter = new FEpresenter(this);
         editTextA = (EditText) v.findViewById(R.id.editTextNumberAFe);
         editTextM = (EditText) v.findViewById(R.id.editTextNumberMFe);
         editTextN = (EditText) v.findViewById(R.id.editTextNumberNFe);
