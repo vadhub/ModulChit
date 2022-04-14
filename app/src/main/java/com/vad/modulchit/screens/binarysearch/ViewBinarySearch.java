@@ -25,32 +25,43 @@ public class ViewBinarySearch extends View {
     protected void onDraw(Canvas canvas) {
 
         int[] arr = {1, 2, 3, 4, 5, 6};
+        int length = drawArray(canvas, paint, arr, 200, 100);
+        drawArrow(canvas, paint, length/2, 100, length/2, 150);
 
+    }
+
+    private void drawArrow(Canvas canvas, Paint paint, int xStart, int yStart, int xEnd, int yEnd) {
+        paint.setStrokeWidth(5);
+        paint.setColor(Color.BLACK);
+
+        canvas.drawLine(xStart,yStart, xEnd, yEnd, paint);
+
+        paint.setColor(Color.BLACK);
+        drawTriangle(canvas, paint, xStart, yEnd+15, 30);
+    }
+
+    private int drawArray(Canvas canvas, Paint paint, int[] arr, int x, int width) {
         int k = 0;
-        for (int i = 200; i < 740; i+=100) {
+
+        //i = 200, 740 100
+        int length = width*arr.length+x;
+        for (int i = x; i < length; i+=width) {
             paint.setColor(Color.BLACK);
             paint.setStrokeWidth(5);
-            canvas.drawRect(i, 100, i-100, 230, paint);
+            canvas.drawRect(i, width, i-width, 230, paint);
 
             paint.setColor(Color.GREEN);
             paint.setStrokeWidth(5);
-            canvas.drawRect(i-10, 110, i-90,220, paint);
+            canvas.drawRect(i-10, 110, i-width+10,220, paint);
 
             canvas.drawText(String.valueOf(arr[k]), i-75, 195, fontPaint);
             k++;
         }
 
-        paint.setStrokeWidth(5);
-        paint.setColor(Color.BLACK);
-
-        canvas.drawLine(400,233, 400, 380, paint);
-
-        paint.setColor(Color.BLACK);
-        drawTriangle(canvas, paint, 400, 395, 30);
-
+        return length;
     }
 
-    public void drawTriangle(Canvas canvas, Paint paint, int x, int y, int width) {
+    private void drawTriangle(Canvas canvas, Paint paint, int x, int y, int width) {
         int halfWidth = width / 2;
 
         Path path = new Path();
