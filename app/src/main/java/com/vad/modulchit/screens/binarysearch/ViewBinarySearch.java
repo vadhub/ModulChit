@@ -11,6 +11,7 @@ public class ViewBinarySearch extends View {
 
     private final Paint paint;
     private final Paint fontPaint;
+    private final int shift = 10;
 
     public ViewBinarySearch(Context context) {
         super(context);
@@ -26,14 +27,17 @@ public class ViewBinarySearch extends View {
 
         int[] arr = {1, 2, 3, 4, 5, 6};
         int[] arr2 = {4, 5, 6};
-        int x = 200;
+        int x = 100;
         int y = 100;
         int width = 100;
         int height = 120;
 
-        int length = drawArray(canvas, paint, arr, x, y, width, height);
+
+        int length = arr.length*width+x-width;
+        drawArray(canvas, paint, arr, x, y, width, height);
         drawArrow(canvas, paint, length/2, y+height, length/2, y+height+100);
-        int length2 = drawArray(canvas, paint, arr2, length-arr2.length*width, y+height+125, width, height);
+        int length1 = arr2.length*width;
+        drawArray(canvas, paint, arr2, length-length1, y+height+125, width, height);
 
     }
 
@@ -47,7 +51,7 @@ public class ViewBinarySearch extends View {
         drawTriangle(canvas, paint, xStart, yEnd+15, 30);
     }
 
-    private int drawArray(Canvas canvas, Paint paint, int[] arr, int x, int y, int width, int height) {
+    private void drawArray(Canvas canvas, Paint paint, int[] arr, int x, int y, int width, int height) {
         int k = 0;
 
         //i = 200, 740 100
@@ -60,13 +64,11 @@ public class ViewBinarySearch extends View {
 
             paint.setColor(Color.GREEN);
             paint.setStrokeWidth(5);
-            canvas.drawRect(i-10, y+10, i-width+10,y+height-10, paint);
+            canvas.drawRect(i-shift, y+shift, i-width+shift,y+height-shift, paint);
 
             canvas.drawText(String.valueOf(arr[k]), i-75, y+height-30, fontPaint);
             k++;
         }
-
-        return length;
     }
 
     private void drawTriangle(Canvas canvas, Paint paint, int x, int y, int width) {
