@@ -24,20 +24,32 @@ public class ViewBinarySearch extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-
         int[] arr = {1, 2, 3, 4, 5, 6};
         int[] arr2 = {4, 5, 6};
-        int x = 100;
+        int[] arr3 = {5};
+        int x = 200;
         int y = 100;
         int width = 100;
         int height = 120;
+        int shiftDown = 125;
 
+        for (int i = 0; i < 3; i++) {
 
-        int length = arr.length*width+x-width;
-        drawArray(canvas, paint, arr, x, y, width, height);
-        drawArrow(canvas, paint, length/2, y+height, length/2, y+height+100);
-        int length1 = arr2.length*width;
-        drawArray(canvas, paint, arr2, length-length1, y+height+125, width, height);
+            int length = arr.length*width+x-width;
+            drawArray(canvas, paint, arr, x, y, width, height);
+
+            x = length/2-width;
+            y = y + height+shiftDown;
+
+        }
+
+//        drawArrow(canvas, paint, length/2, y+height, length/2, y+height+shiftDown-25);
+//
+//        int length1 = arr2.length*width;
+//        drawArray(canvas, paint, arr2, length-length1, y+height+shiftDown, width, height);
+//        drawArrow(canvas, paint, length1, (y+height)*2, length1, y+(height+shiftDown)*2-25);
+//
+//        drawArray(canvas, paint, arr3, (length/2)+width/2, y+(height+shiftDown)*2, width, height);
 
     }
 
