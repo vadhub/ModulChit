@@ -7,6 +7,8 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.view.View;
 
+import java.util.Arrays;
+
 public class ViewBinarySearch extends View {
 
     private final Paint paint;
@@ -27,21 +29,24 @@ public class ViewBinarySearch extends View {
         int[] arr = {1, 2, 3, 4, 5, 6};
         int[] arr2 = {4, 5, 6};
         int[] arr3 = {5};
-        int x = 200;
+        float x = 200;
         int y = 100;
         int width = 100;
         int height = 120;
         int shiftDown = 125;
+        float length = arr.length*width+x;
+        float shiftX = 0;
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 2; i < 5; i++) {
 
-            int length = arr.length*width+x;
-            drawArray(canvas, paint, arr, x, y, width, height);
+            drawArray(canvas, paint, arr, x+shiftX, y, width, height);
 
-            int len = 1*width;
-            x = (((length-len)/width)*width)/2;
-            System.out.println(x);
+            float len = arr.length*width;
+
+            shiftX = (length-len)/2;
             y = y + height+shiftDown;
+
+            arr = Arrays.copyOfRange(arr, i, arr.length-1);
 
         }
 
@@ -65,12 +70,12 @@ public class ViewBinarySearch extends View {
         drawTriangle(canvas, paint, xStart, yEnd+15, 30);
     }
 
-    private void drawArray(Canvas canvas, Paint paint, int[] arr, int x, int y, int width, int height) {
+    private void drawArray(Canvas canvas, Paint paint, int[] arr, float x, int y, int width, int height) {
         int k = 0;
 
         //i = 200, 740 100
-        int length = width*arr.length+x;
-        for (int i = x; i < length; i+=width) {
+        float length = width*arr.length+x;
+        for (float i = x; i < length; i+=width) {
 
             paint.setColor(Color.BLACK);
             paint.setStrokeWidth(5);
