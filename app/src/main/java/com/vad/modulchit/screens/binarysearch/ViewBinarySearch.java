@@ -35,10 +35,12 @@ public class ViewBinarySearch extends View {
 
         for (int i = 0; i < 3; i++) {
 
-            int length = arr.length*width+x-width;
+            int length = arr.length*width+x;
             drawArray(canvas, paint, arr, x, y, width, height);
 
-            x = length/2-width;
+            int len = 1*width;
+            x = ((length-len)/width)*width;
+            System.out.println(x);
             y = y + height+shiftDown;
 
         }
