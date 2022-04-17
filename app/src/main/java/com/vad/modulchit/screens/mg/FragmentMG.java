@@ -3,6 +3,7 @@
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SimpleItemAnimator;
@@ -51,8 +52,9 @@ public class FragmentMG extends Fragment implements ListMGView, HasCustomTitle, 
         textViewResult = (TextView) v.findViewById(R.id.textViewResult);
         btnNok = (Button) v.findViewById(R.id.buttonNOK);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.mRecyclerNok);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL));
 
-        ((SimpleItemAnimator)mRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
+//        ((SimpleItemAnimator)mRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         includeMG = (View) v.findViewById(R.id.includeMG);
