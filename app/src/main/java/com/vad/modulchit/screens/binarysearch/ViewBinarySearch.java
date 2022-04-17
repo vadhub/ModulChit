@@ -13,7 +13,6 @@ public class ViewBinarySearch extends View {
 
     private final Paint paint;
     private final Paint fontPaint;
-    private final int shift = 10;
 
     public ViewBinarySearch(Context context) {
         super(context);
@@ -29,7 +28,7 @@ public class ViewBinarySearch extends View {
         int[] arr = {1, 2, 3, 4, 5, 6};
         int[] arr2 = {4, 5, 6};
         int[] arr3 = {5};
-        float x = 200;
+        float x = 0;
         int y = 100;
         int width = 100;
         int height = 120;
@@ -79,13 +78,14 @@ public class ViewBinarySearch extends View {
 
             paint.setColor(Color.BLACK);
             paint.setStrokeWidth(5);
-            canvas.drawRect(i, y, i-width, y+height, paint);
+            canvas.drawRect(i, y, i+width, y+height, paint);
 
             paint.setColor(Color.GREEN);
             paint.setStrokeWidth(5);
-            canvas.drawRect(i-shift, y+shift, i-width+shift,y+height-shift, paint);
+//            int shift = 10;
+//            canvas.drawRect(i+ shift, y+ shift, i+width+ shift,y+height+ shift, paint);
 
-            canvas.drawText(String.valueOf(arr[k]), i-75, y+height-30, fontPaint);
+            canvas.drawText(String.valueOf(arr[k]), (float) (i+width*0.25), y+height-30, fontPaint);
             k++;
         }
     }
