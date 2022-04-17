@@ -37,11 +37,7 @@ public class AdapterNOK extends RecyclerView.Adapter<AdapterNOK.MyViewHolderNOK>
     @Override
     public void onBindViewHolder(@NonNull AdapterNOK.MyViewHolderNOK holder, int position) {
 
-        boolean paint = false;
-
-        if (position % 2 == 0) {
-            paint = true;
-        }
+        boolean paint = position % 2 == 0;
 
         TableNumberNOK tableNumberNOK = tableNumberNOKS.get(position);
         holder.bind(tableNumberNOK, paint);
@@ -91,12 +87,12 @@ public class AdapterNOK extends RecyclerView.Adapter<AdapterNOK.MyViewHolderNOK>
 
             subItem.setVisibility(expanded ? View.VISIBLE : View.GONE);
 
-            if (tableNumberNOK.getBn() != 0) {
-                textViewAn.setBackgroundResource(R.color.textViewColor);
-                textViewBn.setBackgroundResource(R.color.textViewColor);
-                textViewQn.setBackgroundResource(R.color.textViewColor);
-                textViewRn.setBackgroundResource(R.color.textViewColor);
-            }
+//            if (tableNumberNOK.getBn() != 0) {
+//                textViewAn.setBackgroundResource(R.color.textViewColor);
+//                textViewBn.setBackgroundResource(R.color.textViewColor);
+//                textViewQn.setBackgroundResource(R.color.textViewColor);
+//                textViewRn.setBackgroundResource(R.color.textViewColor);
+//            }
 
             textViewAn.setText(tableNumberNOK.getAn()+"");
             textViewBn.setText(tableNumberNOK.getBn()+"");

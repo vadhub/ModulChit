@@ -38,10 +38,7 @@ public class AdapterFE extends RecyclerView.Adapter<AdapterFE.MyViewHolderFE> {
     @Override
     public void onBindViewHolder(@NonNull AdapterFE.MyViewHolderFE holder, int position) {
 
-        boolean paint = false;
-        if (position % 2 == 0 && position != tableNumberFES.size()) {
-            paint = true;
-        }
+        boolean paint = position % 2 == 0 && position != tableNumberFES.size();
         TableNumberFE tableNumberFE = tableNumberFES.get(position);
         holder.bind(tableNumberFE, paint);
 

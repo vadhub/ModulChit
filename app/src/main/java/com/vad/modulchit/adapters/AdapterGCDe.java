@@ -39,11 +39,8 @@ public class AdapterGCDe extends RecyclerView.Adapter<AdapterGCDe.MyViewHolder> 
     @Override
     public void onBindViewHolder(AdapterGCDe.MyViewHolder holder, int position) {
 
-        boolean paint = false;
+        boolean paint = position % 2 == 0 && position != tableNumberGCDes.size();
 
-        if (position % 2 == 0 && position != tableNumberGCDes.size()) {
-            paint = true;
-        }
         TableNumberGCDe tableNumberGCDe = tableNumberGCDes.get(position);
         holder.bind(tableNumberGCDe, paint);
 
