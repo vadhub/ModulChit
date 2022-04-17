@@ -101,12 +101,12 @@ public class AdapterNOK extends RecyclerView.Adapter<AdapterNOK.MyViewHolderNOK>
 
             textViewextra.setText(tableNumberNOK.getExtra());
 
-//            if (tableNumberNOK.getBn() == 0 ) {
-//                textViewAn.setText(" ");
-//                textViewBn.setText(" ");
-//                textViewQn.setText(" ");
-//                textViewRn.setText(" ");
-//            }
+            if (tableNumberNOK.getBn() == -1 ) {
+                textViewAn.setText(" ");
+                textViewBn.setText(" ");
+                textViewQn.setText(" ");
+                textViewRn.setText(" ");
+            }
 
         }
     }

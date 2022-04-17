@@ -113,7 +113,7 @@ public class AlgebraMod {
             tempTableNumberNOKs.add(tableNumberNOK);
             while (true){
                 if(r==0){
-                    tableNumberNOK = new TableNumberNOK(gcd(mod, i), 0, 0, 0, i, "");
+                    tableNumberNOK = new TableNumberNOK(gcd(mod, i), 0, 0, 0, i, "exit from loop");
                     tempTableNumberNOKs.add(tableNumberNOK);
                     break;
                 };
@@ -127,6 +127,9 @@ public class AlgebraMod {
                 tableNumberNOK = new TableNumberNOK(a, b, q, r, i, extra);
                 tempTableNumberNOKs.add(tableNumberNOK);
             }
+
+            tableNumberNOK = new TableNumberNOK(-1, -1, -1, -1, -1, "end");
+            tempTableNumberNOKs.add(tableNumberNOK);
         }
 
         return tempTableNumberNOKs;
