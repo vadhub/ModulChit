@@ -1,5 +1,6 @@
 package com.vad.modulchit.screens.binarysearch;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -25,11 +26,10 @@ public class ViewBinarySearch extends View {
         paint.setStrokeWidth(STROKE_WITH);
     }
 
+    @SuppressLint("DrawAllocation")
     @Override
     protected void onDraw(Canvas canvas) {
         int[] arr = {1, 2, 3, 4, 5, 6};
-        int[] arr2 = {4, 5, 6};
-        int[] arr3 = {5};
         float x = STROKE_WITH;
         int y = 100;
         int width = 100;
@@ -37,16 +37,35 @@ public class ViewBinarySearch extends View {
         int shiftDown = 125;
         float length = arr.length*width;
         float shiftX = 0;
+        int element = 5;
 
-        for (int i = 1; i < 5; i++) {
+        int lowIndex = 0;
+        int highIndex = arr.length-1;
+
+        int elementPos = -1;
+
+        while (lowIndex <= highIndex) {
+            int midIndex = (lowIndex + highIndex) / 2;
 
             drawArray(canvas, paint, arr, x+shiftX, y, width, height);
             y = y + height+shiftDown;
 
-            arr = Arrays.copyOfRange(arr, i, arr.length-1);
+            if (element == arr[midIndex]) {
+                elementPos = midIndex;
+                arr = new int[]{arr[elementPos]};
+                float len = arr.length*width;
+                shiftX = (length-len)/2;
+                drawArray(canvas, paint, arr, x+shiftX, y, width, height);
+                break;
+            } else if (element < arr[midIndex]) {
+                highIndex = midIndex-1;
+            } else if (element > arr[midIndex]) {
+                lowIndex = midIndex+1;
+            }
+
+            arr = Arrays.copyOfRange(arr, lowIndex, highIndex);
             float len = arr.length*width;
             shiftX = (length-len)/2;
-
         }
 
 //        drawArrow(canvas, paint, length/2, y+height, length/2, y+height+shiftDown-25);
@@ -80,7 +99,7 @@ public class ViewBinarySearch extends View {
             paint.setStrokeWidth(5);
             canvas.drawRect(i, y, i+width, y+height, paint);
 
-            paint.setColor(Color.GREEN);
+//            paint.setColor(Color.GREEN);
 //            int shift = 10;
 //            canvas.drawRect(i+ shift, y+ shift, i+width+ shift,y+height+ shift, paint);
 
