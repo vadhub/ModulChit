@@ -10,13 +10,13 @@ import android.view.View;
 
 import java.util.Arrays;
 
-public class ViewBinarySearch extends View {
+public class CustomViewBinarySearch extends View {
 
     private final Paint paint;
     private final Paint fontPaint;
     private final int STROKE_WITH = 5;
 
-    public ViewBinarySearch(Context context) {
+    public CustomViewBinarySearch(Context context) {
         super(context);
         paint = new Paint();
         fontPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -41,32 +41,36 @@ public class ViewBinarySearch extends View {
 
         int lowIndex = 0;
         int highIndex = arr.length-1;
+        int tempLow = 0;
+        int tempHigh = arr.length;
 
         int elementPos = -1;
 
-        while (lowIndex <= highIndex) {
-            int midIndex = (lowIndex + highIndex) / 2;
-
-            drawArray(canvas, paint, arr, x+shiftX, y, width, height);
-            y = y + height+shiftDown;
-
-            if (element == arr[midIndex]) {
-                elementPos = midIndex;
-                arr = new int[]{arr[elementPos]};
-                float len = arr.length*width;
-                shiftX = (length-len)/2;
-                drawArray(canvas, paint, arr, x+shiftX, y, width, height);
-                break;
-            } else if (element < arr[midIndex]) {
-                highIndex = midIndex-1;
-            } else if (element > arr[midIndex]) {
-                lowIndex = midIndex+1;
-            }
-
-            arr = Arrays.copyOfRange(arr, lowIndex, highIndex);
-            float len = arr.length*width;
-            shiftX = (length-len)/2;
-        }
+//        while (lowIndex <= highIndex) {
+//            int midIndex = (lowIndex + highIndex) / 2;
+//
+//            drawArray(canvas, paint, arr, x+shiftX, y, width, height);
+//            y = y + height+shiftDown;
+//
+//            if (element == arr[midIndex]) {
+//                elementPos = midIndex;
+//                break;
+//            } else if (element < arr[midIndex]) {
+//                highIndex = midIndex-1;
+//                tempHigh = midIndex;
+//            } else if (element > arr[midIndex]) {
+//                lowIndex = midIndex+1;
+//                tempLow = midIndex;
+//            }
+//
+//            arr = Arrays.copyOfRange(arr, lowIndex, highIndex);
+//            float len = arr.length*width;
+//            shiftX = (length-len)/2;
+//        }
+//
+//        arr = new int[]{arr[elementPos]};
+//        shiftX = (length-1)/2;
+//        drawArray(canvas, paint, arr, x+shiftX, y, width, height);
 
 //        drawArrow(canvas, paint, length/2, y+height, length/2, y+height+shiftDown-25);
 //

@@ -14,8 +14,8 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -24,6 +24,7 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.vad.modulchit.R;
+import com.vad.modulchit.screens.binarysearch.FragmentBinarySearch;
 import com.vad.modulchit.screens.contract.CustomActionFragment;
 import com.vad.modulchit.screens.contract.HasCustomAction;
 import com.vad.modulchit.screens.contract.HasCustomTitle;
@@ -66,7 +67,9 @@ public class MainActivityMain extends AppCompatActivity implements Navigator {
 //            fragment = getSupportFragmentManager().getFragment(savedInstanceState, "mFragment");
 //            getSupportFragmentManager().beginTransaction().replace(R.id.frame_replace, fragment).commit();
 //        }else{
-            getSupportFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentGCDe()).commit();
+//            Log.i("custom view", R.id.binary_search+"1");
+//        System.out.println(R.id.binary_search+"1");
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentBinarySearch()).commit();
 //        }
     }
 
