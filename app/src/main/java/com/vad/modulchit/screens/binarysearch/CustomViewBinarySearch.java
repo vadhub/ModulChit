@@ -6,18 +6,30 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.util.AttributeSet;
 import android.view.View;
+
+import androidx.annotation.Nullable;
 
 import java.util.Arrays;
 
 public class CustomViewBinarySearch extends View {
 
-    private final Paint paint;
-    private final Paint fontPaint;
+    private Paint paint;
+    private Paint fontPaint;
     private final int STROKE_WITH = 5;
 
     public CustomViewBinarySearch(Context context) {
         super(context);
+        init();
+    }
+
+    public CustomViewBinarySearch(Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
+        init();
+    }
+
+    public void init() {
         paint = new Paint();
         fontPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         fontPaint.setTextSize(90);
@@ -46,31 +58,31 @@ public class CustomViewBinarySearch extends View {
 
         int elementPos = -1;
 
-//        while (lowIndex <= highIndex) {
-//            int midIndex = (lowIndex + highIndex) / 2;
-//
-//            drawArray(canvas, paint, arr, x+shiftX, y, width, height);
-//            y = y + height+shiftDown;
-//
-//            if (element == arr[midIndex]) {
-//                elementPos = midIndex;
-//                break;
-//            } else if (element < arr[midIndex]) {
-//                highIndex = midIndex-1;
-//                tempHigh = midIndex;
-//            } else if (element > arr[midIndex]) {
-//                lowIndex = midIndex+1;
-//                tempLow = midIndex;
-//            }
-//
-//            arr = Arrays.copyOfRange(arr, lowIndex, highIndex);
-//            float len = arr.length*width;
-//            shiftX = (length-len)/2;
-//        }
-//
-//        arr = new int[]{arr[elementPos]};
-//        shiftX = (length-1)/2;
-//        drawArray(canvas, paint, arr, x+shiftX, y, width, height);
+        while (lowIndex <= highIndex) {
+            int midIndex = (lowIndex + highIndex) / 2;
+
+            drawArray(canvas, paint, arr, x+shiftX, y, width, height);
+            y = y + height+shiftDown;
+
+            if (element == arr[midIndex]) {
+                elementPos = midIndex;
+                break;
+            } else if (element < arr[midIndex]) {
+                highIndex = midIndex-1;
+                tempHigh = midIndex;
+            } else if (element > arr[midIndex]) {
+                lowIndex = midIndex+1;
+                tempLow = midIndex;
+            }
+
+            arr = Arrays.copyOfRange(arr, lowIndex, highIndex);
+            float len = arr.length*width;
+            shiftX = (length-len)/2;
+        }
+
+        arr = new int[]{arr[elementPos]};
+        shiftX = (length-1)/2;
+        drawArray(canvas, paint, arr, x+shiftX, y, width, height);
 
 //        drawArrow(canvas, paint, length/2, y+height, length/2, y+height+shiftDown-25);
 //
@@ -82,7 +94,7 @@ public class CustomViewBinarySearch extends View {
 
     }
 
-    private void drawArrow(Canvas canvas, Paint paint, int xStart, int yStart, int xEnd, int yEnd) {
+    public void drawArrow(Canvas canvas, Paint paint, int xStart, int yStart, int xEnd, int yEnd) {
         paint.setStrokeWidth(5);
         paint.setColor(Color.BLACK);
 
@@ -92,7 +104,7 @@ public class CustomViewBinarySearch extends View {
         drawTriangle(canvas, paint, xStart, yEnd+15, 30);
     }
 
-    private void drawArray(Canvas canvas, Paint paint, int[] arr, float x, int y, int width, int height) {
+    public void drawArray(Canvas canvas, Paint paint, int[] arr, float x, int y, int width, int height) {
         int k = 0;
 
         //i = 200, 740 100
@@ -112,7 +124,7 @@ public class CustomViewBinarySearch extends View {
         }
     }
 
-    private void drawTriangle(Canvas canvas, Paint paint, int x, int y, int width) {
+    public void drawTriangle(Canvas canvas, Paint paint, int x, int y, int width) {
         int halfWidth = width / 2;
 
         Path path = new Path();
