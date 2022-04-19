@@ -42,6 +42,7 @@ public class CustomViewBinarySearch extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         int[] arr = {1, 2, 3, 4, 5, 6};
+        int[] tempArr;
         float x = STROKE_WITH;
         int y = 100;
         int width = 100;
@@ -75,8 +76,8 @@ public class CustomViewBinarySearch extends View {
                 tempLow = midIndex;
             }
 
-            arr = Arrays.copyOfRange(arr, lowIndex, highIndex);
-            float len = arr.length*width;
+            tempArr = Arrays.copyOfRange(arr, lowIndex, highIndex);
+            float len = tempArr.length*width;
             shiftX = (length-len)/2;
         }
 
