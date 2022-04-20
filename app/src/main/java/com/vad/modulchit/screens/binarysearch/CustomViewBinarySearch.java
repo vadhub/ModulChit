@@ -52,39 +52,44 @@ public class CustomViewBinarySearch extends View {
         float shiftX = 0;
         int element = 5;
 
-        int lowIndex = 0;
-        int highIndex = arr.length-1;
+        int low = 0;
+        int high = arr.length;
         int tempLow = 0;
         int tempHigh = arr.length;
 
         int elementPos = -1;
 
-        while (lowIndex <= highIndex) {
-            int midIndex = (lowIndex + highIndex) / 2;
+        while (low <= high) {
 
             drawArray(canvas, paint, tempArr, x+shiftX, y, width, height);
             y = y + height+shiftDown;
 
-            if (element == arr[midIndex]) {
-                elementPos = midIndex;
-                break;
-            } else if (element < arr[midIndex]) {
-                highIndex = midIndex-1;
-                tempHigh = midIndex;
+            int midIndex = low + (high - low) / 2;
+
+            if (element < arr[midIndex]) {
+                high = midIndex - 1;
+                System.out.println("< low ="+low +" high ="+high+" mid ="+midIndex);
             } else if (element > arr[midIndex]) {
-                lowIndex = midIndex+1;
-                tempLow = midIndex;
+                low = midIndex + 1;
+                System.out.println("> low ="+low +" high ="+high+" mid ="+midIndex);
+            } else {
+                elementPos = midIndex;
+                System.out.println("low ="+low +" high ="+high+" mid ="+midIndex);
+                break;
             }
 
-            tempArr = Arrays.copyOfRange(arr, tempLow, tempHigh);
+            tempArr = Arrays.copyOfRange(arr, low, high+1);
             float len = tempArr.length*width;
             shiftX = (length-len)/2;
+
         }
 
-        arr = new int[]{arr[elementPos]};
-        shiftX = (length-1)/2;
-        drawArray(canvas, paint, arr, x+shiftX, y, width, height);
+        if(elementPos != -1) {
+            arr = new int[]{arr[elementPos]};
+            shiftX = (length-1)/2;
+            drawArray(canvas, paint, arr, x+shiftX, y, width, height);
 
+        }
 //        drawArrow(canvas, paint, length/2, y+height, length/2, y+height+shiftDown-25);
 //
 //        int length1 = arr2.length*width;
