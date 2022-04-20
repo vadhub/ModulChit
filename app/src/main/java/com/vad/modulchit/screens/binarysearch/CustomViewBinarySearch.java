@@ -32,7 +32,7 @@ public class CustomViewBinarySearch extends View {
     public void init() {
         paint = new Paint();
         fontPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        fontPaint.setTextSize(90);
+        fontPaint.setTextSize(60);
         fontPaint.setStyle(Paint.Style.STROKE);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(STROKE_WITH);
@@ -42,12 +42,12 @@ public class CustomViewBinarySearch extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         int[] arr = {1, 2, 3, 4, 5, 6};
-        int[] tempArr;
+        int[] tempArr = arr;
         float x = STROKE_WITH;
         int y = 100;
-        int width = 100;
-        int height = 120;
-        int shiftDown = 125;
+        int width = 50;
+        int height = 70;
+        int shiftDown = 75;
         float length = arr.length*width;
         float shiftX = 0;
         int element = 5;
@@ -62,7 +62,7 @@ public class CustomViewBinarySearch extends View {
         while (lowIndex <= highIndex) {
             int midIndex = (lowIndex + highIndex) / 2;
 
-            drawArray(canvas, paint, arr, x+shiftX, y, width, height);
+            drawArray(canvas, paint, tempArr, x+shiftX, y, width, height);
             y = y + height+shiftDown;
 
             if (element == arr[midIndex]) {
@@ -76,7 +76,7 @@ public class CustomViewBinarySearch extends View {
                 tempLow = midIndex;
             }
 
-            tempArr = Arrays.copyOfRange(arr, lowIndex, highIndex);
+            tempArr = Arrays.copyOfRange(arr, tempLow, tempHigh);
             float len = tempArr.length*width;
             shiftX = (length-len)/2;
         }
@@ -120,7 +120,7 @@ public class CustomViewBinarySearch extends View {
 //            int shift = 10;
 //            canvas.drawRect(i+ shift, y+ shift, i+width+ shift,y+height+ shift, paint);
 
-            canvas.drawText(String.valueOf(arr[k]), (float) (i+width*0.25), y+height-30, fontPaint);
+            canvas.drawText(String.valueOf(arr[k]), (float) (i+width*0.15), (float) (y+height*0.75), fontPaint);
             k++;
         }
     }
