@@ -50,7 +50,7 @@ public class CustomViewBinarySearch extends View {
         int shiftDown = 75;
         float length = arr.length*width;
         float shiftX = 0;
-        int element = 5;
+        int element = 2;
 
         int low = 0;
         int high = arr.length;
@@ -68,6 +68,7 @@ public class CustomViewBinarySearch extends View {
 
             if (element < arr[midIndex]) {
                 high = midIndex - 1;
+                tempHigh = midIndex;
                 System.out.println("< low ="+low +" high ="+high+" mid ="+midIndex);
             } else if (element > arr[midIndex]) {
                 low = midIndex + 1;
@@ -78,7 +79,7 @@ public class CustomViewBinarySearch extends View {
                 break;
             }
 
-            tempArr = Arrays.copyOfRange(arr, low, high+1);
+            tempArr = Arrays.copyOfRange(arr, low, tempHigh);
             float len = tempArr.length*width;
             shiftX = (length-len)/2;
 
@@ -88,7 +89,6 @@ public class CustomViewBinarySearch extends View {
             arr = new int[]{arr[elementPos]};
             shiftX = (length-1)/2;
             drawArray(canvas, paint, arr, x+shiftX, y, width, height);
-
         }
 //        drawArrow(canvas, paint, length/2, y+height, length/2, y+height+shiftDown-25);
 //
