@@ -17,7 +17,7 @@ public class CustomViewBinarySearch extends View {
 
     private Paint paint;
     private Paint fontPaint;
-    private final int STROKE_WITH = 5;
+    private final int STROKE_WITH = 3;
 
     public CustomViewBinarySearch(Context context) {
         super(context);
@@ -62,8 +62,8 @@ public class CustomViewBinarySearch extends View {
         while (low <= high) {
 
             drawArray(canvas, paint, tempArr, x+shiftX, y, width, height);
+            drawArrow(canvas, paint, (float) (arr.length*width/2), y+height, (float) (arr.length*width/2), y+height+shiftDown);
             y = y + height+shiftDown;
-
             int midIndex = low + (high - low) / 2;
 
             if (element < arr[midIndex]) {
@@ -100,14 +100,14 @@ public class CustomViewBinarySearch extends View {
 
     }
 
-    public void drawArrow(Canvas canvas, Paint paint, int xStart, int yStart, int xEnd, int yEnd) {
+    public void drawArrow(Canvas canvas, Paint paint, float xStart, float yStart, float xEnd, float yEnd) {
         paint.setStrokeWidth(5);
         paint.setColor(Color.BLACK);
 
         canvas.drawLine(xStart,yStart, xEnd, yEnd, paint);
 
         paint.setColor(Color.BLACK);
-        drawTriangle(canvas, paint, xStart, yEnd+15, 30);
+        drawTriangle(canvas, paint, xStart, yEnd, 10);
     }
 
     public void drawArray(Canvas canvas, Paint paint, int[] arr, float x, int y, int width, int height) {
@@ -130,7 +130,7 @@ public class CustomViewBinarySearch extends View {
         }
     }
 
-    public void drawTriangle(Canvas canvas, Paint paint, int x, int y, int width) {
+    public void drawTriangle(Canvas canvas, Paint paint, float x, float y, int width) {
         int halfWidth = width / 2;
 
         Path path = new Path();
