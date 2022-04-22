@@ -53,11 +53,10 @@ public class CustomViewBinarySearch extends View {
         int shiftDown = 75;
         float length = arr.length*width;
         float shiftX = 0;
-        int element = 2;
+        int element = 3;
 
         int low = 0;
         int high = arr.length;
-        int tempLow = 0;
         int tempHigh = arr.length;
 
         int elementPos = -1;
@@ -75,22 +74,20 @@ public class CustomViewBinarySearch extends View {
                 high = midIndex - 1;
                 tempHigh = midIndex;
                 mark = " < ";
-                System.out.println("< low ="+low +" high ="+high+" mid ="+midIndex);
             }
 
             if (element > arr[midIndex]) {
                 low = midIndex + 1;
                 mark = " > ";
-                System.out.println("> low ="+low +" high ="+high+" mid ="+midIndex);
             }
 
-            canvas.drawText(mark + arr[midIndex], xStart+10, y+height+shiftDown/2, paintForCondition);
+            canvas.drawText(element + mark + arr[midIndex], xStart+10, y+height+shiftDown/2, paintForCondition);
             y = y + height+shiftDown;
 
             if (element == arr[midIndex]) {
                 elementPos = midIndex;
                 mark = " = ";
-                System.out.println("low ="+low +" high ="+high+" mid ="+midIndex);
+                canvas.drawText(element + mark + arr[midIndex], xStart+10, y-shiftDown/2, paintForCondition);
                 break;
             }
 
@@ -104,7 +101,6 @@ public class CustomViewBinarySearch extends View {
             arr = new int[]{arr[elementPos]};
             shiftX = (length-1)/2;
             drawArray(canvas, paint, arr, x+shiftX-width/2, y, width, height);
-            canvas.drawText(mark + arr[0], xStart+10, y+height+shiftDown/2, paintForCondition);
         }
 //        drawArrow(canvas, paint, length/2, y+height, length/2, y+height+shiftDown-25);
 //
