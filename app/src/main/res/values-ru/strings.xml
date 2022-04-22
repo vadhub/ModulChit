@@ -55,4 +55,5 @@
     <string name="mg_3">Результат 1; 2; 3; 4.</string>
     <string name="rsa_encrypt">RSA Шифрование</string>
     <string name="rsa_decrypt">RSA Дешифрование</string>
+    <string name="binary_search">Бинарный поиск</string>
 </resources>

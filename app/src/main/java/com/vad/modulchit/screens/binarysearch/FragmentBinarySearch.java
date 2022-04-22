@@ -10,8 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.vad.modulchit.R;
+import com.vad.modulchit.screens.contract.HasCustomTitle;
 
-public class FragmentBinarySearch extends Fragment {
+public class FragmentBinarySearch extends Fragment implements HasCustomTitle {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -27,5 +28,10 @@ public class FragmentBinarySearch extends Fragment {
             Log.e("error inflate", e.getMessage());
             throw e;
         }
+    }
+
+    @Override
+    public int getTitle() {
+        return R.string.binary_search;
     }
 }

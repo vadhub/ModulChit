@@ -29,6 +29,8 @@
     <string name="get_first">" get: "</string>
     <string name="rsa_encrypt">"RSA Encrypt</string>
     <string name="rsa_decrypt">"RSA Decrypt</string>
+    <string name="binary_search">"Binary Search</string>
+
 
     <string-array name="modifyRsaAlpabyte">
         <item>random</item>
