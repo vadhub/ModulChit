@@ -67,8 +67,6 @@ public class CustomViewBinarySearch extends View {
         while (low <= high) {
 
             int midIndex = low + (high - low) / 2;
-            drawArray(canvas, paint, tempArr, x+shiftX, y, width, height);
-            drawArrow(canvas, paint, xStart, y+height, xStart, y+height+shiftDown);
 
             if (element < arr[midIndex]) {
                 high = midIndex - 1;
@@ -81,6 +79,8 @@ public class CustomViewBinarySearch extends View {
                 mark = " > ";
             }
 
+            drawArray(canvas, paint, tempArr, x+shiftX, y, width, height, arr[midIndex]);
+            drawArrow(canvas, paint, xStart, y+height, xStart, y+height+shiftDown);
             canvas.drawText(element + mark + arr[midIndex], xStart+10, y+height+shiftDown/2, paintForCondition);
             y = y + height+shiftDown;
             mark = " = ";
@@ -100,6 +100,8 @@ public class CustomViewBinarySearch extends View {
             arr = new int[]{arr[elementPos]};
             shiftX = (length-1)/2;
             drawArray(canvas, paint, arr, x+shiftX-width/2, y, width, height);
+        } else {
+            canvas.drawText("Element is absent " + element, x, y, paintForCondition);
         }
 //        drawArrow(canvas, paint, length/2, y+height, length/2, y+height+shiftDown-25);
 //
@@ -121,6 +123,31 @@ public class CustomViewBinarySearch extends View {
         drawTriangle(canvas, paint, xStart, (float) (yEnd-STROKE_WITH*2.5), 10);
     }
 
+    public void drawArray(Canvas canvas, Paint paint, int[] arr, float x, int y, int width, int height, int midElement) {
+        int k = 0;
+
+        //i = 200, 740 100
+        float length = width*arr.length+x;
+        for (float i = x; i < length; i+=width) {
+
+            paint.setColor(Color.BLACK);
+            paint.setStrokeWidth(5);
+            canvas.drawRect(i, y, i+width, y+height, paint);
+            if (arr[k] == midElement) {
+                int shift = 5;
+                paint.setColor(Color.RED);
+                canvas.drawRect(i+shift, y+shift, i+width-shift, y+height-shift, paint);
+            }
+
+//
+//            int shift = 10;
+//            canvas.drawRect(i+ shift, y+ shift, i+width+ shift,y+height+ shift, paint);
+
+            canvas.drawText(String.valueOf(arr[k]), (float) (i+width*0.15), (float) (y+height*0.75), fontPaint);
+            k++;
+        }
+    }
+
     public void drawArray(Canvas canvas, Paint paint, int[] arr, float x, int y, int width, int height) {
         int k = 0;
 
@@ -131,8 +158,7 @@ public class CustomViewBinarySearch extends View {
             paint.setColor(Color.BLACK);
             paint.setStrokeWidth(5);
             canvas.drawRect(i, y, i+width, y+height, paint);
-
-//            paint.setColor(Color.GREEN);
+//
 //            int shift = 10;
 //            canvas.drawRect(i+ shift, y+ shift, i+width+ shift,y+height+ shift, paint);
 
