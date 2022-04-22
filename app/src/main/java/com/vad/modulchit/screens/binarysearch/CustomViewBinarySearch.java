@@ -53,7 +53,7 @@ public class CustomViewBinarySearch extends View {
         int shiftDown = 75;
         float length = arr.length*width;
         float shiftX = 0;
-        int element = 3;
+        int element = 6;
 
         int low = 0;
         int high = arr.length;
@@ -83,11 +83,10 @@ public class CustomViewBinarySearch extends View {
 
             canvas.drawText(element + mark + arr[midIndex], xStart+10, y+height+shiftDown/2, paintForCondition);
             y = y + height+shiftDown;
+            mark = " = ";
 
             if (element == arr[midIndex]) {
                 elementPos = midIndex;
-                mark = " = ";
-                canvas.drawText(element + mark + arr[midIndex], xStart+10, y-shiftDown/2, paintForCondition);
                 break;
             }
 
