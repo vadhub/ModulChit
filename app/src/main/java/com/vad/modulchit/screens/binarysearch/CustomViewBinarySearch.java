@@ -28,7 +28,6 @@ public class CustomViewBinarySearch extends View {
 
     public void setArr(int[] arr) {
         this.arr = arr;
-        invalidate();
     }
 
     public int getElement() {

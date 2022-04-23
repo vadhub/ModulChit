@@ -17,6 +17,7 @@ import com.vad.modulchit.screens.contract.HasCustomTitle;
 public class FragmentBinarySearch extends Fragment implements HasCustomTitle {
 
     private EditText editTextArray;
+    private EditText editTextElement;
     private CustomViewBinarySearch customViewBinarySearch;
     private Button btn;
 
@@ -25,9 +26,10 @@ public class FragmentBinarySearch extends Fragment implements HasCustomTitle {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_binary_search, container, false);
         editTextArray = (EditText) v.findViewById(R.id.editTextEnterArray);
+        editTextElement = (EditText) v.findViewById(R.id.editTextEnterElement);
         customViewBinarySearch = v.findViewById(R.id.binary_search);
         btn = v.findViewById(R.id.btnBinarySearch);
-        btn.setOnClickListener(v1 -> customViewBinarySearch.setArr(parseStringToArray(editTextArray.getText().toString())));
+        btn.setOnClickListener(v1 -> customViewBinarySearch.searchElement(parseStringToArray(editTextArray.getText().toString()), Integer.parseInt(editTextElement.getText().toString())));
         return v;
     }
 
