@@ -8,13 +8,25 @@
 
     <EditText
         android:id="@+id/editTextEnterArray"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="10sp"
         android:textSize="20sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/editTextEnterElement"
+        />
+
+    <EditText
+        android:id="@+id/editTextEnterElement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="5"
+        android:layout_margin="10sp"
+        android:textSize="20sp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+
         />
 
     <Button
