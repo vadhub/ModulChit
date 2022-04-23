@@ -20,6 +20,7 @@ public class CustomViewBinarySearch extends View {
     private Paint paintForCondition;
     private final int STROKE_WITH = 3;
     private int[] arr;
+    private int element = 0;
 
     public int[] getArr() {
         return arr;
@@ -27,6 +28,20 @@ public class CustomViewBinarySearch extends View {
 
     public void setArr(int[] arr) {
         this.arr = arr;
+        invalidate();
+    }
+
+    public int getElement() {
+        return element;
+    }
+
+    public void setElement(int element) {
+        this.element = element;
+    }
+
+    public void searchElement(int[] arr, int element) {
+        this.arr = arr;
+        this.element = element;
         invalidate();
     }
 
@@ -52,23 +67,32 @@ public class CustomViewBinarySearch extends View {
         paint.setStrokeWidth(STROKE_WITH);
     }
 
-    @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
-
-    }
+//    @Override
+//    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+//        super.onSizeChanged(w, h, oldw, oldh);
+//
+//    }
 
     @SuppressLint("DrawAllocation")
     @Override
     protected void onDraw(Canvas canvas) {
+        drawBinarySearch(canvas);
+    }
+
+    public void drawBinarySearch(Canvas canvas) {
+
+        if (arr == null || arr.length == 0) {
+            return;
+        }
+
         int[] tempArr = arr;
         float x = STROKE_WITH;
         int y = STROKE_WITH;
-        int width = 100;
+        int width = 75;
         int height = 70;
         int shiftDown = 75;
         float shiftX = 0;
-        int element = 13;
+        int element = this.element;
         int low = 0;
         int high = arr.length;
         int tempHigh = arr.length;
@@ -77,7 +101,7 @@ public class CustomViewBinarySearch extends View {
 
         for (int i : arr) {
             if(Math.ceil(Math.log10(i)) == 2){
-                width = 75;
+                width = 100;
                 break;
             }
         }
