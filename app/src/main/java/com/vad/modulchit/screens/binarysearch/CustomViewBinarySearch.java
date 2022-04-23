@@ -19,6 +19,16 @@ public class CustomViewBinarySearch extends View {
     private Paint fontPaint;
     private Paint paintForCondition;
     private final int STROKE_WITH = 3;
+    private int[] arr;
+
+    public int[] getArr() {
+        return arr;
+    }
+
+    public void setArr(int[] arr) {
+        this.arr = arr;
+        invalidate();
+    }
 
     public CustomViewBinarySearch(Context context) {
         super(context);
@@ -42,13 +52,18 @@ public class CustomViewBinarySearch extends View {
         paint.setStrokeWidth(STROKE_WITH);
     }
 
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+
+    }
+
     @SuppressLint("DrawAllocation")
     @Override
     protected void onDraw(Canvas canvas) {
-        int[] arr = {11, 12, 13, 44, 54, 66};
         int[] tempArr = arr;
         float x = STROKE_WITH;
-        int y = 100;
+        int y = STROKE_WITH;
         int width = 100;
         int height = 70;
         int shiftDown = 75;
