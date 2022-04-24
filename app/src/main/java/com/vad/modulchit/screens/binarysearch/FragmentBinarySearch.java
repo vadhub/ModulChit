@@ -34,7 +34,7 @@ public class FragmentBinarySearch extends Fragment implements HasCustomTitle {
     }
 
     public static int[] parseStringToArray(String str) {
-        String[] spitString = str.split(",");
+        String[] spitString = str.split(", ");
         int[] tempArr = new int[spitString.length];
 
         for (int i = 0; i < spitString.length; i++) {
