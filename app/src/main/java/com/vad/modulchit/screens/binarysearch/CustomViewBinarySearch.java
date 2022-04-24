@@ -11,13 +11,19 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
+import com.vad.modulchit.pojos.BinarySearchModel;
+import com.vad.modulchit.utils.search.BinarySearch;
+
 import java.util.Arrays;
+import java.util.List;
 
 public class CustomViewBinarySearch extends View {
 
-    private Paint paint;
-    private Paint fontPaint;
-    private Paint paintForCondition;
+    private final Paint paint = new Paint();
+    private final Paint fontPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private final Paint paintForCondition = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private List<BinarySearchModel> binarySearchModels;
+
     private final int STROKE_WITH = 3;
     private int[] arr;
     private int element = 0;
@@ -41,7 +47,12 @@ public class CustomViewBinarySearch extends View {
     public void searchElement(int[] arr, int element) {
         this.arr = arr;
         this.element = element;
-        invalidate();
+        requestLayout();
+    }
+
+    public void searchElement(List<BinarySearchModel> binarySearchModels) {
+        this.binarySearchModels = binarySearchModels;
+        requestLayout();
     }
 
     public CustomViewBinarySearch(Context context) {
@@ -55,18 +66,15 @@ public class CustomViewBinarySearch extends View {
     }
 
     public void init() {
-        paint = new Paint();
-        fontPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         fontPaint.setTextSize(50);
-        fontPaint.setStyle(Paint.Style.STROKE);
-        paintForCondition = new Paint(Paint.ANTI_ALIAS_FLAG);
+        fontPaint.setStyle(Paint.Style.FILL);
         paintForCondition.setTextSize(20);
         paint.setColor(Color.BLACK);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(STROKE_WITH);
     }
 
-//    @Override
+    //    @Override
 //    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 //        super.onSizeChanged(w, h, oldw, oldh);
 //
@@ -80,23 +88,12 @@ public class CustomViewBinarySearch extends View {
 
     public void drawBinarySearch(Canvas canvas) {
 
-        if (arr == null || arr.length == 0) {
-            return;
-        }
-
-        int[] tempArr = arr;
         float x = STROKE_WITH;
         int y = STROKE_WITH;
         int width = 75;
         int height = 70;
         int shiftDown = 75;
         float shiftX = 0;
-        int element = this.element;
-        int low = 0;
-        int high = arr.length;
-        int tempHigh = arr.length;
-        int elementPos = -1;
-        String mark = "";
 
         for (int i : arr) {
             if(Math.ceil(Math.log10(i)) == 2){
@@ -104,47 +101,53 @@ public class CustomViewBinarySearch extends View {
                 break;
             }
         }
-        float length = arr.length*width;
-        float xStart = (float) (arr.length*width/2)+STROKE_WITH;
 
-        while (low <= high) {
+        int length = binarySearchModels.get(0).getArrTemp().length;
 
-            int midIndex = low + (high - low) / 2;
+        float xStart = (float) (length*width/2)+STROKE_WITH;
 
-            if (element < arr[midIndex]) {
-                high = midIndex - 1;
-                tempHigh = midIndex;
-                mark = " < ";
-            }
-
-            if (element > arr[midIndex]) {
-                low = midIndex + 1;
-                mark = " > ";
-            }
-
-            drawArray(canvas, paint, tempArr, x+shiftX, y, width, height, arr[midIndex]);
+        for (BinarySearchModel m: binarySearchModels) {
+            drawArray(canvas, paint, m.getArrTemp(), x+shiftX, y, width, height, m.getMidElement());
             drawArrow(canvas, paint, xStart, y+height, xStart, y+height+shiftDown);
-            canvas.drawText(element + mark + arr[midIndex], xStart+10, y+height+shiftDown/2, paintForCondition);
+            canvas.drawText(m.getCompareElementAndMid(), xStart+10, y+height+shiftDown/2, paintForCondition);
             y = y + height+shiftDown;
-            mark = " = ";
-
-            if (element == arr[midIndex]) {
-                elementPos = midIndex;
-                break;
-            }
-
-            tempArr = Arrays.copyOfRange(arr, low, tempHigh);
-            float len = tempArr.length*width;
-            shiftX = (length-len)/2;
         }
 
-        if (elementPos != -1) {
-            arr = new int[]{arr[elementPos]};
-            shiftX = (length-1)/2;
-            drawArray(canvas, paint, arr, x+shiftX-width/2, y, width, height);
-        } else {
-            canvas.drawText("Element is absent " + element, x, y, paintForCondition);
-        }
+//        while (low <= high) {
+//
+//            int midIndex = low + (high - low) / 2;
+//
+//            if (element < arr[midIndex]) {
+//                high = midIndex - 1;
+//                tempHigh = midIndex;
+//                mark = " < ";
+//            }
+//
+//            if (element > arr[midIndex]) {
+//                low = midIndex + 1;
+//                mark = " > ";
+//            }
+//
+
+//            mark = " = ";
+//
+//            if (element == arr[midIndex]) {
+//                elementPos = midIndex;
+//                break;
+//            }
+//
+//            tempArr = Arrays.copyOfRange(arr, low, tempHigh);
+//            float len = tempArr.length*width;
+//            shiftX = (length-len)/2;
+//        }
+//
+//        if (elementPos != -1) {
+//            arr = new int[]{arr[elementPos]};
+//            shiftX = (length-1)/2;
+//            drawArray(canvas, paint, arr, x+shiftX-width/2, y, width, height);
+//        } else {
+//            canvas.drawText("Element is absent " + element, x, y, paintForCondition);
+//        }
     }
 
     public void drawArrow(Canvas canvas, Paint paint, float xStart, float yStart, float xEnd, float yEnd) {
