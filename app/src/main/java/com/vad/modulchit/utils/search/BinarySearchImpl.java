@@ -1,32 +1,57 @@
 package com.vad.modulchit.utils.search;
 
+import com.vad.modulchit.pojos.BinarySearchModel;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class BinarySearchImpl implements BinarySearch{
     @Override
-    public int search(int[] arr, int element) {
-        int lowIndex = 0;
-        int highIndex = arr.length-1;
+    public List<BinarySearchModel> search(int[] arr, int element) {
 
-        System.out.println("low " + highIndex);
-        System.out.println("high " + highIndex);
+        List<BinarySearchModel> binarySearchModel = new ArrayList<>();
 
+        int[] tempArr = arr;
+        int low = 0;
+        int high = arr.length;
+        int tempHigh = arr.length;
         int elementPos = -1;
+        String mark = "";
 
-        while (lowIndex <= highIndex) {
-            int midIndex = (lowIndex + highIndex) / 2;
-            System.out.println("mid " + midIndex);
+        while (low <= high) {
+
+            int midIndex = low + (high - low) / 2;
+
+            if (element < arr[midIndex]) {
+                high = midIndex - 1;
+                tempHigh = midIndex;
+                mark = " < ";
+            }
+
+            if (element > arr[midIndex]) {
+                low = midIndex + 1;
+                mark = " > ";
+            }
+
+            binarySearchModel.add(new BinarySearchModel(tempArr, arr[midIndex], element + mark + arr[midIndex]));
+            mark = " = ";
+
             if (element == arr[midIndex]) {
                 elementPos = midIndex;
                 break;
-            } else if (element < arr[midIndex]) {
-                highIndex = midIndex-1;
-                System.out.println("high " + highIndex);
-            } else if (element > arr[midIndex]) {
-                lowIndex = midIndex+1;
-                System.out.println("low " + lowIndex);
             }
 
-            System.out.println();
+            tempArr = Arrays.copyOfRange(arr, low, tempHigh);
         }
-        return elementPos;
+
+        if(elementPos == -1) {
+            binarySearchModel.add(new BinarySearchModel(new int[]{0}, 0, "zero"));
+            return binarySearchModel;
+        }
+        binarySearchModel.add(new BinarySearchModel(tempArr, arr[elementPos], element + mark + arr[elementPos]));
+
+        return binarySearchModel;
+
     }
 }
