@@ -84,7 +84,7 @@ public class CustomViewBinarySearch extends View {
     @Override
     protected void onDraw(Canvas canvas) {
 
-        if (binarySearchModels == null) {
+        if (binarySearchModels != null) {
             drawBinarySearch(canvas);
         }
     }
@@ -98,7 +98,7 @@ public class CustomViewBinarySearch extends View {
         int shiftDown = 75;
         float shiftX = 0;
 
-        for (int i : arr) {
+        for (int i : binarySearchModels.get(0).getArrTemp()) {
             if(Math.ceil(Math.log10(i)) == 2){
                 width = 100;
                 break;
@@ -120,6 +120,8 @@ public class CustomViewBinarySearch extends View {
             drawArrow(canvas, paint, xStart, y+height, xStart, y+height+shiftDown);
             canvas.drawText(m.getCompareElementAndMid(), xStart+10, y+height+shiftDown/2, paintForCondition);
             y = y + height+shiftDown;
+            float len = m.getArrTemp().length*width;
+            shiftX = (length-len)/2;
         }
 
 //        while (low <= high) {
