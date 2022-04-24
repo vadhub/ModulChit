@@ -83,7 +83,10 @@ public class CustomViewBinarySearch extends View {
     @SuppressLint("DrawAllocation")
     @Override
     protected void onDraw(Canvas canvas) {
-        drawBinarySearch(canvas);
+
+        if (binarySearchModels == null) {
+            drawBinarySearch(canvas);
+        }
     }
 
     public void drawBinarySearch(Canvas canvas) {
@@ -107,6 +110,12 @@ public class CustomViewBinarySearch extends View {
         float xStart = (float) (length*width/2)+STROKE_WITH;
 
         for (BinarySearchModel m: binarySearchModels) {
+
+            if (m.getCompareElementAndMid().equals("zero")) {
+                canvas.drawText("Element is absent " + element, x, y, paintForCondition);
+                break;
+            }
+
             drawArray(canvas, paint, m.getArrTemp(), x+shiftX, y, width, height, m.getMidElement());
             drawArrow(canvas, paint, xStart, y+height, xStart, y+height+shiftDown);
             canvas.drawText(m.getCompareElementAndMid(), xStart+10, y+height+shiftDown/2, paintForCondition);
