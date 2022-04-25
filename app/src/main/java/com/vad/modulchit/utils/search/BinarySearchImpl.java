@@ -46,7 +46,7 @@ public class BinarySearchImpl implements BinarySearch{
         }
 
         if(elementPos == -1) {
-            binarySearchModel.add(new BinarySearchModel(new int[]{0}, 0, "zero"));
+            binarySearchModel.add(new BinarySearchModel(new int[]{0}, element, "zero"));
             return binarySearchModel;
         }
         binarySearchModel.add(new BinarySearchModel(new int[]{arr[elementPos]}, arr[elementPos], element + mark + arr[elementPos]));

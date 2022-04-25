@@ -25,30 +25,7 @@ public class CustomViewBinarySearch extends View {
     private List<BinarySearchModel> binarySearchModels;
 
     private final int STROKE_WITH = 3;
-    private int[] arr;
-    private int element = 0;
 
-    public int[] getArr() {
-        return arr;
-    }
-
-    public void setArr(int[] arr) {
-        this.arr = arr;
-    }
-
-    public int getElement() {
-        return element;
-    }
-
-    public void setElement(int element) {
-        this.element = element;
-    }
-
-    public void searchElement(int[] arr, int element) {
-        this.arr = arr;
-        this.element = element;
-        requestLayout();
-    }
 
     public void searchElement(List<BinarySearchModel> binarySearchModels) {
         this.binarySearchModels = binarySearchModels;
@@ -105,20 +82,15 @@ public class CustomViewBinarySearch extends View {
                 break;
             }
         }
-
         int length = binarySearchModels.get(0).getArrTemp().length;
-
         float xStart = (float) (length*width/2)+STROKE_WITH;
-
         int lengthWith = length*width;
-        for (int i = 0; i < binarySearchModels.size()-1; i++) {
 
+        for (int i = 0; i < binarySearchModels.size()-1; i++) {
             if (binarySearchModels.get(i).getCompareElementAndMid().equals("zero")) {
-                canvas.drawText("Element is absent " + element, x, y, paintForCondition);
+                canvas.drawText("Element is absent " + binarySearchModels.get(i).getMidElement(), x, y, paintForCondition);
                 break;
             }
-
-            System.out.println(lengthWith+" "+len+"shift");
             drawArray(canvas, paint, binarySearchModels.get(i).getArrTemp(), x+shiftX, y, width, height, binarySearchModels.get(i).getMidElement());
             drawArrow(canvas, paint, xStart, y+height, xStart, y+height+shiftDown);
             canvas.drawText(binarySearchModels.get(i).getCompareElementAndMid(), xStart+10, y+height+shiftDown/2, paintForCondition);
@@ -127,7 +99,6 @@ public class CustomViewBinarySearch extends View {
                 len = binarySearchModels.get(i+1).getArrTemp().length*width;
             }
             shiftX = (lengthWith-len)/2;
-            System.out.println(binarySearchModels);
         }
 
         drawArray(canvas, paint, binarySearchModels.get(binarySearchModels.size()-1).getArrTemp(), x+shiftX, y, width, height);
