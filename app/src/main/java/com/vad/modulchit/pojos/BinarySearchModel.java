@@ -52,4 +52,13 @@ public class BinarySearchModel {
         result = 31 * result + Arrays.hashCode(arrTemp);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "BinarySearchModel{" +
+                "arrTemp=" + Arrays.toString(arrTemp) +
+                ", midElement=" + midElement +
+                ", compareElementAndMid='" + compareElementAndMid + '\'' +
+                '}';
+    }
 }
