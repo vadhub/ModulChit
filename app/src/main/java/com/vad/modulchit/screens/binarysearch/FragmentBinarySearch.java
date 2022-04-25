@@ -35,8 +35,11 @@ public class FragmentBinarySearch extends Fragment implements HasCustomTitle {
         editTextElement = (EditText) v.findViewById(R.id.editTextEnterElement);
         customViewBinarySearch = v.findViewById(R.id.binary_search);
         btn = v.findViewById(R.id.btnBinarySearch);
+
+        int[] arr = {1, 2, 3, 4, 5, 6, 7};
+
         btn.setOnClickListener(v1 -> {
-            List<BinarySearchModel> binarySearchModels = binarySearch.search(parseStringToArray(editTextArray.getText().toString()), Integer.parseInt(editTextElement.getText().toString()));
+            List<BinarySearchModel> binarySearchModels = binarySearch.search(arr, 3);
             customViewBinarySearch.searchElement(binarySearchModels);
         });
         return v;
