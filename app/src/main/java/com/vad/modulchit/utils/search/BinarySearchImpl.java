@@ -49,7 +49,7 @@ public class BinarySearchImpl implements BinarySearch{
             binarySearchModel.add(new BinarySearchModel(new int[]{0}, 0, "zero"));
             return binarySearchModel;
         }
-        binarySearchModel.add(new BinarySearchModel(tempArr, arr[elementPos], element + mark + arr[elementPos]));
+        binarySearchModel.add(new BinarySearchModel(new int[]{arr[elementPos]}, arr[elementPos], element + mark + arr[elementPos]));
 
         return binarySearchModel;
 
