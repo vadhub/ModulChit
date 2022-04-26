@@ -6,7 +6,9 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PointF;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 import androidx.annotation.Nullable;
 import com.vad.modulchit.pojos.BinarySearchModel;
@@ -18,13 +20,17 @@ public class CustomViewBinarySearch extends View {
     private final Paint fontPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint paintForCondition = new Paint(Paint.ANTI_ALIAS_FLAG);
     private List<BinarySearchModel> binarySearchModels;
-    private int mSize;
-
     private final int STROKE_WITH = 3;
+    private int width = 75;
+    private int height = 100;
+    private int widthContent;
+    private final PointF lastPoint = new PointF();
+    private int lastPointId = 0;
 
 
     public void searchElement(List<BinarySearchModel> binarySearchModels) {
         this.binarySearchModels = binarySearchModels;
+        this.widthContent = binarySearchModels.get(0).getArrTemp().length*width;
         requestLayout();
     }
 
@@ -39,31 +45,45 @@ public class CustomViewBinarySearch extends View {
     }
 
     public void init() {
-        fontPaint.setTextSize(50);
+        fontPaint.setTextSize(70);
         fontPaint.setStyle(Paint.Style.FILL);
-        paintForCondition.setTextSize(20);
+        paintForCondition.setTextSize(30);
         paint.setColor(Color.BLACK);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(STROKE_WITH);
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-
-        int width = MeasureSpec.getSize(widthMeasureSpec);
-        int height = MeasureSpec.getSize(heightMeasureSpec);
-
-        mSize = Math.min(width, height);
-
-        setMeasuredDimension(mSize, mSize);
-
+    public boolean onTouchEvent(MotionEvent event) {
+        if (event == null) {
+            return false;
+        }
+        if(event.getPointerCount() == 1) {
+           return onMoving(event);
+        } else {
+            return false;
+        }
     }
 
-    //    @Override
-//    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-//        super.onSizeChanged(w, h, oldw, oldh);
-//
-//    }
+    public boolean onMoving(MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                lastPoint.set(event.getX(), event.getY());
+                lastPointId = event.getPointerId(0);
+                return true;
+
+            case MotionEvent.ACTION_MOVE:
+                if (getWidth() < widthContent) {
+                    int pointId = event.getPointerId(0);
+                }
+
+                lastPoint.set(event.getX(), event.getY());
+                lastPointId = event.getPointerId(0);
+                return true;
+
+            default: return false;
+        }
+    }
 
     @SuppressLint("DrawAllocation")
     @Override
@@ -74,13 +94,9 @@ public class CustomViewBinarySearch extends View {
     }
 
     public void drawBinarySearch(Canvas canvas) {
-
         float x = STROKE_WITH;
         int y = STROKE_WITH;
-        System.out.println(mSize);
-        int width = 75;
-        int height = 70;
-        int shiftDown = 75;
+        int shiftDown = 100;
         float shiftX = 0;
         float len = 0;
 
@@ -92,7 +108,6 @@ public class CustomViewBinarySearch extends View {
         }
         int length = binarySearchModels.get(0).getArrTemp().length;
         float xStart = (float) (length*width/2)+STROKE_WITH;
-        int lengthWith = length*width;
 
         for (int i = 0; i < binarySearchModels.size()-1; i++) {
             if (binarySearchModels.get(i).getCompareElementAndMid().equals("zero")) {
@@ -106,7 +121,7 @@ public class CustomViewBinarySearch extends View {
             if (i+1 < binarySearchModels.size()) {
                 len = binarySearchModels.get(i+1).getArrTemp().length*width;
             }
-            shiftX = (lengthWith-len)/2;
+            shiftX = (widthContent-len)/2;
         }
 
         drawArray(canvas, paint, binarySearchModels.get(binarySearchModels.size()-1).getArrTemp(), x+shiftX, y, width, height);
