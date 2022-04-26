@@ -8,13 +8,8 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.AttributeSet;
 import android.view.View;
-
 import androidx.annotation.Nullable;
-
 import com.vad.modulchit.pojos.BinarySearchModel;
-import com.vad.modulchit.utils.search.BinarySearch;
-
-import java.util.Arrays;
 import java.util.List;
 
 public class CustomViewBinarySearch extends View {
@@ -23,6 +18,7 @@ public class CustomViewBinarySearch extends View {
     private final Paint fontPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint paintForCondition = new Paint(Paint.ANTI_ALIAS_FLAG);
     private List<BinarySearchModel> binarySearchModels;
+    private int mSize;
 
     private final int STROKE_WITH = 3;
 
@@ -51,6 +47,18 @@ public class CustomViewBinarySearch extends View {
         paint.setStrokeWidth(STROKE_WITH);
     }
 
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+
+        int width = MeasureSpec.getSize(widthMeasureSpec);
+        int height = MeasureSpec.getSize(heightMeasureSpec);
+
+        mSize = Math.min(width, height);
+
+        setMeasuredDimension(mSize, mSize);
+
+    }
+
     //    @Override
 //    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 //        super.onSizeChanged(w, h, oldw, oldh);
@@ -60,7 +68,6 @@ public class CustomViewBinarySearch extends View {
     @SuppressLint("DrawAllocation")
     @Override
     protected void onDraw(Canvas canvas) {
-
         if (binarySearchModels != null) {
             drawBinarySearch(canvas);
         }
@@ -70,6 +77,7 @@ public class CustomViewBinarySearch extends View {
 
         float x = STROKE_WITH;
         int y = STROKE_WITH;
+        System.out.println(mSize);
         int width = 75;
         int height = 70;
         int shiftDown = 75;
