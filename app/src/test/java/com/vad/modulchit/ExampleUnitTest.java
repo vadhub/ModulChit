@@ -33,13 +33,4 @@ public class ExampleUnitTest {
         arrList.add(new int[]{1, 2, 3, 4, 5});
         assertArrayEquals(arrList.get(0), arrSort.get(0));
     }
-
-    @Test
-    public void binarySearch_isCorrect() {
-        BinarySearch binarySearch = new BinarySearchImpl();
-        int[] arr = {1, 2, 4, 5, 7, 9};
-        int elem = binarySearch.search(arr, 5);
-        System.out.println(elem);
-        assertEquals(3, binarySearch.search(arr, 5));
-    }
 }
