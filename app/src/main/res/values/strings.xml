@@ -43,8 +43,7 @@
         <item>random</item>
         <item>your</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+
     <string name="alpha_1">Entering 10 is step in alphavite. p and q is primary number</string>
     <string name="rsa_1_en">Enter the message to be encrypted. n and e are calculated automatically if p and q (prime numbers) were entered in the previous window. n = p*q</string>
     <string name="rsa_2_en">e is coprime to n. From list we take first</string>

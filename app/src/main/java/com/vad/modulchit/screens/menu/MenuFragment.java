@@ -12,12 +12,13 @@ import android.view.ViewGroup;
 
 import com.vad.modulchit.R;
 import com.vad.modulchit.adapters.AdapterMenu;
+import com.vad.modulchit.screens.contract.HasCustomTitle;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class MenuFragment extends Fragment {
+public class MenuFragment extends Fragment implements HasCustomTitle {
 
     private RecyclerView mRecyclerView;
     private AdapterMenu adapter;
@@ -37,5 +38,10 @@ public class MenuFragment extends Fragment {
         mRecyclerView.setAdapter(adapter);
 
         return v;
+    }
+
+    @Override
+    public int getTitle() {
+        return R.string.app_name;
     }
 }
