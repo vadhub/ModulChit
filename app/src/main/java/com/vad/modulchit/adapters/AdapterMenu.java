@@ -19,6 +19,10 @@ public class AdapterMenu extends RecyclerView.Adapter<AdapterMenu.MyViewHolder> 
 
     private OnItemMenuClickListener clickListener;
 
+    public void setClickListener(OnItemMenuClickListener clickListener) {
+        this.clickListener = clickListener;
+    }
+
     public interface OnItemMenuClickListener {
         void onClickMenu(View view, int position);
     }
