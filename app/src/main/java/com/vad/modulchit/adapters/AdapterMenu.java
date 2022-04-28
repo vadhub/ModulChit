@@ -17,6 +17,12 @@ public class AdapterMenu extends RecyclerView.Adapter<AdapterMenu.MyViewHolder> 
 
     private List<String> namesMenu;
 
+    private OnItemMenuClickListener clickListener;
+
+    public interface OnItemMenuClickListener {
+        void onClickMenu(View view, int position);
+    }
+
     public List<String> getNamesMenu() {
         return namesMenu;
     }
@@ -36,7 +42,7 @@ public class AdapterMenu extends RecyclerView.Adapter<AdapterMenu.MyViewHolder> 
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_menu, parent, false);
-        return new MyViewHolder(v);
+        return new MyViewHolder(v, clickListener);
     }
 
     @Override
@@ -48,9 +54,15 @@ public class AdapterMenu extends RecyclerView.Adapter<AdapterMenu.MyViewHolder> 
 
         TextView menuName;
 
-        public MyViewHolder(@NonNull View itemView) {
+        public MyViewHolder(@NonNull View itemView, OnItemMenuClickListener clickListener) {
             super(itemView);
             menuName = itemView.findViewById(R.id.text_view_name_screen);
+
+            itemView.setOnClickListener(v -> {
+                if (clickListener != null) {
+                    clickListener.onClickMenu(v, getAdapterPosition());
+                }
+            });
         }
     }
 }
