@@ -12,16 +12,23 @@ import android.view.ViewGroup;
 
 import com.vad.modulchit.R;
 import com.vad.modulchit.adapters.AdapterMenu;
+import com.vad.modulchit.screens.binarysearch.FragmentBinarySearch;
 import com.vad.modulchit.screens.contract.HasCustomTitle;
+import com.vad.modulchit.screens.contract.Navigator;
+import com.vad.modulchit.screens.fe.FragmentFE;
+import com.vad.modulchit.screens.gcde.FragmentGCDe;
+import com.vad.modulchit.screens.mg.FragmentMG;
+import com.vad.modulchit.screens.rsa.alphabet.FragmentAddAlphabet;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class MenuFragment extends Fragment implements HasCustomTitle {
+public class FragmentMenu extends Fragment implements HasCustomTitle {
 
     private RecyclerView mRecyclerView;
     private AdapterMenu adapter;
+    private Navigator navigator;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,13 +38,30 @@ public class MenuFragment extends Fragment implements HasCustomTitle {
         mRecyclerView = (RecyclerView) v.findViewById(R.id.menuRecyclerView);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new AdapterMenu();
+        navigator = (Navigator) requireActivity();
 
         List<String> menuItem = Arrays.asList(getResources().getStringArray(R.array.titleScreen));
 
         adapter.setNamesMenu(menuItem);
         mRecyclerView.setAdapter(adapter);
 
+        adapter.setClickListener((view, id) ->{
+            Fragment fragment = getFragments().get(id);
+            navigator.startFragment(fragment);
+        });
+
         return v;
+    }
+
+    public List<Fragment> getFragments() {
+        List<Fragment> fragments = new ArrayList<>();
+        fragments.add(new FragmentGCDe());
+        fragments.add(new FragmentMG());
+        fragments.add(new FragmentFE());
+        fragments.add(new FragmentAddAlphabet());
+        fragments.add(new FragmentBinarySearch());
+
+        return fragments;
     }
 
     @Override
