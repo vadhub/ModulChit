@@ -25,17 +25,23 @@
     <string name="decrypt">Decrypt</string>
     <string name="first_number">first number</string>
     <string name="next">next</string>
-    <string name="from_list">"from list exponents: "</string>
+    <string name="from_list">from list exponents: </string>
     <string name="get_first">" get: "</string>
-    <string name="rsa_encrypt">"RSA Encrypt</string>
-    <string name="rsa_decrypt">"RSA Decrypt</string>
-    <string name="binary_search">"Binary Search</string>
+    <string name="rsa_encrypt">RSA Encrypt</string>
+    <string name="rsa_decrypt">RSA Decrypt</string>
+    <string name="binary_search">Binary Search</string>
 
+    <string-array name="titleScreen">
+        <item>GCD(E)</item>
+        <item>Multiplicative group</item>
+        <item>Fast exponentiation</item>
+        <item>RSA</item>
+        <item>Binary Search</item>
+    </string-array>
 
     <string-array name="modifyRsaAlpabyte">
         <item>random</item>
         <item>your</item>
-
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>

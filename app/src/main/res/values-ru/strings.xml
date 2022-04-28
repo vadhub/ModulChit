@@ -11,10 +11,18 @@
     <string name="mod">mod</string>
     <string name="mod_number">число</string>
     <string name="gcd_e">Алгоритм Евклида</string>
-    <string name="multiplicative_group">Обратная группа</string>
+    <string name="multiplicative_group">Мультипликативная группа</string>
     <string name="fast_exponentiation">Возведение в степень</string>
     <string name="other">другое</string>
     <string name="rsa">RSA</string>
+
+    <string-array name="titleScreen">
+        <item>GCD(E)</item>
+        <item>Мультипликативная группа</item>
+        <item>Быстрое возведение в степень</item>
+        <item>RSA</item>
+        <item>Бинарный поиск</item>
+    </string-array>
 
     <string-array name="modifyRsaAlpabyte">
     <item>Случайно</item>
