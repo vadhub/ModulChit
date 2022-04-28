@@ -1,9 +1,9 @@
-package com.vad.modulchit.screens.rsa.alphavite;
+package com.vad.modulchit.screens.rsa.alphabet;
 
 import com.vad.modulchit.screens.supportable.Supportable;
 
 import java.util.List;
 
-public interface AlphaviteView extends Supportable {
+public interface AlphabetView extends Supportable {
     void alphaviteLoad(List<Integer> alphaviteCodes);
 }

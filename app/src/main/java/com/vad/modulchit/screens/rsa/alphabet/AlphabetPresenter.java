@@ -1,4 +1,4 @@
-package com.vad.modulchit.screens.rsa.alphavite;
+package com.vad.modulchit.screens.rsa.alphabet;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -13,20 +13,16 @@ import com.vad.modulchit.utils.RSAshiphr;
 
 import java.util.List;
 
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.schedulers.Schedulers;
+public class AlphabetPresenter {
 
-public class AlphavitePresenter {
-
-    private AlphaviteView alphaviteView;
+    private AlphabetView alphabetView;
     private Navigator navigator;
     private RSAshiphr shiphr = new RSAshiphr();
     private RSAmod rsaMod = new RSAmod();
     private List<Integer> alphaviteCodes;
 
-    public AlphavitePresenter(AlphaviteView alphaviteView, Navigator navigator) {
-        this.alphaviteView = alphaviteView;
+    public AlphabetPresenter(AlphabetView alphabetView, Navigator navigator) {
+        this.alphabetView = alphabetView;
         this.navigator = navigator;
     }
 
@@ -35,7 +31,7 @@ public class AlphavitePresenter {
             Handler handler = new Handler(Looper.getMainLooper());
             handler.post(() -> {
                 alphaviteCodes = shiphr.getNumberShiphr();
-                alphaviteView.alphaviteLoad(alphaviteCodes);
+                alphabetView.alphaviteLoad(alphaviteCodes);
             });
         }).start();
 
@@ -46,7 +42,7 @@ public class AlphavitePresenter {
             Handler handler = new Handler(Looper.getMainLooper());
             handler.post(() -> {
                 alphaviteCodes = shiphr.getNumberShiphr(numberForFirstLetter);
-                alphaviteView.alphaviteLoad(alphaviteCodes);
+                alphabetView.alphaviteLoad(alphaviteCodes);
             });
         }).start();
     }
@@ -87,10 +83,10 @@ public class AlphavitePresenter {
                     fragment = FragmentRSAdecrypt.newInstance(alphaviteCodes, n, d, eller, exponents.get(0), p, q);
                 }
             } else {
-                alphaviteView.showError(R.string.warning_prime);
+                alphabetView.showError(R.string.warning_prime);
             }
         } else {
-            alphaviteView.showError(R.string.warning_enter_p_q);
+            alphabetView.showError(R.string.warning_enter_p_q);
         }
 
         navigator.startFragment(fragment);

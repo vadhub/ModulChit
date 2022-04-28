@@ -1,4 +1,4 @@
-package com.vad.modulchit.screens.rsa.alphavite;
+package com.vad.modulchit.screens.rsa.alphabet;
 
 import android.os.Bundle;
 
@@ -27,7 +27,7 @@ import com.vad.modulchit.screens.contract.Navigator;
 
 import java.util.List;
 
-public class AddAlphaviteFragment extends Fragment implements AlphaviteView, HasCustomTitle {
+public class FragmentAddAlphabet extends Fragment implements AlphabetView, HasCustomTitle {
 
     private EditText numberForFirstLetter;
     private EditText numberP;
@@ -38,17 +38,17 @@ public class AddAlphaviteFragment extends Fragment implements AlphaviteView, Has
     private int theChoice = 0;
     private boolean isEncrypt = true;
     private ProgressBar progressBar;
-    private AlphavitePresenter presenter;
+    private AlphabetPresenter presenter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_add_alphavite, container, false);
+        View v = inflater.inflate(R.layout.fragment_add_alphabet, container, false);
         Button btnNext = (Button) v.findViewById(R.id.btnNetx);
         setRetainInstance(true);
 
-        presenter = new AlphavitePresenter(this, (Navigator) requireActivity());
+        presenter = new AlphabetPresenter(this, (Navigator) requireActivity());
 
         numberForFirstLetter = (EditText) v.findViewById(R.id.textViewNumberFirst);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.mRecyclerAlphabyte);
