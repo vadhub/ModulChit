@@ -14,7 +14,6 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,15 +23,15 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.vad.modulchit.R;
-import com.vad.modulchit.screens.binarysearch.FragmentBinarySearch;
 import com.vad.modulchit.screens.contract.CustomActionFragment;
 import com.vad.modulchit.screens.contract.HasCustomAction;
 import com.vad.modulchit.screens.contract.HasCustomTitle;
 import com.vad.modulchit.screens.contract.Navigator;
 import com.vad.modulchit.screens.fe.FragmentFE;
 import com.vad.modulchit.screens.gcde.FragmentGCDe;
+import com.vad.modulchit.screens.menu.FragmentMenu;
 import com.vad.modulchit.screens.mg.FragmentMG;
-import com.vad.modulchit.screens.rsa.alphavite.AddAlphaviteFragment;
+import com.vad.modulchit.screens.rsa.alphabet.FragmentAddAlphabet;
 
 public class MainActivityMain extends AppCompatActivity implements Navigator {
 
@@ -48,12 +47,10 @@ public class MainActivityMain extends AppCompatActivity implements Navigator {
         setContentView(R.layout.activity_main_main);
 
         toolbar = (Toolbar) findViewById(R.id.main_toolbar);
-
         setSupportActionBar(toolbar);
 
         MobileAds.initialize(this, initializationStatus -> {
         });
-
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
@@ -63,14 +60,7 @@ public class MainActivityMain extends AppCompatActivity implements Navigator {
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigate);
         bottomNavigationView.setOnNavigationItemSelectedListener(listener);
 
-//        if(savedInstanceState!=null){
-//            fragment = getSupportFragmentManager().getFragment(savedInstanceState, "mFragment");
-//            getSupportFragmentManager().beginTransaction().replace(R.id.frame_replace, fragment).commit();
-//        }else{
-//            Log.i("custom view", R.id.binary_search+"1");
-//        System.out.println(R.id.binary_search+"1");
-            getSupportFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentBinarySearch()).commit();
-//        }
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentMenu()).commit();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener listener = item -> {
@@ -88,7 +78,7 @@ public class MainActivityMain extends AppCompatActivity implements Navigator {
                 break;
 
             case R.id.modItem:
-                currentFragment = new AddAlphaviteFragment();
+                currentFragment = new FragmentAddAlphabet();
                 break;
         }
 
