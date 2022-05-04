@@ -35,7 +35,6 @@ import com.vad.modulchit.screens.rsa.alphabet.FragmentAddAlphabet;
 
 public class MainActivityMain extends AppCompatActivity implements Navigator {
 
-    private BottomNavigationView bottomNavigationView;
     private AdView mAdView;
     private Fragment currentFragment = null;
     private Toolbar toolbar;
@@ -57,35 +56,8 @@ public class MainActivityMain extends AppCompatActivity implements Navigator {
 
         getSupportFragmentManager().registerFragmentLifecycleCallbacks(fragmentListener, false);
 
-        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigate);
-        bottomNavigationView.setOnNavigationItemSelectedListener(listener);
-
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentMenu()).commit();
     }
-
-    private BottomNavigationView.OnNavigationItemSelectedListener listener = item -> {
-
-        switch (item.getItemId()){
-            case R.id.gcdItem:
-                currentFragment = new FragmentGCDe();
-                break;
-
-            case R.id.nokItem:
-                currentFragment = new FragmentMG();
-                break;
-            case R.id.feItem:
-                currentFragment = new FragmentFE();
-                break;
-
-            case R.id.modItem:
-                currentFragment = new FragmentAddAlphabet();
-                break;
-        }
-
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame_replace, currentFragment).commit();
-
-        return true;
-    };
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
