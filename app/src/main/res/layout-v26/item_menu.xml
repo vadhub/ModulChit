@@ -21,10 +21,10 @@
             android:layout_margin="40dp"
             android:gravity="center"
             android:text="@string/gcd_e"
-            app:autoSizeTextType="uniform"
-            app:autoSizeMinTextSize="20sp"
-            app:autoSizeMaxTextSize="40sp"
-            app:autoSizeStepGranularity="2sp"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="20sp"
+            android:autoSizeMaxTextSize="40sp"
+            android:autoSizeStepGranularity="2sp"
             />
 
     </androidx.cardview.widget.CardView>
