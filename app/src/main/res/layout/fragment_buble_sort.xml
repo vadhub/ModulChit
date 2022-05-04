@@ -5,10 +5,9 @@
     android:layout_height="match_parent"
     tools:context=".screens.sort.bubble.FragmentBubbleSort">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.vad.modulchit.screens.sort.bubble.CustomViewBubbleSort
+        android:id="@+id/bubbleSort"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="rrggg" />
+        android:layout_height="match_parent"/>
 
 </FrameLayout>
