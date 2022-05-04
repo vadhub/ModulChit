@@ -55,7 +55,6 @@ public class MainActivityMain extends AppCompatActivity implements Navigator {
         mAdView.loadAd(adRequest);
 
         getSupportFragmentManager().registerFragmentLifecycleCallbacks(fragmentListener, false);
-
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentMenu()).commit();
     }
 
@@ -69,7 +68,6 @@ public class MainActivityMain extends AppCompatActivity implements Navigator {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         updateOnUI();
-
         return true;
     }
 

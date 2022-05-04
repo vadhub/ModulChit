@@ -151,17 +151,6 @@ public class FragmentAddAlphabet extends Fragment implements AlphabetView, HasCu
         progressBar.setVisibility(View.INVISIBLE);
     }
 
-//    @Override
-//    public void fragmentLoad(Fragment fragment) {
-//        if (fragment != null) {
-//            getParentFragmentManager()
-//                    .beginTransaction()
-//                    .addToBackStack(null)
-//                    .replace(R.id.frame_replace, fragment)
-//                    .commit();
-//        }
-//    }
-
     @Override
     public void showError(int pathToResource) {
         Toast.makeText(getContext(), getContext().getResources().getString(pathToResource), Toast.LENGTH_SHORT).show();
