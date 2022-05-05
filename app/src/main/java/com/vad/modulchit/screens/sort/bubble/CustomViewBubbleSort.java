@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 public class CustomViewBubbleSort extends SurfaceView implements SurfaceHolder.Callback {
 
     private final static int SIZE_ELEMENT = 10;
-    private final static int STROKE_WITH = 10;
+    private final static int STROKE_WITH = 20;
 
     private Paint paint;
 
@@ -53,8 +53,8 @@ public class CustomViewBubbleSort extends SurfaceView implements SurfaceHolder.C
         int startDrawY = 200;
         int shift = 10;
         for (int j : arr) {
-            shift = startDrawX + shift;
-            canvas.drawLine(startDrawX, startDrawY, shift, startDrawY - j * SIZE_ELEMENT, paint);
+            canvas.drawLine(startDrawX, startDrawY, startDrawX, startDrawY - j * SIZE_ELEMENT, paint);
+            startDrawX = startDrawX + shift+STROKE_WITH;
         }
 
     }
