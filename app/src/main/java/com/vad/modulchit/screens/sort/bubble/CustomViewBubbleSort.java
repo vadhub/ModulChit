@@ -16,6 +16,7 @@ public class CustomViewBubbleSort extends SurfaceView implements SurfaceHolder.C
     private final static int STROKE_WITH = 20;
 
     private Paint paint;
+    private Paint paintFont;
 
     public CustomViewBubbleSort(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -28,6 +29,12 @@ public class CustomViewBubbleSort extends SurfaceView implements SurfaceHolder.C
         paint.setColor(Color.BLUE);
         paint.setStyle(Paint.Style.FILL);
         paint.setStrokeWidth(STROKE_WITH);
+
+        paintFont = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paintFont.setColor(Color.WHITE);
+        paintFont.setStyle(Paint.Style.FILL);
+        paintFont.setTextSize(20);
+
     }
 
     @Override
@@ -53,6 +60,7 @@ public class CustomViewBubbleSort extends SurfaceView implements SurfaceHolder.C
         int startDrawY = 200;
         int shift = 10;
         for (int j : arr) {
+            canvas.drawText(j+"", startDrawX-STROKE_WITH/2, startDrawY - j * SIZE_ELEMENT - 10, paintFont);
             canvas.drawLine(startDrawX, startDrawY, startDrawX, startDrawY - j * SIZE_ELEMENT, paint);
             startDrawX = startDrawX + shift+STROKE_WITH;
         }
