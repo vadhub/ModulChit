@@ -10,8 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.vad.modulchit.R;
+import com.vad.modulchit.screens.contract.HasCustomTitle;
 
-public class FragmentBubbleSort extends Fragment {
+public class FragmentBubbleSort extends Fragment implements HasCustomTitle {
 
     private CustomViewBubbleSort customView;
 
@@ -21,5 +22,10 @@ public class FragmentBubbleSort extends Fragment {
         View v = inflater.inflate(R.layout.fragment_buble_sort, container, false);
         customView = (CustomViewBubbleSort) v.findViewById(R.id.bubbleSort);
         return v;
+    }
+
+    @Override
+    public int getTitle() {
+        return R.string.bubble_sort;
     }
 }

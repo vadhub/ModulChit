@@ -19,6 +19,7 @@ import com.vad.modulchit.screens.fe.FragmentFE;
 import com.vad.modulchit.screens.gcde.FragmentGCDe;
 import com.vad.modulchit.screens.mg.FragmentMG;
 import com.vad.modulchit.screens.rsa.alphabet.FragmentAddAlphabet;
+import com.vad.modulchit.screens.sort.bubble.FragmentBubbleSort;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -60,6 +61,7 @@ public class FragmentMenu extends Fragment implements HasCustomTitle {
         fragments.add(new FragmentFE());
         fragments.add(new FragmentAddAlphabet());
         fragments.add(new FragmentBinarySearch());
+        fragments.add(new FragmentBubbleSort());
 
         return fragments;
     }
