@@ -30,7 +30,11 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle {
         customView.setArr(arr);
 
         render = new Render(customView, bubbleSort);
-        render.start();
+
+        v.findViewById(R.id.btnSort).setOnClickListener(v1 -> {
+            render.start();
+        });
+
         return v;
     }
 
