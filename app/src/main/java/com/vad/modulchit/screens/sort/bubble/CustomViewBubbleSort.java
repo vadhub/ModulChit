@@ -18,6 +18,17 @@ public class CustomViewBubbleSort extends SurfaceView implements SurfaceHolder.C
     private Paint paint;
     private Paint paintFont;
 
+    private int[] arr;
+
+    public int[] getArr() {
+        return arr;
+    }
+
+    public void setArr(int[] arr) {
+        this.arr = arr;
+        invalidate();
+    }
+
     public CustomViewBubbleSort(Context context, AttributeSet attrs) {
         super(context, attrs);
         getHolder().addCallback(this);
@@ -39,10 +50,13 @@ public class CustomViewBubbleSort extends SurfaceView implements SurfaceHolder.C
 
     @Override
     public void surfaceCreated(@NonNull SurfaceHolder holder) {
-        int[] arr = {3, 5, 2, 8, 7, 9, 1};
-        Canvas canvas = holder.lockCanvas();
-        drawArray(canvas, arr);
-        holder.unlockCanvasAndPost(canvas);
+
+        if (arr != null) {
+            Canvas canvas = holder.lockCanvas();
+            drawArray(canvas, arr);
+            holder.unlockCanvasAndPost(canvas);
+        }
+
     }
 
     @Override
@@ -56,14 +70,17 @@ public class CustomViewBubbleSort extends SurfaceView implements SurfaceHolder.C
     }
 
     public void drawArray(Canvas canvas, int[] arr) {
+        canvas.drawColor(Color.BLACK);
         int startDrawX = 100;
         int startDrawY = 200;
         int shift = 10;
+
         for (int j : arr) {
-            canvas.drawText(j+"", startDrawX-STROKE_WITH/2, startDrawY - j * SIZE_ELEMENT - 10, paintFont);
+            canvas.drawText(j+"", (float) (startDrawX - STROKE_WITH*0.25), startDrawY - j * SIZE_ELEMENT - 10, paintFont);
             canvas.drawLine(startDrawX, startDrawY, startDrawX, startDrawY - j * SIZE_ELEMENT, paint);
             startDrawX = startDrawX + shift+STROKE_WITH;
         }
 
     }
+
 }
