@@ -8,23 +8,29 @@ import android.view.LayoutInflater;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.vad.modulchit.R;
 import com.vad.modulchit.screens.contract.HasCustomTitle;
+import com.vad.modulchit.utils.Parser;
 import com.vad.modulchit.utils.sort.BubbleSort;
 
 public class FragmentBubbleSort extends Fragment implements HasCustomTitle {
 
     private CustomViewBubbleSort customView;
+    private EditText editText;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_buble_sort, container, false);
         customView = (CustomViewBubbleSort) v.findViewById(R.id.bubbleSort);
+        editText = (EditText) v.findViewById(R.id.editTextArrSort);
+
+
+
         v.findViewById(R.id.btnSort).setOnClickListener(v1 -> {
-            int[] arr = {8, 5, 6, 7 ,1, 4};
-            customView.getRender().setArr(arr);
+            customView.getRender().setArr(Parser.parseComma(editText.getText().toString()));
             customView.getRender().start();
         });
 
