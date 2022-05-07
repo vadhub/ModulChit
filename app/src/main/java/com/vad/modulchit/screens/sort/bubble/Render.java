@@ -78,7 +78,7 @@ public class Render extends Thread {
                     System.out.println(Arrays.toString(arr));
                     mSurfaceHolder.unlockCanvasAndPost(canvas);
                     try {
-                        sleep(1000);
+                        sleep(500);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
