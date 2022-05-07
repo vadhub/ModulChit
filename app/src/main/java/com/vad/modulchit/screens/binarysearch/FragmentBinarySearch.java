@@ -46,17 +46,6 @@ public class FragmentBinarySearch extends Fragment implements HasCustomTitle {
         return v;
     }
 
-    public static int[] parseStringToArray(String str) {
-        String[] spitString = str.split(", ");
-        int[] tempArr = new int[spitString.length];
-
-        for (int i = 0; i < spitString.length; i++) {
-            tempArr[i] = Integer.parseInt(spitString[i]);
-        }
-
-        return tempArr;
-    }
-
     @Override
     public int getTitle() {
         return R.string.binary_search;
