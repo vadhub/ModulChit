@@ -198,4 +198,14 @@ public class AlgebraMod {
         return tableNumberFES;
     }
 
+    public static int min(int[] arr) {
+        int min = arr[0];
+
+        for (int j : arr) {
+            min = Math.min(min, j);
+        }
+
+        return min;
+    }
+
 }
