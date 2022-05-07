@@ -22,11 +22,10 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_buble_sort, container, false);
         customView = (CustomViewBubbleSort) v.findViewById(R.id.bubbleSort);
-        int[] arr = {8, 5, 6, 7 ,1, 4};
-
-
         v.findViewById(R.id.btnSort).setOnClickListener(v1 -> {
-            customView.setArr(arr);
+            int[] arr = {8, 5, 6, 7 ,1, 4};
+            customView.getRender().setArr(arr);
+            customView.getRender().start();
         });
 
         return v;

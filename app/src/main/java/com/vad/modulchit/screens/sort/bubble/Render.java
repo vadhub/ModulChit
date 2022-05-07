@@ -11,7 +11,7 @@ import com.vad.modulchit.utils.sort.BubbleSort;
 import java.util.Arrays;
 import java.util.List;
 
-public class Render extends Thread{
+public class Render extends Thread {
 
     private final static int SIZE_ELEMENT = 10;
     private final static int STROKE_WITH = 20;
@@ -20,7 +20,14 @@ public class Render extends Thread{
     private Paint paint;
     private Paint paintFont;
     private int[] arr;
-    private List<int[]> arrays;
+
+    public int[] getArr() {
+        return arr;
+    }
+
+    public void setArr(int[] arr) {
+        this.arr = arr;
+    }
 
     private boolean mRun = false;
 
@@ -28,9 +35,8 @@ public class Render extends Thread{
         this.mRun = mRun;
     }
 
-    public Render(SurfaceHolder mSurfaceHolder, int[] arr) {
+    public Render(SurfaceHolder mSurfaceHolder) {
         this.mSurfaceHolder = mSurfaceHolder;
-        this.arr = arr;
 
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.setColor(Color.BLUE);
@@ -63,7 +69,7 @@ public class Render extends Thread{
         Canvas canvas;
         int temp = 0;
 
-        if (mRun) {
+        if (mRun && arr != null) {
 
             for (int i = arr.length - 1; i >= 1; i--) {
                 for (int j = 0; j < i; j++) {
