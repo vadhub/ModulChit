@@ -10,6 +10,7 @@
     <Button
         android:id="@+id/btnSort"
         android:text="calc"
+        android:drawableLeft="@drawable/ic_baseline_play_arrow_24"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
@@ -19,7 +20,7 @@
     <EditText
         android:id="@+id/editTextArrSort"
         android:textSize="20sp"
-        android:hint="1, 2, 3, 4"
+        android:hint="9, 8, 2, 1, 4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
