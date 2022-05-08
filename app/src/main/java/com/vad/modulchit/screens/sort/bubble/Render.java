@@ -6,11 +6,10 @@ import android.graphics.Paint;
 import android.view.SurfaceHolder;
 
 import com.vad.modulchit.utils.AlgebraMod;
-import java.util.Arrays;
 
 public class Render extends Thread {
 
-    private int maxSize = 10;
+    private int maxSize;
     private final static int STROKE_WITH = 20;
     private final static int FONT_SIZE = 20;
 
@@ -85,16 +84,12 @@ public class Render extends Thread {
 
     @Override
     public void run() {
-        Canvas canvas;
         int temp = 0;
 
         if (mRun && arr != null) {
             for (int i = arr.length - 1; i >= 1; i--) {
                 for (int j = 0; j < i; j++) {
-                    canvas = mSurfaceHolder.lockCanvas();
-                    drawArray(canvas, arr);
-                    System.out.println(Arrays.toString(arr));
-                    mSurfaceHolder.unlockCanvasAndPost(canvas);
+                    draw(arr, mSurfaceHolder);
                     try {
                         sleep(1000);
                     } catch (InterruptedException e) {
@@ -108,11 +103,14 @@ public class Render extends Thread {
                 }
             }
 
-            canvas = mSurfaceHolder.lockCanvas();
-            drawArray(canvas, arr);
-            System.out.println(Arrays.toString(arr));
-            mSurfaceHolder.unlockCanvasAndPost(canvas);
+            draw(arr, mSurfaceHolder);
         }
+    }
+
+    public void draw(int[] arr, SurfaceHolder mSurfaceHolder) {
+        Canvas canvas = mSurfaceHolder.lockCanvas();
+        drawArray(canvas, arr);
+        mSurfaceHolder.unlockCanvasAndPost(canvas);
     }
 
 }
