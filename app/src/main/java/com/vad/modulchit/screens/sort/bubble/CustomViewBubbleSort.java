@@ -29,7 +29,6 @@ public class CustomViewBubbleSort extends SurfaceView implements SurfaceHolder.C
 
     @Override
     public void surfaceChanged(@NonNull SurfaceHolder holder, int format, int width, int height) {
-
     }
 
     @Override

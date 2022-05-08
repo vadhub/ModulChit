@@ -69,15 +69,15 @@ public class Render extends Thread {
         return scale;
     }
 
-    public void drawArray(Canvas canvas, int[] arr, float[] scales) {
+    public void drawArray(Canvas canvas, int[] arr) {
         canvas.drawColor(Color.BLACK);
         int startDrawX = 100;
         int startDrawY = getMaxSize();
         int shift = 10;
-
+        float[] scales = scaling(arr);
         for (int i = 0; i < arr.length; i++) {
-            canvas.drawText(arr[i]+"", (float) (startDrawX - STROKE_WITH*0.25), startDrawY - scales[i] * getMaxSize() - 10 - FONT_SIZE, paintFont);
-            canvas.drawLine(startDrawX, startDrawY, startDrawX, startDrawY - scales[i] * getMaxSize() - 30, paint);
+            canvas.drawText(arr[i]+"", (float) (startDrawX - STROKE_WITH*0.25), startDrawY - scales[i] * getMaxSize() + 10 + FONT_SIZE, paintFont);
+            canvas.drawLine(startDrawX, startDrawY, startDrawX, startDrawY - scales[i] * getMaxSize() + 20 + FONT_SIZE, paint);
             startDrawX = startDrawX + shift+STROKE_WITH;
         }
 
@@ -89,15 +89,14 @@ public class Render extends Thread {
         int temp = 0;
 
         if (mRun && arr != null) {
-            float[] scales = scaling(arr);
             for (int i = arr.length - 1; i >= 1; i--) {
                 for (int j = 0; j < i; j++) {
                     canvas = mSurfaceHolder.lockCanvas();
-                    drawArray(canvas, arr, scales);
+                    drawArray(canvas, arr);
                     System.out.println(Arrays.toString(arr));
                     mSurfaceHolder.unlockCanvasAndPost(canvas);
                     try {
-                        sleep(500);
+                        sleep(1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -108,6 +107,11 @@ public class Render extends Thread {
                     }
                 }
             }
+
+            canvas = mSurfaceHolder.lockCanvas();
+            drawArray(canvas, arr);
+            System.out.println(Arrays.toString(arr));
+            mSurfaceHolder.unlockCanvasAndPost(canvas);
         }
     }
 
