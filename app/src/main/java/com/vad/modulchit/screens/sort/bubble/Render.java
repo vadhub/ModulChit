@@ -11,13 +11,22 @@ public class Render extends Thread {
 
     private int maxHeight;
     private int maxWith;
-    private final static int STROKE_WITH = 20;
+    private int strokeWidth;
     private final static int FONT_SIZE = 20;
+    private final static int SHIFT = 10;
 
     private final SurfaceHolder mSurfaceHolder;
     private Paint paint;
     private Paint paintFont;
     private int[] arr;
+
+    public int getStrokeWidth() {
+        return getMaxWith()/(arr.length+1);
+    }
+
+    public void setStrokeWidth(int strokeWidth) {
+        this.strokeWidth = strokeWidth;
+    }
 
     public int getMaxWith() {
         return mSurfaceHolder.getSurfaceFrame().width();
@@ -55,7 +64,6 @@ public class Render extends Thread {
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.setColor(Color.BLUE);
         paint.setStyle(Paint.Style.FILL);
-        paint.setStrokeWidth(STROKE_WITH);
 
         paintFont = new Paint(Paint.ANTI_ALIAS_FLAG);
         paintFont.setColor(Color.BLACK);
@@ -76,17 +84,17 @@ public class Render extends Thread {
 
     public void drawArray(Canvas canvas, int[] arr, int currentIndex) {
         canvas.drawColor(Color.WHITE);
-        int startDrawX = 100;
         int startDrawY = getMaxHeight();
-        int shift = 10;
+        int startDrawX = SHIFT + getStrokeWidth()/2;
+        paint.setStrokeWidth(getStrokeWidth()-SHIFT);
         float[] scales = scaling(arr);
         for (int i = 0; i < arr.length; i++) {
-            canvas.drawText(arr[i]+"", (float) (startDrawX - STROKE_WITH*0.25), startDrawY - scales[i] * getMaxHeight() + 10 + FONT_SIZE, paintFont);
+            canvas.drawText(arr[i]+"", (float) (startDrawX - getStrokeWidth()*0.25), startDrawY - scales[i] * getMaxHeight() + 10 + FONT_SIZE, paintFont);
             if (currentIndex == i) {
                 paint.setColor(Color.RED);
             }
             canvas.drawLine(startDrawX, startDrawY, startDrawX, startDrawY - scales[i] * getMaxHeight() + 20 + FONT_SIZE, paint);
-            startDrawX = startDrawX + shift+STROKE_WITH;
+            startDrawX = startDrawX + getStrokeWidth();
             paint.setColor(Color.BLUE);
         }
 
