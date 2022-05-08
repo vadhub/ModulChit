@@ -1,5 +1,7 @@
 package com.vad.modulchit.screens.sort.bubble;
 
+import android.graphics.Color;
+import android.graphics.PixelFormat;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -26,8 +28,8 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle {
         View v = inflater.inflate(R.layout.fragment_buble_sort, container, false);
         customView = (CustomViewBubbleSort) v.findViewById(R.id.bubbleSort);
         editText = (EditText) v.findViewById(R.id.editTextArrSort);
-
-
+        customView.setZOrderOnTop(true);
+        customView.getHolder().setFormat(PixelFormat.TRANSLUCENT);
 
         v.findViewById(R.id.btnSort).setOnClickListener(v1 -> {
             customView.getRender().setArr(Parser.parseComma(editText.getText().toString()));
