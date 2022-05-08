@@ -3,23 +3,29 @@ package com.vad.modulchit.screens.sort.bubble;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.os.Handler;
-import android.os.Looper;
 import android.view.SurfaceHolder;
-import com.vad.modulchit.utils.sort.BubbleSort;
 
+import com.vad.modulchit.utils.AlgebraMod;
 import java.util.Arrays;
-import java.util.List;
 
 public class Render extends Thread {
 
-    private final static int SIZE_ELEMENT = 10;
+    private int maxSize = 10;
     private final static int STROKE_WITH = 20;
+    private final static int FONT_SIZE = 20;
 
     private final SurfaceHolder mSurfaceHolder;
     private Paint paint;
     private Paint paintFont;
     private int[] arr;
+
+    public int getMaxSize() {
+        return maxSize = mSurfaceHolder.getSurfaceFrame().height();
+    }
+
+    public void setMaxSize(int maxSize) {
+        this.maxSize = maxSize;
+    }
 
     public int[] getArr() {
         return arr;
@@ -46,19 +52,32 @@ public class Render extends Thread {
         paintFont = new Paint(Paint.ANTI_ALIAS_FLAG);
         paintFont.setColor(Color.WHITE);
         paintFont.setStyle(Paint.Style.FILL);
-        paintFont.setTextSize(20);
+        paintFont.setTextSize(FONT_SIZE);
 
     }
 
-    public void drawArray(Canvas canvas, int[] arr) {
+    public float[] scaling(int[] arr) {
+        int max = AlgebraMod.max(arr);
+        float[] scale = new float[arr.length];
+
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] < 0) {
+                scale[i] = (float) -1*arr[i]/max;
+            }
+            scale[i] = (float) arr[i]/max;
+        }
+        return scale;
+    }
+
+    public void drawArray(Canvas canvas, int[] arr, float[] scales) {
         canvas.drawColor(Color.BLACK);
         int startDrawX = 100;
-        int startDrawY = 200;
+        int startDrawY = getMaxSize();
         int shift = 10;
 
-        for (int j : arr) {
-            canvas.drawText(j+"", (float) (startDrawX - STROKE_WITH*0.25), startDrawY - j * SIZE_ELEMENT - 10, paintFont);
-            canvas.drawLine(startDrawX, startDrawY, startDrawX, startDrawY - j * SIZE_ELEMENT, paint);
+        for (int i = 0; i < arr.length; i++) {
+            canvas.drawText(arr[i]+"", (float) (startDrawX - STROKE_WITH*0.25), startDrawY - scales[i] * getMaxSize() - 10 - FONT_SIZE, paintFont);
+            canvas.drawLine(startDrawX, startDrawY, startDrawX, startDrawY - scales[i] * getMaxSize() - 30, paint);
             startDrawX = startDrawX + shift+STROKE_WITH;
         }
 
@@ -70,11 +89,11 @@ public class Render extends Thread {
         int temp = 0;
 
         if (mRun && arr != null) {
-
+            float[] scales = scaling(arr);
             for (int i = arr.length - 1; i >= 1; i--) {
                 for (int j = 0; j < i; j++) {
                     canvas = mSurfaceHolder.lockCanvas();
-                    drawArray(canvas, arr);
+                    drawArray(canvas, arr, scales);
                     System.out.println(Arrays.toString(arr));
                     mSurfaceHolder.unlockCanvasAndPost(canvas);
                     try {
@@ -90,9 +109,6 @@ public class Render extends Thread {
                 }
             }
         }
-
-
-
     }
 
 }

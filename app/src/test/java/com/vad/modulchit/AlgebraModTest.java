@@ -10,7 +10,7 @@ public class AlgebraModTest {
     int[] arr = {1, 2, 3, 0, -1, 4};
 
     @Test
-    public void searchMinElement_isCorrect() {
-        assertEquals(-1, AlgebraMod.min(arr));
+    public void searchMaxElement_isCorrect() {
+        assertEquals(4, AlgebraMod.max(arr));
     }
 }
