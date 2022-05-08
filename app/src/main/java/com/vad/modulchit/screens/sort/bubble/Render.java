@@ -9,7 +9,8 @@ import com.vad.modulchit.utils.AlgebraMod;
 
 public class Render extends Thread {
 
-    private int maxSize;
+    private int maxHeight;
+    private int maxWith;
     private final static int STROKE_WITH = 20;
     private final static int FONT_SIZE = 20;
 
@@ -18,12 +19,20 @@ public class Render extends Thread {
     private Paint paintFont;
     private int[] arr;
 
-    public int getMaxSize() {
-        return maxSize = mSurfaceHolder.getSurfaceFrame().height();
+    public int getMaxWith() {
+        return mSurfaceHolder.getSurfaceFrame().width();
     }
 
-    public void setMaxSize(int maxSize) {
-        this.maxSize = maxSize;
+    public void setMaxWith(int maxWith) {
+        this.maxWith = maxWith;
+    }
+
+    public int getMaxHeight() {
+        return mSurfaceHolder.getSurfaceFrame().height();
+    }
+
+    public void setMaxHeight(int maxHeight) {
+        this.maxHeight = maxHeight;
     }
 
     public int[] getArr() {
@@ -49,7 +58,7 @@ public class Render extends Thread {
         paint.setStrokeWidth(STROKE_WITH);
 
         paintFont = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paintFont.setColor(Color.WHITE);
+        paintFont.setColor(Color.BLACK);
         paintFont.setStyle(Paint.Style.FILL);
         paintFont.setTextSize(FONT_SIZE);
 
@@ -60,24 +69,25 @@ public class Render extends Thread {
         float[] scale = new float[arr.length];
 
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i] < 0) {
-                scale[i] = (float) -1*arr[i]/max;
-            }
             scale[i] = (float) arr[i]/max;
         }
         return scale;
     }
 
-    public void drawArray(Canvas canvas, int[] arr) {
-        canvas.drawColor(Color.BLACK);
+    public void drawArray(Canvas canvas, int[] arr, int currentIndex) {
+        canvas.drawColor(Color.WHITE);
         int startDrawX = 100;
-        int startDrawY = getMaxSize();
+        int startDrawY = getMaxHeight();
         int shift = 10;
         float[] scales = scaling(arr);
         for (int i = 0; i < arr.length; i++) {
-            canvas.drawText(arr[i]+"", (float) (startDrawX - STROKE_WITH*0.25), startDrawY - scales[i] * getMaxSize() + 10 + FONT_SIZE, paintFont);
-            canvas.drawLine(startDrawX, startDrawY, startDrawX, startDrawY - scales[i] * getMaxSize() + 20 + FONT_SIZE, paint);
+            canvas.drawText(arr[i]+"", (float) (startDrawX - STROKE_WITH*0.25), startDrawY - scales[i] * getMaxHeight() + 10 + FONT_SIZE, paintFont);
+            if (currentIndex == i) {
+                paint.setColor(Color.RED);
+            }
+            canvas.drawLine(startDrawX, startDrawY, startDrawX, startDrawY - scales[i] * getMaxHeight() + 20 + FONT_SIZE, paint);
             startDrawX = startDrawX + shift+STROKE_WITH;
+            paint.setColor(Color.BLUE);
         }
 
     }
@@ -89,9 +99,9 @@ public class Render extends Thread {
         if (mRun && arr != null) {
             for (int i = arr.length - 1; i >= 1; i--) {
                 for (int j = 0; j < i; j++) {
-                    draw(arr, mSurfaceHolder);
+                    draw(arr, mSurfaceHolder, j);
                     try {
-                        sleep(1000);
+                        sleep(500);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -103,13 +113,19 @@ public class Render extends Thread {
                 }
             }
 
-            draw(arr, mSurfaceHolder);
+            paint.setColor(Color.BLUE);
+            draw(arr, mSurfaceHolder, -1);
+            try {
+                join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    public void draw(int[] arr, SurfaceHolder mSurfaceHolder) {
+    public void draw(int[] arr, SurfaceHolder mSurfaceHolder, int current) {
         Canvas canvas = mSurfaceHolder.lockCanvas();
-        drawArray(canvas, arr);
+        drawArray(canvas, arr, current);
         mSurfaceHolder.unlockCanvasAndPost(canvas);
     }
 
