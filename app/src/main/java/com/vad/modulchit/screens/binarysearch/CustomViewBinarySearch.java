@@ -21,16 +21,31 @@ public class CustomViewBinarySearch extends View {
     private final Paint paintForCondition = new Paint(Paint.ANTI_ALIAS_FLAG);
     private List<BinarySearchModel> binarySearchModels;
     private final int STROKE_WITH = 3;
-    private int width = 75;
-    private int height = 100;
+    private int maxWidth;
+    private int maxHeight;
     private int widthContent;
-    private final PointF lastPoint = new PointF();
-    private int lastPointId = 0;
 
+    public int getMaxHeight() {
+        return maxWidth;
+    }
+
+    public void setMaxHeight(int maxHeight) {
+        this.maxHeight = maxHeight;
+    }
+
+    public int getMaxWidth() {
+        return maxWidth;
+    }
+
+    public void setMaxWidth(int maxWidth) {
+        this.maxWidth = maxWidth;
+    }
 
     public void searchElement(List<BinarySearchModel> binarySearchModels) {
         this.binarySearchModels = binarySearchModels;
-        this.widthContent = binarySearchModels.get(0).getArrTemp().length*width;
+        this.maxWidth = getWidth()/binarySearchModels.get(0).getArrTemp().length;
+        this.maxHeight = 100;
+        this.widthContent = maxWidth*binarySearchModels.get(0).getArrTemp().length;
         requestLayout();
     }
 
@@ -53,38 +68,6 @@ public class CustomViewBinarySearch extends View {
         paint.setStrokeWidth(STROKE_WITH);
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        if (event == null) {
-            return false;
-        }
-        if(event.getPointerCount() == 1) {
-           return onMoving(event);
-        } else {
-            return false;
-        }
-    }
-
-    public boolean onMoving(MotionEvent event) {
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                lastPoint.set(event.getX(), event.getY());
-                lastPointId = event.getPointerId(0);
-                return true;
-
-            case MotionEvent.ACTION_MOVE:
-                if (getWidth() < widthContent) {
-                    int pointId = event.getPointerId(0);
-                }
-
-                lastPoint.set(event.getX(), event.getY());
-                lastPointId = event.getPointerId(0);
-                return true;
-
-            default: return false;
-        }
-    }
-
     @SuppressLint("DrawAllocation")
     @Override
     protected void onDraw(Canvas canvas) {
@@ -100,31 +83,31 @@ public class CustomViewBinarySearch extends View {
         float shiftX = 0;
         float len = 0;
 
-        for (int i : binarySearchModels.get(0).getArrTemp()) {
-            if(Math.ceil(Math.log10(i)) == 2){
-                width = 100;
-                break;
-            }
-        }
+//        for (int i : binarySearchModels.get(0).getArrTemp()) {
+//            if(Math.ceil(Math.log10(i)) == 2){
+//                width = 100;
+//                break;
+//            }
+//        }
         int length = binarySearchModels.get(0).getArrTemp().length;
-        float xStart = (float) (length*width/2)+STROKE_WITH;
+        float xStart = (float) (length*getMaxWidth()/2)+STROKE_WITH;
 
         for (int i = 0; i < binarySearchModels.size()-1; i++) {
             if (binarySearchModels.get(i).getCompareElementAndMid().equals("zero")) {
                 canvas.drawText("Element is absent " + binarySearchModels.get(i).getMidElement(), x, y, paintForCondition);
                 break;
             }
-            drawArray(canvas, paint, binarySearchModels.get(i).getArrTemp(), x+shiftX, y, width, height, binarySearchModels.get(i).getMidElement());
-            drawArrow(canvas, paint, xStart, y+height, xStart, y+height+shiftDown);
-            canvas.drawText(binarySearchModels.get(i).getCompareElementAndMid(), xStart+10, y+height+shiftDown/2, paintForCondition);
-            y = y + height+shiftDown;
+            drawArray(canvas, paint, binarySearchModels.get(i).getArrTemp(), x+shiftX, y, getMaxWidth(), getMaxHeight(), binarySearchModels.get(i).getMidElement());
+            drawArrow(canvas, paint, xStart, y+getMaxHeight(), xStart, y+getMaxHeight()+shiftDown);
+            canvas.drawText(binarySearchModels.get(i).getCompareElementAndMid(), xStart+10, y+getMaxHeight()+shiftDown/2, paintForCondition);
+            y = y + getMaxHeight()+shiftDown;
             if (i+1 < binarySearchModels.size()) {
-                len = binarySearchModels.get(i+1).getArrTemp().length*width;
+                len = binarySearchModels.get(i+1).getArrTemp().length*getMaxWidth();
             }
             shiftX = (widthContent-len)/2;
         }
 
-        drawArray(canvas, paint, binarySearchModels.get(binarySearchModels.size()-1).getArrTemp(), x+shiftX, y, width, height);
+        drawArray(canvas, paint, binarySearchModels.get(binarySearchModels.size()-1).getArrTemp(), x+shiftX, y, getMaxWidth(), getMaxWidth());
     }
 
     public void drawArrow(Canvas canvas, Paint paint, float xStart, float yStart, float xEnd, float yEnd) {
