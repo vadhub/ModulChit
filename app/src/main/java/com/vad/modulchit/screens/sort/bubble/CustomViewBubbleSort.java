@@ -26,21 +26,20 @@ public class CustomViewBubbleSort extends SurfaceView implements SurfaceHolder.C
     @Override
     public void surfaceCreated(@NonNull SurfaceHolder holder) {
         render = new Render(getHolder());
-        render.setRun(true);
+        render.start();
     }
 
     @Override
     public void surfaceChanged(@NonNull SurfaceHolder holder, int format, int width, int height) {
+
     }
 
     @Override
     public void surfaceDestroyed(@NonNull SurfaceHolder holder) {
+        render.setRun(false);
         render = null;
     }
 
-    public void cleanup() {
-        render = null;
-    }
 
 
 }

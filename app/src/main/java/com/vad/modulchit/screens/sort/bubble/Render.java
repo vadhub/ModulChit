@@ -3,11 +3,15 @@ package com.vad.modulchit.screens.sort.bubble;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.SurfaceHolder;
 
 import com.vad.modulchit.utils.AlgebraMod;
 
-public class Render extends Thread {
+import java.util.Arrays;
+
+public class Render extends Thread implements RenderState{
 
     private int maxHeight;
     private int maxWith;
@@ -19,9 +23,11 @@ public class Render extends Thread {
     private Paint paint;
     private Paint paintFont;
     private int[] arr;
+    private boolean mRun = true;
+    private boolean isStart = false;
 
     public int getStrokeWidth() {
-        return getMaxWith()/(arr.length+1);
+        return getMaxWith() / (arr.length + 1);
     }
 
     public void setStrokeWidth(int strokeWidth) {
@@ -52,7 +58,9 @@ public class Render extends Thread {
         this.arr = arr;
     }
 
-    private boolean mRun = false;
+    public boolean isRun() {
+        return mRun;
+    }
 
     public void setRun(boolean mRun) {
         this.mRun = mRun;
@@ -77,7 +85,7 @@ public class Render extends Thread {
         float[] scale = new float[arr.length];
 
         for (int i = 0; i < arr.length; i++) {
-            scale[i] = (float) arr[i]/max;
+            scale[i] = (float) arr[i] / max;
         }
         return scale;
     }
@@ -85,14 +93,19 @@ public class Render extends Thread {
     public void drawArray(Canvas canvas, int[] arr, int currentIndex) {
         canvas.drawColor(Color.WHITE);
         int startDrawY = getMaxHeight();
-        int startDrawX = SHIFT + getStrokeWidth()/2;
-        paint.setStrokeWidth(getStrokeWidth()-SHIFT);
+        int startDrawX = SHIFT + getStrokeWidth() / 2;
+
+        paint.setStrokeWidth(getStrokeWidth() - SHIFT);
+
         float[] scales = scaling(arr);
+
         for (int i = 0; i < arr.length; i++) {
-            canvas.drawText(arr[i]+"", (float) (startDrawX - getStrokeWidth()*0.25), startDrawY - scales[i] * getMaxHeight() + 10 + FONT_SIZE, paintFont);
+            canvas.drawText(arr[i] + "", (float) (startDrawX - getStrokeWidth() * 0.25), startDrawY - scales[i] * getMaxHeight() + 10 + FONT_SIZE, paintFont);
+
             if (currentIndex == i) {
                 paint.setColor(Color.RED);
             }
+
             canvas.drawLine(startDrawX, startDrawY, startDrawX, startDrawY - scales[i] * getMaxHeight() + 20 + FONT_SIZE, paint);
             startDrawX = startDrawX + getStrokeWidth();
             paint.setColor(Color.BLUE);
@@ -104,37 +117,51 @@ public class Render extends Thread {
     public void run() {
         int temp = 0;
 
-        if (mRun && arr != null) {
-            for (int i = arr.length - 1; i >= 1; i--) {
-                for (int j = 0; j < i; j++) {
-                    draw(arr, mSurfaceHolder, j);
-                    try {
-                        sleep(500);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    if (arr[j] > arr[j + 1]) {
-                        temp = arr[j];
-                        arr[j] = arr[j + 1];
-                        arr[j + 1] = temp;
+        System.out.println(getStateRun()+" "+ Arrays.toString(arr));
+
+        while (mRun) {
+
+            if (arr != null && isStart) {
+                for (int i = arr.length - 1; i >= 1; i--) {
+                    for (int j = 0; j < i; j++) {
+
+                        try {
+                            sleep(500);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+                        draw(arr, mSurfaceHolder, j);
+                        if (arr[j] > arr[j + 1]) {
+                            temp = arr[j];
+                            arr[j] = arr[j + 1];
+                            arr[j + 1] = temp;
+                        }
                     }
                 }
-            }
 
-            paint.setColor(Color.BLUE);
-            draw(arr, mSurfaceHolder, -1);
-            try {
-                join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                paint.setColor(Color.BLUE);
+                draw(arr, mSurfaceHolder, -1);
+                isStart=false;
             }
         }
     }
 
     public void draw(int[] arr, SurfaceHolder mSurfaceHolder, int current) {
+
         Canvas canvas = mSurfaceHolder.lockCanvas();
         drawArray(canvas, arr, current);
         mSurfaceHolder.unlockCanvasAndPost(canvas);
+
     }
 
+    @Override
+    public void setStateRun(boolean run) {
+        isStart = run;
+    }
+
+    @Override
+    public boolean getStateRun() {
+        return isStart;
+    }
 }

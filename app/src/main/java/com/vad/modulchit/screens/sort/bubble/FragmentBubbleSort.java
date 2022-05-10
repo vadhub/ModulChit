@@ -31,9 +31,11 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle {
         customView.setZOrderOnTop(true);
         customView.getHolder().setFormat(PixelFormat.TRANSLUCENT);
 
+        String str = "9, 4, 2, 1, 7, 5";
+
         v.findViewById(R.id.btnSort).setOnClickListener(v1 -> {
-            customView.getRender().setArr(Parser.parseComma(editText.getText().toString()));
-            customView.getRender().start();
+            customView.getRender().setArr(Parser.parseComma(str));
+            customView.getRender().setStateRun(true);
         });
 
         return v;
