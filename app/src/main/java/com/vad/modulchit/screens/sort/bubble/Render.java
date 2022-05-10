@@ -121,9 +121,17 @@ public class Render extends Thread implements RenderState{
 
         while (mRun) {
 
-            if (arr != null && isStart) {
+            if (arr != null && getStateRun()) {
                 for (int i = arr.length - 1; i >= 1; i--) {
+
+                    if (!getStateRun()) {
+                        break;
+                    }
                     for (int j = 0; j < i; j++) {
+
+                        if (!getStateRun()) {
+                            break;
+                        }
 
                         try {
                             sleep(500);
