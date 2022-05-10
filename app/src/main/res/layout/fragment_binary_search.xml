@@ -1,51 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".screens.binarysearch.FragmentBinarySearch">
 
-    <EditText
-        android:id="@+id/editTextEnterArray"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="10sp"
-        android:textSize="20sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/editTextEnterElement"
-        />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/editTextEnterElement"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="5"
-        android:layout_margin="10sp"
-        android:textSize="20sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        <EditText
+            android:id="@+id/editTextEnterArray"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10sp"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toStartOf="@id/editTextEnterElement"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        />
+        <EditText
+            android:id="@+id/editTextEnterElement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10sp"
+            android:ems="5"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
 
-    <Button
-        android:id="@+id/btnBinarySearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="calc"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEnterArray"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+            />
 
-    <com.vad.modulchit.screens.binarysearch.CustomViewBinarySearch
-        android:id="@+id/binary_search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="8sp"
-        app:layout_constraintTop_toBottomOf="@id/btnBinarySearch"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
+        <Button
+            android:id="@+id/btnBinarySearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="calc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextEnterArray" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.vad.modulchit.screens.binarysearch.CustomViewBinarySearch
+            android:id="@+id/binary_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnBinarySearch" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

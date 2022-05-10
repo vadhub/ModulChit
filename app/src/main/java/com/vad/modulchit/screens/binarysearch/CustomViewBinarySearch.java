@@ -68,6 +68,12 @@ public class CustomViewBinarySearch extends View {
         paint.setStrokeWidth(STROKE_WITH);
     }
 
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        setMeasuredDimension(widthMeasureSpec, heightMeasureSpec);
+    }
+
     @SuppressLint("DrawAllocation")
     @Override
     protected void onDraw(Canvas canvas) {
@@ -127,7 +133,7 @@ public class CustomViewBinarySearch extends View {
                 canvas.drawRect(i+shift, y+shift, i+width-shift, y+height-shift, paint);
                 paint.setColor(Color.BLACK);
             }
-            canvas.drawText(String.valueOf(arr[k]), (float) (i+width*0.15), (float) (y+height*0.75), fontPaint);
+            canvas.drawText(String.valueOf(arr[k]), (float) (i+width*0.15), (float) (y+height*0.85), fontPaint);
             k++;
         }
     }
@@ -141,8 +147,9 @@ public class CustomViewBinarySearch extends View {
             canvas.drawRect(i, y, i+width, y+height, paint);
             paint.setColor(Color.GREEN);
             canvas.drawRect(i+shift, y+shift, i+width-shift, y+height-shift, paint);
-            canvas.drawText(String.valueOf(arr[k]), (float) (i+width*0.15), (float) (y+height*0.75), fontPaint);
+            canvas.drawText(String.valueOf(arr[k]), (float) (i+width*0.15), (float) (y+height*0.85), fontPaint);
             k++;
+            paint.setColor(Color.BLACK);
         }
     }
 
