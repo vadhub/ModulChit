@@ -16,7 +16,7 @@ import java.util.List;
 
 public class CustomViewBinarySearch extends View {
 
-    private final Paint paint = new Paint();
+    private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint fontPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint paintForCondition = new Paint(Paint.ANTI_ALIAS_FLAG);
     private List<BinarySearchModel> binarySearchModels;
