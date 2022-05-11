@@ -47,23 +47,36 @@ public class FragmentMenu extends Fragment implements HasCustomTitle {
         mRecyclerView.setAdapter(adapter);
 
         adapter.setClickListener((view, id) ->{
-            Fragment fragment = getFragments().get(id);
+            Fragment fragment = getFragments(id);
             navigator.startFragment(fragment);
         });
 
         return v;
     }
 
-    public List<Fragment> getFragments() {
-        List<Fragment> fragments = new ArrayList<>();
-        fragments.add(new FragmentGCDe());
-        fragments.add(new FragmentMG());
-        fragments.add(new FragmentFE());
-        fragments.add(new FragmentAddAlphabet());
-        fragments.add(new FragmentBinarySearch());
-        fragments.add(new FragmentBubbleSort());
+    public Fragment getFragments(int id) {
 
-        return fragments;
+        switch (id) {
+            case 0:
+                return new FragmentGCDe();
+
+            case 1:
+                return new FragmentMG();
+
+            case 2:
+                return new FragmentFE();
+
+            case 3:
+                return new FragmentAddAlphabet();
+
+            case 4:
+                return new FragmentBinarySearch();
+
+            case 5:
+                return new FragmentBubbleSort();
+        }
+
+        return new FragmentGCDe();
     }
 
     @Override
