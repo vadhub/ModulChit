@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import com.vad.modulchit.R;
 import com.vad.modulchit.screens.contract.HasCustomTitle;
 import com.vad.modulchit.utils.Parser;
@@ -34,20 +36,24 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle {
 
         String str = "9, 4, 2, 1, 7, 5";
 
-
-        Drawable imgPause = getResources().getDrawable(R.drawable.ic_baseline_pause_24);
+        Drawable imgRestart = getResources().getDrawable(R.drawable.ic_baseline_refresh_24);
         Drawable imgPlay = getResources().getDrawable(R.drawable.ic_baseline_play_arrow_24);
 
         btn.setOnClickListener(v1 -> {
 
+            if (editText.getText().toString().equals("")) {
+                Toast.makeText(getActivity(), R.string.warning_enter_text, Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             if (isRun) {
                 customView.getRender().setArr(Parser.parseComma(str));
                 customView.getRender().setStateRun(true);
-                btn.setCompoundDrawablesWithIntrinsicBounds(imgPlay, null, null, null);
+                btn.setCompoundDrawablesWithIntrinsicBounds(imgRestart, null, null, null);
                 isRun = false;
             } else {
                 customView.getRender().setStateRun(false);
-                btn.setCompoundDrawablesWithIntrinsicBounds(imgPause, null, null, null);
+                btn.setCompoundDrawablesWithIntrinsicBounds(imgPlay, null, null, null);
                 isRun = true;
             }
         });

@@ -3,15 +3,11 @@ package com.vad.modulchit.screens.sort.bubble;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.os.Handler;
-import android.os.Looper;
 import android.view.SurfaceHolder;
 
 import com.vad.modulchit.utils.AlgebraMod;
 
-import java.util.Arrays;
-
-public class Render extends Thread implements RenderState{
+public class Render extends Thread implements RenderState {
 
     private int maxHeight;
     private int maxWith;
@@ -100,7 +96,7 @@ public class Render extends Thread implements RenderState{
         float[] scales = scaling(arr);
 
         for (int i = 0; i < arr.length; i++) {
-            canvas.drawText(arr[i] + "", (float) (startDrawX - getStrokeWidth() * 0.25), startDrawY - scales[i] * getMaxHeight() + 10 + FONT_SIZE, paintFont);
+            canvas.drawText(arr[i] + "", startDrawX, startDrawY - scales[i] * getMaxHeight() + 10 + FONT_SIZE, paintFont);
 
             if (currentIndex == i) {
                 paint.setColor(Color.RED);
@@ -117,19 +113,17 @@ public class Render extends Thread implements RenderState{
     public void run() {
         int temp = 0;
 
-        System.out.println(getStateRun()+" "+ Arrays.toString(arr));
-
         while (mRun) {
 
-            if (arr != null && getStateRun()) {
+            if (arr != null && isStart) {
                 for (int i = arr.length - 1; i >= 1; i--) {
 
-                    if (!getStateRun()) {
+                    if (!isStart) {
                         break;
                     }
                     for (int j = 0; j < i; j++) {
 
-                        if (!getStateRun()) {
+                        if (!isStart) {
                             break;
                         }
 
@@ -150,7 +144,8 @@ public class Render extends Thread implements RenderState{
 
                 paint.setColor(Color.BLUE);
                 draw(arr, mSurfaceHolder, -1);
-                isStart=false;
+                isStart = false;
+                arr = null;
             }
         }
     }
