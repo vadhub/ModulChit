@@ -21,17 +21,13 @@ import android.view.View;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.vad.modulchit.R;
 import com.vad.modulchit.screens.contract.CustomActionFragment;
 import com.vad.modulchit.screens.contract.HasCustomAction;
 import com.vad.modulchit.screens.contract.HasCustomTitle;
 import com.vad.modulchit.screens.contract.Navigator;
-import com.vad.modulchit.screens.fe.FragmentFE;
-import com.vad.modulchit.screens.gcde.FragmentGCDe;
 import com.vad.modulchit.screens.menu.FragmentMenu;
-import com.vad.modulchit.screens.mg.FragmentMG;
-import com.vad.modulchit.screens.rsa.alphabet.FragmentAddAlphabet;
+import com.vad.modulchit.screens.sort.bubble.FragmentBubbleSort;
 
 public class MainActivityMain extends AppCompatActivity implements Navigator {
 

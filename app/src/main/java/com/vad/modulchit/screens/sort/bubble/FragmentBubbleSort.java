@@ -34,8 +34,6 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle {
         customView.setZOrderOnTop(true);
         customView.getHolder().setFormat(PixelFormat.TRANSLUCENT);
 
-        String str = "9, 4, 2, 1, 7, 5";
-
         Drawable imgRestart = getResources().getDrawable(R.drawable.ic_baseline_refresh_24);
         Drawable imgPlay = getResources().getDrawable(R.drawable.ic_baseline_play_arrow_24);
 
@@ -47,7 +45,7 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle {
             }
 
             if (isRun) {
-                customView.getRender().setArr(Parser.parseComma(str));
+                customView.getRender().setArr(Parser.parseComma(editText.getText().toString()));
                 customView.getRender().setStateRun(true);
                 btn.setCompoundDrawablesWithIntrinsicBounds(imgRestart, null, null, null);
                 isRun = false;

@@ -1,23 +1,21 @@
 package com.vad.modulchit.screens.binarysearch;
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.vad.modulchit.R;
 import com.vad.modulchit.pojos.BinarySearchModel;
 import com.vad.modulchit.screens.contract.HasCustomTitle;
+import com.vad.modulchit.utils.Parser;
 import com.vad.modulchit.utils.search.BinarySearchImpl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentBinarySearch extends Fragment implements HasCustomTitle {
@@ -37,10 +35,14 @@ public class FragmentBinarySearch extends Fragment implements HasCustomTitle {
         customViewBinarySearch = v.findViewById(R.id.binary_search);
         btn = v.findViewById(R.id.btnBinarySearch);
 
-        int[] arr = {1, 2, 3, 4, 5, 6, 7};
-
         btn.setOnClickListener(v1 -> {
-            List<BinarySearchModel> binarySearchModels = binarySearch.search(arr, 3);
+
+            if (editTextArray.getText().toString().equals("") || editTextElement.getText().toString().equals("")) {
+                Toast.makeText(getActivity(), R.string.warning_enter_text, Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            List<BinarySearchModel> binarySearchModels = binarySearch.search(Parser.parseComma(editTextArray.getText().toString()), Integer.parseInt(editTextElement.getText().toString()));
             customViewBinarySearch.searchElement(binarySearchModels);
         });
         return v;
