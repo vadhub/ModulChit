@@ -32,3 +32,5 @@ Screenshots:
 - ![alt text](https://play-lh.googleusercontent.com/lcejkUpjcqCkDTI_oFcDQ20UJlaSEsRs-TwyJndZLatFUZor56km_dOZ6td_2eeRKzOd=w1855-h951-rw)
 - RSA decrypt
 - ![alt text](https://play-lh.googleusercontent.com/Om52BTOdUJzN81IVADZlHkQEMufkjJ1uN612-s3F5EUd-wbUvepyQJ9NgE72d-6JWA=w1855-h951-rw)
+- Binary search
+- ![alt text](https://github.com/vadhub/ModulChit/blob/main/Screenshot_20220511_121301_com.vad.modulchit.jpg.pdf?raw=true)
