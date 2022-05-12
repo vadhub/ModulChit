@@ -3,6 +3,9 @@ package com.vad.modulchit.screens.sort.bubble;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -16,27 +19,34 @@ import com.vad.modulchit.R;
 import com.vad.modulchit.screens.contract.HasCustomTitle;
 import com.vad.modulchit.utils.Parser;
 
-public class FragmentBubbleSort extends Fragment implements HasCustomTitle, StatusButton {
+public class FragmentBubbleSort extends Fragment implements HasCustomTitle, BubbleSortView {
 
     private CustomViewBubbleSort customView;
     private EditText editText;
     private Button btn;
     private boolean isRun = true;
-    private Drawable imgRestart;
     private Drawable imgPlay;
+    private Drawable imgPause;
+    private BubbleSortPresenter presenter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_buble_sort, container, false);
+        return inflater.inflate(R.layout.fragment_buble_sort, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View v, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(v, savedInstanceState);
         customView = (CustomViewBubbleSort) v.findViewById(R.id.bubbleSort);
         editText = (EditText) v.findViewById(R.id.editTextArrSort);
         btn = (Button) v.findViewById(R.id.btnSort);
+        presenter = new BubbleSortPresenter(this);
 
         customView.setZOrderOnTop(true);
         customView.getHolder().setFormat(PixelFormat.TRANSLUCENT);
 
-        imgRestart = getResources().getDrawable(R.drawable.ic_baseline_refresh_24);
+        imgPause = getResources().getDrawable(R.drawable.ic_baseline_pause_24);
         imgPlay = getResources().getDrawable(R.drawable.ic_baseline_play_arrow_24);
 
         RenderState renderState = customView.getRender();
@@ -53,7 +63,7 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Stat
                     customView.getRender().setArr(Parser.parseComma(editText.getText().toString()));
                 }
                 renderState.setStateRun(StatusAnimation.START);
-                btn.setCompoundDrawablesWithIntrinsicBounds(imgRestart, null, null, null);
+                btn.setCompoundDrawablesWithIntrinsicBounds(imgPause, null, null, null);
                 isRun = false;
             } else {
                 renderState.setStateRun(StatusAnimation.PAUSE);
@@ -61,8 +71,6 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Stat
                 isRun = true;
             }
         });
-
-        return v;
     }
 
     @Override
@@ -77,7 +85,7 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Stat
     }
 
     @Override
-    public void setStatus(boolean status) {
+    public void setButtonStatus() {
         btn.setCompoundDrawablesWithIntrinsicBounds(imgPlay, null, null, null);
         isRun = true;
     }
