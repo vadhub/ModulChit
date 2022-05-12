@@ -2,6 +2,7 @@ package com.vad.modulchit.screens.gcde;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,6 +24,7 @@ import com.vad.modulchit.screens.contract.HasCustomAction;
 import com.vad.modulchit.screens.contract.HasCustomTitle;
 import com.vad.modulchit.screens.contract.Navigator;
 import com.vad.modulchit.screens.gcde.explgcde.FragmentGCDexpl;
+import com.vad.modulchit.utils.AlgebraMod;
 
 import java.util.List;
 
@@ -37,6 +39,12 @@ public class FragmentGCDe extends Fragment implements ListGCDEView, HasCustomTit
 
     private View includeTitle;
     private ListGCDEpresenter presenter;
+    private CardView cardView;
+
+    public List<TableNumberGCDe> getItems() {
+        AlgebraMod al = new AlgebraMod();
+        return al.gcdGraph(2332, 221);
+    }
 
     @Nullable
     @Override
@@ -55,6 +63,7 @@ public class FragmentGCDe extends Fragment implements ListGCDEView, HasCustomTit
         adapterGCDe = new AdapterGCDe();
         mRecyclerView = (RecyclerView) v.findViewById(R.id.myRecyclerGcde);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        cardView = v.findViewById(R.id.cardGCDErecycler);
 
         ((SimpleItemAnimator)mRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
 
@@ -70,8 +79,9 @@ public class FragmentGCDe extends Fragment implements ListGCDEView, HasCustomTit
 
     @Override
     public void showData(List<TableNumberGCDe> tableNumberGCDeList) {
-        adapterGCDe.setTableNumbers(tableNumberGCDeList);
+        adapterGCDe.setTableNumbers(getItems());
         mRecyclerView.setAdapter(adapterGCDe);
+        cardView.setVisibility(View.VISIBLE);
     }
 
     @Override

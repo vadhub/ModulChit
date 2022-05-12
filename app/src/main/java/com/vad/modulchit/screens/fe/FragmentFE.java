@@ -42,7 +42,7 @@ public class FragmentFE extends Fragment implements ListFEView, HasCustomTitle, 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_f_e, container, false);
+        View v = inflater.inflate(R.layout.fragment_fe, container, false);
 
         presenter = new FEpresenter(this);
         editTextA = (EditText) v.findViewById(R.id.editTextNumberAFe);
