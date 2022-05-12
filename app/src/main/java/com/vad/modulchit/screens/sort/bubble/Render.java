@@ -20,7 +20,8 @@ public class Render extends Thread implements RenderState {
     private Paint paintFont;
     private int[] arr;
     private boolean mRun = true;
-    private boolean isStart = false;
+    private StatusAnimation statusAnimation = StatusAnimation.STOP;
+    private StatusButton statusButton;
 
     public int getStrokeWidth() {
         return getMaxWith() / (arr.length + 1);
@@ -115,15 +116,15 @@ public class Render extends Thread implements RenderState {
 
         while (mRun) {
 
-            if (arr != null && isStart) {
+            if (arr != null && statusAnimation == StatusAnimation.START) {
                 for (int i = arr.length - 1; i >= 1; i--) {
 
-                    if (!isStart) {
+                    if (statusAnimation == StatusAnimation.PAUSE) {
                         break;
                     }
                     for (int j = 0; j < i; j++) {
 
-                        if (!isStart) {
+                        if (statusAnimation == StatusAnimation.PAUSE) {
                             break;
                         }
 
@@ -144,7 +145,7 @@ public class Render extends Thread implements RenderState {
 
                 paint.setColor(Color.BLUE);
                 draw(arr, mSurfaceHolder, -1);
-                isStart = false;
+                statusAnimation = StatusAnimation.STOP;
                 arr = null;
             }
         }
@@ -159,12 +160,17 @@ public class Render extends Thread implements RenderState {
     }
 
     @Override
-    public void setStateRun(boolean run) {
-        isStart = run;
+    public void setStateRun(StatusAnimation run) {
+        statusAnimation = run;
     }
 
     @Override
-    public boolean getStateRun() {
-        return isStart;
+    public void setStatePause(StatusAnimation status) {
+        statusAnimation = StatusAnimation.PAUSE;
+    }
+
+    @Override
+    public StatusAnimation getStateRun() {
+        return statusAnimation;
     }
 }
