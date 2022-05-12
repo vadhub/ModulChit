@@ -41,10 +41,6 @@ public class FragmentGCDe extends Fragment implements ListGCDEView, HasCustomTit
     private ListGCDEpresenter presenter;
     private CardView cardView;
 
-    public List<TableNumberGCDe> getItems() {
-        AlgebraMod al = new AlgebraMod();
-        return al.gcdGraph(2332, 221);
-    }
 
     @Nullable
     @Override
@@ -79,7 +75,7 @@ public class FragmentGCDe extends Fragment implements ListGCDEView, HasCustomTit
 
     @Override
     public void showData(List<TableNumberGCDe> tableNumberGCDeList) {
-        adapterGCDe.setTableNumbers(getItems());
+        adapterGCDe.setTableNumbers(tableNumberGCDeList);
         mRecyclerView.setAdapter(adapterGCDe);
         cardView.setVisibility(View.VISIBLE);
     }
