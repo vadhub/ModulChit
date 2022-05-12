@@ -2,21 +2,12 @@ package com.vad.modulchit.screens.gcde;
 
 
 import com.vad.modulchit.R;
-import com.vad.modulchit.pojos.TableNumberGCDe;
 import com.vad.modulchit.utils.AlgebraMod;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.core.ObservableSource;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
-import io.reactivex.rxjava3.functions.Consumer;
-import io.reactivex.rxjava3.functions.Function;
-import io.reactivex.rxjava3.observables.GroupedObservable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class ListGCDEpresenter {
@@ -38,9 +29,7 @@ public class ListGCDEpresenter {
                 .subscribeOn(Schedulers.io())
                 .map(o -> o.gcdGraph(a, b))
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        tableNumberGCDeList -> listGCDEView.showData(tableNumberGCDeList)
-                );
+                .subscribe(tableNumberGCDeList -> listGCDEView.showData(tableNumberGCDeList));
 
         compositeDisposable.add(disposable);
     }

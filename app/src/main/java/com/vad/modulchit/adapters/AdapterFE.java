@@ -85,7 +85,7 @@ public class AdapterFE extends RecyclerView.Adapter<AdapterFE.MyViewHolderFE> {
         }
 
         @SuppressLint("ResourceAsColor")
-        private void bind (TableNumberFE tableNumberFE, boolean paint) {
+        private void bind(TableNumberFE tableNumberFE, boolean paint) {
             boolean expanded = tableNumberFE.isExpanded();
 
             if (paint) {
@@ -97,11 +97,11 @@ public class AdapterFE extends RecyclerView.Adapter<AdapterFE.MyViewHolderFE> {
             }
             subItem.setVisibility(expanded ? View.VISIBLE : View.GONE);
 
-            textViewA.setText(tableNumberFE.getAfe()+"");
-            textViewM.setText(tableNumberFE.getM()+"");
-            textViewN.setText(tableNumberFE.getN()+"");
-            textViewP.setText(tableNumberFE.getP()+"");
-            textViewR.setText(tableNumberFE.getRfe()+"");
+            textViewA.setText(tableNumberFE.getAfe() + "");
+            textViewM.setText(tableNumberFE.getM() + "");
+            textViewN.setText(tableNumberFE.getN() + "");
+            textViewP.setText(tableNumberFE.getP() + "");
+            textViewR.setText(tableNumberFE.getRfe() + "");
 
             textViewExtra.setText(tableNumberFE.getExtra());
 

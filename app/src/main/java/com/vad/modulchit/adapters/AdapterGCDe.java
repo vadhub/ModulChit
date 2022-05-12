@@ -22,6 +22,7 @@ public class AdapterGCDe extends RecyclerView.Adapter<AdapterGCDe.MyViewHolder> 
         return tableNumberGCDes;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void setTableNumbers(List<TableNumberGCDe> tableNumberGCDes) {
         this.tableNumberGCDes = tableNumberGCDes;
         notifyDataSetChanged();
@@ -47,7 +48,7 @@ public class AdapterGCDe extends RecyclerView.Adapter<AdapterGCDe.MyViewHolder> 
         holder.itemView.setOnClickListener(view -> {
             boolean expanded = tableNumberGCDes.get(position).isExpanded();
 
-            if(!tableNumberGCDes.get(position).getExtra().equals("")){
+            if (!tableNumberGCDes.get(position).getExtra().equals("")) {
                 tableNumberGCDe.setExpanded(!expanded);
                 notifyItemChanged(position);
             }
@@ -104,12 +105,12 @@ public class AdapterGCDe extends RecyclerView.Adapter<AdapterGCDe.MyViewHolder> 
                 textViewY.setBackgroundResource(R.color.textViewColor);
             }
 
-            textViewA.setText(gcde.getA()+"");
-            textViewB.setText(gcde.getB()+"");
-            textViewQ.setText(gcde.getQ()+"");
-            textViewR.setText(gcde.getR()+"");
-            textViewX.setText("("+ gcde.getX1()+"; "+ gcde.getX2()+")");
-            textViewY.setText("("+ gcde.getY1()+"; "+ gcde.getY2()+")");
+            textViewA.setText(gcde.getA() + "");
+            textViewB.setText(gcde.getB() + "");
+            textViewQ.setText(gcde.getQ() + "");
+            textViewR.setText(gcde.getR() + "");
+            textViewX.setText("(" + gcde.getX1() + "; " + gcde.getX2() + ")");
+            textViewY.setText("(" + gcde.getY1() + "; " + gcde.getY2() + ")");
             textViewExtra.setText(gcde.getExtra());
         }
     }

@@ -38,51 +38,34 @@ public class FragmentGCDe extends Fragment implements ListGCDEView, HasCustomTit
     private View includeTitle;
     private ListGCDEpresenter presenter;
 
-
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-//
-//
-//
-////        List<TableNumber> ta = gcdGraph(625, 216);
-////
-////        for(TableNumber t: ta){
-////            System.out.println(t.getA()+" "+t.getB()+" "+t.getQ()+" "+t.getR()+" "+t.getX1()+" "+t.getX2()+" "+t.getY1()+" "+t.getY2());
-////        }
-//    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_gcde, container, false);
+        return inflater.inflate(R.layout.fragment_gcde, container, false);
+    }
 
+    @Override
+    public void onViewCreated(@NonNull View v, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(v, savedInstanceState);
         presenter = new ListGCDEpresenter(this);
         editTextA = (EditText) v.findViewById(R.id.editTextA);
         editTextB = (EditText) v.findViewById(R.id.editTextB);
         btnOk = (Button) v.findViewById(R.id.button);
         includeTitle = (View) v.findViewById(R.id.includeGCDE);
-
-        mRecyclerView = (RecyclerView) v.findViewById(R.id.myRecycler);
+        adapterGCDe = new AdapterGCDe();
+        mRecyclerView = (RecyclerView) v.findViewById(R.id.myRecyclerGcde);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         ((SimpleItemAnimator)mRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
 
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapterGCDe = new AdapterGCDe();
+        btnOk.setOnClickListener(view -> {
 
-        btnOk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            String aStr = editTextA.getText().toString();
+            String bStr = editTextB.getText().toString();
 
-                String aStr = editTextA.getText().toString();
-                String bStr = editTextB.getText().toString();
-
-                presenter.showResult(aStr, bStr);
-            }
+            presenter.showResult(aStr, bStr);
         });
 
-        return v;
     }
 
     @Override
@@ -116,5 +99,8 @@ public class FragmentGCDe extends Fragment implements ListGCDEView, HasCustomTit
     @Override
     public void onDestroy() {
         super.onDestroy();
+        if (presenter != null) {
+            presenter.disposableDispose();
+        }
     }
 }

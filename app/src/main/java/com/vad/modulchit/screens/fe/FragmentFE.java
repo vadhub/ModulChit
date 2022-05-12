@@ -59,15 +59,12 @@ public class FragmentFE extends Fragment implements ListFEView, HasCustomTitle, 
 
         btnOk = (Button) v.findViewById(R.id.buttonFE);
 
-        btnOk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String aStr = editTextA.getText().toString();
-                String mStr = editTextM.getText().toString();
-                String nStr = editTextN.getText().toString();
+        btnOk.setOnClickListener(view -> {
+            String aStr = editTextA.getText().toString();
+            String mStr = editTextM.getText().toString();
+            String nStr = editTextN.getText().toString();
 
-                presenter.viewResult(aStr, mStr, nStr);
-            }
+            presenter.viewResult(aStr, mStr, nStr);
         });
         return v;
     }

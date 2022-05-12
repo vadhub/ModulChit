@@ -76,7 +76,7 @@ public class FragmentMenu extends Fragment implements HasCustomTitle {
                 return new FragmentBubbleSort();
         }
 
-        return new FragmentGCDe();
+        return new FragmentFE();
     }
 
     @Override
