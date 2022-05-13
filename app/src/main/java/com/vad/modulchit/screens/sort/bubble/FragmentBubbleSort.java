@@ -47,9 +47,13 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Bubb
         imgPause = getResources().getDrawable(R.drawable.ic_baseline_pause_24);
         imgPlay = getResources().getDrawable(R.drawable.ic_baseline_play_arrow_24);
 
-        Render renderState = customView.getRender();
-        StatusButton statusButton = renderState.getPresenter();
-        statusButton.setView(this);
+        BubbleSortPresenter p = new BubbleSortPresenter();
+
+        RenderState renderState = customView.getRender();
+        customView.getRender().setPresenter(p);
+        StatusButton s = customView.getStatusButton();
+
+        s.setView(this);
 
         btn.setOnClickListener(v1 -> {
 

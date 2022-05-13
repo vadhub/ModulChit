@@ -13,6 +13,11 @@ import androidx.annotation.NonNull;
 public class CustomViewBubbleSort extends SurfaceView implements SurfaceHolder.Callback {
 
     private Render render;
+    private StatusButton statusButton;
+
+    public StatusButton getStatusButton() {
+        return statusButton;
+    }
 
     public Render getRender() {
         return render;
@@ -25,7 +30,8 @@ public class CustomViewBubbleSort extends SurfaceView implements SurfaceHolder.C
 
     @Override
     public void surfaceCreated(@NonNull SurfaceHolder holder) {
-        render = new Render(getHolder());
+        statusButton = new BubbleSortPresenter();
+        render = new Render(getHolder(), statusButton);
         render.start();
     }
 
