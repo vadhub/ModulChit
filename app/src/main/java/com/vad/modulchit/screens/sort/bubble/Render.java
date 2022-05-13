@@ -21,7 +21,31 @@ public class Render extends Thread implements RenderState {
     private int[] arr;
     private boolean mRun = true;
     private StatusAnimation statusAnimation = StatusAnimation.STOP;
-    private StatusButton statusButton;
+    private BubbleSortPresenter presenter = new BubbleSortPresenter();
+
+    public Render(SurfaceHolder mSurfaceHolder) {
+        this.mSurfaceHolder = mSurfaceHolder;
+
+
+        paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint.setColor(Color.BLUE);
+        paint.setStyle(Paint.Style.FILL);
+
+        paintFont = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paintFont.setColor(Color.BLACK);
+        paintFont.setStyle(Paint.Style.FILL);
+        paintFont.setTextSize(FONT_SIZE);
+
+    }
+
+    public BubbleSortPresenter getPresenter() {
+        System.out.println(presenter+"----------------------");
+        return presenter;
+    }
+
+    public void setPresenter(BubbleSortPresenter presenter) {
+        this.presenter = presenter;
+    }
 
     public int getStrokeWidth() {
         return getMaxWith() / (arr.length + 1);
@@ -61,20 +85,6 @@ public class Render extends Thread implements RenderState {
 
     public void setRun(boolean mRun) {
         this.mRun = mRun;
-    }
-
-    public Render(SurfaceHolder mSurfaceHolder) {
-        this.mSurfaceHolder = mSurfaceHolder;
-
-        paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paint.setColor(Color.BLUE);
-        paint.setStyle(Paint.Style.FILL);
-
-        paintFont = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paintFont.setColor(Color.BLACK);
-        paintFont.setStyle(Paint.Style.FILL);
-        paintFont.setTextSize(FONT_SIZE);
-
     }
 
     public float[] scaling(int[] arr) {
@@ -146,6 +156,7 @@ public class Render extends Thread implements RenderState {
                 paint.setColor(Color.BLUE);
                 draw(arr, mSurfaceHolder, -1);
                 statusAnimation = StatusAnimation.STOP;
+                presenter.setStatus();
                 arr = null;
             }
         }

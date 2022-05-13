@@ -27,7 +27,6 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Bubb
     private boolean isRun = true;
     private Drawable imgPlay;
     private Drawable imgPause;
-    private BubbleSortPresenter presenter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,7 +40,6 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Bubb
         customView = (CustomViewBubbleSort) v.findViewById(R.id.bubbleSort);
         editText = (EditText) v.findViewById(R.id.editTextArrSort);
         btn = (Button) v.findViewById(R.id.btnSort);
-        presenter = new BubbleSortPresenter(this);
 
         customView.setZOrderOnTop(true);
         customView.getHolder().setFormat(PixelFormat.TRANSLUCENT);
@@ -49,7 +47,9 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Bubb
         imgPause = getResources().getDrawable(R.drawable.ic_baseline_pause_24);
         imgPlay = getResources().getDrawable(R.drawable.ic_baseline_play_arrow_24);
 
-        RenderState renderState = customView.getRender();
+        Render renderState = customView.getRender();
+        StatusButton statusButton = renderState.getPresenter();
+        statusButton.setView(this);
 
         btn.setOnClickListener(v1 -> {
 
