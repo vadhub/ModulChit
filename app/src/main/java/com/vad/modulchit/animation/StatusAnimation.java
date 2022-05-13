@@ -1,4 +1,4 @@
-package com.vad.modulchit.screens.sort.bubble;
+package com.vad.modulchit.animation;
 
 public enum StatusAnimation {
     START,

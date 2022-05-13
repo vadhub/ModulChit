@@ -1,10 +1,11 @@
-package com.vad.modulchit.screens.sort.bubble;
+package com.vad.modulchit.animation;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.SurfaceHolder;
 
+import com.vad.modulchit.screens.sort.bubble.BubbleSortView;
 import com.vad.modulchit.utils.AlgebraMod;
 
 public class Render extends Thread implements RenderState {
@@ -20,12 +21,11 @@ public class Render extends Thread implements RenderState {
     private Paint paintFont;
     private int[] arr;
     private boolean mRun = true;
+    private BubbleSortView bubbleSortView;
     private StatusAnimation statusAnimation = StatusAnimation.STOP;
-    private StatusButton statusButton;
 
-    public Render(SurfaceHolder mSurfaceHolder, StatusButton statusButton) {
+    public Render(SurfaceHolder mSurfaceHolder) {
         this.mSurfaceHolder = mSurfaceHolder;
-        this.statusButton = statusButton;
 
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.setColor(Color.BLUE);
@@ -38,13 +38,12 @@ public class Render extends Thread implements RenderState {
 
     }
 
-    public StatusButton getPresenter() {
-        System.out.println(statusButton+"----------------------");
-        return statusButton;
+    public BubbleSortView getBubbleSortView() {
+        return bubbleSortView;
     }
 
-    public void setPresenter(StatusButton statusButton) {
-        this.statusButton = statusButton;
+    public void setBubbleSortView(BubbleSortView bubbleSortView) {
+        this.bubbleSortView = bubbleSortView;
     }
 
     public int getStrokeWidth() {
@@ -156,7 +155,7 @@ public class Render extends Thread implements RenderState {
                 paint.setColor(Color.BLUE);
                 draw(arr, mSurfaceHolder, -1);
                 statusAnimation = StatusAnimation.STOP;
-                statusButton.setStatus();
+                bubbleSortView.setButtonStatus();
                 arr = null;
             }
         }

@@ -1,4 +1,6 @@
-package com.vad.modulchit.screens.sort.bubble;
+package com.vad.modulchit.animation;
+
+import com.vad.modulchit.animation.StatusAnimation;
 
 public interface RenderState {
     StatusAnimation getStateRun();

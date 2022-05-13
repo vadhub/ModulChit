@@ -16,6 +16,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.vad.modulchit.R;
+import com.vad.modulchit.animation.RenderState;
+import com.vad.modulchit.animation.StatusAnimation;
 import com.vad.modulchit.screens.contract.HasCustomTitle;
 import com.vad.modulchit.utils.Parser;
 
@@ -47,13 +49,8 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Bubb
         imgPause = getResources().getDrawable(R.drawable.ic_baseline_pause_24);
         imgPlay = getResources().getDrawable(R.drawable.ic_baseline_play_arrow_24);
 
-        BubbleSortPresenter p = new BubbleSortPresenter();
-
         RenderState renderState = customView.getRender();
-        customView.getRender().setPresenter(p);
-        StatusButton s = customView.getStatusButton();
-
-        s.setView(this);
+        customView.getRender().setBubbleSortView(this);
 
         btn.setOnClickListener(v1 -> {
 
@@ -80,7 +77,7 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Bubb
     @Override
     public void onDestroy() {
         super.onDestroy();
-        customView = null;;
+        customView = null;
     }
 
     @Override
@@ -90,7 +87,9 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Bubb
 
     @Override
     public void setButtonStatus() {
-        btn.setCompoundDrawablesWithIntrinsicBounds(imgPlay, null, null, null);
+        requireActivity().runOnUiThread(() ->{
+            btn.setCompoundDrawablesWithIntrinsicBounds(imgPlay, null, null, null);
+        });
         isRun = true;
     }
 }

@@ -1,23 +1,19 @@
 package com.vad.modulchit.screens.sort.bubble;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import androidx.annotation.NonNull;
 
+import com.vad.modulchit.animation.Render;
+import com.vad.modulchit.animation.StatusButton;
+
 
 public class CustomViewBubbleSort extends SurfaceView implements SurfaceHolder.Callback {
 
     private Render render;
-    private StatusButton statusButton;
-
-    public StatusButton getStatusButton() {
-        return statusButton;
-    }
 
     public Render getRender() {
         return render;
@@ -26,12 +22,11 @@ public class CustomViewBubbleSort extends SurfaceView implements SurfaceHolder.C
     public CustomViewBubbleSort(Context context, AttributeSet attrs) {
         super(context, attrs);
         getHolder().addCallback(this);
+        render = new Render(getHolder());
     }
 
     @Override
     public void surfaceCreated(@NonNull SurfaceHolder holder) {
-        statusButton = new BubbleSortPresenter();
-        render = new Render(getHolder(), statusButton);
         render.start();
     }
 

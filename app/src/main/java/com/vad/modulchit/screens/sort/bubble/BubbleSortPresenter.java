@@ -1,5 +1,7 @@
 package com.vad.modulchit.screens.sort.bubble;
 
+import com.vad.modulchit.animation.StatusButton;
+
 public class BubbleSortPresenter implements StatusButton {
 
     private BubbleSortView view;
