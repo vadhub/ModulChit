@@ -62,8 +62,13 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Bubb
             if (isRun) {
                 if (renderState.getStateRun() == StatusAnimation.STOP) {
                     customView.getRender().setArr(Parser.parseComma(editText.getText().toString()));
+                    renderState.setStateRun(StatusAnimation.START);
                 }
-                renderState.setStateRun(StatusAnimation.START);
+
+                if (renderState.getStateRun() == StatusAnimation.PAUSE) {
+                    renderState.setStateRun(StatusAnimation.START);
+                    renderState.setStateRun(StatusAnimation.RESTART);
+                }
                 btn.setCompoundDrawablesWithIntrinsicBounds(imgPause, null, null, null);
                 isRun = false;
             } else {

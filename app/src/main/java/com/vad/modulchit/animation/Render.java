@@ -8,6 +8,8 @@ import android.view.SurfaceHolder;
 import com.vad.modulchit.screens.sort.bubble.BubbleSortView;
 import com.vad.modulchit.utils.AlgebraMod;
 
+import java.util.Arrays;
+
 public class Render extends Thread implements RenderState {
 
     private int maxHeight;
@@ -122,18 +124,28 @@ public class Render extends Thread implements RenderState {
     @Override
     public void run() {
         int temp = 0;
+        int[] tempArr = {10};
 
         while (mRun) {
 
             if (arr != null && statusAnimation == StatusAnimation.START) {
+
+                if (statusAnimation == StatusAnimation.RESTART) {
+                    arr = tempArr;
+                    System.out.println(statusAnimation+" "+ Arrays.toString(arr));
+                }
+
                 for (int i = arr.length - 1; i >= 1; i--) {
 
                     if (statusAnimation == StatusAnimation.PAUSE) {
+                        tempArr = arr;
+                        System.out.println(statusAnimation+" "+ Arrays.toString(arr));
                         break;
                     }
                     for (int j = 0; j < i; j++) {
-
+                        draw(arr, mSurfaceHolder, j);
                         if (statusAnimation == StatusAnimation.PAUSE) {
+                            tempArr = arr;
                             break;
                         }
 
@@ -142,8 +154,6 @@ public class Render extends Thread implements RenderState {
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-
-                        draw(arr, mSurfaceHolder, j);
                         if (arr[j] > arr[j + 1]) {
                             temp = arr[j];
                             arr[j] = arr[j + 1];
