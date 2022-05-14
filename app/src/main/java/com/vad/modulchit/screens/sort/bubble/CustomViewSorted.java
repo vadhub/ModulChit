@@ -7,26 +7,26 @@ import android.view.SurfaceView;
 
 import androidx.annotation.NonNull;
 
-import com.vad.modulchit.animation.Render;
+import com.vad.modulchit.animation.RenderSort;
 
 
 public class CustomViewSorted extends SurfaceView implements SurfaceHolder.Callback {
 
-    private Render render;
+    private RenderSort renderSort;
 
-    public Render getRender() {
-        return render;
+    public RenderSort getRender() {
+        return renderSort;
     }
 
     public CustomViewSorted(Context context, AttributeSet attrs) {
         super(context, attrs);
         getHolder().addCallback(this);
-        render = new RenderBubbleSort(getHolder());
+        renderSort = new RenderBubbleSort(getHolder());
     }
 
     @Override
     public void surfaceCreated(@NonNull SurfaceHolder holder) {
-        render.start();
+        renderSort.start();
     }
 
     @Override
@@ -36,8 +36,8 @@ public class CustomViewSorted extends SurfaceView implements SurfaceHolder.Callb
 
     @Override
     public void surfaceDestroyed(@NonNull SurfaceHolder holder) {
-        render.setRun(false);
-        render = null;
+        renderSort.setRun(false);
+        renderSort = null;
     }
 
 

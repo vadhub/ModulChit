@@ -9,7 +9,7 @@ import com.vad.modulchit.utils.AlgebraMod;
 
 import java.util.Arrays;
 
-public abstract class Render extends Thread implements RenderState {
+public abstract class RenderSort extends Thread implements RenderState {
 
     private int maxHeight;
     private int maxWith;
@@ -25,7 +25,7 @@ public abstract class Render extends Thread implements RenderState {
     private ButtonIconChange buttonIconChange;
     private volatile StatusAnimation statusAnimation = StatusAnimation.STOP;
 
-    public Render(SurfaceHolder mSurfaceHolder) {
+    public RenderSort(SurfaceHolder mSurfaceHolder) {
         this.mSurfaceHolder = mSurfaceHolder;
 
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -67,11 +67,11 @@ public abstract class Render extends Thread implements RenderState {
         this.statusAnimation = statusAnimation;
     }
 
-    public ButtonIconChange getBubbleSortView() {
+    public ButtonIconChange getButtonIconChanged() {
         return buttonIconChange;
     }
 
-    public void setBubbleSortView(ButtonIconChange buttonIconChange) {
+    public void setButtonIcon(ButtonIconChange buttonIconChange) {
         this.buttonIconChange = buttonIconChange;
     }
 

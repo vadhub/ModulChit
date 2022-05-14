@@ -3,11 +3,11 @@ package com.vad.modulchit.screens.sort.bubble;
 import android.graphics.Color;
 import android.view.SurfaceHolder;
 
-import com.vad.modulchit.animation.Render;
+import com.vad.modulchit.animation.RenderSort;
 import com.vad.modulchit.animation.StatusAnimation;
 
 
-public class RenderBubbleSort extends Render {
+public class RenderBubbleSort extends RenderSort {
 
     public RenderBubbleSort(SurfaceHolder mSurfaceHolder) {
         super(mSurfaceHolder);
