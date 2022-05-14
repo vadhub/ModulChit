@@ -5,12 +5,11 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.SurfaceHolder;
 
-import com.vad.modulchit.screens.sort.bubble.BubbleSortView;
 import com.vad.modulchit.utils.AlgebraMod;
 
 import java.util.Arrays;
 
-public class Render extends Thread implements RenderState {
+public abstract class Render extends Thread implements RenderState {
 
     private int maxHeight;
     private int maxWith;
@@ -23,8 +22,8 @@ public class Render extends Thread implements RenderState {
     private Paint paintFont;
     private int[] arr;
     private boolean mRun = true;
-    private BubbleSortView bubbleSortView;
-    private StatusAnimation statusAnimation = StatusAnimation.STOP;
+    private ButtonIconChange buttonIconChange;
+    private volatile StatusAnimation statusAnimation = StatusAnimation.STOP;
 
     public Render(SurfaceHolder mSurfaceHolder) {
         this.mSurfaceHolder = mSurfaceHolder;
@@ -40,12 +39,40 @@ public class Render extends Thread implements RenderState {
 
     }
 
-    public BubbleSortView getBubbleSortView() {
-        return bubbleSortView;
+    public Paint getPaint() {
+        return paint;
     }
 
-    public void setBubbleSortView(BubbleSortView bubbleSortView) {
-        this.bubbleSortView = bubbleSortView;
+    public void setPaint(Paint paint) {
+        this.paint = paint;
+    }
+
+    public SurfaceHolder getSurfaceHolder() {
+        return mSurfaceHolder;
+    }
+
+    public ButtonIconChange getButtonIconChange() {
+        return buttonIconChange;
+    }
+
+    public void setButtonIconChange(ButtonIconChange buttonIconChange) {
+        this.buttonIconChange = buttonIconChange;
+    }
+
+    public StatusAnimation getStatusAnimation() {
+        return statusAnimation;
+    }
+
+    public void setStatusAnimation(StatusAnimation statusAnimation) {
+        this.statusAnimation = statusAnimation;
+    }
+
+    public ButtonIconChange getBubbleSortView() {
+        return buttonIconChange;
+    }
+
+    public void setBubbleSortView(ButtonIconChange buttonIconChange) {
+        this.buttonIconChange = buttonIconChange;
     }
 
     public int getStrokeWidth() {
@@ -123,53 +150,12 @@ public class Render extends Thread implements RenderState {
 
     @Override
     public void run() {
-        int temp = 0;
-        int[] tempArr = {10};
-
         while (mRun) {
-
-            if (arr != null && statusAnimation == StatusAnimation.START) {
-
-                if (statusAnimation == StatusAnimation.RESTART) {
-                    arr = tempArr;
-                    System.out.println(statusAnimation+" "+ Arrays.toString(arr));
-                }
-
-                for (int i = arr.length - 1; i >= 1; i--) {
-
-                    if (statusAnimation == StatusAnimation.PAUSE) {
-                        tempArr = arr;
-                        System.out.println(statusAnimation+" "+ Arrays.toString(arr));
-                        break;
-                    }
-                    for (int j = 0; j < i; j++) {
-                        draw(arr, mSurfaceHolder, j);
-                        if (statusAnimation == StatusAnimation.PAUSE) {
-                            tempArr = arr;
-                            break;
-                        }
-
-                        try {
-                            sleep(500);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        if (arr[j] > arr[j + 1]) {
-                            temp = arr[j];
-                            arr[j] = arr[j + 1];
-                            arr[j + 1] = temp;
-                        }
-                    }
-                }
-
-                paint.setColor(Color.BLUE);
-                draw(arr, mSurfaceHolder, -1);
-                statusAnimation = StatusAnimation.STOP;
-                bubbleSortView.setButtonStatus();
-                arr = null;
-            }
+            sorted();
         }
     }
+
+    public abstract void sorted();
 
     public void draw(int[] arr, SurfaceHolder mSurfaceHolder, int current) {
 
@@ -180,13 +166,18 @@ public class Render extends Thread implements RenderState {
     }
 
     @Override
-    public void setStateRun(StatusAnimation run) {
-        statusAnimation = run;
+    public void setStateRun() {
+        statusAnimation = StatusAnimation.START;
     }
 
     @Override
-    public void setStatePause(StatusAnimation status) {
+    public void setStatePause() {
         statusAnimation = StatusAnimation.PAUSE;
+    }
+
+    @Override
+    public void setStateRestart() {
+        statusAnimation = StatusAnimation.RESTART;
     }
 
     @Override

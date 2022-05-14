@@ -16,14 +16,15 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.vad.modulchit.R;
+import com.vad.modulchit.animation.ButtonIconChange;
 import com.vad.modulchit.animation.RenderState;
 import com.vad.modulchit.animation.StatusAnimation;
 import com.vad.modulchit.screens.contract.HasCustomTitle;
 import com.vad.modulchit.utils.Parser;
 
-public class FragmentBubbleSort extends Fragment implements HasCustomTitle, BubbleSortView {
+public class FragmentBubbleSort extends Fragment implements HasCustomTitle, ButtonIconChange {
 
-    private CustomViewBubbleSort customView;
+    private CustomViewSorted customView;
     private EditText editText;
     private Button btn;
     private boolean isRun = true;
@@ -39,7 +40,7 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Bubb
     @Override
     public void onViewCreated(@NonNull View v, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(v, savedInstanceState);
-        customView = (CustomViewBubbleSort) v.findViewById(R.id.bubbleSort);
+        customView = (CustomViewSorted) v.findViewById(R.id.bubbleSort);
         editText = (EditText) v.findViewById(R.id.editTextArrSort);
         btn = (Button) v.findViewById(R.id.btnSort);
 
@@ -60,19 +61,20 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Bubb
             }
 
             if (isRun) {
-                if (renderState.getStateRun() == StatusAnimation.STOP) {
-                    customView.getRender().setArr(Parser.parseComma(editText.getText().toString()));
-                    renderState.setStateRun(StatusAnimation.START);
+                if (renderState.getStateRun() == StatusAnimation.PAUSE) {
+                    renderState.setStateRestart();
                 }
 
-                if (renderState.getStateRun() == StatusAnimation.PAUSE) {
-                    renderState.setStateRun(StatusAnimation.START);
-                    renderState.setStateRun(StatusAnimation.RESTART);
+                if (renderState.getStateRun() == StatusAnimation.STOP) {
+                    customView.getRender().setArr(Parser.parseComma(editText.getText().toString()));
                 }
+
+                renderState.setStateRun();
+
                 btn.setCompoundDrawablesWithIntrinsicBounds(imgPause, null, null, null);
                 isRun = false;
             } else {
-                renderState.setStateRun(StatusAnimation.PAUSE);
+                renderState.setStatePause();
                 btn.setCompoundDrawablesWithIntrinsicBounds(imgPlay, null, null, null);
                 isRun = true;
             }

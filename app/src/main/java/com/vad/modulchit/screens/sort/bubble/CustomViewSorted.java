@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import com.vad.modulchit.animation.Render;
 
 
-public class CustomViewBubbleSort extends SurfaceView implements SurfaceHolder.Callback {
+public class CustomViewSorted extends SurfaceView implements SurfaceHolder.Callback {
 
     private Render render;
 
@@ -18,10 +18,10 @@ public class CustomViewBubbleSort extends SurfaceView implements SurfaceHolder.C
         return render;
     }
 
-    public CustomViewBubbleSort(Context context, AttributeSet attrs) {
+    public CustomViewSorted(Context context, AttributeSet attrs) {
         super(context, attrs);
         getHolder().addCallback(this);
-        render = new Render(getHolder());
+        render = new RenderBubbleSort(getHolder());
     }
 
     @Override

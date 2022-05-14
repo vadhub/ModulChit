@@ -51,7 +51,7 @@ public class MainActivityMain extends AppCompatActivity implements Navigator {
         mAdView.loadAd(adRequest);
 
         getSupportFragmentManager().registerFragmentLifecycleCallbacks(fragmentListener, false);
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentMenu()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentBubbleSort()).commit();
     }
 
     @Override
