@@ -1,6 +1,5 @@
 package com.vad.modulchit.screens.sort.bubble;
 
-import android.graphics.Color;
 import android.view.SurfaceHolder;
 
 import com.vad.modulchit.animation.RenderSort;
@@ -14,42 +13,27 @@ public class RenderBubbleSort extends RenderSort {
     }
 
     @Override
-    public void sorted() {
-        int temp = 0;
-        int[] arr = getArr();
+    public void sort() {
+        for (int i = getArr().length - 1; i >= 1; i--) {
 
-        if (arr != null && getStatusAnimation() == StatusAnimation.START) {
-
-            for (int i = arr.length - 1; i >= 1; i--) {
-
+            if (getStatusAnimation() == StatusAnimation.PAUSE) {
+                break;
+            }
+            for (int j = 0; j < i; j++) {
                 if (getStatusAnimation() == StatusAnimation.PAUSE) {
                     break;
                 }
-                for (int j = 0; j < i; j++) {
-                    if (getStatusAnimation() == StatusAnimation.PAUSE) {
-                        break;
-                    }
-                    draw(arr, getSurfaceHolder(), j);
+                draw(getArr(), getSurfaceHolder(), j);
 
-                    try {
-                        sleep(500);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    if (arr[j] > arr[j + 1]) {
-                        temp = arr[j];
-                        arr[j] = arr[j + 1];
-                        arr[j + 1] = temp;
-                    }
+                try {
+                    sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if (getArr()[j] > getArr()[j + 1]) {
+                    swap(getArr(), j, j+1);
                 }
             }
-
-            getPaint().setColor(Color.BLUE);
-            draw(arr, getSurfaceHolder(), -1);
-            setStatusAnimation(StatusAnimation.STOP);
-            getButtonIconChange().setButtonStatus();
-            setArr(null);
         }
-
     }
 }

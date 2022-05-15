@@ -7,8 +7,6 @@ import android.view.SurfaceHolder;
 
 import com.vad.modulchit.utils.AlgebraMod;
 
-import java.util.Arrays;
-
 public abstract class RenderSort extends Thread implements RenderState {
 
     private int maxHeight;
@@ -151,11 +149,28 @@ public abstract class RenderSort extends Thread implements RenderState {
     @Override
     public void run() {
         while (mRun) {
-            sorted();
+            if (arr != null && getStatusAnimation() == StatusAnimation.START) {
+                sort();
+                stopAnimation();
+            }
         }
     }
 
-    public abstract void sorted();
+    protected void swap(int[] array, int ind1, int ind2) {
+        int tmp = array[ind1];
+        array[ind1] = array[ind2];
+        array[ind2] = tmp;
+    }
+
+    public void stopAnimation() {
+        getPaint().setColor(Color.BLUE);
+        draw(arr, getSurfaceHolder(), -1);
+        setStatusAnimation(StatusAnimation.STOP);
+        getButtonIconChange().setButtonStatus();
+        setArr(null);
+    }
+
+    public abstract void sort();
 
     public void draw(int[] arr, SurfaceHolder mSurfaceHolder, int current) {
 
