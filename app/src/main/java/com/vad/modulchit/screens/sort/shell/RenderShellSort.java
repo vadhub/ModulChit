@@ -17,6 +17,13 @@ public class RenderShellSort extends RenderSort {
             for (int right = 0; right < getArr().length; right++) {
                 for (int c = right - gap; c >= 0; c -= gap) {
                     if (getArr()[c] > getArr()[c + gap]) {
+                        draw(getArr(), getSurfaceHolder(), c);
+                        try {
+                            sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
                         swap(getArr(), c, c + gap);
                     }
                 }

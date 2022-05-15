@@ -31,6 +31,8 @@
     <string name="rsa_decrypt">RSA Decrypt</string>
     <string name="binary_search">Binary Search</string>
     <string name="bubble_sort">Bubble Sort</string>
+    <string name="shell_sort">Shell Sort</string>
+
 
     <string-array name="titleScreen">
         <item>GCD(E)</item>
@@ -39,6 +41,7 @@
         <item>RSA</item>
         <item>Binary Search</item>
         <item>Bubble Sort</item>
+        <item>Shell Sort</item>
     </string-array>
 
     <string-array name="modifyRsaAlpabyte">
@@ -67,5 +70,7 @@
     <string name="mg_1">Entering values into the form: mod = 5</string>
     <string name="mg_2">Algorithm is simple gcde. Take numbers that a = 1</string>
     <string name="mg_3">Result is 1; 2; 3; 4.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

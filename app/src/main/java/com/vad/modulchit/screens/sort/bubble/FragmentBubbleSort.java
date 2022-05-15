@@ -20,6 +20,7 @@ import com.vad.modulchit.animation.ButtonIconChange;
 import com.vad.modulchit.animation.RenderState;
 import com.vad.modulchit.animation.StatusAnimation;
 import com.vad.modulchit.screens.contract.HasCustomTitle;
+import com.vad.modulchit.screens.sort.CustomViewSorted;
 import com.vad.modulchit.utils.Parser;
 
 public class FragmentBubbleSort extends Fragment implements HasCustomTitle, ButtonIconChange {
@@ -30,6 +31,7 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Butt
     private boolean isRun = true;
     private Drawable imgPlay;
     private Drawable imgPause;
+    private  RenderState renderState;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,8 +52,7 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Butt
         imgPause = getResources().getDrawable(R.drawable.ic_baseline_pause_24);
         imgPlay = getResources().getDrawable(R.drawable.ic_baseline_play_arrow_24);
 
-        RenderState renderState = customView.getRender();
-        customView.getRender().setButtonIcon(this);
+        setRender(customView.getRender());
 
         btn.setOnClickListener(v1 -> {
 
@@ -63,6 +64,7 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Butt
             if (isRun) {
                 if (renderState.getStateRun() == StatusAnimation.PAUSE) {
                     renderState.setStateRestart();
+                    System.out.println("restart");
                 }
 
                 if (renderState.getStateRun() == StatusAnimation.STOP) {
@@ -79,6 +81,11 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Butt
                 isRun = true;
             }
         });
+    }
+
+    protected void setRender(RenderState render) {
+        renderState = render;
+        customView.getRender().setButtonIcon(this);
     }
 
     @Override

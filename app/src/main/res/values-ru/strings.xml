@@ -23,6 +23,7 @@
         <item>RSA</item>
         <item>Бинарный поиск</item>
         <item>Сортировка пузырьком</item>
+        <item>Сортировка Шелла</item>
     </string-array>
 
     <string-array name="modifyRsaAlpabyte">
@@ -66,4 +67,5 @@
     <string name="rsa_decrypt">RSA Дешифрование</string>
     <string name="binary_search">Бинарный поиск</string>
     <string name="bubble_sort">Сортировка пузырьком</string>
+    <string name="shell_sort">Сортировка Шелла</string>
 </resources>
