@@ -163,7 +163,7 @@ public abstract class RenderSort extends Thread implements RenderState {
     }
 
     public void stopAnimation() {
-        getPaint().setColor(Color.BLUE);
+        paint.setColor(Color.BLUE);
         draw(arr, getSurfaceHolder(), -1);
         setStatusAnimation(StatusAnimation.STOP);
         getButtonIconChange().setButtonStatus();

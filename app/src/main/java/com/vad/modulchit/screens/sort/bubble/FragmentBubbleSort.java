@@ -97,7 +97,6 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Butt
     @Override
     public void onDestroy() {
         super.onDestroy();
-
         renderState = null;
         customView = null;
     }
