@@ -4,6 +4,8 @@ import android.view.SurfaceHolder;
 
 import com.vad.modulchit.animation.RenderSort;
 
+import java.util.Arrays;
+
 public class RenderInsertSort extends RenderSort {
 
     public RenderInsertSort(SurfaceHolder mSurfaceHolder) {
@@ -15,6 +17,12 @@ public class RenderInsertSort extends RenderSort {
         for (int left = 0; left < getArr().length; left++) {
             int value = getArr()[left];
             int i = left - 1;
+            draw(getArr(), getSurfaceHolder(), i);
+            try {
+                sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             for (; i >= 0; i--) {
                 if (value < getArr()[i]) {
                     getArr()[i + 1] = getArr()[i];

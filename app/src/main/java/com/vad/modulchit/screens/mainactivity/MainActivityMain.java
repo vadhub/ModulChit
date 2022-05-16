@@ -28,6 +28,7 @@ import com.vad.modulchit.screens.contract.HasCustomTitle;
 import com.vad.modulchit.screens.contract.Navigator;
 import com.vad.modulchit.screens.menu.FragmentMenu;
 import com.vad.modulchit.screens.sort.bubble.FragmentBubbleSort;
+import com.vad.modulchit.screens.sort.shell.FragmentShellSort;
 
 public class MainActivityMain extends AppCompatActivity implements Navigator {
 
@@ -51,7 +52,7 @@ public class MainActivityMain extends AppCompatActivity implements Navigator {
         mAdView.loadAd(adRequest);
 
         getSupportFragmentManager().registerFragmentLifecycleCallbacks(fragmentListener, false);
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentBubbleSort()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentMenu()).commit();
     }
 
     @Override

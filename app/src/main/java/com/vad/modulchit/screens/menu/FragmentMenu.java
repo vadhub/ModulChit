@@ -20,6 +20,8 @@ import com.vad.modulchit.screens.gcde.FragmentGCDe;
 import com.vad.modulchit.screens.mg.FragmentMG;
 import com.vad.modulchit.screens.rsa.alphabet.FragmentAddAlphabet;
 import com.vad.modulchit.screens.sort.bubble.FragmentBubbleSort;
+import com.vad.modulchit.screens.sort.insert.FragmentInsertSort;
+import com.vad.modulchit.screens.sort.shell.FragmentShellSort;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,7 +48,7 @@ public class FragmentMenu extends Fragment implements HasCustomTitle {
         adapter.setNamesMenu(menuItem);
         mRecyclerView.setAdapter(adapter);
 
-        adapter.setClickListener((view, id) ->{
+        adapter.setClickListener((view, id) -> {
             Fragment fragment = getFragments(id);
             navigator.startFragment(fragment);
         });
@@ -74,6 +76,10 @@ public class FragmentMenu extends Fragment implements HasCustomTitle {
 
             case 5:
                 return new FragmentBubbleSort();
+            case 6:
+                return new FragmentShellSort();
+            case 7:
+                return new FragmentInsertSort();
         }
 
         return new FragmentFE();

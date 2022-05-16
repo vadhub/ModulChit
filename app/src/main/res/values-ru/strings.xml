@@ -24,6 +24,7 @@
         <item>Бинарный поиск</item>
         <item>Сортировка пузырьком</item>
         <item>Сортировка Шелла</item>
+        <item>Сортировка вставками</item>
     </string-array>
 
     <string-array name="modifyRsaAlpabyte">
@@ -68,4 +69,5 @@
     <string name="binary_search">Бинарный поиск</string>
     <string name="bubble_sort">Сортировка пузырьком</string>
     <string name="shell_sort">Сортировка Шелла</string>
+    <string name="insert_sort">Сортировка вставками</string>
 </resources>
