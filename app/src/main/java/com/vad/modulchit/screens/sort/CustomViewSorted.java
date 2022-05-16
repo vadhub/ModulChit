@@ -1,4 +1,4 @@
-package com.vad.modulchit.screens.sort.bubble;
+package com.vad.modulchit.screens.sort;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -14,6 +14,10 @@ public class CustomViewSorted extends SurfaceView implements SurfaceHolder.Callb
 
     private RenderSort renderSort;
 
+    public void setRenderSort(RenderSort renderSort) {
+        this.renderSort = renderSort;
+    }
+
     public RenderSort getRender() {
         return renderSort;
     }
@@ -21,12 +25,10 @@ public class CustomViewSorted extends SurfaceView implements SurfaceHolder.Callb
     public CustomViewSorted(Context context, AttributeSet attrs) {
         super(context, attrs);
         getHolder().addCallback(this);
-        renderSort = new RenderBubbleSort(getHolder());
     }
 
     @Override
     public void surfaceCreated(@NonNull SurfaceHolder holder) {
-        renderSort.start();
     }
 
     @Override

@@ -18,6 +18,8 @@ import android.widget.Toast;
 import com.vad.modulchit.R;
 import com.vad.modulchit.animation.ButtonIconChange;
 import com.vad.modulchit.animation.RenderState;
+import com.vad.modulchit.animation.SortFactory;
+import com.vad.modulchit.animation.SortType;
 import com.vad.modulchit.animation.StatusAnimation;
 import com.vad.modulchit.screens.contract.HasCustomTitle;
 import com.vad.modulchit.screens.sort.CustomViewSorted;
@@ -25,13 +27,13 @@ import com.vad.modulchit.utils.Parser;
 
 public class FragmentBubbleSort extends Fragment implements HasCustomTitle, ButtonIconChange {
 
-    private CustomViewSorted customView;
+    protected CustomViewSorted customView;
     private EditText editText;
     private Button btn;
     private boolean isRun = true;
     private Drawable imgPlay;
     private Drawable imgPause;
-    private  RenderState renderState;
+    private RenderState renderState;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,7 +54,7 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Butt
         imgPause = getResources().getDrawable(R.drawable.ic_baseline_pause_24);
         imgPlay = getResources().getDrawable(R.drawable.ic_baseline_play_arrow_24);
 
-        setRender(customView.getRender());
+        renderState = getRender();
 
         btn.setOnClickListener(v1 -> {
 
@@ -83,14 +85,20 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Butt
         });
     }
 
-    protected void setRender(RenderState render) {
-        renderState = render;
+    protected RenderState getRender() {
+        SortFactory sortFactory = new SortFactory();
+        customView.setRenderSort(sortFactory.createSort(SortType.BUBBLE_SORT, customView.getHolder()));
+        customView.getRender().start();
         customView.getRender().setButtonIcon(this);
+
+        return customView.getRender();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+
+        renderState = null;
         customView = null;
     }
 
