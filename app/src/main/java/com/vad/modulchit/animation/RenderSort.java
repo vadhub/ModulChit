@@ -164,7 +164,7 @@ public abstract class RenderSort extends Thread implements RenderState {
 
     public void stopAnimation() {
         paint.setColor(Color.BLUE);
-        draw(arr, getSurfaceHolder(), -1);
+        draw(arr, -1);
         setStatusAnimation(StatusAnimation.STOP);
         getButtonIconChange().setButtonStatus();
         setArr(null);
@@ -172,7 +172,7 @@ public abstract class RenderSort extends Thread implements RenderState {
 
     public abstract void sort(int[] arr);
 
-    public void draw(int[] arr, SurfaceHolder mSurfaceHolder, int current) {
+    public void draw(int[] arr, int current) {
 
         Canvas canvas = mSurfaceHolder.lockCanvas();
         drawArray(canvas, arr, current);
