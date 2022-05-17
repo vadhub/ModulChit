@@ -40,6 +40,11 @@ public class CustomViewSorted extends SurfaceView implements SurfaceHolder.Callb
     public void surfaceDestroyed(@NonNull SurfaceHolder holder) {
         renderSort.stopAnimation();
         renderSort.setRun(false);
+        try {
+            renderSort.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         renderSort = null;
     }
 
