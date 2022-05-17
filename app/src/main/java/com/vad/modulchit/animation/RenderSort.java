@@ -150,7 +150,7 @@ public abstract class RenderSort extends Thread implements RenderState {
     public void run() {
         while (mRun) {
             if (arr != null && getStatusAnimation() == StatusAnimation.START) {
-                sort();
+                sort(arr);
                 stopAnimation();
             }
         }
@@ -170,7 +170,7 @@ public abstract class RenderSort extends Thread implements RenderState {
         setArr(null);
     }
 
-    public abstract void sort();
+    public abstract void sort(int[] arr);
 
     public void draw(int[] arr, SurfaceHolder mSurfaceHolder, int current) {
 

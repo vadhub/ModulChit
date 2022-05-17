@@ -13,8 +13,8 @@ public class RenderBubbleSort extends RenderSort {
     }
 
     @Override
-    public void sort() {
-        for (int i = getArr().length - 1; i >= 1; i--) {
+    public void sort(int[] arr) {
+        for (int i = arr.length - 1; i >= 1; i--) {
 
             if (getStatusAnimation() == StatusAnimation.PAUSE) {
                 break;
@@ -23,15 +23,15 @@ public class RenderBubbleSort extends RenderSort {
                 if (getStatusAnimation() == StatusAnimation.PAUSE) {
                     break;
                 }
-                draw(getArr(), getSurfaceHolder(), j);
+                draw(arr, getSurfaceHolder(), j);
 
                 try {
                     sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                if (getArr()[j] > getArr()[j + 1]) {
-                    swap(getArr(), j, j+1);
+                if (arr[j] > arr[j + 1]) {
+                    swap(arr, j, j+1);
                 }
             }
         }

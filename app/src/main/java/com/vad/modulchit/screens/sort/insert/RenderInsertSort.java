@@ -13,24 +13,15 @@ public class RenderInsertSort extends RenderSort {
     }
 
     @Override
-    public void sort() {
-        for (int left = 0; left < getArr().length; left++) {
-            int value = getArr()[left];
-            int i = left - 1;
-            draw(getArr(), getSurfaceHolder(), i);
-            try {
-                sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+    public void sort(int[] array) {
+        for (int i = 1; i < array.length; i++) {
+            int current = array[i];
+            int j = i;
+            while (j > 0 && array[j - 1] > current) {
+                array[j] = array[j - 1];
+                j--;
             }
-            for (; i >= 0; i--) {
-                if (value < getArr()[i]) {
-                    getArr()[i + 1] = getArr()[i];
-                } else {
-                    break;
-                }
-            }
-            getArr()[i + 1] = value;
+            array[j] = current;
         }
     }
 }
