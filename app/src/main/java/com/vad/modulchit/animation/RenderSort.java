@@ -151,7 +151,7 @@ public abstract class RenderSort extends Thread implements RenderState {
         while (mRun) {
             if (arr != null && getStatusAnimation() == StatusAnimation.START) {
                 sort(arr);
-                stopAnimation();
+                if (mSurfaceHolder != null) stopAnimation();
             }
         }
     }
@@ -175,8 +175,10 @@ public abstract class RenderSort extends Thread implements RenderState {
     public void draw(int[] arr, int current) {
 
         Canvas canvas = mSurfaceHolder.lockCanvas();
-        drawArray(canvas, arr, current);
-        mSurfaceHolder.unlockCanvasAndPost(canvas);
+        if (canvas != null) {
+            drawArray(canvas, arr, current);
+            mSurfaceHolder.unlockCanvasAndPost(canvas);
+        }
 
     }
 

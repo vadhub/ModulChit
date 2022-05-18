@@ -108,9 +108,12 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Butt
 
     @Override
     public void setButtonStatus() {
-        requireActivity().runOnUiThread(() ->{
-            btn.setCompoundDrawablesWithIntrinsicBounds(imgPlay, null, null, null);
-        });
+        if (isAdded()) {
+            requireActivity().runOnUiThread(() -> {
+                btn.setCompoundDrawablesWithIntrinsicBounds(imgPlay, null, null, null);
+            });
+        }
         isRun = true;
     }
+
 }

@@ -28,6 +28,7 @@ import com.vad.modulchit.screens.contract.HasCustomTitle;
 import com.vad.modulchit.screens.contract.Navigator;
 import com.vad.modulchit.screens.menu.FragmentMenu;
 import com.vad.modulchit.screens.sort.bubble.FragmentBubbleSort;
+import com.vad.modulchit.screens.sort.insert.FragmentInsertSort;
 import com.vad.modulchit.screens.sort.shell.FragmentShellSort;
 
 public class MainActivityMain extends AppCompatActivity implements Navigator {
