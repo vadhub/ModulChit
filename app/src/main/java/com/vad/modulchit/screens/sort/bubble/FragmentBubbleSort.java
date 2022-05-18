@@ -66,11 +66,10 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Butt
             if (isRun) {
                 if (renderState.getStateRun() == StatusAnimation.PAUSE) {
                     renderState.setStateRestart();
-                    System.out.println("restart");
                 }
 
                 if (renderState.getStateRun() == StatusAnimation.STOP) {
-                    customView.getRender().setArr(Parser.parseComma(editText.getText().toString()));
+                    customView.getRender().setArr(Parser.parseNumber(editText.getText().toString()));
                 }
 
                 renderState.setStateRun();

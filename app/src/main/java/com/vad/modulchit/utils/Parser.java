@@ -1,14 +1,18 @@
 package com.vad.modulchit.utils;
 
-public class Parser {
-    public static int[] parseComma(String str) {
-        String[] spitString = str.split(", ");
-        int[] tempArr = new int[spitString.length];
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-        for (int i = 0; i < spitString.length; i++) {
-            tempArr[i] = Integer.parseInt(spitString[i]);
+public class Parser {
+    public static int[] parseNumber(String str) {
+        Matcher matcher = Pattern.compile("\\d+").matcher(str);
+        List<String> list = new ArrayList<>();
+        while (matcher.find()) {
+            list.add(matcher.group());
         }
 
-        return tempArr;
+        return list.stream().mapToInt(Integer::parseInt).toArray();
     }
 }

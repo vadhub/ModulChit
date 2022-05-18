@@ -4,9 +4,6 @@ import android.view.SurfaceHolder;
 
 import com.vad.modulchit.animation.RenderSort;
 
-import java.util.Arrays;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class RenderInsertSort extends RenderSort {
 
