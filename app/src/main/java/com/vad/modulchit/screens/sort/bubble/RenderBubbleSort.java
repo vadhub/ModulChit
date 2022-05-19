@@ -23,7 +23,7 @@ public class RenderBubbleSort extends RenderSort {
                 if (getStatusAnimation() == StatusAnimation.PAUSE) {
                     break;
                 }
-                draw(arr, j);
+                draw(arr);
 
                 try {
                     sleep(500);

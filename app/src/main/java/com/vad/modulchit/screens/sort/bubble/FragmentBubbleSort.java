@@ -38,7 +38,7 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Butt
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_buble_sort, container, false);
+        return inflater.inflate(R.layout.fragment_sort, container, false);
     }
 
     @Override

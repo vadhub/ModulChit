@@ -119,11 +119,14 @@ public abstract class RenderSort extends Thread implements RenderState {
 
         for (int i = 0; i < arr.length; i++) {
             scale[i] = (float) arr[i] / max;
+            if (scale[i] <= 0.10f) {
+                scale[i] += 0.05f;
+            }
         }
         return scale;
     }
 
-    public void drawArray(Canvas canvas, int[] arr, int currentIndex) {
+    public void drawArray(Canvas canvas, int[] arr) {
         canvas.drawColor(Color.WHITE);
         int startDrawY = getMaxHeight();
         int startDrawX = SHIFT + getStrokeWidth() / 2;
@@ -133,11 +136,11 @@ public abstract class RenderSort extends Thread implements RenderState {
         float[] scales = scaling(arr);
 
         for (int i = 0; i < arr.length; i++) {
-            canvas.drawText(arr[i] + "", startDrawX, startDrawY - scales[i] * getMaxHeight() + 10 + FONT_SIZE, paintFont);
+            canvas.drawText(arr[i] + "", (float) (startDrawX-getStrokeWidth()*0.5), startDrawY - scales[i] * getMaxHeight() + 10 + FONT_SIZE, paintFont);
 
-            if (currentIndex == i) {
-                paint.setColor(Color.RED);
-            }
+//            if (currentIndex == i && swapIndex == i) {
+//                paint.setColor(Color.RED);
+//            }
 
             canvas.drawLine(startDrawX, startDrawY, startDrawX, startDrawY - scales[i] * getMaxHeight() + 20 + FONT_SIZE, paint);
             startDrawX = startDrawX + getStrokeWidth();
@@ -164,7 +167,7 @@ public abstract class RenderSort extends Thread implements RenderState {
 
     public void stopAnimation() {
         paint.setColor(Color.BLUE);
-        draw(arr, -1);
+        draw(arr);
         setStatusAnimation(StatusAnimation.STOP);
         getButtonIconChange().setButtonStatus();
         setArr(null);
@@ -172,11 +175,11 @@ public abstract class RenderSort extends Thread implements RenderState {
 
     public abstract void sort(int[] arr);
 
-    public void draw(int[] arr, int current) {
+    public void draw(int[] arr) {
 
         Canvas canvas = mSurfaceHolder.lockCanvas();
         if (canvas != null) {
-            drawArray(canvas, arr, current);
+            drawArray(canvas, arr);
             mSurfaceHolder.unlockCanvasAndPost(canvas);
         }
 

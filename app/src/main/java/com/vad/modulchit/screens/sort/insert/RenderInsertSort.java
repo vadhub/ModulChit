@@ -16,7 +16,7 @@ public class RenderInsertSort extends RenderSort {
         for (int i = 1; i < array.length; i++) {
             int current = array[i];
             int j = i;
-            draw(array, i);
+            draw(array);
             try {
                 sleep(500);
             } catch (InterruptedException e) {
