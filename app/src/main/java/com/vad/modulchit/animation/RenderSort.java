@@ -152,7 +152,8 @@ public abstract class RenderSort extends Thread implements RenderState {
     @Override
     public void run() {
         while (mRun) {
-            if (arr != null && getStatusAnimation() == StatusAnimation.START) {
+            System.out.println(statusAnimation);
+            if (arr != null && statusAnimation == StatusAnimation.START) {
                 sort(arr);
                 if (mSurfaceHolder != null) stopAnimation();
             }
@@ -188,6 +189,10 @@ public abstract class RenderSort extends Thread implements RenderState {
     @Override
     public void setStateRun() {
         statusAnimation = StatusAnimation.START;
+    }
+    @Override
+    public void setStateStop() {
+        statusAnimation = StatusAnimation.STOP;
     }
 
     @Override

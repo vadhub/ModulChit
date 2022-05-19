@@ -94,6 +94,18 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Butt
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        renderState.setStateStop();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        renderState = getRender();
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
         renderState = null;
