@@ -72,6 +72,12 @@ public class MainActivity extends AppCompatActivity implements Navigator {
             super.onFragmentViewCreated(fm, f, v, savedInstanceState);
             updateOnUI();
         }
+
+        @Override
+        public void onFragmentViewDestroyed(@NonNull FragmentManager fm, @NonNull Fragment f) {
+            super.onFragmentViewDestroyed(fm, f);
+            updateOnUI();
+        }
     };
 
     private Fragment getCurrentFragment() {
