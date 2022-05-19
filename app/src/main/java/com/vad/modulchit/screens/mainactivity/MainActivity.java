@@ -27,11 +27,8 @@ import com.vad.modulchit.screens.contract.HasCustomAction;
 import com.vad.modulchit.screens.contract.HasCustomTitle;
 import com.vad.modulchit.screens.contract.Navigator;
 import com.vad.modulchit.screens.menu.FragmentMenu;
-import com.vad.modulchit.screens.sort.bubble.FragmentBubbleSort;
-import com.vad.modulchit.screens.sort.insert.FragmentInsertSort;
-import com.vad.modulchit.screens.sort.shell.FragmentShellSort;
 
-public class MainActivityMain extends AppCompatActivity implements Navigator {
+public class MainActivity extends AppCompatActivity implements Navigator {
 
     private AdView mAdView;
     private Fragment currentFragment = null;
@@ -41,7 +38,7 @@ public class MainActivityMain extends AppCompatActivity implements Navigator {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        setContentView(R.layout.activity_main_main);
+        setContentView(R.layout.activity_main);
 
         toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
@@ -135,7 +132,7 @@ public class MainActivityMain extends AppCompatActivity implements Navigator {
             getSupportFragmentManager()
                     .beginTransaction()
                     .addToBackStack(null)
-                    .replace(R.id.frame_replace, fragment)
+                    .add(R.id.frame_replace, fragment)
                     .commit();
         }
     }
