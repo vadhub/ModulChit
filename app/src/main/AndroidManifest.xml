@@ -15,7 +15,7 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-5356301729869498~4916272144"/>
 
-        <activity android:name=".screens.mainactivity.MainActivityMain">
+        <activity android:name=".screens.mainactivity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
