@@ -12,7 +12,7 @@ public class SortFactory {
 
         switch (type) {
             case BUBBLE_SORT:
-                renderSort = new RenderBubbleSort(surfaceHolder);
+
                 break;
             case SHELL_SORT:
                 renderSort = new RenderShellSort(surfaceHolder);

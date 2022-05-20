@@ -1,31 +1,32 @@
 package com.vad.modulchit.screens.sort.bubble;
 
-import android.view.SurfaceHolder;
+import com.vad.modulchit.animation.SortArray;
+import com.vad.modulchit.pojos.StepSort;
 
-import com.vad.modulchit.animation.RenderSort;
-import com.vad.modulchit.animation.StatusAnimation;
+import java.util.ArrayList;
+import java.util.List;
 
-
-public class RenderBubbleSort extends RenderSort {
-
-    public RenderBubbleSort(SurfaceHolder mSurfaceHolder) {
-        super(mSurfaceHolder);
-    }
+public class RenderBubbleSort implements SortArray {
 
     @Override
-    public void sort(int[] arr) {
+    public List<StepSort> sort(int[] arr) {
+        List<StepSort> steps = new ArrayList<>();
         for (int i = arr.length - 1; i >= 1; i--) {
-            if (getStatusAnimation() == StatusAnimation.PAUSE) {
-                break;
-            }
             for (int j = 0; j < i; j++) {
-                if (getStatusAnimation() == StatusAnimation.PAUSE) {
-                    break;
-                }
                 if (arr[j] > arr[j + 1]) {
+                    steps.add(new StepSort(arr, j, j+1));
                     swap(arr, j, j+1);
                 }
             }
         }
+        return steps;
     }
+
+    protected void swap(int[] array, int ind1, int ind2) {
+        int tmp = array[ind1];
+        array[ind1] = array[ind2];
+        array[ind2] = tmp;
+    }
+
+
 }
