@@ -15,20 +15,12 @@ public class RenderBubbleSort extends RenderSort {
     @Override
     public void sort(int[] arr) {
         for (int i = arr.length - 1; i >= 1; i--) {
-
             if (getStatusAnimation() == StatusAnimation.PAUSE) {
                 break;
             }
             for (int j = 0; j < i; j++) {
                 if (getStatusAnimation() == StatusAnimation.PAUSE) {
                     break;
-                }
-                draw(arr);
-
-                try {
-                    sleep(500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
                 }
                 if (arr[j] > arr[j + 1]) {
                     swap(arr, j, j+1);

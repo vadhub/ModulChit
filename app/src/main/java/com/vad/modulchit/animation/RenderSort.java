@@ -21,7 +21,7 @@ public abstract class RenderSort extends Thread implements RenderState {
     private int[] arr;
     private boolean mRun = true;
     private ButtonIconChange buttonIconChange;
-    private volatile StatusAnimation statusAnimation = StatusAnimation.STOP;
+    private StatusAnimation statusAnimation = StatusAnimation.STOP;
 
     public RenderSort(SurfaceHolder mSurfaceHolder) {
         this.mSurfaceHolder = mSurfaceHolder;
@@ -154,6 +154,7 @@ public abstract class RenderSort extends Thread implements RenderState {
         while (mRun) {
             System.out.println(statusAnimation);
             if (arr != null && statusAnimation == StatusAnimation.START) {
+                draw(arr);
                 sort(arr);
                 if (mSurfaceHolder != null) stopAnimation();
             }
@@ -161,9 +162,15 @@ public abstract class RenderSort extends Thread implements RenderState {
     }
 
     protected void swap(int[] array, int ind1, int ind2) {
+        try {
+            sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         int tmp = array[ind1];
         array[ind1] = array[ind2];
         array[ind2] = tmp;
+        draw(arr);
     }
 
     public void stopAnimation() {
@@ -194,17 +201,14 @@ public abstract class RenderSort extends Thread implements RenderState {
     public void setStateStop() {
         statusAnimation = StatusAnimation.STOP;
     }
-
     @Override
     public void setStatePause() {
         statusAnimation = StatusAnimation.PAUSE;
     }
-
     @Override
     public void setStateRestart() {
         statusAnimation = StatusAnimation.RESTART;
     }
-
     @Override
     public StatusAnimation getStateRun() {
         return statusAnimation;
