@@ -17,7 +17,7 @@ public class RenderShellSort extends RenderSort {
             for (int right = 0; right < arr.length; right++) {
                 for (int c = right - gap; c >= 0; c -= gap) {
                     if (arr[c] > arr[c + gap]) {
-                        swap(arr, c, c + gap);
+                        //swap(arr, c, c + gap);
                     }
                 }
             }

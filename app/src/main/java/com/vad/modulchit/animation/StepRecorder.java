@@ -1,5 +1,6 @@
 package com.vad.modulchit.animation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class StepRecorder {
@@ -7,8 +8,8 @@ public class StepRecorder {
     private List<int[]> steps;
     private int[] array;
 
-    public StepRecorder(List<int[]> steps) {
-        this.steps = steps;
+    public StepRecorder() {
+        steps = new ArrayList<>();
     }
 
     public int[] copyArray(int[] arr) {

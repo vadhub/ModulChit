@@ -3,17 +3,12 @@ package com.vad.modulchit.animation.common;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.util.Log;
 import android.view.SurfaceHolder;
 
-import com.vad.modulchit.pojos.StepSort;
+import com.vad.modulchit.animation.StepRecorder;
 import com.vad.modulchit.models.AlgebraMod;
 
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-
-public class RenderSort extends Thread implements RenderState {
+public class RenderSort implements RenderState {
 
     private int maxHeight;
     private int maxWith;
@@ -24,8 +19,7 @@ public class RenderSort extends Thread implements RenderState {
     private final SurfaceHolder mSurfaceHolder;
     private Paint paint;
     private Paint paintFont;
-    private List<StepSort> steps;
-    private Timer timer;
+    private StepRecorder recorder;
     private boolean mRun = true;
     private ButtonIconChange buttonIconChange;
     private StatusAnimation statusAnimation = StatusAnimation.STOP;
@@ -41,83 +35,9 @@ public class RenderSort extends Thread implements RenderState {
         paintFont.setColor(Color.BLACK);
         paintFont.setStyle(Paint.Style.FILL);
         paintFont.setTextSize(FONT_SIZE);
-        timer = new Timer();
-    }
 
-    public Paint getPaint() {
-        return paint;
-    }
-
-    public void setPaint(Paint paint) {
-        this.paint = paint;
-    }
-
-    public SurfaceHolder getSurfaceHolder() {
-        return mSurfaceHolder;
-    }
-
-    public ButtonIconChange getButtonIconChange() {
-        return buttonIconChange;
-    }
-
-    public void setButtonIconChange(ButtonIconChange buttonIconChange) {
-        this.buttonIconChange = buttonIconChange;
-    }
-
-    public StatusAnimation getStatusAnimation() {
-        return statusAnimation;
-    }
-
-    public void setStatusAnimation(StatusAnimation statusAnimation) {
-        this.statusAnimation = statusAnimation;
-    }
-
-    public List<StepSort> getSteps() {
-        return steps;
-    }
-
-    public void setSteps(List<StepSort> steps) {
-        this.steps = steps;
-    }
-
-    public ButtonIconChange getButtonIconChanged() {
-        return buttonIconChange;
-    }
-
-    public void setButtonIcon(ButtonIconChange buttonIconChange) {
-        this.buttonIconChange = buttonIconChange;
-    }
-
-    public int getStrokeWidth() {
-        return getMaxWith() / (steps.get(0).getArr().length + 1);
-    }
-
-    public void setStrokeWidth(int strokeWidth) {
-        this.strokeWidth = strokeWidth;
-    }
-
-    public int getMaxWith() {
-        return mSurfaceHolder.getSurfaceFrame().width();
-    }
-
-    public void setMaxWith(int maxWith) {
-        this.maxWith = maxWith;
-    }
-
-    public int getMaxHeight() {
-        return mSurfaceHolder.getSurfaceFrame().height();
-    }
-
-    public void setMaxHeight(int maxHeight) {
-        this.maxHeight = maxHeight;
-    }
-
-    public boolean isRun() {
-        return mRun;
-    }
-
-    public void setRun(boolean mRun) {
-        this.mRun = mRun;
+        Thread thread = new Thread(runnable);
+        thread.start();
     }
 
     public float[] scaling(int[] arr) {
@@ -150,71 +70,35 @@ public class RenderSort extends Thread implements RenderState {
         }
     }
 
-    @Override
-    public void run() {
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            while (mRun) {
+                if (recorder != null && statusAnimation == StatusAnimation.START) {
+                    if (mSurfaceHolder != null) setStateStop();
+                }
+            }
 
-        System.out.println(statusAnimation);
-        if (steps != null && statusAnimation == StatusAnimation.START) {
-            draw(steps);
-            Log.i("TaskRun", "TaskRun");
-            if (mSurfaceHolder != null) setStateStop();
         }
-
-    }
-
-    protected void swap(int[] array, int ind1, int ind2) {
-        try {
-            sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        int tmp = array[ind1];
-        array[ind1] = array[ind2];
-        array[ind2] = tmp;
-    }
+    };
 
     public void stopAnimation() {
         paint.setColor(Color.BLUE);
         getButtonIconChange().setButtonStatus();
-        steps = null;
+        recorder = null;
     }
 
-    //public abstract void sort(int[] arr);
-
     public void draw(int[] arr) {
-
         Canvas canvas = mSurfaceHolder.lockCanvas();
         if (canvas != null) {
             drawArray(canvas, arr);
             mSurfaceHolder.unlockCanvasAndPost(canvas);
         }
-
-    }
-
-    public void draw(List<StepSort> steps) {
-        Log.i("draw", "draw");
-
-        timer.schedule(new TimerTask() {
-            int i = 0;
-            @Override
-            public void run() {
-                Canvas canvas = mSurfaceHolder.lockCanvas();
-                drawArray(canvas, steps.get(i).getArr());
-                if (i < steps.size()-1) {
-                    i++;
-                } else {
-                    timer.cancel();
-                }
-                mSurfaceHolder.unlockCanvasAndPost(canvas);
-            }
-        }, 500);
-
     }
 
     @Override
     public void setStateRun() {
         statusAnimation = StatusAnimation.START;
-        draw(steps);
     }
 
     @Override
@@ -236,5 +120,81 @@ public class RenderSort extends Thread implements RenderState {
     @Override
     public StatusAnimation getStateRun() {
         return statusAnimation;
+    }
+
+    public Paint getPaint() {
+        return paint;
+    }
+
+    public void setPaint(Paint paint) {
+        this.paint = paint;
+    }
+
+    public SurfaceHolder getSurfaceHolder() {
+        return mSurfaceHolder;
+    }
+
+    public ButtonIconChange getButtonIconChange() {
+        return buttonIconChange;
+    }
+
+    public void setButtonIconChange(ButtonIconChange buttonIconChange) {
+        this.buttonIconChange = buttonIconChange;
+    }
+
+    public StatusAnimation getStatusAnimation() {
+        return statusAnimation;
+    }
+
+    public void setStatusAnimation(StatusAnimation statusAnimation) {
+        this.statusAnimation = statusAnimation;
+    }
+
+    public StepRecorder getSteps() {
+        return recorder;
+    }
+
+    public void setSteps(StepRecorder recorder) {
+        this.recorder = recorder;
+    }
+
+    public ButtonIconChange getButtonIconChanged() {
+        return buttonIconChange;
+    }
+
+    public void setButtonIcon(ButtonIconChange buttonIconChange) {
+        this.buttonIconChange = buttonIconChange;
+    }
+
+    public int getStrokeWidth() {
+        return getMaxWith() / (recorder.getSteps().get(0).length + 1);
+    }
+
+    public void setStrokeWidth(int strokeWidth) {
+        this.strokeWidth = strokeWidth;
+    }
+
+    public int getMaxWith() {
+        return mSurfaceHolder.getSurfaceFrame().width();
+    }
+
+    public void setMaxWith(int maxWith) {
+        this.maxWith = maxWith;
+    }
+
+    public int getMaxHeight() {
+        return mSurfaceHolder.getSurfaceFrame().height();
+    }
+
+    public void setMaxHeight(int maxHeight) {
+        this.maxHeight = maxHeight;
+    }
+
+    public boolean isRun() {
+        return mRun;
+    }
+
+    public void setRun(boolean mRun) {
+        this.mRun = mRun;
     }
 }

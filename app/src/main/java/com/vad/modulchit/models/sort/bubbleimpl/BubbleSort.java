@@ -1,10 +1,7 @@
-package com.vad.modulchit.models.sort.bubleimpl;
+package com.vad.modulchit.models.sort.bubbleimpl;
 
 import com.vad.modulchit.animation.StepRecorder;
 import com.vad.modulchit.models.sort.SortArray;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class BubbleSort implements SortArray {
 
