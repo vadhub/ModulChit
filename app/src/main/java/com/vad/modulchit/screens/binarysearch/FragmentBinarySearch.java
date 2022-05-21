@@ -13,8 +13,8 @@ import android.widget.Toast;
 import com.vad.modulchit.R;
 import com.vad.modulchit.pojos.BinarySearchModel;
 import com.vad.modulchit.screens.contract.HasCustomTitle;
-import com.vad.modulchit.utils.Parser;
-import com.vad.modulchit.utils.search.BinarySearchImpl;
+import com.vad.modulchit.models.Parser;
+import com.vad.modulchit.models.search.BinarySearchImpl;
 
 import java.util.List;
 

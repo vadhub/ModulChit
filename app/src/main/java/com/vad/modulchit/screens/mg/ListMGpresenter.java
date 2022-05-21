@@ -1,7 +1,7 @@
 package com.vad.modulchit.screens.mg;
 
 import com.vad.modulchit.R;
-import com.vad.modulchit.utils.AlgebraMod;
+import com.vad.modulchit.models.AlgebraMod;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;

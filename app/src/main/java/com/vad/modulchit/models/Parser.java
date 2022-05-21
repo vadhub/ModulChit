@@ -1,4 +1,4 @@
-package com.vad.modulchit.utils;
+package com.vad.modulchit.models;
 
 import java.util.ArrayList;
 import java.util.List;

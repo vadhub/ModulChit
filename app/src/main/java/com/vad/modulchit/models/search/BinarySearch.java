@@ -1,4 +1,4 @@
-package com.vad.modulchit.utils.search;
+package com.vad.modulchit.models.search;
 
 import com.vad.modulchit.pojos.BinarySearchModel;
 

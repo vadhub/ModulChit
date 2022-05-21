@@ -24,7 +24,6 @@ import com.vad.modulchit.screens.contract.HasCustomAction;
 import com.vad.modulchit.screens.contract.HasCustomTitle;
 import com.vad.modulchit.screens.contract.Navigator;
 import com.vad.modulchit.screens.gcde.explgcde.FragmentGCDexpl;
-import com.vad.modulchit.utils.AlgebraMod;
 
 import java.util.List;
 

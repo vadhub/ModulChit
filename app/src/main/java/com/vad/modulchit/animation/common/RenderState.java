@@ -1,6 +1,6 @@
-package com.vad.modulchit.animation;
+package com.vad.modulchit.animation.common;
 
-import com.vad.modulchit.animation.StatusAnimation;
+import com.vad.modulchit.animation.common.StatusAnimation;
 
 public interface RenderState {
     StatusAnimation getStateRun();

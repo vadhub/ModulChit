@@ -1,7 +1,7 @@
 package com.vad.modulchit;
 
 import com.vad.modulchit.pojos.BinarySearchModel;
-import com.vad.modulchit.utils.search.BinarySearchImpl;
+import com.vad.modulchit.models.search.BinarySearchImpl;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -32,6 +32,7 @@ public class BinarySearchUnitTest {
     @Test
     public void binarySearch_isCorrect() {
         assertEquals(binarySearch.search(arr, element), searchModelList);
+
     }
 
     @Test

@@ -1,0 +1,200 @@
+package com.vad.modulchit.animation.common;
+
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.view.SurfaceHolder;
+
+import com.vad.modulchit.animation.StepRecorder;
+import com.vad.modulchit.models.AlgebraMod;
+
+public class RenderSort implements RenderState {
+
+    private int maxHeight;
+    private int maxWith;
+    private int strokeWidth;
+    private final static int FONT_SIZE = 20;
+    private final static int SHIFT = 10;
+
+    private final SurfaceHolder mSurfaceHolder;
+    private Paint paint;
+    private Paint paintFont;
+    private StepRecorder recorder;
+    private boolean mRun = true;
+    private ButtonIconChange buttonIconChange;
+    private StatusAnimation statusAnimation = StatusAnimation.STOP;
+
+    public RenderSort(SurfaceHolder mSurfaceHolder) {
+        this.mSurfaceHolder = mSurfaceHolder;
+
+        paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint.setColor(Color.BLUE);
+        paint.setStyle(Paint.Style.FILL);
+
+        paintFont = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paintFont.setColor(Color.BLACK);
+        paintFont.setStyle(Paint.Style.FILL);
+        paintFont.setTextSize(FONT_SIZE);
+
+        Thread thread = new Thread(runnable);
+        thread.start();
+    }
+
+    public float[] scaling(int[] arr) {
+        int max = AlgebraMod.max(arr);
+        float[] scale = new float[arr.length];
+
+        for (int i = 0; i < arr.length; i++) {
+            scale[i] = (float) arr[i] / max;
+            if (scale[i] <= 0.10f) {
+                scale[i] += 0.05f;
+            }
+        }
+        return scale;
+    }
+
+    public void drawArray(Canvas canvas, int[] arr) {
+        canvas.drawColor(Color.WHITE);
+        int startDrawY = getMaxHeight();
+        int startDrawX = SHIFT + getStrokeWidth() / 2;
+
+        paint.setStrokeWidth(getStrokeWidth() - SHIFT);
+
+        float[] scales = scaling(arr);
+
+        for (int i = 0; i < arr.length; i++) {
+            canvas.drawText(arr[i] + "", (float) (startDrawX - getStrokeWidth() * 0.5), startDrawY - scales[i] * getMaxHeight() + 10 + FONT_SIZE, paintFont);
+            canvas.drawLine(startDrawX, startDrawY, startDrawX, startDrawY - scales[i] * getMaxHeight() + 20 + FONT_SIZE, paint);
+            startDrawX = startDrawX + getStrokeWidth();
+            paint.setColor(Color.BLUE);
+        }
+    }
+
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            while (mRun) {
+                if (recorder != null && statusAnimation == StatusAnimation.START) {
+                    if (mSurfaceHolder != null) setStateStop();
+                }
+            }
+
+        }
+    };
+
+    public void stopAnimation() {
+        paint.setColor(Color.BLUE);
+        getButtonIconChange().setButtonStatus();
+        recorder = null;
+    }
+
+    public void draw(int[] arr) {
+        Canvas canvas = mSurfaceHolder.lockCanvas();
+        if (canvas != null) {
+            drawArray(canvas, arr);
+            mSurfaceHolder.unlockCanvasAndPost(canvas);
+        }
+    }
+
+    @Override
+    public void setStateRun() {
+        statusAnimation = StatusAnimation.START;
+    }
+
+    @Override
+    public void setStateStop() {
+        statusAnimation = StatusAnimation.STOP;
+        stopAnimation();
+    }
+
+    @Override
+    public void setStatePause() {
+        statusAnimation = StatusAnimation.PAUSE;
+    }
+
+    @Override
+    public void setStateRestart() {
+        statusAnimation = StatusAnimation.RESTART;
+    }
+
+    @Override
+    public StatusAnimation getStateRun() {
+        return statusAnimation;
+    }
+
+    public Paint getPaint() {
+        return paint;
+    }
+
+    public void setPaint(Paint paint) {
+        this.paint = paint;
+    }
+
+    public SurfaceHolder getSurfaceHolder() {
+        return mSurfaceHolder;
+    }
+
+    public ButtonIconChange getButtonIconChange() {
+        return buttonIconChange;
+    }
+
+    public void setButtonIconChange(ButtonIconChange buttonIconChange) {
+        this.buttonIconChange = buttonIconChange;
+    }
+
+    public StatusAnimation getStatusAnimation() {
+        return statusAnimation;
+    }
+
+    public void setStatusAnimation(StatusAnimation statusAnimation) {
+        this.statusAnimation = statusAnimation;
+    }
+
+    public StepRecorder getSteps() {
+        return recorder;
+    }
+
+    public void setSteps(StepRecorder recorder) {
+        this.recorder = recorder;
+    }
+
+    public ButtonIconChange getButtonIconChanged() {
+        return buttonIconChange;
+    }
+
+    public void setButtonIcon(ButtonIconChange buttonIconChange) {
+        this.buttonIconChange = buttonIconChange;
+    }
+
+    public int getStrokeWidth() {
+        return getMaxWith() / (recorder.getSteps().get(0).length + 1);
+    }
+
+    public void setStrokeWidth(int strokeWidth) {
+        this.strokeWidth = strokeWidth;
+    }
+
+    public int getMaxWith() {
+        return mSurfaceHolder.getSurfaceFrame().width();
+    }
+
+    public void setMaxWith(int maxWith) {
+        this.maxWith = maxWith;
+    }
+
+    public int getMaxHeight() {
+        return mSurfaceHolder.getSurfaceFrame().height();
+    }
+
+    public void setMaxHeight(int maxHeight) {
+        this.maxHeight = maxHeight;
+    }
+
+    public boolean isRun() {
+        return mRun;
+    }
+
+    public void setRun(boolean mRun) {
+        this.mRun = mRun;
+    }
+}

@@ -1,8 +1,7 @@
-package com.vad.modulchit.animation;
+package com.vad.modulchit.animation.common;
 
 import android.view.SurfaceHolder;
 
-import com.vad.modulchit.screens.sort.bubble.RenderBubbleSort;
 import com.vad.modulchit.screens.sort.insert.RenderInsertSort;
 import com.vad.modulchit.screens.sort.shell.RenderShellSort;
 
@@ -12,7 +11,7 @@ public class SortFactory {
 
         switch (type) {
             case BUBBLE_SORT:
-                renderSort = new RenderBubbleSort(surfaceHolder);
+
                 break;
             case SHELL_SORT:
                 renderSort = new RenderShellSort(surfaceHolder);

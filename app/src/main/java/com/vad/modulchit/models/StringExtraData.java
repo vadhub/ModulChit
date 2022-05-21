@@ -1,4 +1,4 @@
-package com.vad.modulchit.utils;
+package com.vad.modulchit.models;
 
 public class StringExtraData {
     public String extraGCDE(int a, int b, int q, int r, int x1, int x2, int y1, int y2){

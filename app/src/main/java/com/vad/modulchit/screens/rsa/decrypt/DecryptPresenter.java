@@ -5,8 +5,8 @@ import android.os.Handler;
 import android.os.Looper;
 
 import com.vad.modulchit.R;
-import com.vad.modulchit.utils.AlgebraMod;
-import com.vad.modulchit.utils.RSAmod;
+import com.vad.modulchit.models.AlgebraMod;
+import com.vad.modulchit.models.RSAmod;
 import java.util.List;
 
 public class DecryptPresenter {

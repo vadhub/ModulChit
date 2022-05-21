@@ -13,10 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.vad.modulchit.R;
-import com.vad.modulchit.utils.RSAshiphr;
+import com.vad.modulchit.models.RSAshiphr;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 public class AdapterRSAalphabyte extends RecyclerView.Adapter<AdapterRSAalphabyte.MyViewHolder> {
