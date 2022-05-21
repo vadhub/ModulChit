@@ -1,6 +1,6 @@
 package com.vad.modulchit;
 
-import com.vad.modulchit.utils.Parser;
+import com.vad.modulchit.models.Parser;
 import static org.junit.Assert.*;
 import org.junit.Test;
 

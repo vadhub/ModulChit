@@ -1,4 +1,4 @@
-package com.vad.modulchit.animation;
+package com.vad.modulchit.animation.common;
 
 import android.view.SurfaceHolder;
 

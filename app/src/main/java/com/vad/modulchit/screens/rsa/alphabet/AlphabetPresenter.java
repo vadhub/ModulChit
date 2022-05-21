@@ -8,8 +8,8 @@ import com.vad.modulchit.R;
 import com.vad.modulchit.screens.contract.Navigator;
 import com.vad.modulchit.screens.rsa.crypt.FragmentRSAcrypt;
 import com.vad.modulchit.screens.rsa.decrypt.FragmentRSAdecrypt;
-import com.vad.modulchit.utils.RSAmod;
-import com.vad.modulchit.utils.RSAshiphr;
+import com.vad.modulchit.models.RSAmod;
+import com.vad.modulchit.models.RSAshiphr;
 
 import java.util.List;
 

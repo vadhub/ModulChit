@@ -13,7 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vad.modulchit.R;
-import com.vad.modulchit.utils.AlgebraMod;
+import com.vad.modulchit.models.AlgebraMod;
 
 public class FragmentMod extends Fragment {
 

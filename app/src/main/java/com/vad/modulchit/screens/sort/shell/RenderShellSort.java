@@ -2,7 +2,7 @@ package com.vad.modulchit.screens.sort.shell;
 
 import android.view.SurfaceHolder;
 
-import com.vad.modulchit.animation.RenderSort;
+import com.vad.modulchit.animation.common.RenderSort;
 
 public class RenderShellSort extends RenderSort {
 

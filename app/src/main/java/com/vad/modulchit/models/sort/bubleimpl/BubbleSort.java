@@ -1,27 +1,32 @@
-package com.vad.modulchit.utils.sort.bubleimpl;
+package com.vad.modulchit.models.sort.bubleimpl;
 
-import com.vad.modulchit.utils.sort.SortArray;
+import com.vad.modulchit.animation.StepRecorder;
+import com.vad.modulchit.models.sort.SortArray;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BubbleSort implements SortArray {
 
+    private StepRecorder stepRecorder;
+
+    public BubbleSort(StepRecorder stepRecorder) {
+        this.stepRecorder = stepRecorder;
+    }
+
     @Override
-    public List<Integer[]> sorting(Integer[] arr) {
-        List<Integer[]> steps = new ArrayList<>();
+    public StepRecorder sorting(int[] arr) {
         for (int i = arr.length - 1; i >= 1; i--) {
             for (int j = 0; j < i; j++) {
                 if (arr[j] > arr[j + 1]) {
-
                     int tmp = arr[j];
                     arr[j] = arr[j+1];
                     arr[j+1] = tmp;
-                    steps.add(arr);
+                    stepRecorder.record(arr);
                 }
             }
         }
-        return steps;
+        return stepRecorder;
     }
 
     protected void swap(Integer[] array, int ind1, int ind2) {

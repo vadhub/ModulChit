@@ -7,7 +7,7 @@ import android.view.SurfaceView;
 
 import androidx.annotation.NonNull;
 
-import com.vad.modulchit.animation.RenderSort;
+import com.vad.modulchit.animation.common.RenderSort;
 
 
 public class CustomViewSorted extends SurfaceView implements SurfaceHolder.Callback {

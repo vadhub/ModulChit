@@ -13,17 +13,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.vad.modulchit.R;
-import com.vad.modulchit.animation.ButtonIconChange;
-import com.vad.modulchit.animation.RenderState;
-import com.vad.modulchit.animation.SortFactory;
-import com.vad.modulchit.animation.SortType;
-import com.vad.modulchit.animation.StatusAnimation;
+import com.vad.modulchit.animation.StepRecorder;
+import com.vad.modulchit.animation.common.ButtonIconChange;
+import com.vad.modulchit.animation.common.RenderSort;
+import com.vad.modulchit.animation.common.RenderState;
+import com.vad.modulchit.models.sort.SortArray;
 import com.vad.modulchit.screens.contract.HasCustomTitle;
 import com.vad.modulchit.screens.sort.CustomViewSorted;
-import com.vad.modulchit.utils.Parser;
+import com.vad.modulchit.models.sort.bubleimpl.BubbleSort;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class FragmentBubbleSort extends Fragment implements HasCustomTitle, ButtonIconChange {
 
@@ -54,39 +57,47 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Butt
         imgPause = getResources().getDrawable(R.drawable.ic_baseline_pause_24);
         imgPlay = getResources().getDrawable(R.drawable.ic_baseline_play_arrow_24);
 
-        renderState = getRender();
+        List<int[]> steps = new ArrayList<>();
+        StepRecorder stepRecorder = new StepRecorder(steps);
+        SortArray renderBubbleSort = new BubbleSort(stepRecorder);
+        int[] arr = {10, 9, 8, 7, 6, 5, 3, 2, 1};
+        StepRecorder s = renderBubbleSort.sorting(arr);
+        s.getSteps().forEach(e -> System.out.println(Arrays.toString(e)+"0------"));
 
-        btn.setOnClickListener(v1 -> {
+        //renderState = getRender();
 
-            if (editText.getText().toString().equals("")) {
-                Toast.makeText(getActivity(), R.string.warning_enter_text, Toast.LENGTH_SHORT).show();
-                return;
-            }
+//        btn.setOnClickListener(v1 -> {
 
-            if (isRun) {
-                if (renderState.getStateRun() == StatusAnimation.PAUSE) {
-                    renderState.setStateRestart();
-                }
+//            if (editText.getText().toString().equals("")) {
+//                Toast.makeText(getActivity(), R.string.warning_enter_text, Toast.LENGTH_SHORT).show();
+//                return;
+//            }
+//
+//            if (isRun) {
+////                if (renderState.getStateRun() == StatusAnimation.PAUSE) {
+////                    renderState.setStateRestart();
+////                }
+////
+////                if (renderState.getStateRun() == StatusAnimation.STOP) {
+////                    //customView.getRender().setSteps(renderBubbleSort.sort(Parser.parseNumber(editText.getText().toString())));
+////                }
+////
+////                renderState.setStateRun();
+//
+//                btn.setCompoundDrawablesWithIntrinsicBounds(imgPause, null, null, null);
+//                isRun = false;
+//            } else {
+////                renderState.setStatePause();
+//                btn.setCompoundDrawablesWithIntrinsicBounds(imgPlay, null, null, null);
+//                isRun = true;
+//            }
+//        });
 
-                if (renderState.getStateRun() == StatusAnimation.STOP) {
-//                    customView.getRender().setArr(Parser.parseNumber(editText.getText().toString()));
-                }
-
-                renderState.setStateRun();
-
-                btn.setCompoundDrawablesWithIntrinsicBounds(imgPause, null, null, null);
-                isRun = false;
-            } else {
-                renderState.setStatePause();
-                btn.setCompoundDrawablesWithIntrinsicBounds(imgPlay, null, null, null);
-                isRun = true;
-            }
-        });
     }
 
     protected RenderState getRender() {
-        SortFactory sortFactory = new SortFactory();
-        customView.setRenderSort(sortFactory.createSort(SortType.BUBBLE_SORT, customView.getHolder()));
+        RenderSort renderSort = new RenderSort(customView.getHolder());
+        customView.setRenderSort(renderSort);
         customView.getRender().start();
         customView.getRender().setButtonIcon(this);
 
@@ -97,12 +108,6 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Butt
     public void onPause() {
         super.onPause();
         renderState.setStateStop();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        renderState = getRender();
     }
 
     @Override

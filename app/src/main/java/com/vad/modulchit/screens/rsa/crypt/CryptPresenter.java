@@ -5,17 +5,11 @@ import android.os.Handler;
 import android.os.Looper;
 
 import com.vad.modulchit.R;
-import com.vad.modulchit.utils.RSAmod;
-import com.vad.modulchit.utils.RSAshiphr;
+import com.vad.modulchit.models.RSAmod;
+import com.vad.modulchit.models.RSAshiphr;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
-
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class CryptPresenter {
 

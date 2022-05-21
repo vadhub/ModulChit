@@ -1,4 +1,4 @@
-package com.vad.modulchit.animation;
+package com.vad.modulchit.animation.common;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -7,9 +7,8 @@ import android.util.Log;
 import android.view.SurfaceHolder;
 
 import com.vad.modulchit.pojos.StepSort;
-import com.vad.modulchit.utils.AlgebraMod;
+import com.vad.modulchit.models.AlgebraMod;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;

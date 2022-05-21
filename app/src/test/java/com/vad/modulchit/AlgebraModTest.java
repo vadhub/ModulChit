@@ -3,7 +3,7 @@ package com.vad.modulchit;
 import static org.junit.Assert.assertEquals;
 
 import com.vad.modulchit.pojos.TableNumberGCDe;
-import com.vad.modulchit.utils.AlgebraMod;
+import com.vad.modulchit.models.AlgebraMod;
 
 import org.junit.Before;
 import org.junit.Test;

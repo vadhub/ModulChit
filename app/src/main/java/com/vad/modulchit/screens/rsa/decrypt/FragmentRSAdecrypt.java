@@ -25,12 +25,7 @@ import com.vad.modulchit.screens.contract.CustomActionFragment;
 import com.vad.modulchit.screens.contract.HasCustomAction;
 import com.vad.modulchit.screens.contract.HasCustomTitle;
 import com.vad.modulchit.screens.contract.Navigator;
-import com.vad.modulchit.screens.fe.explfe.FragmentFEexpl;
-import com.vad.modulchit.screens.rsa.crypt.CryptView;
-import com.vad.modulchit.screens.rsa.crypt.FragmentRSAcrypt;
 import com.vad.modulchit.screens.rsa.decrypt.expldecrypt.FragmentDecryptExpl;
-import com.vad.modulchit.utils.AlgebraMod;
-import com.vad.modulchit.utils.RSAmod;
 
 import java.util.ArrayList;
 import java.util.List;

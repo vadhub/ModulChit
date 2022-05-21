@@ -1,4 +1,4 @@
-package com.vad.modulchit.utils;
+package com.vad.modulchit.models;
 
 import com.vad.modulchit.pojos.TableNumberFE;
 import com.vad.modulchit.pojos.TableNumberGCDe;

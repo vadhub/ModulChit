@@ -1,9 +1,9 @@
 package com.vad.modulchit.screens.sort.insert;
 
 import com.vad.modulchit.R;
-import com.vad.modulchit.animation.RenderState;
-import com.vad.modulchit.animation.SortFactory;
-import com.vad.modulchit.animation.SortType;
+import com.vad.modulchit.animation.common.RenderState;
+import com.vad.modulchit.animation.common.SortFactory;
+import com.vad.modulchit.animation.common.SortType;
 import com.vad.modulchit.screens.sort.bubble.FragmentBubbleSort;
 
 public class FragmentInsertSort extends FragmentBubbleSort {

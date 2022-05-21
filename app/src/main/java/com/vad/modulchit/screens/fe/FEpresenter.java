@@ -1,10 +1,7 @@
 package com.vad.modulchit.screens.fe;
 
 import com.vad.modulchit.R;
-import com.vad.modulchit.pojos.TableNumberFE;
-import com.vad.modulchit.utils.AlgebraMod;
-
-import java.util.List;
+import com.vad.modulchit.models.AlgebraMod;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
