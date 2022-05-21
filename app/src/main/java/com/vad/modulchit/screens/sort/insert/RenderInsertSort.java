@@ -11,7 +11,6 @@ public class RenderInsertSort extends RenderSort {
         super(mSurfaceHolder);
     }
 
-    @Override
     public void sort(int[] array) {
         for (int i = 1; i < array.length; i++) {
             int current = array[i];

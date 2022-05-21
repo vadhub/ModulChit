@@ -3,16 +3,18 @@ package com.vad.modulchit.animation;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
 import android.view.SurfaceHolder;
 
 import com.vad.modulchit.pojos.StepSort;
 import com.vad.modulchit.utils.AlgebraMod;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public abstract class RenderSort extends Thread implements RenderState {
+public class RenderSort extends Thread implements RenderState {
 
     private int maxHeight;
     private int maxWith;
@@ -25,7 +27,6 @@ public abstract class RenderSort extends Thread implements RenderState {
     private Paint paintFont;
     private List<StepSort> steps;
     private Timer timer;
-    private MyTimerTask timerTask;
     private boolean mRun = true;
     private ButtonIconChange buttonIconChange;
     private StatusAnimation statusAnimation = StatusAnimation.STOP;
@@ -42,8 +43,6 @@ public abstract class RenderSort extends Thread implements RenderState {
         paintFont.setStyle(Paint.Style.FILL);
         paintFont.setTextSize(FONT_SIZE);
         timer = new Timer();
-        timerTask = new MyTimerTask();
-
     }
 
     public Paint getPaint() {
@@ -145,7 +144,7 @@ public abstract class RenderSort extends Thread implements RenderState {
         float[] scales = scaling(arr);
 
         for (int i = 0; i < arr.length; i++) {
-            canvas.drawText(arr[i] + "", (float) (startDrawX-getStrokeWidth()*0.5), startDrawY - scales[i] * getMaxHeight() + 10 + FONT_SIZE, paintFont);
+            canvas.drawText(arr[i] + "", (float) (startDrawX - getStrokeWidth() * 0.5), startDrawY - scales[i] * getMaxHeight() + 10 + FONT_SIZE, paintFont);
             canvas.drawLine(startDrawX, startDrawY, startDrawX, startDrawY - scales[i] * getMaxHeight() + 20 + FONT_SIZE, paint);
             startDrawX = startDrawX + getStrokeWidth();
             paint.setColor(Color.BLUE);
@@ -154,13 +153,14 @@ public abstract class RenderSort extends Thread implements RenderState {
 
     @Override
     public void run() {
-        while (mRun) {
-            System.out.println(statusAnimation);
-            if (steps != null && statusAnimation == StatusAnimation.START) {
-                draw(steps);
-                if (mSurfaceHolder != null) stopAnimation();
-            }
+
+        System.out.println(statusAnimation);
+        if (steps != null && statusAnimation == StatusAnimation.START) {
+            draw(steps);
+            Log.i("TaskRun", "TaskRun");
+            if (mSurfaceHolder != null) setStateStop();
         }
+
     }
 
     protected void swap(int[] array, int ind1, int ind2) {
@@ -176,12 +176,11 @@ public abstract class RenderSort extends Thread implements RenderState {
 
     public void stopAnimation() {
         paint.setColor(Color.BLUE);
-        setStatusAnimation(StatusAnimation.STOP);
         getButtonIconChange().setButtonStatus();
         steps = null;
     }
 
-    public abstract void sort(int[] arr);
+    //public abstract void sort(int[] arr);
 
     public void draw(int[] arr) {
 
@@ -194,64 +193,49 @@ public abstract class RenderSort extends Thread implements RenderState {
     }
 
     public void draw(List<StepSort> steps) {
+        Log.i("draw", "draw");
 
-        Canvas canvas = mSurfaceHolder.lockCanvas();
-        if (canvas != null) {
-            steps.forEach(s -> {
-                timerTask.setArr(s.getArr());
-                timerTask.setCanvas(canvas);
-                timer.schedule(timerTask, 500);
-            });
-            mSurfaceHolder.unlockCanvasAndPost(canvas);
-        }
+        timer.schedule(new TimerTask() {
+            int i = 0;
+            @Override
+            public void run() {
+                Canvas canvas = mSurfaceHolder.lockCanvas();
+                drawArray(canvas, steps.get(i).getArr());
+                if (i < steps.size()-1) {
+                    i++;
+                } else {
+                    timer.cancel();
+                }
+                mSurfaceHolder.unlockCanvasAndPost(canvas);
+            }
+        }, 500);
 
     }
 
     @Override
     public void setStateRun() {
         statusAnimation = StatusAnimation.START;
+        draw(steps);
     }
+
     @Override
     public void setStateStop() {
         statusAnimation = StatusAnimation.STOP;
+        stopAnimation();
     }
+
     @Override
     public void setStatePause() {
         statusAnimation = StatusAnimation.PAUSE;
     }
+
     @Override
     public void setStateRestart() {
         statusAnimation = StatusAnimation.RESTART;
     }
+
     @Override
     public StatusAnimation getStateRun() {
         return statusAnimation;
-    }
-
-    private class MyTimerTask extends TimerTask {
-
-        private int[] arr;
-        private Canvas canvas;
-
-        public int[] getArr() {
-            return arr;
-        }
-
-        public void setArr(int[] arr) {
-            this.arr = arr;
-        }
-
-        public Canvas getCanvas() {
-            return canvas;
-        }
-
-        public void setCanvas(Canvas canvas) {
-            this.canvas = canvas;
-        }
-
-        @Override
-        public void run() {
-            drawArray(canvas, arr);
-        }
     }
 }

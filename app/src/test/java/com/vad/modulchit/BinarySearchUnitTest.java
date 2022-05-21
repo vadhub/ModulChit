@@ -32,6 +32,7 @@ public class BinarySearchUnitTest {
     @Test
     public void binarySearch_isCorrect() {
         assertEquals(binarySearch.search(arr, element), searchModelList);
+
     }
 
     @Test
