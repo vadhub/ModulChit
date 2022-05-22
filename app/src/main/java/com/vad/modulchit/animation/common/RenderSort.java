@@ -68,7 +68,6 @@ public class RenderSort implements RenderState {
     }
 
     public void stopAnimation() {
-        paint.setColor(Color.BLUE);
         getButtonIconChange().setButtonStatus();
         recorder = null;
     }
@@ -101,11 +100,10 @@ public class RenderSort implements RenderState {
     }
 
     @Override
-    public void setStateRun() {
+    public void setStateRun(StepRecorder stepRecorder) {
         statusAnimation = StatusAnimation.START;
-        if (recorder != null) {
-            draw(recorder.getSteps());
-        }
+        draw(stepRecorder.getSteps());
+        setRecorder(stepRecorder);
     }
 
     @Override
@@ -129,12 +127,16 @@ public class RenderSort implements RenderState {
         return statusAnimation;
     }
 
-    public ButtonIconChange getButtonIconChange() {
-        return buttonIconChange;
+    public StepRecorder getRecorder() {
+        return recorder;
     }
 
-    public void setSteps(StepRecorder recorder) {
+    public void setRecorder(StepRecorder recorder) {
         this.recorder = recorder;
+    }
+
+    public ButtonIconChange getButtonIconChange() {
+        return buttonIconChange;
     }
 
     public void setButtonIcon(ButtonIconChange buttonIconChange) {

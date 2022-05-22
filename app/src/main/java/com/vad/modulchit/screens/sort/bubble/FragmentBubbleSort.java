@@ -35,7 +35,7 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Butt
     private boolean isRun = true;
     private Drawable imgPlay;
     private Drawable imgPause;
-    private RenderSort render;
+    private RenderState render;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,10 +56,8 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Butt
         imgPause = getResources().getDrawable(R.drawable.ic_baseline_pause_24);
         imgPlay = getResources().getDrawable(R.drawable.ic_baseline_play_arrow_24);
 
-        StepRecorder stepRecorder = new StepRecorder();
-        SortArray renderBubbleSort = new BubbleSort(stepRecorder);
-
-        render = getRender();
+        SortArray bubbleSort = new BubbleSort();
+        render = customView.getRender();
 
         btn.setOnClickListener(v1 -> {
 
@@ -74,10 +72,8 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Butt
                 }
 
                 if (render.getStateRun() == StatusAnimation.STOP) {
-                    customView.getRender().setSteps(renderBubbleSort.sorting(Parser.parseNumber(editText.getText().toString())));
+                    render.setStateRun(bubbleSort.sorting(Parser.parseNumber(editText.getText().toString())));
                 }
-                customView.getRender().setSteps(stepRecorder);
-                render.setStateRun();
 
                 btn.setCompoundDrawablesWithIntrinsicBounds(imgPause, null, null, null);
                 isRun = false;
@@ -88,14 +84,6 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Butt
             }
         });
 
-    }
-
-    protected RenderSort getRender() {
-        RenderSort renderSort = new RenderSort(customView.getHolder());
-        customView.setRenderSort(renderSort);
-        renderSort.setButtonIcon(this);
-
-        return customView.getRender();
     }
 
     @Override

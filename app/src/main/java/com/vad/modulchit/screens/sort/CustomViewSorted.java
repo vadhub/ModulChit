@@ -29,17 +29,17 @@ public class CustomViewSorted extends SurfaceView implements SurfaceHolder.Callb
 
     @Override
     public void surfaceCreated(@NonNull SurfaceHolder holder) {
+        renderSort = new RenderSort(getHolder());
     }
 
     @Override
     public void surfaceChanged(@NonNull SurfaceHolder holder, int format, int width, int height) {
-
+        renderSort = new RenderSort(getHolder());
     }
 
     @Override
     public void surfaceDestroyed(@NonNull SurfaceHolder holder) {
         renderSort.setStatePause();
-        renderSort.setRun(false);
         renderSort = null;
     }
 
