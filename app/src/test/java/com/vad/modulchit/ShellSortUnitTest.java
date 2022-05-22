@@ -1,11 +1,8 @@
 package com.vad.modulchit;
 
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.view.Surface;
 import android.view.SurfaceHolder;
 
-import com.vad.modulchit.screens.sort.shell.RenderShellSort;
+import com.vad.modulchit.models.sort.shellimpl.ShellSort;
 
 import org.junit.Test;
 
@@ -18,8 +15,7 @@ public class ShellSortUnitTest {
     @Test
     public void shellSort_isCorrect() {
         SurfaceHolder surfaceHolder = null;
-        RenderShellSort sort = new RenderShellSort(surfaceHolder);
-        sort.sort(arr);
-        System.out.println(Arrays.toString(arr));
+        ShellSort sort = new ShellSort();
+
     }
 }

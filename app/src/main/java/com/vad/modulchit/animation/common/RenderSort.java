@@ -15,7 +15,7 @@ import java.util.TimerTask;
 public class RenderSort implements RenderState {
 
     private final static int FONT_SIZE = 20;
-    private final static int SHIFT = 10;
+    private final static int PADDING = 10;
 
     private final SurfaceHolder mSurfaceHolder;
     private final Paint paint;
@@ -55,9 +55,9 @@ public class RenderSort implements RenderState {
     public void drawArray(Canvas canvas, int[] arr) {
         canvas.drawColor(Color.WHITE);
         int startDrawY = getMaxHeight();
-        int startDrawX = SHIFT + getStrokeWidth() / 2;
+        int startDrawX = PADDING + getStrokeWidth() / 2;
 
-        paint.setStrokeWidth(getStrokeWidth() - SHIFT);
+        paint.setStrokeWidth(getStrokeWidth() - PADDING);
 
         float[] scales = scaling(arr);
 
@@ -103,9 +103,6 @@ public class RenderSort implements RenderState {
             return current;
         }
 
-        public void setCurrent(int current) {
-            this.current = current;
-        }
     }
 
     @Override
@@ -143,7 +140,6 @@ public class RenderSort implements RenderState {
     @Override
     public void setStateRestart() {
         statusAnimation = StatusAnimation.RESTART;
-        System.out.println(current+"restart -----------------------------");
         draw(recorder.getSteps(), current);
     }
 
@@ -155,10 +151,6 @@ public class RenderSort implements RenderState {
     @Override
     public StatusAnimation getStateRun() {
         return statusAnimation;
-    }
-
-    public void setCurrent(int current) {
-        this.current = current;
     }
 
     public void setRecorder(StepRecorder recorder) {
