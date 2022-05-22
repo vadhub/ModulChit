@@ -33,6 +33,7 @@
     <string name="bubble_sort">Bubble Sort</string>
     <string name="shell_sort">Shell Sort</string>
     <string name="insert_sort">Insert Sort</string>
+    <string name="quick_sort">Quick Sort</string>
 
 
     <string-array name="titleScreen">
@@ -44,6 +45,7 @@
         <item>Bubble Sort</item>
         <item>Shell Sort</item>
         <item>Insert Sort</item>
+        <item>Quick Sort</item>
     </string-array>
 
     <string-array name="modifyRsaAlpabyte">
