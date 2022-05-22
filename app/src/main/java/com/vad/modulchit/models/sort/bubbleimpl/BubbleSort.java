@@ -1,9 +1,9 @@
 package com.vad.modulchit.models.sort.bubbleimpl;
 
 import com.vad.modulchit.animation.StepRecorder;
-import com.vad.modulchit.models.sort.SortArray;
+import com.vad.modulchit.models.sort.Sort;
 
-public class BubbleSort implements SortArray {
+public class BubbleSort implements Sort {
 
     private final StepRecorder stepRecorder;
 

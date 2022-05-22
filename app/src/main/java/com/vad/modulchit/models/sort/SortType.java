@@ -1,4 +1,4 @@
-package com.vad.modulchit.animation.common;
+package com.vad.modulchit.models.sort;
 
 public enum SortType {
     BUBBLE_SORT,

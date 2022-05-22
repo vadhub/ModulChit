@@ -16,16 +16,15 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.vad.modulchit.R;
-import com.vad.modulchit.animation.StepRecorder;
 import com.vad.modulchit.animation.common.ButtonIconChange;
-import com.vad.modulchit.animation.common.RenderSort;
 import com.vad.modulchit.animation.common.RenderState;
 import com.vad.modulchit.animation.common.StatusAnimation;
 import com.vad.modulchit.models.Parser;
-import com.vad.modulchit.models.sort.SortArray;
+import com.vad.modulchit.models.sort.Sort;
+import com.vad.modulchit.models.sort.SortFactory;
+import com.vad.modulchit.models.sort.SortType;
 import com.vad.modulchit.screens.contract.HasCustomTitle;
 import com.vad.modulchit.screens.sort.CustomViewSorted;
-import com.vad.modulchit.models.sort.bubbleimpl.BubbleSort;
 
 public class FragmentBubbleSort extends Fragment implements HasCustomTitle, ButtonIconChange {
 
@@ -36,6 +35,7 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Butt
     private Drawable imgPlay;
     private Drawable imgPause;
     private RenderState render;
+    private Sort sort;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,37 +56,36 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Butt
         imgPause = getResources().getDrawable(R.drawable.ic_baseline_pause_24);
         imgPlay = getResources().getDrawable(R.drawable.ic_baseline_play_arrow_24);
 
-        SortArray bubbleSort = new BubbleSort();
+        sort = getSort();
 
         render = customView.getRender();
         render.setButtonChanged(this);
 
         btn.setOnClickListener(v1 -> {
-
             if (editText.getText().toString().equals("")) {
                 Toast.makeText(getActivity(), R.string.warning_enter_text, Toast.LENGTH_SHORT).show();
                 return;
             }
-
             if (isRun) {
                 if (render.getStateRun() == StatusAnimation.PAUSE) {
                     render.setStateRestart();
                 }
-
                 if (render.getStateRun() == StatusAnimation.STOP) {
-                    render.setStateRun(bubbleSort.sorting(Parser.parseNumber(editText.getText().toString())));
+                    render.setStateRun(sort.sorting(Parser.parseNumber(editText.getText().toString())));
                 }
-
                 btn.setCompoundDrawablesWithIntrinsicBounds(imgPause, null, null, null);
                 isRun = false;
             } else {
                 render.setStatePause();
-                System.out.println("pause----------------------------");
                 btn.setCompoundDrawablesWithIntrinsicBounds(imgPlay, null, null, null);
                 isRun = true;
             }
         });
 
+    }
+
+    protected Sort getSort() {
+        return new SortFactory().createSort(SortType.BUBBLE_SORT);
     }
 
     @Override
