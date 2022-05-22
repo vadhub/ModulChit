@@ -57,7 +57,9 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Butt
         imgPlay = getResources().getDrawable(R.drawable.ic_baseline_play_arrow_24);
 
         SortArray bubbleSort = new BubbleSort();
+
         render = customView.getRender();
+        render.setButtonChanged(this);
 
         btn.setOnClickListener(v1 -> {
 
@@ -79,6 +81,7 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Butt
                 isRun = false;
             } else {
                 render.setStatePause();
+                System.out.println("pause----------------------------");
                 btn.setCompoundDrawablesWithIntrinsicBounds(imgPlay, null, null, null);
                 isRun = true;
             }

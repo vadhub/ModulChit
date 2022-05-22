@@ -7,16 +7,13 @@ import android.view.SurfaceView;
 
 import androidx.annotation.NonNull;
 
+import com.vad.modulchit.animation.common.ButtonIconChange;
 import com.vad.modulchit.animation.common.RenderSort;
 
 
 public class CustomViewSorted extends SurfaceView implements SurfaceHolder.Callback {
 
     private RenderSort renderSort;
-
-    public void setRenderSort(RenderSort renderSort) {
-        this.renderSort = renderSort;
-    }
 
     public RenderSort getRender() {
         return renderSort;
@@ -25,6 +22,7 @@ public class CustomViewSorted extends SurfaceView implements SurfaceHolder.Callb
     public CustomViewSorted(Context context, AttributeSet attrs) {
         super(context, attrs);
         getHolder().addCallback(this);
+        renderSort = new RenderSort(getHolder());
     }
 
     @Override

@@ -23,10 +23,12 @@ public class RenderSort implements RenderState {
     private StepRecorder recorder;
     private ButtonIconChange buttonIconChange;
     private StatusAnimation statusAnimation = StatusAnimation.STOP;
+    private Timer timer;
+    private TimerTaskDraw timerTaskDraw;
+    private int current;
 
     public RenderSort(SurfaceHolder mSurfaceHolder) {
         this.mSurfaceHolder = mSurfaceHolder;
-
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.setColor(Color.BLUE);
         paint.setStyle(Paint.Style.FILL);
@@ -60,66 +62,94 @@ public class RenderSort implements RenderState {
         float[] scales = scaling(arr);
 
         for (int i = 0; i < arr.length; i++) {
-            canvas.drawText(arr[i] + "", (float) (startDrawX - getStrokeWidth() * 0.5), startDrawY - scales[i] * getMaxHeight() + 10 + FONT_SIZE, paintFont);
+            canvas.drawText(arr[i] + "", startDrawX, startDrawY - scales[i] * getMaxHeight() + 10 + FONT_SIZE, paintFont);
             canvas.drawLine(startDrawX, startDrawY, startDrawX, startDrawY - scales[i] * getMaxHeight() + 20 + FONT_SIZE, paint);
             startDrawX = startDrawX + getStrokeWidth();
             paint.setColor(Color.BLUE);
         }
     }
 
-    public void stopAnimation() {
-        getButtonIconChange().setButtonStatus();
-        recorder = null;
-    }
-
-    public void draw(List<int[]> arr) {
-        Timer timer = new Timer();
-        timer.schedule(new TimerTaskDraw(arr), 0, 500);
+    public void draw(List<int[]> arr, int current) {
+        timer = new Timer();
+        timerTaskDraw = new TimerTaskDraw(arr, current);
+        timer.schedule(timerTaskDraw, 0, 500);
     }
 
     private class TimerTaskDraw extends TimerTask {
-        int i = 0;
-        List<int[]> arr;
+        private int current;
+        private List<int[]> arr;
 
-        public TimerTaskDraw(List<int[]> arr) {
+        public TimerTaskDraw(List<int[]> arr, int current) {
             this.arr = arr;
+            this.current = current;
         }
         @Override
         public void run() {
             Canvas canvas = mSurfaceHolder.lockCanvas();
             if (canvas != null) {
-                drawArray(canvas, arr.get(i));
+                drawArray(canvas, arr.get(current));
                 mSurfaceHolder.unlockCanvasAndPost(canvas);
-                if (i < arr.size()) {
-                    i++;
+
+                if (current < arr.size()-1) {
+                    current++;
                 } else {
+                    setStateStop();
                     cancel();
                 }
             }
+        }
+
+        public int getCurrent() {
+            return current;
+        }
+
+        public void setCurrent(int current) {
+            this.current = current;
         }
     }
 
     @Override
     public void setStateRun(StepRecorder stepRecorder) {
         statusAnimation = StatusAnimation.START;
-        draw(stepRecorder.getSteps());
+        current = 0;
+        draw(stepRecorder.getSteps(), current);
         setRecorder(stepRecorder);
     }
 
     @Override
     public void setStateStop() {
         statusAnimation = StatusAnimation.STOP;
-        stopAnimation();
+        buttonIconChange.setButtonStatus();
+        if (timer != null) {
+            timer.cancel();
+            timer = null;
+        }
+        current = 0;
+        recorder = null;
     }
 
     @Override
     public void setStatePause() {
         statusAnimation = StatusAnimation.PAUSE;
+        if (timerTaskDraw != null) {
+            current = timerTaskDraw.getCurrent();
+        }
+        if (timer != null) {
+            timer.cancel();
+        }
+
     }
 
     @Override
     public void setStateRestart() {
         statusAnimation = StatusAnimation.RESTART;
+        System.out.println(current+"restart -----------------------------");
+        draw(recorder.getSteps(), current);
+    }
+
+    @Override
+    public void setButtonChanged(ButtonIconChange buttonChanged) {
+        buttonIconChange = buttonChanged;
     }
 
     @Override
@@ -127,20 +157,12 @@ public class RenderSort implements RenderState {
         return statusAnimation;
     }
 
-    public StepRecorder getRecorder() {
-        return recorder;
+    public void setCurrent(int current) {
+        this.current = current;
     }
 
     public void setRecorder(StepRecorder recorder) {
         this.recorder = recorder;
-    }
-
-    public ButtonIconChange getButtonIconChange() {
-        return buttonIconChange;
-    }
-
-    public void setButtonIcon(ButtonIconChange buttonIconChange) {
-        this.buttonIconChange = buttonIconChange;
     }
 
     public int getStrokeWidth() {
