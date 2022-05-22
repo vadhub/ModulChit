@@ -10,10 +10,11 @@ Algorithms that are already in Google Play:
 In developing:
 - Binary search
 - Bubble sort
+- Insertion sort
+- Quiсk sort
 
 In the plans:
 - Traversal of the graph in breadth and depth
-- Quiсk sort
 - Heap sort
 - Comb sorting
 
