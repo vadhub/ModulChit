@@ -1,5 +1,6 @@
 package com.vad.modulchit.screens.sort.quick;
 
+import com.vad.modulchit.R;
 import com.vad.modulchit.models.sort.Sort;
 import com.vad.modulchit.models.sort.SortFactory;
 import com.vad.modulchit.models.sort.SortType;
@@ -14,6 +15,6 @@ public class FragmentQuickSort extends FragmentBubbleSort {
 
     @Override
     public int getTitle() {
-        return super.getTitle();
+        return R.string.quick_sort;
     }
 }
