@@ -8,25 +8,27 @@ import android.view.SurfaceHolder;
 import com.vad.modulchit.animation.StepRecorder;
 import com.vad.modulchit.models.AlgebraMod;
 
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class RenderSort implements RenderState {
 
-    private int maxHeight;
-    private int maxWith;
-    private int strokeWidth;
     private final static int FONT_SIZE = 20;
-    private final static int SHIFT = 10;
+    private final static int PADDING = 10;
 
     private final SurfaceHolder mSurfaceHolder;
-    private Paint paint;
-    private Paint paintFont;
+    private final Paint paint;
+    private final Paint paintFont;
     private StepRecorder recorder;
-    private boolean mRun = true;
     private ButtonIconChange buttonIconChange;
     private StatusAnimation statusAnimation = StatusAnimation.STOP;
+    private Timer timer;
+    private TimerTaskDraw timerTaskDraw;
+    private int current;
 
     public RenderSort(SurfaceHolder mSurfaceHolder) {
         this.mSurfaceHolder = mSurfaceHolder;
-
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.setColor(Color.BLUE);
         paint.setStyle(Paint.Style.FILL);
@@ -35,9 +37,6 @@ public class RenderSort implements RenderState {
         paintFont.setColor(Color.BLACK);
         paintFont.setStyle(Paint.Style.FILL);
         paintFont.setTextSize(FONT_SIZE);
-
-        Thread thread = new Thread(runnable);
-        thread.start();
     }
 
     public float[] scaling(int[] arr) {
@@ -56,65 +55,97 @@ public class RenderSort implements RenderState {
     public void drawArray(Canvas canvas, int[] arr) {
         canvas.drawColor(Color.WHITE);
         int startDrawY = getMaxHeight();
-        int startDrawX = SHIFT + getStrokeWidth() / 2;
+        int startDrawX = PADDING + getStrokeWidth() / 2;
 
-        paint.setStrokeWidth(getStrokeWidth() - SHIFT);
+        paint.setStrokeWidth(getStrokeWidth() - PADDING);
 
         float[] scales = scaling(arr);
 
         for (int i = 0; i < arr.length; i++) {
-            canvas.drawText(arr[i] + "", (float) (startDrawX - getStrokeWidth() * 0.5), startDrawY - scales[i] * getMaxHeight() + 10 + FONT_SIZE, paintFont);
+            canvas.drawText(arr[i] + "", startDrawX, startDrawY - scales[i] * getMaxHeight() + 10 + FONT_SIZE, paintFont);
             canvas.drawLine(startDrawX, startDrawY, startDrawX, startDrawY - scales[i] * getMaxHeight() + 20 + FONT_SIZE, paint);
             startDrawX = startDrawX + getStrokeWidth();
             paint.setColor(Color.BLUE);
         }
     }
 
-    Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            while (mRun) {
-                if (recorder != null && statusAnimation == StatusAnimation.START) {
-                    if (mSurfaceHolder != null) setStateStop();
-                }
-            }
-
-        }
-    };
-
-    public void stopAnimation() {
-        paint.setColor(Color.BLUE);
-        getButtonIconChange().setButtonStatus();
-        recorder = null;
+    public void draw(List<int[]> arr, int current) {
+        timer = new Timer();
+        timerTaskDraw = new TimerTaskDraw(arr, current);
+        timer.schedule(timerTaskDraw, 0, 500);
     }
 
-    public void draw(int[] arr) {
-        Canvas canvas = mSurfaceHolder.lockCanvas();
-        if (canvas != null) {
-            drawArray(canvas, arr);
-            mSurfaceHolder.unlockCanvasAndPost(canvas);
+    private class TimerTaskDraw extends TimerTask {
+        private int current;
+        private List<int[]> arr;
+
+        public TimerTaskDraw(List<int[]> arr, int current) {
+            this.arr = arr;
+            this.current = current;
         }
+        @Override
+        public void run() {
+            Canvas canvas = mSurfaceHolder.lockCanvas();
+            if (canvas != null) {
+                drawArray(canvas, arr.get(current));
+                mSurfaceHolder.unlockCanvasAndPost(canvas);
+
+                if (current < arr.size()-1) {
+                    current++;
+                } else {
+                    setStateStop();
+                    cancel();
+                }
+            }
+        }
+
+        public int getCurrent() {
+            return current;
+        }
+
     }
 
     @Override
-    public void setStateRun() {
+    public void setStateRun(StepRecorder stepRecorder) {
         statusAnimation = StatusAnimation.START;
+        current = 0;
+        draw(stepRecorder.getSteps(), current);
+        setRecorder(stepRecorder);
     }
 
     @Override
     public void setStateStop() {
         statusAnimation = StatusAnimation.STOP;
-        stopAnimation();
+        buttonIconChange.setButtonStatus();
+        if (timer != null) {
+            timer.cancel();
+            timer = null;
+        }
+        current = 0;
+        recorder = null;
     }
 
     @Override
     public void setStatePause() {
         statusAnimation = StatusAnimation.PAUSE;
+        if (timerTaskDraw != null) {
+            current = timerTaskDraw.getCurrent();
+        }
+        if (timer != null) {
+            timer.cancel();
+        }
+
     }
 
     @Override
     public void setStateRestart() {
         statusAnimation = StatusAnimation.RESTART;
+        draw(recorder.getSteps(), current);
+    }
+
+    @Override
+    public void setButtonChanged(ButtonIconChange buttonChanged) {
+        buttonIconChange = buttonChanged;
     }
 
     @Override
@@ -122,79 +153,20 @@ public class RenderSort implements RenderState {
         return statusAnimation;
     }
 
-    public Paint getPaint() {
-        return paint;
-    }
-
-    public void setPaint(Paint paint) {
-        this.paint = paint;
-    }
-
-    public SurfaceHolder getSurfaceHolder() {
-        return mSurfaceHolder;
-    }
-
-    public ButtonIconChange getButtonIconChange() {
-        return buttonIconChange;
-    }
-
-    public void setButtonIconChange(ButtonIconChange buttonIconChange) {
-        this.buttonIconChange = buttonIconChange;
-    }
-
-    public StatusAnimation getStatusAnimation() {
-        return statusAnimation;
-    }
-
-    public void setStatusAnimation(StatusAnimation statusAnimation) {
-        this.statusAnimation = statusAnimation;
-    }
-
-    public StepRecorder getSteps() {
-        return recorder;
-    }
-
-    public void setSteps(StepRecorder recorder) {
+    public void setRecorder(StepRecorder recorder) {
         this.recorder = recorder;
-    }
-
-    public ButtonIconChange getButtonIconChanged() {
-        return buttonIconChange;
-    }
-
-    public void setButtonIcon(ButtonIconChange buttonIconChange) {
-        this.buttonIconChange = buttonIconChange;
     }
 
     public int getStrokeWidth() {
         return getMaxWith() / (recorder.getSteps().get(0).length + 1);
     }
 
-    public void setStrokeWidth(int strokeWidth) {
-        this.strokeWidth = strokeWidth;
-    }
-
     public int getMaxWith() {
         return mSurfaceHolder.getSurfaceFrame().width();
-    }
-
-    public void setMaxWith(int maxWith) {
-        this.maxWith = maxWith;
     }
 
     public int getMaxHeight() {
         return mSurfaceHolder.getSurfaceFrame().height();
     }
 
-    public void setMaxHeight(int maxHeight) {
-        this.maxHeight = maxHeight;
-    }
-
-    public boolean isRun() {
-        return mRun;
-    }
-
-    public void setRun(boolean mRun) {
-        this.mRun = mRun;
-    }
 }

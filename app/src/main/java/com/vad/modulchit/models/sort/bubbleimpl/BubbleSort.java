@@ -1,14 +1,14 @@
 package com.vad.modulchit.models.sort.bubbleimpl;
 
 import com.vad.modulchit.animation.StepRecorder;
-import com.vad.modulchit.models.sort.SortArray;
+import com.vad.modulchit.models.sort.Sort;
 
-public class BubbleSort implements SortArray {
+public class BubbleSort implements Sort {
 
-    private StepRecorder stepRecorder;
+    private final StepRecorder stepRecorder;
 
-    public BubbleSort(StepRecorder stepRecorder) {
-        this.stepRecorder = stepRecorder;
+    public BubbleSort() {
+        stepRecorder = new StepRecorder();
     }
 
     @Override
@@ -25,10 +25,4 @@ public class BubbleSort implements SortArray {
         }
         return stepRecorder;
     }
-
-    protected void swap(Integer[] array, int ind1, int ind2) {
-
-    }
-
-
 }
