@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,42 +8,45 @@
     android:background="@color/white"
     tools:context=".screens.sort.bubble.FragmentBubbleSort">
 
-
-    <Button
-        android:id="@+id/btnSort"
-        android:text="calc"
-        android:drawableLeft="@drawable/ic_baseline_play_arrow_24"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
-
-    <EditText
-        android:id="@+id/editTextArrSort"
-        android:textSize="20sp"
-        android:hint="9, 8, 2, 1, 4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnSort"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-
-    <com.vad.modulchit.screens.sort.CustomViewSorted
-        android:id="@+id/bubbleSort"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.7"
-        app:layout_constraintTop_toBottomOf="@id/editTextArrSort"
-        />
+        android:layout_height="0dp">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/logRecycler"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/bubbleSort"
-        />
+        <Button
+            android:id="@+id/btnSort"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_baseline_play_arrow_24"
+            android:text="calc"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/editTextArrSort"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="9, 8, 2, 1, 4"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnSort"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.vad.modulchit.screens.sort.CustomViewSorted
+            android:id="@+id/bubbleSort"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.85"
+            app:layout_constraintTop_toBottomOf="@id/editTextArrSort" />
+
+        <TextView
+            android:id="@+id/log"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:scrollbars="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/bubbleSort" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
