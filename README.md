@@ -11,6 +11,7 @@ In developing:
 - Binary search
 - Bubble sort
 - Insertion sort
+- Shell sort
 - Quiсk sort
 
 In the plans:
