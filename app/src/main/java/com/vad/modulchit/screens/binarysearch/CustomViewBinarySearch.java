@@ -89,12 +89,6 @@ public class CustomViewBinarySearch extends View {
         float shiftX = 0;
         float len = 0;
 
-//        for (int i : binarySearchModels.get(0).getArrTemp()) {
-//            if(Math.ceil(Math.log10(i)) == 2){
-//                width = 100;
-//                break;
-//            }
-//        }
         int length = binarySearchModels.get(0).getArrTemp().length;
         float xStart = (float) (length*getMaxWidth()/2)+STROKE_WITH;
 

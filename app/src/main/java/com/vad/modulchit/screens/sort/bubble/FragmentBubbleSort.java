@@ -13,11 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vad.modulchit.R;
-import com.vad.modulchit.animation.common.ButtonIconChange;
 import com.vad.modulchit.animation.common.RenderState;
+import com.vad.modulchit.animation.common.ScreenSort;
 import com.vad.modulchit.animation.common.StatusAnimation;
 import com.vad.modulchit.models.Parser;
 import com.vad.modulchit.models.sort.Sort;
@@ -26,7 +27,7 @@ import com.vad.modulchit.models.sort.SortType;
 import com.vad.modulchit.screens.contract.HasCustomTitle;
 import com.vad.modulchit.screens.sort.CustomViewSorted;
 
-public class FragmentBubbleSort extends Fragment implements HasCustomTitle, ButtonIconChange {
+public class FragmentBubbleSort extends Fragment implements HasCustomTitle, ScreenSort {
 
     protected CustomViewSorted customView;
     private EditText editText;
@@ -36,6 +37,7 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Butt
     private Drawable imgPause;
     private RenderState render;
     private Sort sort;
+    private TextView log;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,6 +51,7 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Butt
         customView = (CustomViewSorted) v.findViewById(R.id.bubbleSort);
         editText = (EditText) v.findViewById(R.id.editTextArrSort);
         btn = (Button) v.findViewById(R.id.btnSort);
+        log = (TextView) v.findViewById(R.id.log);
 
         customView.setZOrderOnTop(true);
         customView.getHolder().setFormat(PixelFormat.TRANSLUCENT);
@@ -59,7 +62,7 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Butt
         sort = getSort();
 
         render = customView.getRender();
-        render.setButtonChanged(this);
+        render.setScreenSort(this);
 
         btn.setOnClickListener(v1 -> {
             if (editText.getText().toString().equals("")) {
@@ -107,7 +110,7 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Butt
     }
 
     @Override
-    public void setButtonStatus() {
+    public void setButtonState() {
         if (isAdded()) {
             requireActivity().runOnUiThread(() -> {
                 btn.setCompoundDrawablesWithIntrinsicBounds(imgPlay, null, null, null);
@@ -116,4 +119,8 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Butt
         isRun = true;
     }
 
+    @Override
+    public void write(String text) {
+        log.setText(text);
+    }
 }
