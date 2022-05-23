@@ -2,6 +2,7 @@ package com.vad.modulchit.models.sort;
 
 import com.vad.modulchit.models.sort.bubbleimpl.BubbleSort;
 import com.vad.modulchit.models.sort.insertion.InsertionSort;
+import com.vad.modulchit.models.sort.quickimpl.QuickSort;
 import com.vad.modulchit.models.sort.shellimpl.ShellSort;
 
 public class SortFactory {
@@ -19,6 +20,8 @@ public class SortFactory {
             case INSERT_SORT:
                 sort = new InsertionSort();
                 break;
+            case QUICK_SORT:
+                sort = new QuickSort();
         }
 
         return sort;

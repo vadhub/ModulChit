@@ -8,6 +8,7 @@ import android.view.SurfaceHolder;
 import com.vad.modulchit.animation.StepRecorder;
 import com.vad.modulchit.models.AlgebraMod;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -21,7 +22,7 @@ public class RenderSort implements RenderState {
     private final Paint paint;
     private final Paint paintFont;
     private StepRecorder recorder;
-    private ButtonIconChange buttonIconChange;
+    private ScreenSort screenSort;
     private StatusAnimation statusAnimation = StatusAnimation.STOP;
     private Timer timer;
     private TimerTaskDraw timerTaskDraw;
@@ -88,6 +89,7 @@ public class RenderSort implements RenderState {
             Canvas canvas = mSurfaceHolder.lockCanvas();
             if (canvas != null) {
                 drawArray(canvas, arr.get(current));
+                screenSort.write(Arrays.toString(arr.get(current))+"\n");
                 mSurfaceHolder.unlockCanvasAndPost(canvas);
 
                 if (current < arr.size()-1) {
@@ -109,6 +111,7 @@ public class RenderSort implements RenderState {
     public void setStateRun(StepRecorder stepRecorder) {
         statusAnimation = StatusAnimation.START;
         current = 0;
+        screenSort.write("");
         draw(stepRecorder.getSteps(), current);
         setRecorder(stepRecorder);
     }
@@ -116,7 +119,7 @@ public class RenderSort implements RenderState {
     @Override
     public void setStateStop() {
         statusAnimation = StatusAnimation.STOP;
-        buttonIconChange.setButtonStatus();
+        screenSort.setButtonState();
         if (timer != null) {
             timer.cancel();
             timer = null;
@@ -134,7 +137,6 @@ public class RenderSort implements RenderState {
         if (timer != null) {
             timer.cancel();
         }
-
     }
 
     @Override
@@ -144,8 +146,8 @@ public class RenderSort implements RenderState {
     }
 
     @Override
-    public void setButtonChanged(ButtonIconChange buttonChanged) {
-        buttonIconChange = buttonChanged;
+    public void setScreenSort(ScreenSort screenSort) {
+        this.screenSort = screenSort;
     }
 
     @Override

@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class Parser {
     public static int[] parseNumber(String str) {
-        Matcher matcher = Pattern.compile("\\d+").matcher(str);
+        Matcher matcher = Pattern.compile("\\d+").matcher(str); //([0-9]*\.?[0-9]+)
         List<String> list = new ArrayList<>();
         while (matcher.find()) {
             list.add(matcher.group());

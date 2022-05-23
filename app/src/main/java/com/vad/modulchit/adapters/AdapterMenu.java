@@ -15,7 +15,7 @@ import java.util.List;
 
 public class AdapterMenu extends RecyclerView.Adapter<AdapterMenu.MyViewHolder> {
 
-    private List<String> namesMenu;
+    private List<String> strings;
 
     private OnItemMenuClickListener clickListener;
 
@@ -27,19 +27,19 @@ public class AdapterMenu extends RecyclerView.Adapter<AdapterMenu.MyViewHolder> 
         void onClickMenu(View view, int position);
     }
 
-    public List<String> getNamesMenu() {
-        return namesMenu;
+    public List<String> getStrings() {
+        return strings;
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    public void setNamesMenu(List<String> namesMenu) {
-        this.namesMenu = namesMenu;
+    public void setStrings(List<String> strings) {
+        this.strings = strings;
         notifyDataSetChanged();
     }
 
     @Override
     public int getItemCount() {
-        return getNamesMenu().size();
+        return getStrings().size();
     }
 
     @NonNull
@@ -51,7 +51,7 @@ public class AdapterMenu extends RecyclerView.Adapter<AdapterMenu.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.menuName.setText(namesMenu.get(position));
+        holder.menuName.setText(strings.get(position));
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
