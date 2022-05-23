@@ -121,6 +121,10 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Scre
 
     @Override
     public void write(String text) {
-        log.setText(text);
+        if (isAdded()) {
+            requireActivity().runOnUiThread(() -> {
+                log.setText(text);
+            });
+        }
     }
 }
