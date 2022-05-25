@@ -38,6 +38,7 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Scre
     private RenderState render;
     private Sort sort;
     private TextView log;
+    private StringBuilder logs;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,6 +53,7 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Scre
         editText = (EditText) v.findViewById(R.id.editTextArrSort);
         btn = (Button) v.findViewById(R.id.btnSort);
         log = (TextView) v.findViewById(R.id.log);
+        logs = new StringBuilder();
 
         customView.setZOrderOnTop(true);
         customView.getHolder().setFormat(PixelFormat.TRANSLUCENT);
@@ -121,9 +123,10 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Scre
 
     @Override
     public void write(String text) {
+        logs.append(text);
         if (isAdded()) {
             requireActivity().runOnUiThread(() -> {
-                log.setText(text);
+                log.setText(logs.toString());
             });
         }
     }

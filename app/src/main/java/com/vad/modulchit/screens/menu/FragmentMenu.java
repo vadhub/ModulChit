@@ -24,7 +24,6 @@ import com.vad.modulchit.screens.sort.insert.FragmentInsertSort;
 import com.vad.modulchit.screens.sort.quick.FragmentQuickSort;
 import com.vad.modulchit.screens.sort.shell.FragmentShellSort;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -46,7 +45,7 @@ public class FragmentMenu extends Fragment implements HasCustomTitle {
 
         List<String> menuItem = Arrays.asList(getResources().getStringArray(R.array.titleScreen));
 
-        adapter.setNamesMenu(menuItem);
+        adapter.setStrings(menuItem);
         mRecyclerView.setAdapter(adapter);
 
         adapter.setClickListener((view, id) -> {
