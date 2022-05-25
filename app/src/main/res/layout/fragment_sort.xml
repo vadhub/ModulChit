@@ -33,11 +33,11 @@
 
 
         <com.vad.modulchit.screens.sort.CustomViewSorted
-            android:id="@+id/bubbleSort"
+            android:id="@+id/customViewSort"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintHeight_percent="0.85"
-            app:layout_constraintTop_toBottomOf="@id/editTextArrSort" />
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toBottomOf="@id/editTextArrSort"
+            app:layout_constraintBottom_toTopOf="@id/log"/>
 
         <TextView
             android:id="@+id/log"
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:scrollbars="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/bubbleSort" />
+            app:layout_constraintBottom_toBottomOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
