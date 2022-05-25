@@ -1,43 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".screens.sort.bubble.FragmentBubbleSort">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
 
-        <Button
-            android:id="@+id/btnSort"
-            android:layout_width="wrap_content"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:id="@+id/linearData"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_baseline_play_arrow_24"
-            android:text="calc"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:orientation="horizontal"
+            android:layout_weight="0.1">
 
-        <EditText
-            android:id="@+id/editTextArrSort"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="9, 8, 2, 1, 4"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btnSort"
-            app:layout_constraintTop_toTopOf="parent" />
+            <Button
+                android:id="@+id/btnSort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_baseline_play_arrow_24"
+                android:text="calc"
+                />
 
+            <EditText
+                android:id="@+id/editTextArrSort"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="9 8 2 1 4"
+                android:textSize="20sp"
+                />
+        </LinearLayout>
 
         <com.vad.modulchit.screens.sort.CustomViewSorted
             android:id="@+id/customViewSort"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintTop_toBottomOf="@id/editTextArrSort"
-            app:layout_constraintBottom_toTopOf="@id/log"/>
+            android:layout_weight="0.7"/>
 
         <TextView
             android:id="@+id/log"
@@ -45,8 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:scrollbars="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            android:layout_weight="0.2"/>
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </ScrollView>
