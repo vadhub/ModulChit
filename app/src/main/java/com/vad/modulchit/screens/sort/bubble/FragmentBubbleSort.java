@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import com.vad.modulchit.R;
 import com.vad.modulchit.animation.common.RenderState;
-import com.vad.modulchit.animation.common.ScreenSort;
+import com.vad.modulchit.screens.sort.ScreenSort;
 import com.vad.modulchit.animation.common.StatusAnimation;
 import com.vad.modulchit.models.Parser;
 import com.vad.modulchit.models.sort.Sort;
@@ -49,7 +49,7 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Scre
     @Override
     public void onViewCreated(@NonNull View v, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(v, savedInstanceState);
-        customView = (CustomViewSorted) v.findViewById(R.id.bubbleSort);
+        customView = (CustomViewSorted) v.findViewById(R.id.customViewSort);
         editText = (EditText) v.findViewById(R.id.editTextArrSort);
         btn = (Button) v.findViewById(R.id.btnSort);
         log = (TextView) v.findViewById(R.id.log);
