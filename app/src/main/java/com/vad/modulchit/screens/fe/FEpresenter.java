@@ -25,11 +25,12 @@ public class FEpresenter {
 
     public void loadListFE(int a, int m, int n){
 
-        disposable = Observable.just(algebraMod)
-                .subscribeOn(Schedulers.io())
-                .map(o -> o.feGraph(a, m, n))
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(tableNumberFES -> listFEView.showData(tableNumberFES));
+//TODO        disposable = Observable.just(algebraMod)
+//                .subscribeOn(Schedulers.io())
+//                .map(o -> o.feGraph(a, m, n))
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(tableNumberFES -> listFEView.showData());
+
 
         compositeDisposable.add(disposable);
 

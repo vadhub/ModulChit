@@ -7,6 +7,8 @@ import com.vad.modulchit.pojos.TableNumberNOK;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.rxjava3.core.Observable;
+
 public class AlgebraMod {
 
     private StringExtraData extraData = new StringExtraData();
@@ -160,7 +162,7 @@ public class AlgebraMod {
         return tmp;
     }
 
-    public List<TableNumberFE> feGraph(int a, int m, int n){
+    public Observable<List<TableNumberFE>> feGraph(int a, int m, int n){
 
         List<TableNumberFE> tableNumberFES = new ArrayList<>();
         TableNumberFE tableNumberFE;
@@ -191,9 +193,8 @@ public class AlgebraMod {
         }
 
         tableNumberFE = new TableNumberFE(-1, -1, -1, -1,-1, "");
-        tableNumberFES.add(tableNumberFE);
-
-        return tableNumberFES;
+        tableNumberFES.add(tableNumberFE);;
+        return Observable.just(tableNumberFES);
     }
 
     public static int max(int[] arr) {

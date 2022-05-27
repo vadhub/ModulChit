@@ -7,6 +7,10 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
 public class RSAmod {
 
     private AlgebraMod algebraMod = new AlgebraMod();
@@ -140,9 +144,13 @@ public class RSAmod {
     public String encrypting(int e, int n, List<Integer> numberCodes){
         List<Integer> clasters = getClasters(numberCodes, n);
         List<String> result = new ArrayList<>();
-        
+
         for (int num: clasters) {
-            result.add(algebraMod.feGraph(num, e, n).get(algebraMod.feGraph(num, e, n).size()-2).getP()+"");
+            algebraMod.feGraph(num, e, n)
+                    .subscribeOn(Schedulers.computation())
+                    .doOnNext(p -> result.add(p.get(p.size()-2).getP()+""))
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe();
         }
 
         return result.toString();
@@ -150,31 +158,27 @@ public class RSAmod {
 
     public List<TableNumberFE> encryptingFE(int e, int n, List<Integer> numberCodes){
         List<Integer> clasters = getClasters(numberCodes, n);
+        return getFE(e, n, clasters);
+    }
+
+    public List<TableNumberFE> getFE(int m, int n, List<Integer> numbers) {
         List<List<TableNumberFE>> temp = new ArrayList<>();
         List<TableNumberFE> result = new ArrayList<>();
 
-        for(int num: clasters){
-            temp.add(algebraMod.feGraph(num, e, n));
+        for(int num: numbers){
+            algebraMod.feGraph(num, m, n)
+                    .subscribeOn(Schedulers.computation())
+                    .doOnNext(temp::add)
+                    .subscribe();
         }
 
-        //from double list to one
         temp.forEach(result::addAll);
-
         return result;
     }
 
     public List<TableNumberFE> decryptingFE(int d, int n, String strEncrypt){
         List<Integer> numberForDecrypt = getNumberCodes(strEncrypt);
-        List<List<TableNumberFE>> temp = new ArrayList<>();
-        List<TableNumberFE> result = new ArrayList<>();
-
-        for (Integer i : numberForDecrypt) {
-            temp.add(algebraMod.feGraph(i, d, n));
-        }
-
-        temp.forEach(result::addAll);
-
-        return result;
+        return getFE(d, n, numberForDecrypt);
     }
 
     private List<Integer> getNumberCodes(String strCode){
@@ -197,12 +201,17 @@ public class RSAmod {
         List<Integer> tempNumbersCode = new ArrayList<>();
         RSAshiphr rsAshiphr = new RSAshiphr();
 
-        int temp = 0;
         StringBuilder strCodes = new StringBuilder();
         for (Integer i: numberCodes) {
-            temp = algebraMod.feGraph(i, d, n).get(algebraMod.feGraph(i, d, n).size() - 2).getP();
-            strCodes.append(temp);
-            tempNumbersCode.add(temp);
+            algebraMod.feGraph(i, d, n)
+                    .subscribeOn(Schedulers.computation())
+                    .doOnNext(p -> {
+                        int t = p.get(p.size() - 2).getP();
+                        strCodes.append(t);
+                        tempNumbersCode.add(t);
+                    })
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe();
         }
 
         return tempNumbersCode+"\n"+getNumberAlphavite(alphaviteCodes, strCodes.toString(), rsAshiphr);
