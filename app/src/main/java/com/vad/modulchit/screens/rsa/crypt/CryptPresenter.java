@@ -1,9 +1,5 @@
 package com.vad.modulchit.screens.rsa.crypt;
 
-
-import android.os.Handler;
-import android.os.Looper;
-
 import com.vad.modulchit.R;
 import com.vad.modulchit.models.RSAmod;
 import com.vad.modulchit.models.RSAshiphr;
@@ -11,12 +7,20 @@ import com.vad.modulchit.models.RSAshiphr;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
 public class CryptPresenter {
 
     private CryptView view;
     private volatile List<Integer> numbersCodesForCrypt = new ArrayList<>();
     private RSAshiphr cypher = new RSAshiphr();
     private RSAmod rsaMod = new RSAmod();
+    private CompositeDisposable compositeDisposable;
+    private Disposable disposable;
 
     public CryptPresenter(CryptView view) {
         this.view = view;
@@ -55,16 +59,16 @@ public class CryptPresenter {
                 int finalE = e;
                 int finalN = n;
 
-                new Thread(() -> {
-                    numbersCodesForCrypt = encrypt(alphaviteCodes, textToEncrypt);
-
-                    Handler handler = new Handler(Looper.getMainLooper());
-                    handler.post(() -> {
-                        view.showCalculating(rsaMod.encryptingFE(finalE, finalN, numbersCodesForCrypt));
-                        view.showCalculatingExtra(rsaMod.encrypting(finalE, finalN, numbersCodesForCrypt)+"\n");
-                    });
-
-                }).start();
+                numbersCodesForCrypt = encrypt(alphaviteCodes, textToEncrypt);
+                disposable = Observable.just(rsaMod)
+                        .subscribeOn(Schedulers.computation())
+                        .map(rsa -> rsa.encrypting(finalE, finalN, numbersCodesForCrypt))
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(rsa -> {
+                            view.showCalculating(rsa);
+                            view.showCalculatingExtra(rsa.toString()+"\n");
+                        });
+                compositeDisposable.add(disposable);
                 numbersCodesForCrypt=null;
 
             }else{
@@ -75,5 +79,11 @@ public class CryptPresenter {
             view.showError(R.string.warning_enter_letter);
         }
 
+    }
+
+    public void disposableDispose() {
+        if (compositeDisposable!=null) {
+            compositeDisposable.dispose();
+        }
     }
 }

@@ -42,7 +42,7 @@ public class FragmentRSAcrypt extends Fragment implements CryptView, HasCustomTi
 
     private int n;
     private List<Integer> exponents;
-    private List<Integer> alphaviteCodes;
+    private List<Integer> alphabetCodes;
 
     private CryptPresenter cryptPresenter;
     private CardView cardResultCrypt;
@@ -50,13 +50,13 @@ public class FragmentRSAcrypt extends Fragment implements CryptView, HasCustomTi
 
     private View includeFeCrypt;
 
-    private static final String ARG_ALPAVITE_LIST = "alphaviteCodes";
+    private static final String ARG_ALPHABET = "alphaviteCodes";
     private static final String ARG_N_INT = "n_int";
     private static final String ARG_EXPONENTS = "exponents";
 
     public static FragmentRSAcrypt newInstance(List<Integer> alphaviteCodes, int n, List<Integer> exponents) {
         Bundle args = new Bundle();
-        args.putIntegerArrayList(ARG_ALPAVITE_LIST, (ArrayList<Integer>) alphaviteCodes);
+        args.putIntegerArrayList(ARG_ALPHABET, (ArrayList<Integer>) alphaviteCodes);
         args.putInt(ARG_N_INT, n);
         args.putIntegerArrayList(ARG_EXPONENTS, (ArrayList<Integer>) exponents);
         FragmentRSAcrypt fragmentRSAcrypt = new FragmentRSAcrypt();
@@ -67,7 +67,7 @@ public class FragmentRSAcrypt extends Fragment implements CryptView, HasCustomTi
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        alphaviteCodes = getArguments().getIntegerArrayList(ARG_ALPAVITE_LIST);
+        alphabetCodes = getArguments().getIntegerArrayList(ARG_ALPHABET);
         n = requireArguments().getInt(ARG_N_INT);
         exponents = requireArguments().getIntegerArrayList(ARG_EXPONENTS);
     }
@@ -109,7 +109,7 @@ public class FragmentRSAcrypt extends Fragment implements CryptView, HasCustomTi
             String eStr = editTextE.getText().toString();
             String nStr = editTextN.getText().toString();
             String textToEncrypt = enterTextToCrypt.getText().toString();
-            cryptPresenter.result(alphaviteCodes, textToEncrypt, eStr, nStr);
+            cryptPresenter.result(alphabetCodes, textToEncrypt, eStr, nStr);
             cardResultCrypt.setVisibility(View.VISIBLE);
             cardIncludeFe.setVisibility(View.VISIBLE);
         }
@@ -147,5 +147,11 @@ public class FragmentRSAcrypt extends Fragment implements CryptView, HasCustomTi
         return new CustomActionFragment(R.drawable.ic_baseline_info_24,() -> {
             ((Navigator) requireActivity()).startFragment(new FragmentCryptExpl());
         });
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        cryptPresenter.disposableDispose();
     }
 }
