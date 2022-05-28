@@ -5,6 +5,7 @@ import com.vad.modulchit.models.RSAmod;
 import com.vad.modulchit.models.RSAshiphr;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -61,14 +62,20 @@ public class CryptPresenter {
                 int finalE = e;
                 int finalN = n;
 
-                numbersCodesForCrypt = encrypt(alphaviteCodes, textToEncrypt);
                 disposable = Observable.just(rsaMod)
                         .subscribeOn(Schedulers.computation())
-                        .map(rsa -> rsa.encrypting(finalE, finalN, numbersCodesForCrypt))
+                        .map(rsa -> {
+                            numbersCodesForCrypt = encrypt(alphaviteCodes, textToEncrypt);
+                            return rsa.encrypting(finalE, finalN, numbersCodesForCrypt);
+                        })
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(rsa -> {
-                            view.showCalculating(rsa);
-                            view.showCalculatingExtra(rsa.toString()+"\n");
+                        .subscribe(list -> {
+                            view.showCalculating(list);
+                            List<Integer> p = new ArrayList<>();
+                            list.stream()
+                                    .filter(it -> it.getP() > -1)
+                                    .forEach(it -> p.add(it.getP()));
+                            view.showCalculatingExtra(Arrays.toString(p.toArray())+"\n");
                         });
                 compositeDisposable.add(disposable);
                 numbersCodesForCrypt=null;
