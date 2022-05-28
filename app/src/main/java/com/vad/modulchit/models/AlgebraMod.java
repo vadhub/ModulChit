@@ -162,7 +162,7 @@ public class AlgebraMod {
         return tmp;
     }
 
-    public Observable<List<TableNumberFE>> feGraph(int a, int m, int n){
+    public List<TableNumberFE> feGraph(int a, int m, int n){
 
         List<TableNumberFE> tableNumberFES = new ArrayList<>();
         TableNumberFE tableNumberFE;
@@ -194,7 +194,7 @@ public class AlgebraMod {
 
         tableNumberFE = new TableNumberFE(-1, -1, -1, -1,-1, "");
         tableNumberFES.add(tableNumberFE);;
-        return Observable.just(tableNumberFES);
+        return tableNumberFES;
     }
 
     public static int max(int[] arr) {

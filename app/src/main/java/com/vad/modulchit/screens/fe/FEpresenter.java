@@ -14,7 +14,6 @@ public class FEpresenter {
     private AlgebraMod algebraMod;
     private ListFEView listFEView;
     private CompositeDisposable compositeDisposable;
-    private Disposable disposable;
 
     public FEpresenter(ListFEView listFEView) {
         this.listFEView = listFEView;
@@ -25,10 +24,11 @@ public class FEpresenter {
 
     public void loadListFE(int a, int m, int n){
 
-        disposable = algebraMod.feGraph(a, m, n)
+        Disposable disposable = Observable.just(algebraMod)
                 .subscribeOn(Schedulers.computation())
+                .map(alm -> alm.feGraph(a, m, n))
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(tableNumberFES -> listFEView.showData(tableNumberFES));
+                .subscribe(listFEView::showData);
 
         compositeDisposable.add(disposable);
 

@@ -166,10 +166,7 @@ public class RSAmod {
         List<TableNumberFE> result = new ArrayList<>();
 
         for(int num: numbers){
-            algebraMod.feGraph(num, m, n)
-                    .subscribeOn(Schedulers.computation())
-                    .doOnNext(temp::add)
-                    .subscribe();
+            temp.add(algebraMod.feGraph(num, m, n));
         }
 
         temp.forEach(result::addAll);
@@ -196,35 +193,31 @@ public class RSAmod {
         return numberCodes;
     }
 
-    public String decrypting(List<Integer> alphaviteCodes, int d, int n, String strCode){
+    public String decrypting(List<Integer> alphabetCodes, int d, int n, String strCode){
         List<Integer> numberCodes = getNumberCodes(strCode);
         List<Integer> tempNumbersCode = new ArrayList<>();
+        List<TableNumberFE> tableNumberFEs = new ArrayList<>();
         RSAshiphr rsAshiphr = new RSAshiphr();
 
         StringBuilder strCodes = new StringBuilder();
         for (Integer i: numberCodes) {
-            algebraMod.feGraph(i, d, n)
-                    .subscribeOn(Schedulers.computation())
-                    .doOnNext(p -> {
-                        int t = p.get(p.size() - 2).getP();
-                        strCodes.append(t);
-                        tempNumbersCode.add(t);
-                    })
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe();
+            tableNumberFEs.addAll(algebraMod.feGraph(i, d, n));
+            int t = tableNumberFEs.get(tableNumberFEs.size() - 2).getP();
+            strCodes.append(t);
+            tempNumbersCode.add(t);
         }
 
-        return tempNumbersCode+"\n"+getNumberAlphavite(alphaviteCodes, strCodes.toString(), rsAshiphr);
+        return tempNumbersCode+"\n"+getNumberAlphabet(alphabetCodes, strCodes.toString(), rsAshiphr);
     }
 
-    private String getNumberAlphavite(List<Integer> alphaviteCodes, String strCode, RSAshiphr rsAshiphr){
+    private String getNumberAlphabet(List<Integer> alphabetCodes, String strCode, RSAshiphr rsAshiphr){
         String temp = "";
         StringBuilder str = new StringBuilder();
         for(int i = 0; i<strCode.length();i++){
             temp += strCode.charAt(i);
             try {
-                if(alphaviteCodes.contains(Integer.parseInt(temp))){
-                    str.append(rsAshiphr.getAlphabyteEN().get(alphaviteCodes.indexOf(Integer.parseInt(temp))));
+                if(alphabetCodes.contains(Integer.parseInt(temp))){
+                    str.append(rsAshiphr.getAlphabyteEN().get(alphabetCodes.indexOf(Integer.parseInt(temp))));
                     temp="";
                 }
             }catch (NumberFormatException e){

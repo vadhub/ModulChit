@@ -16,7 +16,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class CryptPresenter {
 
     private CryptView view;
-    private volatile List<Integer> numbersCodesForCrypt = new ArrayList<>();
+    private List<Integer> numbersCodesForCrypt;
     private RSAshiphr cypher = new RSAshiphr();
     private RSAmod rsaMod = new RSAmod();
     private CompositeDisposable compositeDisposable;
@@ -24,6 +24,8 @@ public class CryptPresenter {
 
     public CryptPresenter(CryptView view) {
         this.view = view;
+        compositeDisposable = new CompositeDisposable();
+        numbersCodesForCrypt = new ArrayList<>();
     }
 
     private List<Integer> encrypt(List<Integer> alphaviteCodes, String textToEncrypt){
