@@ -1,13 +1,13 @@
 package com.vad.modulchit.models;
 
+import android.util.Pair;
+
 import com.vad.modulchit.pojos.TableNumberFE;
 import com.vad.modulchit.pojos.TableNumberGCDe;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 public class RSAmod {
@@ -119,30 +119,33 @@ public class RSAmod {
 //        return result.toString();
 //    }
 
-    public List<TableNumberFE> encrypting(int e, int n, List<Integer> numberCodes){
+    public Pair<List<TableNumberFE>, List<Integer>> encrypting(int e, int n, List<Integer> numberCodes){
         List<Integer> clasters = getClasters(numberCodes, n);
         return getFE(e, n, clasters);
     }
 
-    public List<TableNumberFE> decryptingFE(int d, int n, String strEncrypt){
-        List<Integer> numberForDecrypt = Parser.parseToList(strEncrypt);
+    public Pair<List<TableNumberFE>, List<Integer>> decryptingFE(int d, int n, String strEncrypt){
+        List<Integer> numberForDecrypt = Parser.parseToIntList(strEncrypt);
         return getFE(d, n, numberForDecrypt);
     }
 
-    public List<TableNumberFE> getFE(int m, int n, List<Integer> numbers) {
+    public Pair<List<TableNumberFE>, List<Integer>> getFE(int m, int n, List<Integer> numbers) {
         List<List<TableNumberFE>> temp = new ArrayList<>();
-        List<TableNumberFE> result = new ArrayList<>();
+        List<TableNumberFE> listOfStep = new ArrayList<>();
+        List<Integer> listOfP = new ArrayList<>();
 
         for(int num: numbers){
-            temp.add(algebraMod.feGraph(num, m, n));
+            List<TableNumberFE> tableNumberFE = algebraMod.feGraph(num, m, n);
+            temp.add(tableNumberFE);
+            listOfP.add(tableNumberFE.get(tableNumberFE.size()-2).getP());
         }
 
-        temp.forEach(result::addAll);
-        return result;
+        temp.forEach(listOfStep::addAll);
+        return new Pair<>(listOfStep, listOfP);
     }
 
     public String decrypting(List<Integer> alphabetCodes, int d, int n, String strCode){
-        List<Integer> numberCodes = Parser.parseToList(strCode);
+        List<Integer> numberCodes = Parser.parseToIntList(strCode);
         List<Integer> tempNumbersCode = new ArrayList<>();
         List<TableNumberFE> tableNumberFEs = new ArrayList<>();
         RSAshiphr rsAshiphr = new RSAshiphr();

@@ -45,7 +45,7 @@ public class DecryptPresenter {
                 });
             }).start();
 
-            view.showCalculating(rsaMod.decryptingFE(finalDInt, finalNInt, enterCodeDecrypt));
+            view.showCalculating(rsaMod.decryptingFE(finalDInt, finalNInt, enterCodeDecrypt).first);
             view.showCalculatingExtra(algebraMod.gcdGraph(eller, exponent));
         }else{
             view.showError(R.string.warning_enter_text);

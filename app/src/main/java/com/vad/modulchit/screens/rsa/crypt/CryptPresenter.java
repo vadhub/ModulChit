@@ -27,9 +27,9 @@ public class CryptPresenter {
         cypher = new RSAshiphr();
         AlgebraMod algebraMod = new AlgebraMod();
         rsaMod = new RSAmod(algebraMod);
-        this.view = view;
         compositeDisposable = new CompositeDisposable();
         numbersCodesForCrypt = new ArrayList<>();
+        this.view = view;
     }
 
     private List<Integer> encrypt(List<Integer> alphaviteCodes, String textToEncrypt){
@@ -73,12 +73,9 @@ public class CryptPresenter {
                         })
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(list -> {
-                            view.showCalculating(list);
-                            List<Integer> p = new ArrayList<>();
-                            list.stream()
-                                    .filter(it -> it.getP() > -1)
-                                    .forEach(it -> p.add(it.getP()));
-                            view.showCalculatingExtra(Arrays.toString(p.toArray()) + "\n");
+                            view.showCalculating(list.first);
+
+                            view.showCalculatingExtra(Arrays.toString(list.second.toArray()) + "\n");
                         });
                 compositeDisposable.add(disposable);
                 numbersCodesForCrypt=null;
