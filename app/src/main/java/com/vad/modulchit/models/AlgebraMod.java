@@ -5,13 +5,16 @@ import com.vad.modulchit.pojos.TableNumberGCDe;
 import com.vad.modulchit.pojos.TableNumberNOK;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
-
-import io.reactivex.rxjava3.core.Observable;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 public class AlgebraMod {
 
-    private StringExtraData extraData = new StringExtraData();
+    private final StringExtraData extraData = new StringExtraData();
 
     public static int gcd(int a, int b) {
         while (b !=0) {
@@ -20,10 +23,6 @@ public class AlgebraMod {
             b = tmp;
         }
         return a;
-    }
-
-    public static int nok(int a, int b){
-        return (a*b)/gcd(a,b);
     }
 
     public static int mod(int a, int b){
@@ -76,8 +75,6 @@ public class AlgebraMod {
 
             aTemp = tableNumberGCDe.getB();
             bTemp = tableNumberGCDe.getR();
-
-//            Log.i("gcdGraph", "gcdGraph: "+aTemp+" "+bTemp);
 
             extra = extraData.extraGCDE(aTemp, bTemp, tmpQ, tmpR, x1, x2, y1, y2);
 
@@ -135,33 +132,6 @@ public class AlgebraMod {
         return tempTableNumberNOKs;
     }
 
-    public String toBinary(int a){
-        int b;
-        String temp = "";
-        while(a !=0){
-            b = a%2;
-            temp = b + temp;
-            a = a/2;
-        }
-        return temp;
-    }
-
-    public List<Integer> getClasterBinary(String binary){
-        char[] chars = binary.toCharArray();
-        List<Integer> tmp = new ArrayList<>();
-
-        int mult = 1;
-
-        for(int i  = binary.length()-1; i >=0; i--){
-            if(chars[i]=='1'){
-                tmp.add(mult);
-            }
-            mult*=2;
-        }
-
-        return tmp;
-    }
-
     public List<TableNumberFE> feGraph(int a, int m, int n){
 
         List<TableNumberFE> tableNumberFES = new ArrayList<>();
@@ -195,16 +165,6 @@ public class AlgebraMod {
         tableNumberFE = new TableNumberFE(-1, -1, -1, -1,-1, "");
         tableNumberFES.add(tableNumberFE);;
         return tableNumberFES;
-    }
-
-    public static int max(int[] arr) {
-        int max = arr[0];
-
-        for (int j : arr) {
-            max = Math.max(max, j);
-        }
-
-        return max;
     }
 
 }

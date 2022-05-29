@@ -42,7 +42,8 @@ public class RenderSort implements RenderState {
     }
 
     public float[] scaling(int[] arr) {
-        int max = AlgebraMod.max(arr);
+
+        int max = Arrays.stream(arr).max().getAsInt();
         float[] scale = new float[arr.length];
 
         for (int i = 0; i < arr.length; i++) {
