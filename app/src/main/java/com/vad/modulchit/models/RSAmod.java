@@ -5,7 +5,9 @@ import com.vad.modulchit.pojos.TableNumberGCDe;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class RSAmod {
@@ -123,7 +125,7 @@ public class RSAmod {
     }
 
     public List<TableNumberFE> decryptingFE(int d, int n, String strEncrypt){
-        List<Integer> numberForDecrypt = getNumberCodes(strEncrypt);
+        List<Integer> numberForDecrypt = Parser.parseToList(strEncrypt);
         return getFE(d, n, numberForDecrypt);
     }
 
@@ -139,23 +141,8 @@ public class RSAmod {
         return result;
     }
 
-    private List<Integer> getNumberCodes(String strCode){
-        List<Integer> numberCodes = new ArrayList<>();
-        strCode = strCode.replaceAll("\\[", "");
-        strCode = strCode.replaceAll("]", "");
-        strCode = strCode.replaceAll("\\s", "");
-
-        String[] numbers = strCode.split(",");
-
-        for (String number : numbers) {
-            numberCodes.add(Integer.parseInt(number));
-        }
-
-        return numberCodes;
-    }
-
     public String decrypting(List<Integer> alphabetCodes, int d, int n, String strCode){
-        List<Integer> numberCodes = getNumberCodes(strCode);
+        List<Integer> numberCodes = Parser.parseToList(strCode);
         List<Integer> tempNumbersCode = new ArrayList<>();
         List<TableNumberFE> tableNumberFEs = new ArrayList<>();
         RSAshiphr rsAshiphr = new RSAshiphr();

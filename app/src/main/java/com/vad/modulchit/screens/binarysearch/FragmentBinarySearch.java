@@ -42,7 +42,7 @@ public class FragmentBinarySearch extends Fragment implements HasCustomTitle {
                 return;
             }
 
-            List<BinarySearchModel> binarySearchModels = binarySearch.search(Parser.parseNumber(editTextArray.getText().toString()), Integer.parseInt(editTextElement.getText().toString()));
+            List<BinarySearchModel> binarySearchModels = binarySearch.search(Parser.parseToArray(editTextArray.getText().toString()), Integer.parseInt(editTextElement.getText().toString()));
             customViewBinarySearch.searchElement(binarySearchModels);
         });
         return v;
