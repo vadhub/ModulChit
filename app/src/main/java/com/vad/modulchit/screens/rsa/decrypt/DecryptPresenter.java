@@ -12,10 +12,12 @@ import java.util.List;
 public class DecryptPresenter {
 
     private final DecryptView view;
-    private final AlgebraMod algebraMod = new AlgebraMod();
-    private final RSAmod rsaMod = new RSAmod();
+    private final AlgebraMod algebraMod;
+    private final RSAmod rsaMod;
 
     public DecryptPresenter(DecryptView view) {
+        algebraMod = new AlgebraMod();
+        rsaMod = new RSAmod(algebraMod);
         this.view = view;
     }
 

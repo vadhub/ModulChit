@@ -5,12 +5,7 @@ import com.vad.modulchit.pojos.TableNumberGCDe;
 import com.vad.modulchit.pojos.TableNumberNOK;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Stream;
 
 public class AlgebraMod {
 
@@ -23,10 +18,6 @@ public class AlgebraMod {
             b = tmp;
         }
         return a;
-    }
-
-    public static int mod(int a, int b){
-        return a%b;
     }
 
     public List<TableNumberGCDe> gcdGraph(int a, int b){

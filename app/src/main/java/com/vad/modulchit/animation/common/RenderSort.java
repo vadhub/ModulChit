@@ -41,7 +41,7 @@ public class RenderSort implements RenderState {
         paintFont.setTextSize(FONT_SIZE);
     }
 
-    public float[] scaling(int[] arr) {
+    public float[] scale(int[] arr) {
 
         int max = Arrays.stream(arr).max().getAsInt();
         float[] scale = new float[arr.length];
@@ -62,7 +62,7 @@ public class RenderSort implements RenderState {
 
         paint.setStrokeWidth(getStrokeWidth() - PADDING);
 
-        float[] scales = scaling(arr);
+        float[] scales = scale(arr);
 
         for (int i = 0; i < arr.length; i++) {
             canvas.drawText(arr[i] + "", startDrawX, startDrawY - scales[i] * getMaxHeight() + 10 + FONT_SIZE, paintFont);

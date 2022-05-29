@@ -1,6 +1,7 @@
 package com.vad.modulchit.screens.rsa.crypt;
 
 import com.vad.modulchit.R;
+import com.vad.modulchit.models.AlgebraMod;
 import com.vad.modulchit.models.RSAmod;
 import com.vad.modulchit.models.RSAshiphr;
 
@@ -16,14 +17,16 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class CryptPresenter {
 
-    private CryptView view;
+    private final CryptView view;
     private List<Integer> numbersCodesForCrypt;
-    private RSAshiphr cypher = new RSAshiphr();
-    private RSAmod rsaMod = new RSAmod();
-    private CompositeDisposable compositeDisposable;
-    private Disposable disposable;
+    private final RSAshiphr cypher;
+    private final RSAmod rsaMod;
+    private final CompositeDisposable compositeDisposable;
 
     public CryptPresenter(CryptView view) {
+        cypher = new RSAshiphr();
+        AlgebraMod algebraMod = new AlgebraMod();
+        rsaMod = new RSAmod(algebraMod);
         this.view = view;
         compositeDisposable = new CompositeDisposable();
         numbersCodesForCrypt = new ArrayList<>();
@@ -62,7 +65,7 @@ public class CryptPresenter {
                 int finalE = e;
                 int finalN = n;
 
-                disposable = Observable.just(rsaMod)
+                Disposable disposable = Observable.just(rsaMod)
                         .subscribeOn(Schedulers.computation())
                         .map(rsa -> {
                             numbersCodesForCrypt = encrypt(alphaviteCodes, textToEncrypt);
@@ -75,7 +78,7 @@ public class CryptPresenter {
                             list.stream()
                                     .filter(it -> it.getP() > -1)
                                     .forEach(it -> p.add(it.getP()));
-                            view.showCalculatingExtra(Arrays.toString(p.toArray())+"\n");
+                            view.showCalculatingExtra(Arrays.toString(p.toArray()) + "\n");
                         });
                 compositeDisposable.add(disposable);
                 numbersCodesForCrypt=null;
@@ -91,8 +94,6 @@ public class CryptPresenter {
     }
 
     public void disposableDispose() {
-        if (compositeDisposable!=null) {
-            compositeDisposable.dispose();
-        }
+        compositeDisposable.dispose();
     }
 }

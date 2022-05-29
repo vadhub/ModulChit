@@ -7,13 +7,14 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class RSAmod {
 
-    private AlgebraMod algebraMod = new AlgebraMod();
+    private final AlgebraMod algebraMod;
+
+    public RSAmod(AlgebraMod algebraMod) {
+        this.algebraMod = algebraMod;
+    }
 
     //get n modulo for public key
     public int getN(int p, int q){
@@ -26,7 +27,8 @@ public class RSAmod {
     }
 
     public int getDPrivate(int eller, int exponent){
-        int d = algebraMod.gcdGraph(eller, exponent).get(algebraMod.gcdGraph(eller,exponent).size()-1).getY2();
+        List<TableNumberGCDe> listStep = algebraMod.gcdGraph(eller, exponent);
+        int d = listStep.get(listStep.size()-1).getY2();
 
         if(d<0){
             d+=eller;
@@ -57,10 +59,9 @@ public class RSAmod {
         return simpleNumber;
     }
 
-    //generate private key on visaul gcde
+    //generate private key on visual gcde
     public List<TableNumberGCDe> getDGraph(int exp, int eller){
-        List<TableNumberGCDe> gcdeList = algebraMod.gcdGraph(eller,exp);
-        return gcdeList;
+        return algebraMod.gcdGraph(eller,exp);
     }
 
     private List<Integer> getClastersFromString(String strCrypt, int n){
@@ -70,64 +71,24 @@ public class RSAmod {
         int clast = 0;
         int temp = 0;
 
-        for(int i = 0; i<charsCrypt.length; i++){
+        for (char c : charsCrypt) {
 
-            if(!claster.equals("")){
+            if (!claster.equals("")) {
                 temp = Integer.parseInt(claster);
             }
 
-            claster+=charsCrypt[i];
+            claster += c;
             clast = Integer.parseInt(claster);
 
-            if(clast>n){
+            if (clast > n) {
                 clasters.add(temp);
-                claster=String.valueOf(charsCrypt[i]);
+                claster = String.valueOf(c);
                 clast = Integer.parseInt(claster);
             }
         }
         clasters.add(clast);
         return clasters;
     }
-
-    //experimental
-//    public void minimumSets(String strCrypt, int n){
-//        int count = 0;
-//        int num = 0;
-//        String strNumber = "";
-//
-//        int length = strCrypt.length();
-//        boolean isMore = false;
-//
-//        for(int i = 0; i<length;i++){
-//            num = num * 10 + (strCrypt.charAt(i) - '0');
-//
-//            if(num <=n){
-//                isMore = true;
-//            }else {
-//                if(isMore){
-//                    count+=1;
-//                    strNumber+=num+",";
-//                }
-//
-//                num = strCrypt.charAt(i) - '0';
-//                isMore = false;
-//
-//                if(num<=n){
-//                    isMore = true;
-//                }else{
-//                    count+=1;
-//                    strNumber+=num+",";
-//                }
-//            }
-//        }
-//
-//        if(isMore){
-//            count+=1;
-//            strNumber+=num+",";
-//        }
-//
-//        System.out.println("blocks: "+strNumber+"; sets"+count);
-//    }
 
     private List<Integer> getClasters(List<Integer> numberCodes, int n){
         StringBuilder strCrypt = new StringBuilder();
@@ -161,6 +122,11 @@ public class RSAmod {
         return getFE(e, n, clasters);
     }
 
+    public List<TableNumberFE> decryptingFE(int d, int n, String strEncrypt){
+        List<Integer> numberForDecrypt = getNumberCodes(strEncrypt);
+        return getFE(d, n, numberForDecrypt);
+    }
+
     public List<TableNumberFE> getFE(int m, int n, List<Integer> numbers) {
         List<List<TableNumberFE>> temp = new ArrayList<>();
         List<TableNumberFE> result = new ArrayList<>();
@@ -171,11 +137,6 @@ public class RSAmod {
 
         temp.forEach(result::addAll);
         return result;
-    }
-
-    public List<TableNumberFE> decryptingFE(int d, int n, String strEncrypt){
-        List<Integer> numberForDecrypt = getNumberCodes(strEncrypt);
-        return getFE(d, n, numberForDecrypt);
     }
 
     private List<Integer> getNumberCodes(String strCode){

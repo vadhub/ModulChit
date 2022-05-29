@@ -5,6 +5,7 @@ import android.os.Looper;
 
 import androidx.fragment.app.Fragment;
 import com.vad.modulchit.R;
+import com.vad.modulchit.models.AlgebraMod;
 import com.vad.modulchit.screens.contract.Navigator;
 import com.vad.modulchit.screens.rsa.crypt.FragmentRSAcrypt;
 import com.vad.modulchit.screens.rsa.decrypt.FragmentRSAdecrypt;
@@ -15,13 +16,16 @@ import java.util.List;
 
 public class AlphabetPresenter {
 
-    private AlphabetView alphabetView;
-    private Navigator navigator;
-    private RSAshiphr shiphr = new RSAshiphr();
-    private RSAmod rsaMod = new RSAmod();
+    private final AlphabetView alphabetView;
+    private final Navigator navigator;
+    private final RSAshiphr shiphr;
+    private final RSAmod rsaMod;
     private List<Integer> alphaviteCodes;
 
     public AlphabetPresenter(AlphabetView alphabetView, Navigator navigator) {
+        shiphr = new RSAshiphr();
+        AlgebraMod algebraMod = new AlgebraMod();
+        rsaMod = new RSAmod(algebraMod);
         this.alphabetView = alphabetView;
         this.navigator = navigator;
     }
@@ -63,7 +67,7 @@ public class AlphabetPresenter {
         Fragment fragment = null;
         int n = 0;
         int eller = 0;
-        List<Integer> exponents = null;
+        List<Integer> exponents;
 
         int p = 0;
         int q = 0;
