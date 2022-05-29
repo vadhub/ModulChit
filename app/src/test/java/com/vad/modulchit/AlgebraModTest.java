@@ -21,11 +21,6 @@ public class AlgebraModTest {
     }
 
     @Test
-    public void searchMaxElement_isCorrect() {
-        assertEquals(4, AlgebraMod.max(arr));
-    }
-
-    @Test
     public void gcd_isCorrect() {
         assertEquals(30, AlgebraMod.gcd(180, 150));
     }
