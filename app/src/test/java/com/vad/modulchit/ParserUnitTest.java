@@ -11,7 +11,7 @@ public class ParserUnitTest {
     public void parser_isCorrect() {
         String input = "10, 4, 5, 6,5,3 1, 5, 7";
         int[] arr = {10, 4, 5, 6, 5, 3, 1, 5, 7};
-        System.out.println(Arrays.toString(Parser.parseToArray(input)));
-        assertArrayEquals(arr, Parser.parseToArray(input));
+        System.out.println(Arrays.toString(Parser.parseToIntArray(input)));
+        assertArrayEquals(arr, Parser.parseToIntArray(input));
     }
 }

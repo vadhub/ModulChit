@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Parser {
-    public static int[] parseToArray(String str) {
+    public static int[] parseToIntArray(String str) {
         Matcher matcher = Pattern.compile("\\d+").matcher(str); //([0-9]*\.?[0-9]+)
         List<String> list = new ArrayList<>();
         while (matcher.find()) {
@@ -18,7 +18,7 @@ public class Parser {
         return list.stream().mapToInt(Integer::parseInt).toArray();
     }
 
-    public static List<Integer> parseToList(String str){
-        return Arrays.stream(parseToArray(str)).boxed().collect(Collectors.toList());
+    public static List<Integer> parseToIntList(String str){
+        return Arrays.stream(parseToIntArray(str)).boxed().collect(Collectors.toList());
     }
 }
