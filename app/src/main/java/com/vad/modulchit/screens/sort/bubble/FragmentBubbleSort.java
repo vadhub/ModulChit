@@ -76,7 +76,7 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Scre
                     render.setStateRestart();
                 }
                 if (render.getStateRun() == StatusAnimation.STOP) {
-                    render.setStateRun(sort.sorting(Parser.parseToArray(editText.getText().toString())));
+                    render.setStateRun(sort.sorting(Parser.parseToIntArray(editText.getText().toString())));
                 }
                 btn.setCompoundDrawablesWithIntrinsicBounds(imgPause, null, null, null);
                 isRun = false;
