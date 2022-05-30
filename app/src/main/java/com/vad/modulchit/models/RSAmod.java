@@ -104,21 +104,6 @@ public class RSAmod {
         return getClastersFromString(strCrypt.toString(), n);
     }
 
-//    public String encrypting(int e, int n, List<Integer> numberCodes){
-//        List<Integer> clasters = getClasters(numberCodes, n);
-//        List<String> result = new ArrayList<>();
-//
-//        for (int num: clasters) {
-//            algebraMod.feGraph(num, e, n)
-//                    .subscribeOn(Schedulers.computation())
-//                    .doOnNext(p -> result.add(p.get(p.size()-2).getP()+""))
-//                    .observeOn(AndroidSchedulers.mainThread())
-//                    .subscribe();
-//        }
-//
-//        return result.toString();
-//    }
-
     public Pair<List<TableNumberFE>, List<Integer>> encrypting(int e, int n, List<Integer> numberCodes){
         List<Integer> clasters = getClasters(numberCodes, n);
         return getFE(e, n, clasters);

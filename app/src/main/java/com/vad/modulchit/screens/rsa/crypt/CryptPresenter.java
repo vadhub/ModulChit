@@ -18,7 +18,6 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class CryptPresenter {
 
     private final CryptView view;
-    private List<Integer> numbersCodesForCrypt;
     private final RSAshiphr cypher;
     private final RSAmod rsaMod;
     private final CompositeDisposable compositeDisposable;
@@ -28,7 +27,6 @@ public class CryptPresenter {
         AlgebraMod algebraMod = new AlgebraMod();
         rsaMod = new RSAmod(algebraMod);
         compositeDisposable = new CompositeDisposable();
-        numbersCodesForCrypt = new ArrayList<>();
         this.view = view;
     }
 
@@ -46,6 +44,7 @@ public class CryptPresenter {
     }
 
     public void result(List<Integer> alphaviteCodes, String textToEncrypt, String eStr, String nStr){
+
         //is letters?
         if(textToEncrypt.matches("[a-zA-Z\\s]+")){
             //output calculated result
@@ -68,17 +67,15 @@ public class CryptPresenter {
                 Disposable disposable = Observable.just(rsaMod)
                         .subscribeOn(Schedulers.computation())
                         .map(rsa -> {
-                            numbersCodesForCrypt = encrypt(alphaviteCodes, textToEncrypt);
+                            List<Integer> numbersCodesForCrypt = encrypt(alphaviteCodes, textToEncrypt);
                             return rsa.encrypting(finalE, finalN, numbersCodesForCrypt);
                         })
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(list -> {
                             view.showCalculating(list.first);
-
                             view.showCalculatingExtra(Arrays.toString(list.second.toArray()) + "\n");
                         });
                 compositeDisposable.add(disposable);
-                numbersCodesForCrypt=null;
 
             }else{
                 view.showError(R.string.warning_enter_text);

@@ -28,7 +28,7 @@ public class DecryptPresenter {
         this.view = view;
     }
 
-    public void decrypt(String dStr, String nStr, int eller, int exponent, List<Integer> alphaviteCodes, String enterCodeDecrypt, int p, int q){
+    public void decrypt(String dStr, String nStr, int eller, int exponent, List<Integer> alphabetCodes, String enterCodeDecrypt, int p, int q){
         int dInt = -1;
         int nInt = -1;
 
@@ -46,7 +46,7 @@ public class DecryptPresenter {
             view.showTitle();
             Disposable disposable = Observable.just("")
                     .subscribeOn(Schedulers.computation())
-                    .map(o -> calculateExtraData(eller, exponent, alphaviteCodes, finalNInt, finalDInt, p, q, enterCodeDecrypt))
+                    .map(o -> calculateExtraData(eller, exponent, alphabetCodes, finalNInt, finalDInt, p, q, enterCodeDecrypt))
                     .observeOn(AndroidSchedulers.mainThread())
                     .doOnNext(view::showCalculatingExtra)
                     .subscribeOn(Schedulers.computation())
@@ -63,10 +63,10 @@ public class DecryptPresenter {
         }
     }
 
-    private String calculateExtraData(int eller, int exponent, List<Integer> alphaviteCodes, int n, int d, int p, int q, String enterCodeDecrypt){
+    private String calculateExtraData(int eller, int exponent, List<Integer> alphabetCodes, int n, int d, int p, int q, String enterCodeDecrypt){
 
         StringBuilder builder = new StringBuilder();
-        builder.append("result: ").append(rsaMod.decrypting(alphaviteCodes, d, n, enterCodeDecrypt).toUpperCase()).append("\n").append("\n");
+        builder.append("result: ").append(rsaMod.decrypting(alphabetCodes, d, n, enterCodeDecrypt).toUpperCase()).append("\n").append("\n");
         builder.append("e: ").append(exponent).append(";\n");
         builder.append("n = ").append(p).append("*").append(q).append(" = ").append(n).append(";\n");
         builder.append("Euler = (").append(p).append("-1").append(")*(").append(q).append("-1").append(") = ")
