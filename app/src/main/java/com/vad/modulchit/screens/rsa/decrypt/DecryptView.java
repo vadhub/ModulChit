@@ -9,6 +9,6 @@ import java.util.List;
 public interface DecryptView extends Supportable {
 
     void showCalculating(List<TableNumberFE> tableNumberFEList);
-    void showCalculatingExtra(List<TableNumberGCDe> tableNumberGCDeList);
+    void showCalculatingExtraWithList(List<TableNumberGCDe> tableNumberGCDeList);
     void showCalculatingExtra(String decrypt);
 }

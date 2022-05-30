@@ -158,7 +158,7 @@ public class FragmentRSAdecrypt extends Fragment implements DecryptView, HasCust
     }
 
     @Override
-    public void showCalculatingExtra(List<TableNumberGCDe> tableNumberGCDeList) {
+    public void showCalculatingExtraWithList(List<TableNumberGCDe> tableNumberGCDeList) {
         adapterGCDe.setTableNumbers(tableNumberGCDeList);
         mRecyclerGCDe.setAdapter(adapterGCDe);
     }
@@ -184,5 +184,11 @@ public class FragmentRSAdecrypt extends Fragment implements DecryptView, HasCust
         return new CustomActionFragment(R.drawable.ic_baseline_info_24,() -> {
             ((Navigator) requireActivity()).startFragment(new FragmentDecryptExpl());
         });
+    }
+
+    @Override
+    public void onDestroy() {
+        presenter.disposeDisposable();
+        super.onDestroy();
     }
 }

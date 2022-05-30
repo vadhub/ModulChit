@@ -1,23 +1,30 @@
 package com.vad.modulchit.screens.rsa.decrypt;
 
 
-import android.os.Handler;
-import android.os.Looper;
-
 import com.vad.modulchit.R;
 import com.vad.modulchit.models.AlgebraMod;
 import com.vad.modulchit.models.RSAmod;
+import com.vad.modulchit.pojos.TableNumberGCDe;
+
 import java.util.List;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class DecryptPresenter {
 
     private final DecryptView view;
     private final AlgebraMod algebraMod;
     private final RSAmod rsaMod;
+    private final CompositeDisposable compositeDisposable;
 
     public DecryptPresenter(DecryptView view) {
         algebraMod = new AlgebraMod();
         rsaMod = new RSAmod(algebraMod);
+        compositeDisposable = new CompositeDisposable();
         this.view = view;
     }
 
@@ -37,36 +44,44 @@ public class DecryptPresenter {
             int finalNInt = nInt;
 
             view.showTitle();
-            Handler handler = new Handler(Looper.getMainLooper());
+            Disposable disposable = Observable.just("")
+                    .subscribeOn(Schedulers.computation())
+                    .map(o -> calculateExtraData(eller, exponent, alphaviteCodes, finalNInt, finalDInt, p, q, enterCodeDecrypt))
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnNext(view::showCalculatingExtra)
+                    .subscribeOn(Schedulers.computation())
+                    .map(list -> rsaMod.decryptingFE(finalDInt, finalNInt, enterCodeDecrypt).first)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnNext(view::showCalculating)
+                    .subscribeOn(Schedulers.computation())
+                    .map(list -> algebraMod.gcdGraph(eller, exponent))
+                    .observeOn(AndroidSchedulers.mainThread()).subscribe(view::showCalculatingExtraWithList);
 
-            new Thread(() -> {
-                handler.post(() -> {
-                    calculateExtraData(eller, exponent, alphaviteCodes, finalNInt, finalDInt, p, q, enterCodeDecrypt);
-                });
-            }).start();
-
-            view.showCalculating(rsaMod.decryptingFE(finalDInt, finalNInt, enterCodeDecrypt).first);
-            view.showCalculatingExtra(algebraMod.gcdGraph(eller, exponent));
+            compositeDisposable.add(disposable);
         }else{
             view.showError(R.string.warning_enter_text);
         }
     }
 
-    private void calculateExtraData(int eller, int exponent, List<Integer> alphaviteCodes, int n, int d, int p, int q, String enterCodeDecrypt){
-
-        int dView = algebraMod.gcdGraph(eller, exponent).get(algebraMod.gcdGraph(eller, exponent).size()-1).getY2();
+    private String calculateExtraData(int eller, int exponent, List<Integer> alphaviteCodes, int n, int d, int p, int q, String enterCodeDecrypt){
 
         StringBuilder builder = new StringBuilder();
         builder.append("result: ").append(rsaMod.decrypting(alphaviteCodes, d, n, enterCodeDecrypt).toUpperCase()).append("\n").append("\n");
-        System.out.println(rsaMod.decrypting(alphaviteCodes, d, n, enterCodeDecrypt).toUpperCase());
         builder.append("e: ").append(exponent).append(";\n");
         builder.append("n = ").append(p).append("*").append(q).append(" = ").append(n).append(";\n");
         builder.append("Euler = (").append(p).append("-1").append(")*(").append(q).append("-1").append(") = ")
                 .append(eller).append(";\n");
 
+        List<TableNumberGCDe> list = algebraMod.gcdGraph(eller, exponent);
+        int dView = list.get(list.size()-1).getY2();
+
         if (dView < 0) {
             builder.append("d = ").append(eller).append(" ").append(dView).append("=").append(d).append(";");
         }
-        view.showCalculatingExtra(builder.toString());
+        return builder.toString();
     }
-}
+
+    public void disposeDisposable() {
+        compositeDisposable.dispose();
+    }
+ }
