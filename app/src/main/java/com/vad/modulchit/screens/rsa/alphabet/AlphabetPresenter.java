@@ -1,9 +1,7 @@
 package com.vad.modulchit.screens.rsa.alphabet;
 
-import android.os.Handler;
-import android.os.Looper;
-
 import androidx.fragment.app.Fragment;
+
 import com.vad.modulchit.R;
 import com.vad.modulchit.models.AlgebraMod;
 import com.vad.modulchit.screens.contract.Navigator;
@@ -14,55 +12,60 @@ import com.vad.modulchit.models.RSAshiphr;
 
 import java.util.List;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
 public class AlphabetPresenter {
 
     private final AlphabetView alphabetView;
     private final Navigator navigator;
     private final RSAshiphr shiphr;
     private final RSAmod rsaMod;
-    private List<Integer> alphaviteCodes;
+    private final CompositeDisposable compositeDisposable;
 
     public AlphabetPresenter(AlphabetView alphabetView, Navigator navigator) {
         shiphr = new RSAshiphr();
         AlgebraMod algebraMod = new AlgebraMod();
         rsaMod = new RSAmod(algebraMod);
+        compositeDisposable = new CompositeDisposable();
         this.alphabetView = alphabetView;
         this.navigator = navigator;
     }
 
-    public void alphaviteLoad() {
-        new Thread(() -> {
-            Handler handler = new Handler(Looper.getMainLooper());
-            handler.post(() -> {
-                alphaviteCodes = shiphr.getNumberShiphr();
-                alphabetView.alphaviteLoad(alphaviteCodes);
-            });
-        }).start();
+    public void alphabetLoad() {
+        Disposable disposable = Observable.empty()
+                .subscribeOn(Schedulers.computation())
+                .map(r -> shiphr.getNumberShiphr())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(alphabetView::setAlphabet);
+        compositeDisposable.add(disposable);
 
     }
 
-    public void alphaviteLoad(int numberForFirstLetter) {
-        new Thread(() -> {
-            Handler handler = new Handler(Looper.getMainLooper());
-            handler.post(() -> {
-                alphaviteCodes = shiphr.getNumberShiphr(numberForFirstLetter);
-                alphabetView.alphaviteLoad(alphaviteCodes);
-            });
-        }).start();
+    public void alphabetLoad(int numberForFirstLetter) {
+        Disposable disposable = Observable.empty()
+                .subscribeOn(Schedulers.computation())
+                .map(empty -> shiphr.getNumberShiphr(numberForFirstLetter))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(alphabetView::setAlphabet);
+        compositeDisposable.add(disposable);
     }
 
-    public void alphaviteChosen(int i, int numberForFirstLetter) {
+    public void alphabetChosen(int i, int numberForFirstLetter) {
         switch (i) {
             case 0:
-                alphaviteLoad();
+                alphabetLoad();
                 break;
             case 1:
-                alphaviteLoad(numberForFirstLetter);
+                alphabetLoad(numberForFirstLetter);
                 break;
         }
     }
 
-    public void fragmentChoosen(boolean isEncrypt, String qStr, String pStr) {
+    public void fragmentChoose(boolean isEncrypt, String qStr, String pStr, List<Integer> alphabetCodes) {
 
         Fragment fragment = null;
         int n = 0;
@@ -75,16 +78,15 @@ public class AlphabetPresenter {
         if (!qStr.equals("") && !pStr.equals("")) {
             p = Integer.parseInt(pStr);
             q = Integer.parseInt(qStr);
-            n = rsaMod.getN(p,q);
-            eller = rsaMod.functionEller(p,q);
+            n = rsaMod.getN(p, q);
+            eller = rsaMod.functionEller(p, q);
             exponents = rsaMod.exponenta(eller);
 
             if (rsaMod.isSimpleNumber(p) && rsaMod.isSimpleNumber(q)) {
                 if (isEncrypt) {
-                    fragment = FragmentRSAcrypt.newInstance(alphaviteCodes, n, exponents);
+                    fragment = FragmentRSAcrypt.newInstance(alphabetCodes, n, exponents);
                 } else {
-                    int d = rsaMod.getDPrivate(eller, exponents.get(0));
-                    fragment = FragmentRSAdecrypt.newInstance(alphaviteCodes, n, d, eller, exponents.get(0), p, q);
+                    startFragmentWithDNumber(navigator, rsaMod, alphabetCodes, eller, exponents.get(0), n, p, q);
                 }
             } else {
                 alphabetView.showError(R.string.warning_prime);
@@ -96,5 +98,18 @@ public class AlphabetPresenter {
         navigator.startFragment(fragment);
         //alphaviteView.fragmentLoad(fragment);
 
+    }
+
+    public void startFragmentWithDNumber(Navigator navigator, RSAmod mod, List<Integer> alphabetCodes, int eller, int exponent, int n, int p, int q) {
+        Disposable disposable = Observable.empty()
+                .subscribeOn(Schedulers.computation())
+                .map(empty -> mod.getDPrivate(eller, exponent))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(d -> navigator.startFragment(FragmentRSAdecrypt.newInstance(alphabetCodes, n, d, eller, exponent, p, q)));
+        compositeDisposable.add(disposable);
+    }
+
+    public void disposeDisposable() {
+        compositeDisposable.dispose();
     }
 }
