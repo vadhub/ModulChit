@@ -31,11 +31,9 @@ import java.util.List;
 
 public class FragmentRSAcrypt extends Fragment implements CryptView, HasCustomTitle, HasCustomAction {
 
-    private Button btnOk;
     private EditText enterTextToCrypt;
     private EditText editTextE;
     private EditText editTextN;
-    private TextView textViewMfere;
     private RecyclerView mRecyclerFeCrypt;
     private AdapterFE adapterFE;
     private TextView textViewResult;
@@ -80,12 +78,12 @@ public class FragmentRSAcrypt extends Fragment implements CryptView, HasCustomTi
         cardIncludeFe = (CardView) v.findViewById(R.id.cardIncludeFe);
         cardResultCrypt = (CardView) v.findViewById(R.id.cardResultCrypt);
         cryptPresenter = new CryptPresenter(this);
-        btnOk = (Button) v.findViewById(R.id.buttonCrypt);
+        Button btnOk = (Button) v.findViewById(R.id.buttonCrypt);
         enterTextToCrypt = (EditText) v.findViewById(R.id.editTextTextCrypt);
         editTextE = (EditText) v.findViewById(R.id.editTextE);
         editTextN = (EditText) v.findViewById(R.id.editTextN);
         textViewResult = (TextView) v.findViewById(R.id.textViewResultCrypt);
-        textViewMfere = (TextView) v.findViewById(R.id.textViewMfere);
+        TextView textViewMfere = (TextView) v.findViewById(R.id.textViewMfere);
         mRecyclerFeCrypt = (RecyclerView) v.findViewById(R.id.cryptRecycler);
         adapterFE = new AdapterFE();
         includeFeCrypt = (View) v.findViewById(R.id.includeFe);

@@ -5,5 +5,5 @@ import com.vad.modulchit.screens.supportable.Supportable;
 import java.util.List;
 
 public interface AlphabetView extends Supportable {
-    void alphaviteLoad(List<Integer> alphaviteCodes);
+    void setAlphabet(List<Integer> alphabetCodes);
 }

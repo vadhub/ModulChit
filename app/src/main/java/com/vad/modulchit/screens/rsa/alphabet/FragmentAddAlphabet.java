@@ -35,6 +35,7 @@ public class FragmentAddAlphabet extends Fragment implements AlphabetView, HasCu
     private RecyclerView mRecyclerView;
     private AdapterRSAalphabyte adapterRSAalphabyte;
     private Spinner spinner;
+    private List<Integer> alphabet;
     private int theChoice = 0;
     private boolean isEncrypt = true;
     private ProgressBar progressBar;
@@ -73,7 +74,7 @@ public class FragmentAddAlphabet extends Fragment implements AlphabetView, HasCu
         radioButtonDecrypt.setOnClickListener(radioButtonClick);
         radioButtonEncrypt.setOnClickListener(radioButtonClick);
 
-        presenter.alphaviteLoad();
+        presenter.alphabetLoad();
         return v;
     }
 
@@ -107,7 +108,7 @@ public class FragmentAddAlphabet extends Fragment implements AlphabetView, HasCu
         public void onClick(View view) {
             String qStr = numberQ.getText().toString();
             String pStr = numberP.getText().toString();
-            presenter.fragmentChoosen(isEncrypt, qStr, pStr);
+            presenter.fragmentChoose(isEncrypt, qStr, pStr, alphabet);
         }
     };
 
@@ -138,15 +139,16 @@ public class FragmentAddAlphabet extends Fragment implements AlphabetView, HasCu
                 Toast.makeText(getContext(), getResources().getString(R.string.warning_enter_text), Toast.LENGTH_SHORT).show();
             }
         } else {
-            presenter.alphaviteChosen(i, Integer.parseInt(numberForFirstLetter.getText().toString()));
+            presenter.alphabetChosen(i, Integer.parseInt(numberForFirstLetter.getText().toString()));
         }
 
     }
 
     @Override
-    public void alphaviteLoad(List<Integer> alphaviteCodes) {
+    public void setAlphabet(List<Integer> alphabetCodes) {
+        alphabet = alphabetCodes;
         progressBar.setVisibility(View.VISIBLE);
-        adapterRSAalphabyte.setNumbersCode(alphaviteCodes);
+        adapterRSAalphabyte.setNumbersCode(alphabetCodes);
         mRecyclerView.setAdapter(adapterRSAalphabyte);
         progressBar.setVisibility(View.INVISIBLE);
     }
@@ -164,5 +166,11 @@ public class FragmentAddAlphabet extends Fragment implements AlphabetView, HasCu
     @Override
     public int getTitle() {
         return R.string.rsa;
+    }
+
+    @Override
+    public void onDestroy() {
+        presenter.disposeDisposable();
+        super.onDestroy();
     }
 }
