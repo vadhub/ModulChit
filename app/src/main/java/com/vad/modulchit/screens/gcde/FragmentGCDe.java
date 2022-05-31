@@ -103,9 +103,11 @@ public class FragmentGCDe extends Fragment implements ListGCDEView, HasCustomTit
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
         if (presenter != null) {
             presenter.disposableDispose();
         }
+        presenter = null;
+        adapterGCDe = null;
+        super.onDestroy();
     }
 }

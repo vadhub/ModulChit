@@ -29,7 +29,6 @@ import java.util.List;
 
 public class FragmentMenu extends Fragment implements HasCustomTitle {
 
-    private RecyclerView mRecyclerView;
     private AdapterMenu adapter;
     private Navigator navigator;
 
@@ -38,7 +37,7 @@ public class FragmentMenu extends Fragment implements HasCustomTitle {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_menu, container, false);
 
-        mRecyclerView = (RecyclerView) v.findViewById(R.id.menuRecyclerView);
+        RecyclerView mRecyclerView = (RecyclerView) v.findViewById(R.id.menuRecyclerView);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new AdapterMenu();
         navigator = (Navigator) requireActivity();
@@ -85,5 +84,11 @@ public class FragmentMenu extends Fragment implements HasCustomTitle {
     @Override
     public int getTitle() {
         return R.string.app_name;
+    }
+
+    @Override
+    public void onDestroy() {
+        adapter = null;
+        super.onDestroy();
     }
 }

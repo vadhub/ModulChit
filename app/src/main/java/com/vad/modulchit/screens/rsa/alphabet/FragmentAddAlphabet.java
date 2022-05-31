@@ -171,6 +171,8 @@ public class FragmentAddAlphabet extends Fragment implements AlphabetView, HasCu
     @Override
     public void onDestroy() {
         presenter.disposeDisposable();
+        presenter = null;
+        adapterRSAalphabyte = null;
         super.onDestroy();
     }
 }

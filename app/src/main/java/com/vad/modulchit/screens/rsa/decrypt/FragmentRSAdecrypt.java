@@ -189,6 +189,8 @@ public class FragmentRSAdecrypt extends Fragment implements DecryptView, HasCust
     @Override
     public void onDestroy() {
         presenter.disposeDisposable();
+        presenter = null;
+        adapterFE = null;
         super.onDestroy();
     }
 }

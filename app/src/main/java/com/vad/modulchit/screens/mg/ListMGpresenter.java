@@ -11,10 +11,9 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class ListMGpresenter {
 
-    private ListMGView listMGView;
-    private AlgebraMod algebraMod;
-    private CompositeDisposable compositeDisposable;
-    private Disposable disposable;
+    private final ListMGView listMGView;
+    private final AlgebraMod algebraMod;
+    private final CompositeDisposable compositeDisposable;
 
     public ListMGpresenter(ListMGView listMGView) {
         this.listMGView = listMGView;
@@ -24,11 +23,11 @@ public class ListMGpresenter {
 
     public void loadListMG(int m){
 
-        disposable = Observable.just(algebraMod)
+        Disposable disposable = Observable.just(algebraMod)
                 .subscribeOn(Schedulers.io())
                 .map(o -> o.nokGraph(m))
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(numberNOKS -> listMGView.showData(numberNOKS));
+                .subscribe(listMGView::showData);
         compositeDisposable.add(disposable);
     }
 
@@ -54,8 +53,6 @@ public class ListMGpresenter {
     }
 
     public void disposableDispose() {
-        if (compositeDisposable!=null) {
-            compositeDisposable.dispose();
-        }
+        compositeDisposable.dispose();
     }
 }

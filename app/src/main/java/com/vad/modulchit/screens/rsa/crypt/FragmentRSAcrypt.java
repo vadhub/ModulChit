@@ -149,7 +149,9 @@ public class FragmentRSAcrypt extends Fragment implements CryptView, HasCustomTi
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
         cryptPresenter.disposableDispose();
+        adapterFE = null;
+        cryptPresenter = null;
+        super.onDestroy();
     }
 }

@@ -6,9 +6,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.SimpleItemAnimator;
-
-import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +21,6 @@ import com.vad.modulchit.screens.contract.CustomActionFragment;
 import com.vad.modulchit.screens.contract.HasCustomAction;
 import com.vad.modulchit.screens.contract.HasCustomTitle;
 import com.vad.modulchit.screens.contract.Navigator;
-import com.vad.modulchit.screens.fe.explfe.FragmentFEexpl;
 import com.vad.modulchit.screens.mg.explmg.FragmentMGexpl;
 
 import java.util.List;
@@ -54,19 +50,12 @@ public class FragmentMG extends Fragment implements ListMGView, HasCustomTitle, 
         mRecyclerView = (RecyclerView) v.findViewById(R.id.mRecyclerNok);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL));
 
-//        ((SimpleItemAnimator)mRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
-
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         includeMG = (View) v.findViewById(R.id.includeMG);
         adapterNOK = new AdapterNOK();
-        btnNok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String modStr =editTextMod.getText().toString();
-                presenter.showResult(modStr);
-            }
-
+        btnNok.setOnClickListener(view -> {
+            String modStr =editTextMod.getText().toString();
+            presenter.showResult(modStr);
         });
 
         return v;
@@ -119,9 +108,9 @@ public class FragmentMG extends Fragment implements ListMGView, HasCustomTitle, 
 
     @Override
     public void onDestroy() {
+        presenter.disposableDispose();
+        presenter = null;
+        adapterNOK = null;
         super.onDestroy();
-        if (presenter!=null) {
-            presenter.disposableDispose();
-        }
     }
 }

@@ -12,10 +12,9 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class ListGCDEpresenter {
 
-    private AlgebraMod algebraMod;
-    private ListGCDEView listGCDEView;
-    private CompositeDisposable compositeDisposable;
-    private Disposable disposable;
+    private final AlgebraMod algebraMod;
+    private final ListGCDEView listGCDEView;
+    private final CompositeDisposable compositeDisposable;
 
     public ListGCDEpresenter(ListGCDEView listGCDEView) {
         this.listGCDEView = listGCDEView;
@@ -25,11 +24,11 @@ public class ListGCDEpresenter {
 
     public void loadListGCDE(int a, int b){
 
-        disposable = Observable.just(algebraMod)
+        Disposable disposable = Observable.just(algebraMod)
                 .subscribeOn(Schedulers.io())
                 .map(o -> o.gcdGraph(a, b))
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(tableNumberGCDeList -> listGCDEView.showData(tableNumberGCDeList));
+                .subscribe(listGCDEView::showData);
 
         compositeDisposable.add(disposable);
     }
@@ -57,8 +56,6 @@ public class ListGCDEpresenter {
     }
 
     public void disposableDispose() {
-        if (compositeDisposable!=null) {
-            compositeDisposable.dispose();
-        }
+        compositeDisposable.dispose();
     }
 }

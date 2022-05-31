@@ -99,10 +99,11 @@ public class FragmentFE extends Fragment implements ListFEView, HasCustomTitle, 
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
-
         if (presenter!=null) {
             presenter.disposableDispose();
         }
+        presenter = null;
+        adapterFE = null;
+        super.onDestroy();
     }
 }

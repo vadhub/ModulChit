@@ -85,6 +85,7 @@ public class AlphabetPresenter {
             if (rsaMod.isSimpleNumber(p) && rsaMod.isSimpleNumber(q)) {
                 if (isEncrypt) {
                     fragment = FragmentRSAcrypt.newInstance(alphabetCodes, n, exponents);
+                    navigator.startFragment(fragment);
                 } else {
                     startFragmentWithDNumber(navigator, rsaMod, alphabetCodes, eller, exponents.get(0), n, p, q);
                 }
@@ -94,9 +95,6 @@ public class AlphabetPresenter {
         } else {
             alphabetView.showError(R.string.warning_enter_p_q);
         }
-
-        navigator.startFragment(fragment);
-        //alphaviteView.fragmentLoad(fragment);
 
     }
 
