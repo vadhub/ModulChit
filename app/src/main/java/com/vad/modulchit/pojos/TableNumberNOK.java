@@ -76,4 +76,15 @@ public class TableNumberNOK {
     public void setExtra(String extra) {
         this.extra = extra;
     }
+
+    @Override
+    public String toString() {
+        return "TableNumberNOK{" +
+                "a=" + a +
+                ", b=" + b +
+                ", q=" + q +
+                ", r=" + r +
+                ", i=" + i +
+                '}';
+    }
 }

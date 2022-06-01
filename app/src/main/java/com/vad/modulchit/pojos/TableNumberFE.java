@@ -77,4 +77,15 @@ public class TableNumberFE {
     public void setExpanded(boolean expanded) {
         this.expanded = expanded;
     }
+
+    @Override
+    public String toString() {
+        return "TableNumberFE{" +
+                "a=" + a +
+                ", m=" + m +
+                ", n=" + n +
+                ", p=" + p +
+                ", r=" + r +
+                '}';
+    }
 }

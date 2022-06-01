@@ -112,4 +112,18 @@ public class TableNumberGCDe {
     public void setExpanded(boolean expanded) {
         this.expanded = expanded;
     }
+
+    @Override
+    public String toString() {
+        return "TableNumberGCDe{" +
+                "a=" + a +
+                ", b=" + b +
+                ", q=" + q +
+                ", r=" + r +
+                ", x1=" + x1 +
+                ", x2=" + x2 +
+                ", y1=" + y1 +
+                ", y2=" + y2 +
+                '}';
+    }
 }
