@@ -2,8 +2,10 @@ package com.vad.modulchit;
 
 import static org.junit.Assert.assertEquals;
 
+import com.vad.modulchit.pojos.TableNumberFE;
 import com.vad.modulchit.pojos.TableNumberGCDe;
 import com.vad.modulchit.models.AlgebraMod;
+import com.vad.modulchit.pojos.TableNumberNOK;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,11 +14,15 @@ import java.util.List;
 
 public class AlgebraModTest {
     List<TableNumberGCDe> gcdeList;
+    List<TableNumberFE> feList;
+    List<TableNumberNOK> noks;
 
     @Before
     public void setUp() {
         AlgebraMod a = new AlgebraMod();
         gcdeList = a.gcdGraph(180, 150);
+        feList = a.feGraph(122, 342, 212);
+        noks = a.nokGraph(42);
     }
 
     @Test
@@ -79,6 +85,20 @@ public class AlgebraModTest {
     public void gcdeCoefX2End_isCorrect() {
         int expected = 1;
         int input = gcdeList.get(gcdeList.size()-1).getX2();
+        assertEquals(expected, input);
+    }
+
+    @Test
+    public void feResult_isCorrect() {
+        int expected = 28;
+        int input = feList.get(feList.size()-2).getP();
+        assertEquals(expected, input);
+    }
+
+    @Test
+    public void nokResult_isCorrect() {
+        int expected = 1;
+        int input = noks.get(noks.size() - 5).getAn();
         assertEquals(expected, input);
     }
 }
