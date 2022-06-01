@@ -18,8 +18,7 @@
             android:id="@+id/linearData"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="0.1">
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/btnSort"
@@ -41,16 +40,16 @@
         <com.vad.modulchit.screens.sort.CustomViewSorted
             android:id="@+id/customViewSort"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
             android:layout_weight="0.7"/>
 
         <TextView
             android:id="@+id/log"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="8dp"
-            android:scrollbars="horizontal"
-            android:layout_weight="0.2"/>
+            android:scrollbars="horizontal" />
 
     </LinearLayout>
 </ScrollView>
