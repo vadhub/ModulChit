@@ -13,6 +13,7 @@ public class ShellSort implements Sort {
 
     @Override
     public StepRecorder sorting(int[] arr) {
+        stepRecorder.record(arr);
         int gap = arr.length / 2;
         while (gap >= 1) {
             for (int right = 0; right < arr.length; right++) {

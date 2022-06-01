@@ -56,7 +56,7 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Scre
         logs = new StringBuilder();
 
         customView.setZOrderOnTop(true);
-        customView.getHolder().setFormat(PixelFormat.TRANSLUCENT);
+        customView.getHolder().setFormat(PixelFormat.TRANSPARENT);
 
         imgPause = getResources().getDrawable(R.drawable.ic_baseline_pause_24);
         imgPlay = getResources().getDrawable(R.drawable.ic_baseline_play_arrow_24);

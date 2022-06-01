@@ -13,6 +13,7 @@ public class QuickSort implements Sort {
 
     @Override
     public StepRecorder sorting(int[] arr) {
+        recorder.record(arr);
         quickSort(arr, 0, arr.length-1);
         return recorder;
     }

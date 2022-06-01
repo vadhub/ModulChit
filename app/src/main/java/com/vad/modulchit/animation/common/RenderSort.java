@@ -80,7 +80,7 @@ public class RenderSort implements RenderState {
 
     private class TimerTaskDraw extends TimerTask {
         private int current;
-        private List<int[]> arr;
+        private final List<int[]> arr;
 
         public TimerTaskDraw(List<int[]> arr, int current) {
             this.arr = arr;

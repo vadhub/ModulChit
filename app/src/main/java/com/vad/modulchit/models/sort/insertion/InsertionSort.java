@@ -14,6 +14,7 @@ public class InsertionSort implements Sort {
 
     @Override
     public StepRecorder sorting(int[] arr) {
+        stepRecorder.record(arr);
         for (int i = 1; i < arr.length; i++) {
             int current = arr[i];
             int j = i;
