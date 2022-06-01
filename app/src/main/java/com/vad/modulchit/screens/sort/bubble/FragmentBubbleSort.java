@@ -55,8 +55,7 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Scre
         log = (TextView) v.findViewById(R.id.log);
         logs = new StringBuilder();
 
-        customView.setZOrderOnTop(true);
-        customView.getHolder().setFormat(PixelFormat.TRANSPARENT);
+        customView.setVisibility(View.INVISIBLE);
 
         imgPause = getResources().getDrawable(R.drawable.ic_baseline_pause_24);
         imgPlay = getResources().getDrawable(R.drawable.ic_baseline_play_arrow_24);
@@ -72,6 +71,7 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Scre
                 return;
             }
             if (isRun) {
+                customView.setVisibility(View.VISIBLE);
                 if (render.getStateRun() == StatusAnimation.PAUSE) {
                     render.setStateRestart();
                 }
