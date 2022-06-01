@@ -11,7 +11,6 @@ import org.junit.Test;
 import java.util.List;
 
 public class AlgebraModTest {
-    int[] arr = {1, 2, 3, 0, -1, 4};
     List<TableNumberGCDe> gcdeList;
 
     @Before
@@ -22,16 +21,64 @@ public class AlgebraModTest {
 
     @Test
     public void gcd_isCorrect() {
-        assertEquals(30, AlgebraMod.gcd(180, 150));
+        int expected = 30;
+        int input = AlgebraMod.gcd(180, 150);
+        assertEquals(expected, input);
     }
 
     @Test
-    public void gcdeCoefY2_isCorrect() {
-        assertEquals(-1, gcdeList.get(gcdeList.size()-1).getY2());
+    public void gcdeCoefAEnd_isCorrect() {
+        int expected = 150;
+        int input = gcdeList.get(gcdeList.size()-1).getA();
+        assertEquals(expected, input);
     }
 
     @Test
-    public void gcdeCoefY1_isCorrect() {
-        assertEquals(1, gcdeList.get(gcdeList.size()-1).getY1());
+    public void gcdeCoefBEnd_isCorrect() {
+        int expected = 30;
+        int input = gcdeList.get(gcdeList.size()-1).getB();
+        assertEquals(expected, input);
+    }
+
+    @Test
+    public void gcdeCoefQEnd_isCorrect() {
+        int expected = 5;
+        int input = gcdeList.get(gcdeList.size()-1).getQ();
+        assertEquals(expected, input);
+    }
+
+    @Test
+    public void gcdeCoefREnd_isCorrect() {
+        int expected = 0;
+        int input = gcdeList.get(gcdeList.size()-1).getR();
+        assertEquals(expected, input);
+    }
+
+    @Test
+    public void gcdeCoefY2End_isCorrect() {
+        int expected = -1;
+        int input = gcdeList.get(gcdeList.size()-1).getY2();
+        assertEquals(expected, input);
+    }
+
+    @Test
+    public void gcdeCoefY1End_isCorrect() {
+        int expected = 1;
+        int input = gcdeList.get(gcdeList.size()-1).getY1();
+        assertEquals(expected, input);
+    }
+
+    @Test
+    public void gcdeCoefX1End_isCorrect() {
+        int expected = 0;
+        int input = gcdeList.get(gcdeList.size()-1).getX1();
+        assertEquals(expected, input);
+    }
+
+    @Test
+    public void gcdeCoefX2End_isCorrect() {
+        int expected = 1;
+        int input = gcdeList.get(gcdeList.size()-1).getX2();
+        assertEquals(expected, input);
     }
 }
