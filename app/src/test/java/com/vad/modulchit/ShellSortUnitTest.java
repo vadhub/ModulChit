@@ -1,6 +1,6 @@
 package com.vad.modulchit;
 
-import com.vad.modulchit.animation.StepRecorder;
+import com.vad.modulchit.models.animation.StepRecorder;
 import com.vad.modulchit.models.sort.Sort;
 import com.vad.modulchit.models.sort.shellimpl.ShellSort;
 

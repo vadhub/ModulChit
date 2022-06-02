@@ -1,4 +1,4 @@
-package com.vad.modulchit.animation;
+package com.vad.modulchit.models.animation;
 
 import java.util.ArrayList;
 import java.util.List;

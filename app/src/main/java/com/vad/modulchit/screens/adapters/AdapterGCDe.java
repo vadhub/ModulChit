@@ -1,4 +1,4 @@
-package com.vad.modulchit.adapters;
+package com.vad.modulchit.screens.adapters;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.vad.modulchit.R;
-import com.vad.modulchit.pojos.TableNumberGCDe;
+import com.vad.modulchit.models.pojos.TableNumberGCDe;
 
 import java.util.List;
 

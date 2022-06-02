@@ -15,8 +15,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.vad.modulchit.R;
-import com.vad.modulchit.adapters.AdapterFE;
-import com.vad.modulchit.pojos.TableNumberFE;
+import com.vad.modulchit.screens.adapters.AdapterFE;
+import com.vad.modulchit.models.pojos.TableNumberFE;
 import com.vad.modulchit.screens.contract.CustomActionFragment;
 import com.vad.modulchit.screens.contract.HasCustomAction;
 import com.vad.modulchit.screens.contract.HasCustomTitle;

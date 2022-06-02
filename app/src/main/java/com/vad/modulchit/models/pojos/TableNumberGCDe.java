@@ -1,6 +1,4 @@
-package com.vad.modulchit.pojos;
-
-import java.util.Map;
+package com.vad.modulchit.models.pojos;
 
 public class TableNumberGCDe {
 

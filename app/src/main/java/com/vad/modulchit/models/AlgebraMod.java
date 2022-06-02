@@ -1,8 +1,8 @@
 package com.vad.modulchit.models;
 
-import com.vad.modulchit.pojos.TableNumberFE;
-import com.vad.modulchit.pojos.TableNumberGCDe;
-import com.vad.modulchit.pojos.TableNumberNOK;
+import com.vad.modulchit.models.pojos.TableNumberFE;
+import com.vad.modulchit.models.pojos.TableNumberGCDe;
+import com.vad.modulchit.models.pojos.TableNumberNOK;
 
 import java.util.ArrayList;
 import java.util.List;

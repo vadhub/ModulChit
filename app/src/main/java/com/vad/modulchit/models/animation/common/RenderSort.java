@@ -1,12 +1,11 @@
-package com.vad.modulchit.animation.common;
+package com.vad.modulchit.models.animation.common;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.SurfaceHolder;
 
-import com.vad.modulchit.animation.StepRecorder;
-import com.vad.modulchit.models.AlgebraMod;
+import com.vad.modulchit.models.animation.StepRecorder;
 import com.vad.modulchit.screens.sort.ScreenSort;
 
 import java.util.Arrays;
@@ -110,7 +109,7 @@ public class RenderSort implements RenderState {
     }
 
     @Override
-    public void setStateRun(StepRecorder stepRecorder) {
+    public void setStateStart(StepRecorder stepRecorder) {
         statusAnimation = StatusAnimation.START;
         current = 0;
         screenSort.write("");

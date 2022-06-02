@@ -3,7 +3,7 @@ package com.vad.modulchit;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import com.vad.modulchit.animation.StepRecorder;
+import com.vad.modulchit.models.animation.StepRecorder;
 import com.vad.modulchit.models.sort.Sort;
 import com.vad.modulchit.models.sort.quickimpl.QuickSort;
 

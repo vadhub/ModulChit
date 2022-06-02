@@ -1,6 +1,5 @@
 package com.vad.modulchit.screens.sort.bubble;
 
-import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
@@ -17,9 +16,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vad.modulchit.R;
-import com.vad.modulchit.animation.common.RenderState;
+import com.vad.modulchit.models.animation.common.RenderState;
 import com.vad.modulchit.screens.sort.ScreenSort;
-import com.vad.modulchit.animation.common.StatusAnimation;
+import com.vad.modulchit.models.animation.common.StatusAnimation;
 import com.vad.modulchit.models.Parser;
 import com.vad.modulchit.models.sort.Sort;
 import com.vad.modulchit.models.sort.SortFactory;
@@ -53,7 +52,6 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Scre
         editText = (EditText) v.findViewById(R.id.editTextArrSort);
         btn = (Button) v.findViewById(R.id.btnSort);
         log = (TextView) v.findViewById(R.id.log);
-        logs = new StringBuilder();
 
         customView.setVisibility(View.INVISIBLE);
 
@@ -76,7 +74,9 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Scre
                     render.setStateRestart();
                 }
                 if (render.getStateRun() == StatusAnimation.STOP) {
-                    render.setStateRun(sort.sorting(Parser.parseToIntArray(editText.getText().toString())));
+                    if (logs!=null) logs = null;
+                    logs = new StringBuilder();
+                    render.setStateStart(sort.sorting(Parser.parseToIntArray(editText.getText().toString())));
                 }
                 btn.setCompoundDrawablesWithIntrinsicBounds(imgPause, null, null, null);
                 isRun = false;
@@ -101,9 +101,10 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Scre
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
+        render.setStateStop();
         render = null;
         customView = null;
+        super.onDestroy();
     }
 
     @Override

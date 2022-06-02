@@ -6,12 +6,10 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.PointF;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
 import android.view.View;
 import androidx.annotation.Nullable;
-import com.vad.modulchit.pojos.BinarySearchModel;
+import com.vad.modulchit.models.pojos.BinarySearchModel;
 import java.util.List;
 
 public class CustomViewBinarySearch extends View {

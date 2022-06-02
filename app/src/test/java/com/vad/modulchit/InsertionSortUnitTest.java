@@ -2,7 +2,7 @@ package com.vad.modulchit;
 
 import static org.junit.Assert.assertArrayEquals;
 
-import com.vad.modulchit.animation.StepRecorder;
+import com.vad.modulchit.models.animation.StepRecorder;
 import com.vad.modulchit.models.sort.Sort;
 import com.vad.modulchit.models.sort.insertion.InsertionSort;
 import org.junit.Test;

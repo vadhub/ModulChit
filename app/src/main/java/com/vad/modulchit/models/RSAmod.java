@@ -2,8 +2,8 @@ package com.vad.modulchit.models;
 
 import android.util.Pair;
 
-import com.vad.modulchit.pojos.TableNumberFE;
-import com.vad.modulchit.pojos.TableNumberGCDe;
+import com.vad.modulchit.models.pojos.TableNumberFE;
+import com.vad.modulchit.models.pojos.TableNumberGCDe;
 
 import java.math.BigInteger;
 import java.util.ArrayList;

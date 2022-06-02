@@ -1,4 +1,4 @@
-package com.vad.modulchit.adapters;
+package com.vad.modulchit.screens.adapters;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;

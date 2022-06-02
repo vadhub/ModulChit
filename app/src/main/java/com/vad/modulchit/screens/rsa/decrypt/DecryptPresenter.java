@@ -4,7 +4,7 @@ package com.vad.modulchit.screens.rsa.decrypt;
 import com.vad.modulchit.R;
 import com.vad.modulchit.models.AlgebraMod;
 import com.vad.modulchit.models.RSAmod;
-import com.vad.modulchit.pojos.TableNumberGCDe;
+import com.vad.modulchit.models.pojos.TableNumberGCDe;
 
 import java.util.List;
 

@@ -1,14 +1,13 @@
 package com.vad.modulchit.screens.sort;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import androidx.annotation.NonNull;
 
-import com.vad.modulchit.animation.common.RenderSort;
+import com.vad.modulchit.models.animation.common.RenderSort;
 
 
 public class CustomViewSorted extends SurfaceView implements SurfaceHolder.Callback {

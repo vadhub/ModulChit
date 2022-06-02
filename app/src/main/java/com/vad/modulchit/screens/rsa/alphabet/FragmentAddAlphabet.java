@@ -21,7 +21,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.vad.modulchit.R;
-import com.vad.modulchit.adapters.AdapterRSAalphabyte;
+import com.vad.modulchit.screens.adapters.AdapterRSAalphabyte;
 import com.vad.modulchit.screens.contract.HasCustomTitle;
 import com.vad.modulchit.screens.contract.Navigator;
 

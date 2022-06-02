@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.vad.modulchit.R;
-import com.vad.modulchit.pojos.BinarySearchModel;
+import com.vad.modulchit.models.pojos.BinarySearchModel;
 import com.vad.modulchit.screens.contract.HasCustomTitle;
 import com.vad.modulchit.models.Parser;
 import com.vad.modulchit.models.search.BinarySearchImpl;

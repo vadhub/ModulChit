@@ -1,6 +1,6 @@
 package com.vad.modulchit.screens.rsa.crypt;
 
-import com.vad.modulchit.pojos.TableNumberFE;
+import com.vad.modulchit.models.pojos.TableNumberFE;
 import com.vad.modulchit.screens.supportable.Supportable;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.vad.modulchit.pojos;
+package com.vad.modulchit.models.pojos;
 
 public class TableNumberNOK {
     private int a;

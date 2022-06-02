@@ -1,6 +1,6 @@
 package com.vad.modulchit.models.search;
 
-import com.vad.modulchit.pojos.BinarySearchModel;
+import com.vad.modulchit.models.pojos.BinarySearchModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;

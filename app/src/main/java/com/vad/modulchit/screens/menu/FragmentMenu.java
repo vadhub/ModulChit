@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.vad.modulchit.R;
-import com.vad.modulchit.adapters.AdapterMenu;
+import com.vad.modulchit.screens.adapters.AdapterMenu;
 import com.vad.modulchit.screens.binarysearch.FragmentBinarySearch;
 import com.vad.modulchit.screens.contract.HasCustomTitle;
 import com.vad.modulchit.screens.contract.Navigator;
