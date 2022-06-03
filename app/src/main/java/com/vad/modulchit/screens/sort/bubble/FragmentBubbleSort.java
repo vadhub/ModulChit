@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vad.modulchit.R;
+import com.vad.modulchit.models.animation.StepRecorder;
 import com.vad.modulchit.models.animation.common.RenderState;
 import com.vad.modulchit.screens.sort.ScreenSort;
 import com.vad.modulchit.models.animation.common.StatusAnimation;
@@ -76,7 +77,9 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Scre
                 if (render.getStateRun() == StatusAnimation.STOP) {
                     if (logs!=null) logs = null;
                     logs = new StringBuilder();
-                    render.setStateStart(sort.sorting(Parser.parseToIntArray(editText.getText().toString())));
+                    int[] arr = Parser.parseToIntArray(editText.getText().toString());
+                    StepRecorder stepRecorder = sort.sorting(arr);
+                    render.setStateStart(stepRecorder);
                 }
                 btn.setCompoundDrawablesWithIntrinsicBounds(imgPause, null, null, null);
                 isRun = false;

@@ -112,9 +112,8 @@ public class RenderSort implements RenderState {
     public void setStateStart(StepRecorder stepRecorder) {
         statusAnimation = StatusAnimation.START;
         current = 0;
-        screenSort.write("");
-        draw(stepRecorder.getSteps(), current);
         setRecorder(stepRecorder);
+        draw(recorder.getSteps(), current);
     }
 
     @Override
@@ -125,8 +124,6 @@ public class RenderSort implements RenderState {
             timer.cancel();
             timer = null;
         }
-        current = 0;
-        recorder = null;
     }
 
     @Override

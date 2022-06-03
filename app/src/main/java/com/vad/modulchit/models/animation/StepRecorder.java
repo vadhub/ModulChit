@@ -26,4 +26,8 @@ public class StepRecorder {
     public List<int[]> getSteps() {
         return steps;
     }
+
+    public void setSteps(List<int[]> steps) {
+        this.steps = steps;
+    }
 }
