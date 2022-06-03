@@ -6,10 +6,11 @@ import com.vad.modulchit.models.sort.Sort;
 
 public class InsertionSort implements Sort {
 
-    private final StepRecorder stepRecorder;
+    private StepRecorder stepRecorder;
 
-    public InsertionSort() {
-        stepRecorder = new StepRecorder();
+    @Override
+    public void setStepRecorder(StepRecorder stepRecorder) {
+        this.stepRecorder = stepRecorder;
     }
 
     @Override

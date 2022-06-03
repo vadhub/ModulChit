@@ -78,8 +78,8 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Scre
                     if (logs!=null) logs = null;
                     logs = new StringBuilder();
                     int[] arr = Parser.parseToIntArray(editText.getText().toString());
-                    StepRecorder stepRecorder = sort.sorting(arr);
-                    render.setStateStart(stepRecorder);
+                    sort.setStepRecorder(new StepRecorder());
+                    render.setStateStart(sort.sorting(arr));
                 }
                 btn.setCompoundDrawablesWithIntrinsicBounds(imgPause, null, null, null);
                 isRun = false;

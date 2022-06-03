@@ -5,10 +5,11 @@ import com.vad.modulchit.models.sort.Sort;
 
 public class ShellSort implements Sort {
 
-    private final StepRecorder stepRecorder;
+    private StepRecorder stepRecorder;
 
-    public ShellSort() {
-        stepRecorder = new StepRecorder();
+    @Override
+    public void setStepRecorder(StepRecorder stepRecorder) {
+        this.stepRecorder = stepRecorder;
     }
 
     @Override

@@ -7,8 +7,9 @@ public class QuickSort implements Sort {
 
     private StepRecorder recorder;
 
-    public QuickSort() {
-        recorder = new StepRecorder();
+    @Override
+    public void setStepRecorder(StepRecorder stepRecorder) {
+        this.recorder = stepRecorder;
     }
 
     @Override

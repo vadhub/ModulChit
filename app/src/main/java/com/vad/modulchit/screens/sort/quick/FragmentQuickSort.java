@@ -1,6 +1,7 @@
 package com.vad.modulchit.screens.sort.quick;
 
 import com.vad.modulchit.R;
+import com.vad.modulchit.models.animation.StepRecorder;
 import com.vad.modulchit.models.sort.Sort;
 import com.vad.modulchit.models.sort.SortFactory;
 import com.vad.modulchit.models.sort.SortType;
@@ -10,7 +11,8 @@ public class FragmentQuickSort extends FragmentBubbleSort {
 
     @Override
     protected Sort getSort() {
-        return new SortFactory().createSort(SortType.QUICK_SORT);
+        StepRecorder stepRecorder = new StepRecorder();
+        return new SortFactory().createSort(SortType.QUICK_SORT, stepRecorder);
     }
 
     @Override
