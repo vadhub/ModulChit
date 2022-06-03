@@ -11,8 +11,7 @@ public class FragmentQuickSort extends FragmentBubbleSort {
 
     @Override
     protected Sort getSort() {
-        StepRecorder stepRecorder = new StepRecorder();
-        return new SortFactory().createSort(SortType.QUICK_SORT, stepRecorder);
+        return new SortFactory().createSort(SortType.QUICK_SORT);
     }
 
     @Override

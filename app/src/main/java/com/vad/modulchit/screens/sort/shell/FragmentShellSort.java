@@ -12,8 +12,7 @@ public class FragmentShellSort extends FragmentBubbleSort {
 
     @Override
     protected Sort getSort() {
-        StepRecorder stepRecorder = new StepRecorder();
-        return new SortFactory().createSort(SortType.SHELL_SORT, stepRecorder);
+        return new SortFactory().createSort(SortType.SHELL_SORT);
     }
 
     @Override

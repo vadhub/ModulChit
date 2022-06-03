@@ -11,8 +11,7 @@ public class FragmentInsertSort extends FragmentBubbleSort {
 
     @Override
     protected Sort getSort() {
-        StepRecorder stepRecorder = new StepRecorder();
-        return new SortFactory().createSort(SortType.INSERT_SORT, stepRecorder);
+        return new SortFactory().createSort(SortType.INSERT_SORT);
     }
 
     @Override
