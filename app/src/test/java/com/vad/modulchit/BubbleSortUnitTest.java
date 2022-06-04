@@ -9,6 +9,8 @@ import com.vad.modulchit.models.sort.bubbleimpl.BubbleSort;
 
 import org.junit.Test;
 
+import java.util.List;
+
 public class BubbleSortUnitTest {
 
     int[] arr = {10, 4, 1, 8, 5, 4, 11, 9, 2, 1, 9, 3};
@@ -16,10 +18,11 @@ public class BubbleSortUnitTest {
 
     @Test
     public void sort_isCorrect() {
+        StepRecorder stepRecorder = new StepRecorder();
         Sort sort = new BubbleSort();
-        StepRecorder stepRecorder = sort.sorting(arr);
-
-        assertArrayEquals(stepRecorder.getSteps().get(stepRecorder.getSteps().size()-1), arrSorted);
+        sort.setStepRecorder(stepRecorder);
+        List<int[]> steps = sort.sorting(arr).getSteps();
+        assertArrayEquals(steps.get(steps.size()-1), arrSorted);
     }
 
 }
