@@ -34,6 +34,8 @@
     <string name="shell_sort">Shell Sort</string>
     <string name="insert_sort">Insert Sort</string>
     <string name="quick_sort">Quick Sort</string>
+    <string name="selection_sort">Selection Sort</string>
+
 
 
     <string-array name="titleScreen">

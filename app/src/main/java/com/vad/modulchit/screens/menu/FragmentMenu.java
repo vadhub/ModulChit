@@ -22,6 +22,7 @@ import com.vad.modulchit.screens.rsa.alphabet.FragmentAddAlphabet;
 import com.vad.modulchit.screens.sort.bubble.FragmentBubbleSort;
 import com.vad.modulchit.screens.sort.insert.FragmentInsertSort;
 import com.vad.modulchit.screens.sort.quick.FragmentQuickSort;
+import com.vad.modulchit.screens.sort.selection.FragmentSelectionSort;
 import com.vad.modulchit.screens.sort.shell.FragmentShellSort;
 
 import java.util.Arrays;
@@ -76,6 +77,8 @@ public class FragmentMenu extends Fragment implements HasCustomTitle {
                 return new FragmentInsertSort();
             case 8:
                 return new FragmentQuickSort();
+            case 9:
+                return new FragmentSelectionSort();
         }
 
         return new FragmentFE();
