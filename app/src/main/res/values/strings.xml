@@ -48,6 +48,7 @@
         <item>Shell Sort</item>
         <item>Insert Sort</item>
         <item>Quick Sort</item>
+        <item>Selection Sort</item>
     </string-array>
 
     <string-array name="modifyRsaAlpabyte">

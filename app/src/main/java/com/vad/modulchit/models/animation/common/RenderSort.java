@@ -15,7 +15,7 @@ import java.util.TimerTask;
 
 public class RenderSort implements RenderState {
 
-    private final static int FONT_SIZE = 20;
+    private final static int FONT_SIZE = 30;
     private final static int PADDING = 10;
 
     private final SurfaceHolder mSurfaceHolder;

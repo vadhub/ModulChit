@@ -26,6 +26,7 @@
         <item>Сортировка Шелла</item>
         <item>Сортировка вставками</item>
         <item>Быстрая сортировка</item>
+        <item>Сортировка выбором</item>
     </string-array>
 
     <string-array name="modifyRsaAlpabyte">
