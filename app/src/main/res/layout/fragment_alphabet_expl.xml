@@ -5,7 +5,9 @@
     android:layout_height="match_parent"
     style="@style/modulechit_style"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".screens.rsa.alphabet.explalpha.FragmentAlphabetExpl">
+    tools:context=".screens.rsa.alphabet.explalpha.FragmentAlphabetExpl"
+    android:clickable="true"
+    android:focusable="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

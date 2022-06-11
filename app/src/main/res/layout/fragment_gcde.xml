@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     style="@style/modulechit_style"
-    tools:context=".screens.gcde.FragmentGCDe">
+    tools:context=".screens.gcde.FragmentGCDe"
+    android:focusable="true"
+    android:clickable="true">
 
 
     <ScrollView

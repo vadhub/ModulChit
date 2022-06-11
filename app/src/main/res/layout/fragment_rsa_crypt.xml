@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     style="@style/modulechit_style"
-    tools:context=".screens.rsa.crypt.FragmentRSAcrypt">
+    tools:context=".screens.rsa.crypt.FragmentRSAcrypt"
+    android:clickable="true"
+    android:focusable="true">
 
     <ScrollView
         android:layout_width="match_parent"

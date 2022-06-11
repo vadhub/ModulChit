@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     style="@style/modulechit_style"
-    tools:context=".screens.rsa.alphabet.FragmentAddAlphabet">
+    tools:context=".screens.rsa.alphabet.FragmentAddAlphabet"
+    android:clickable="true"
+    android:focusable="true">
 
     <Button
         android:id="@+id/btnNetx"
@@ -119,7 +121,8 @@
             android:id="@+id/mRecyclerAlphabyte"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="4dp" />
+            android:layout_margin="4dp"
+            style="@style/modulechit_style"/>
 
         <ProgressBar
             android:id="@+id/progressBarAlpha"

@@ -6,7 +6,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".screens.mg.FragmentMG">
+    tools:context=".screens.mg.FragmentMG"
+    android:clickable="true"
+    android:focusable="true">
 
     <ScrollView
         android:id="@+id/scrollView"
