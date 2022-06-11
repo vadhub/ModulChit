@@ -36,7 +36,7 @@ public class AlphabetPresenter {
     }
 
     public void alphabetLoad() {
-        Disposable disposable = Observable.empty()
+        Disposable disposable = Observable.just("")
                 .subscribeOn(Schedulers.computation())
                 .map(r -> shiphr.getNumberShiphr())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -46,7 +46,7 @@ public class AlphabetPresenter {
     }
 
     public void alphabetLoad(int numberForFirstLetter) {
-        Disposable disposable = Observable.empty()
+        Disposable disposable = Observable.just("")
                 .subscribeOn(Schedulers.computation())
                 .map(empty -> shiphr.getNumberShiphr(numberForFirstLetter))
                 .observeOn(AndroidSchedulers.mainThread())
