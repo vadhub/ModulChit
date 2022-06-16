@@ -99,7 +99,7 @@ public class AlphabetPresenter {
     }
 
     public void startFragmentWithDNumber(Navigator navigator, RSAmod mod, List<Integer> alphabetCodes, int eller, int exponent, int n, int p, int q) {
-        Disposable disposable = Observable.empty()
+        Disposable disposable = Observable.just("")
                 .subscribeOn(Schedulers.computation())
                 .map(empty -> mod.getDPrivate(eller, exponent))
                 .observeOn(AndroidSchedulers.mainThread())
