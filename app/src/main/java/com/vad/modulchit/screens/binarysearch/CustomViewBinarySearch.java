@@ -8,9 +8,13 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.AttributeSet;
 import android.view.View;
+
 import androidx.annotation.Nullable;
+
 import com.vad.modulchit.models.pojos.BinarySearchModel;
+
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class CustomViewBinarySearch extends View {
 
@@ -41,9 +45,9 @@ public class CustomViewBinarySearch extends View {
 
     public void searchElement(List<BinarySearchModel> binarySearchModels) {
         this.binarySearchModels = binarySearchModels;
-        this.maxWidth = getWidth()/binarySearchModels.get(0).getArrTemp().length;
+        this.maxWidth = getWidth() / binarySearchModels.get(0).getArrTemp().length;
         this.maxHeight = 100;
-        this.widthContent = maxWidth*binarySearchModels.get(0).getArrTemp().length;
+        this.widthContent = maxWidth * binarySearchModels.get(0).getArrTemp().length;
         requestLayout();
     }
 
@@ -88,44 +92,51 @@ public class CustomViewBinarySearch extends View {
         float len = 0;
 
         int length = binarySearchModels.get(0).getArrTemp().length;
-        float xStart = (float) (length*getMaxWidth()/2)+STROKE_WITH;
+        float xStart = (float) (length * getMaxWidth() / 2) + STROKE_WITH;
+        AtomicBoolean flag = new AtomicBoolean(true);
+        int finalY = y;
+        binarySearchModels.forEach(s -> {
+            if (s.getCompareElementAndMid().equals("zero")) {
+                canvas.drawText("Element is absent " + s.getMidElement(), x+shiftDown, finalY+shiftDown, paintForCondition);
+            } else {
+                flag.set(false);
+            }
+        });
 
-        for (int i = 0; i < binarySearchModels.size()-1; i++) {
-            if (binarySearchModels.get(i).getCompareElementAndMid().equals("zero")) {
-                canvas.drawText("Element is absent " + binarySearchModels.get(i).getMidElement(), x, y, paintForCondition);
-                break;
+        if (flag.get()) {
+            for (int i = 0; i < binarySearchModels.size() - 1; i++) {
+                drawArray(canvas, paint, binarySearchModels.get(i).getArrTemp(), x + shiftX, y, getMaxWidth(), getMaxHeight(), binarySearchModels.get(i).getMidElement());
+                drawArrow(canvas, paint, xStart, y + getMaxHeight(), xStart, y + getMaxHeight() + shiftDown);
+                canvas.drawText(binarySearchModels.get(i).getCompareElementAndMid(), xStart + 10, y + getMaxHeight() + shiftDown / 2, paintForCondition);
+                y = y + getMaxHeight() + shiftDown;
+                if (i + 1 < binarySearchModels.size()) {
+                    len = binarySearchModels.get(i + 1).getArrTemp().length * getMaxWidth();
+                }
+                shiftX = (widthContent - len) / 2;
             }
-            drawArray(canvas, paint, binarySearchModels.get(i).getArrTemp(), x+shiftX, y, getMaxWidth(), getMaxHeight(), binarySearchModels.get(i).getMidElement());
-            drawArrow(canvas, paint, xStart, y+getMaxHeight(), xStart, y+getMaxHeight()+shiftDown);
-            canvas.drawText(binarySearchModels.get(i).getCompareElementAndMid(), xStart+10, y+getMaxHeight()+shiftDown/2, paintForCondition);
-            y = y + getMaxHeight()+shiftDown;
-            if (i+1 < binarySearchModels.size()) {
-                len = binarySearchModels.get(i+1).getArrTemp().length*getMaxWidth();
-            }
-            shiftX = (widthContent-len)/2;
+
+            drawArray(canvas, paint, binarySearchModels.get(binarySearchModels.size() - 1).getArrTemp(), x + shiftX, y, getMaxWidth(), getMaxWidth());
         }
-
-        drawArray(canvas, paint, binarySearchModels.get(binarySearchModels.size()-1).getArrTemp(), x+shiftX, y, getMaxWidth(), getMaxWidth());
     }
 
     public void drawArrow(Canvas canvas, Paint paint, float xStart, float yStart, float xEnd, float yEnd) {
         paint.setColor(Color.BLACK);
-        canvas.drawLine(xStart,yStart, xEnd, yEnd, paint);
-        drawTriangle(canvas, paint, xStart, (float) (yEnd-STROKE_WITH*2.5), 10);
+        canvas.drawLine(xStart, yStart, xEnd, yEnd, paint);
+        drawTriangle(canvas, paint, xStart, (float) (yEnd - STROKE_WITH * 2.5), 10);
     }
 
     public void drawArray(Canvas canvas, Paint paint, int[] arr, float x, int y, int width, int height, int midElement) {
         int k = 0;
-        float length = width*arr.length+x;
-        for (float i = x; i < length; i+=width) {
-            canvas.drawRect(i, y, i+width, y+height, paint);
+        float length = width * arr.length + x;
+        for (float i = x; i < length; i += width) {
+            canvas.drawRect(i, y, i + width, y + height, paint);
             if (arr[k] == midElement) {
                 int shift = 5;
                 paint.setColor(Color.RED);
-                canvas.drawRect(i+shift, y+shift, i+width-shift, y+height-shift, paint);
+                canvas.drawRect(i + shift, y + shift, i + width - shift, y + height - shift, paint);
                 paint.setColor(Color.BLACK);
             }
-            canvas.drawText(String.valueOf(arr[k]), (float) (i+width*0.15), (float) (y+height*0.85), fontPaint);
+            canvas.drawText(String.valueOf(arr[k]), (float) (i + width * 0.15), (float) (y + height * 0.85), fontPaint);
             k++;
         }
     }
@@ -133,13 +144,13 @@ public class CustomViewBinarySearch extends View {
     public void drawArray(Canvas canvas, Paint paint, int[] arr, float x, int y, int width, int height) {
         int k = 0;
         paint.setColor(Color.BLACK);
-        float length = width*arr.length+x;
-        for (float i = x; i < length; i+=width) {
+        float length = width * arr.length + x;
+        for (float i = x; i < length; i += width) {
             int shift = 5;
-            canvas.drawRect(i, y, i+width, y+height, paint);
+            canvas.drawRect(i, y, i + width, y + height, paint);
             paint.setColor(Color.GREEN);
-            canvas.drawRect(i+shift, y+shift, i+width-shift, y+height-shift, paint);
-            canvas.drawText(String.valueOf(arr[k]), (float) (i+width*0.15), (float) (y+height*0.85), fontPaint);
+            canvas.drawRect(i + shift, y + shift, i + width - shift, y + height - shift, paint);
+            canvas.drawText(String.valueOf(arr[k]), (float) (i + width * 0.15), (float) (y + height * 0.85), fontPaint);
             k++;
             paint.setColor(Color.BLACK);
         }

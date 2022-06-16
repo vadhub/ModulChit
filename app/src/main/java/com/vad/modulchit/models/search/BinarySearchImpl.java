@@ -23,6 +23,11 @@ public class BinarySearchImpl implements BinarySearch{
 
             int midIndex = low + (high - low) / 2;
 
+            if (midIndex >= arr.length) {
+                binarySearchModel.add(new BinarySearchModel(new int[]{0}, element, "zero"));
+                return binarySearchModel;
+            }
+
             if (element < arr[midIndex]) {
                 high = midIndex - 1;
                 tempHigh = midIndex;
