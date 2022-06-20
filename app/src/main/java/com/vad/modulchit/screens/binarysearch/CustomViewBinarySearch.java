@@ -98,7 +98,6 @@ public class CustomViewBinarySearch extends View {
         binarySearchModels.forEach(s -> {
             if (s.getCompareElementAndMid().equals("zero")) {
                 canvas.drawText("Element is absent " + s.getMidElement(), x+shiftDown, finalY+shiftDown, paintForCondition);
-            } else {
                 flag.set(false);
             }
         });
