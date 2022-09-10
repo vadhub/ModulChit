@@ -31,7 +31,6 @@ import com.vad.modulchit.screens.menu.FragmentMenu;
 public class MainActivity extends AppCompatActivity implements Navigator {
 
     private AdView mAdView;
-    private Fragment currentFragment = null;
     private Toolbar toolbar;
 
     @Override
@@ -54,19 +53,12 @@ public class MainActivity extends AppCompatActivity implements Navigator {
     }
 
     @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        if (currentFragment != null)
-        getSupportFragmentManager().putFragment(outState, "mFragment", currentFragment);
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         updateOnUI();
         return true;
     }
 
-    private FragmentManager.FragmentLifecycleCallbacks fragmentListener = new FragmentManager.FragmentLifecycleCallbacks() {
+    private final FragmentManager.FragmentLifecycleCallbacks fragmentListener = new FragmentManager.FragmentLifecycleCallbacks() {
         @Override
         public void onFragmentViewCreated(@NonNull FragmentManager fm, @NonNull Fragment f, @NonNull View v, @Nullable Bundle savedInstanceState) {
             super.onFragmentViewCreated(fm, f, v, savedInstanceState);

@@ -1,136 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/modulechit_style"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    style="@style/modulechit_style"
-    tools:context=".screens.gcde.FragmentGCDe"
+    android:clickable="true"
     android:focusable="true"
-    android:clickable="true">
+    android:focusableInTouchMode="true"
+    tools:context=".screens.gcde.FragmentGCDe">
 
-
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:focusable="true"
-        android:focusableInTouchMode="true">
+        android:layout_height="0dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ok"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardGCDErecycler"
             android:layout_width="match_parent"
-            android:layout_height="0dp">
+            android:layout_height="match_parent"
+            android:elevation="8sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/includeGCDE">
 
-            <Button
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ok"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardGCDErecycler"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/myRecyclerGcde"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:elevation="8sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/includeGCDE"
-                android:visibility="invisible"
-               >
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/myRecyclerGcde"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="8sp"
-                    />
-            </androidx.cardview.widget.CardView>
+                android:layout_margin="8sp" />
+        </androidx.cardview.widget.CardView>
 
 
-            <include
-                android:id="@+id/includeGCDE"
-                layout="@layout/gcde_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:visibility="invisible"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button">
+        <include
+            android:id="@+id/includeGCDE"
+            layout="@layout/gcde_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button">
 
-            </include>
+        </include>
 
-            <LinearLayout
-                android:id="@+id/linearLayout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:gravity="center"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:id="@+id/textView34"
-                    style="@style/Theme.ModulChit"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1.8"
-                    android:gravity="center"
-                    android:text="a:"
-                    android:textSize="24sp" />
-
-                <EditText
-                    android:id="@+id/editTextA"
-                    style="@style/Theme.ModulChit"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1.2"
-                    android:ems="5"
-                    android:hint="@string/number_1"
-                    android:inputType="number"
-                    android:textSize="24sp" />
-
-                <TextView
-                    android:id="@+id/textView42"
-                    style="@style/Theme.ModulChit"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1.8"
-                    android:gravity="center"
-                    android:text="b:"
-                    android:textSize="24sp" />
-
-                <EditText
-                    android:id="@+id/editTextB"
-                    style="@style/Theme.ModulChit"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1.2"
-                    android:ems="5"
-                    android:hint="@string/number_2"
-                    android:inputType="number"
-                    android:textSize="24sp" />
-
-
-            </LinearLayout>
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/resultNegativeNumber"
+                android:id="@+id/textView34"
                 style="@style/Theme.ModulChit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cardGCDErecycler" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1.8"
+                android:gravity="center"
+                android:text="a:"
+                android:textSize="24sp" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
-</FrameLayout>
+            <EditText
+                android:id="@+id/editTextA"
+                style="@style/Theme.ModulChit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1.2"
+                android:ems="5"
+                android:hint="@string/number_1"
+                android:inputType="number"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/textView42"
+                style="@style/Theme.ModulChit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1.8"
+                android:gravity="center"
+                android:text="b:"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/editTextB"
+                style="@style/Theme.ModulChit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1.2"
+                android:ems="5"
+                android:hint="@string/number_2"
+                android:inputType="number"
+                android:textSize="24sp" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/resultNegativeNumber"
+            style="@style/Theme.ModulChit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardGCDErecycler" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

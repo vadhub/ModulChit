@@ -54,7 +54,7 @@ public class AdapterMenu extends RecyclerView.Adapter<AdapterMenu.MyViewHolder> 
         holder.menuName.setText(strings.get(position));
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView menuName;
 

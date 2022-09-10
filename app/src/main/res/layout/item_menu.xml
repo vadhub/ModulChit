@@ -1,32 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_menu"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardElevation="10dp">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_menu"
+    <TextView
+        android:id="@+id/text_view_name_screen"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        app:cardElevation="10dp">
+        android:layout_height="50dp"
+        android:layout_margin="40dp"
+        android:gravity="center"
+        android:text="@string/gcd_e"
+        app:autoSizeMaxTextSize="40sp"
+        app:autoSizeMinTextSize="20sp"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform" />
 
-        <TextView
-            android:id="@+id/text_view_name_screen"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="40dp"
-            android:gravity="center"
-            android:text="@string/gcd_e"
-            app:autoSizeTextType="uniform"
-            app:autoSizeMinTextSize="20sp"
-            app:autoSizeMaxTextSize="40sp"
-            app:autoSizeStepGranularity="2sp"
-            />
-
-    </androidx.cardview.widget.CardView>
-
-</FrameLayout>
+</androidx.cardview.widget.CardView>

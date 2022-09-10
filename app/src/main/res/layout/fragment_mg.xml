@@ -1,101 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView"
+    style="@style/modulechit_style"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    style="@style/modulechit_style"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".screens.mg.FragmentMG"
     android:clickable="true"
-    android:focusable="true">
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context=".screens.mg.FragmentMG">
 
-    <ScrollView
-        android:id="@+id/scrollView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:orientation="vertical"
+        android:gravity="center">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <EditText
+            android:id="@+id/editTextTextMod"
+            style="@style/Theme.ModulChit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="6"
+            android:hint="@string/mod_number"
+            android:inputType="number"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/buttonNOK"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ok" />
+
+        <TextView
+            android:id="@+id/textViewResult"
+            style="@style/Theme.ModulChit"
             android:layout_width="match_parent"
-            android:layout_height="0dp">
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="0"
+            android:textSize="20sp"
+            />
 
-            <Button
-                android:id="@+id/buttonNOK"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ok"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextMod" />
+        <include
+            android:id="@+id/includeMG"
+            layout="@layout/mg_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="invisible" />
 
-            <TextView
-                android:id="@+id/textView9"
-                style="@style/Theme.ModulChit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:text="mod"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toTopOf="@+id/buttonNOK"
-                app:layout_constraintEnd_toStartOf="@+id/editTextTextMod"
-                app:layout_constraintTop_toTopOf="parent" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/mRecyclerNok"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8sp"
+            android:layout_marginEnd="8sp" />
 
-            <EditText
-                android:id="@+id/editTextTextMod"
-                style="@style/Theme.ModulChit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:ems="6"
-                android:hint="@string/mod_number"
-                android:inputType="number"
-                android:textSize="24sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/textViewResult"
-                style="@style/Theme.ModulChit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="0"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/buttonNOK" />
-
-            <include
-                android:id="@+id/includeMG"
-                layout="@layout/mg_title"
-                android:layout_width="0dp"
-                android:visibility="invisible"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewResult" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/mRecyclerNok"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="8sp"
-                android:layout_marginEnd="8sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/includeMG" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </ScrollView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

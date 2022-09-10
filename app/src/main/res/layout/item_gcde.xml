@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <TableLayout
         android:id="@+id/table_gcde"
@@ -12,9 +11,6 @@
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:stretchColumns="0,1,2,3">
 
         <TableRow
@@ -23,50 +19,44 @@
 
             <TextView
                 android:id="@+id/textViewA"
-                android:layout_column="0"
-                android:text="a"
                 style="@style/textview_gcde"
-                />
+                android:layout_column="0"
+                android:text="a" />
 
             <TextView
                 android:id="@+id/textViewB"
-                android:textAlignment="center"
+                style="@style/textview_gcde"
                 android:layout_column="1"
                 android:text="b"
-                style="@style/textview_gcde"
-                />
+                android:textAlignment="center" />
 
             <TextView
                 android:id="@+id/textViewQ"
-                android:textAlignment="center"
+                style="@style/textview_gcde"
                 android:layout_column="2"
                 android:text="q"
-                style="@style/textview_gcde"
-                />
+                android:textAlignment="center" />
 
             <TextView
                 android:id="@+id/textViewR"
-                android:textAlignment="center"
+                style="@style/textview_gcde"
                 android:layout_column="3"
                 android:text="r"
-                style="@style/textview_gcde"
-                />
+                android:textAlignment="center" />
 
             <TextView
                 android:id="@+id/textViewX"
-                android:textAlignment="center"
+                style="@style/textview_gcde"
                 android:layout_column="4"
                 android:text="x"
-                style="@style/textview_gcde"
-                />
+                android:textAlignment="center" />
 
             <TextView
                 android:id="@+id/textViewY"
-                android:textAlignment="center"
+                style="@style/textview_gcde"
                 android:layout_column="5"
                 android:text="y"
-                style="@style/textview_gcde"
-                />
+                android:textAlignment="center" />
         </TableRow>
     </TableLayout>
 
@@ -74,16 +64,14 @@
         android:id="@+id/subItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/table_gcde"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginStart="10dp">
+
         <TextView
             android:id="@+id/extra_gcde"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ffff"/>
+            android:text="ffff" />
     </LinearLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

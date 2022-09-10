@@ -1,195 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/modulechit_style"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".screens.rsa.decrypt.FragmentRSAdecrypt"
-    style="@style/modulechit_style"
+    android:layout_marginHorizontal="4dp"
     android:clickable="true"
-    android:focusable="true">
+    android:focusable="true"
+    tools:context=".screens.rsa.decrypt.FragmentRSAdecrypt">
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginStart="4sp"
-        android:layout_marginEnd="4sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <EditText
+            android:id="@+id/editTextCodeDecrypt"
+            style="@style/theme_chit"
             android:layout_width="match_parent"
-            android:layout_height="0dp">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="center"
+            android:hint="[132, 345, 2, 35]"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/editTextCodeDecrypt"
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextCodeDecrypt">
+
+            <TextView
+                android:id="@+id/textView14"
                 style="@style/theme_chit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:gravity="center"
-                android:hint="[132, 345, 2, 35]"
-                android:inputType="text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <LinearLayout
-                android:id="@+id/linearLayout4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:gravity="center"
-                app:layout_constraintTop_toBottomOf="@+id/editTextCodeDecrypt">
-
-                <TextView
-                    android:id="@+id/textView14"
-                    style="@style/theme_chit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="n: " />
-
-                <EditText
-                    android:id="@+id/editTextNdecrypt"
-                    style="@style/theme_chit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="3"
-                    android:gravity="center"
-                    android:hint="17"
-                    android:inputType="textPersonName" />
-
-                <TextView
-                    android:id="@+id/textView15"
-                    style="@style/theme_chit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="d: "/>
-
-                <EditText
-                    android:id="@+id/editTextDdecript"
-                    style="@style/theme_chit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="3"
-                    android:gravity="center"
-                    android:hint="21"
-                    android:inputType="textPersonName" />
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/buttonDecrypt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="OK"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+                android:text="n: " />
+
+            <EditText
+                android:id="@+id/editTextNdecrypt"
+                style="@style/theme_chit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="3"
+                android:gravity="center"
+                android:hint="17"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/textView15"
+                style="@style/theme_chit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="d: " />
+
+            <EditText
+                android:id="@+id/editTextDdecript"
+                style="@style/theme_chit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="3"
+                android:gravity="center"
+                android:hint="21"
+                android:inputType="textPersonName" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/buttonDecrypt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="OK"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
 
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardResultDecrypt"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardResultDecrypt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonDecrypt">
+
+            <TextView
+                android:id="@+id/textViewResultDecrypt"
+                style="@style/theme_chit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:text="" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardGCDEreverse"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:visibility="invisible"
+            app:cardElevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardResultDecrypt">
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/buttonDecrypt"
-                android:layout_marginTop="8dp"
-                android:visibility="invisible">
-                <TextView
-                    android:id="@+id/textViewResultDecrypt"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp">
+
+                <include
+                    android:id="@+id/includeGCDEreverse"
+                    layout="@layout/gcde_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginEnd="4dp"
-                    android:gravity="left"
-                    style="@style/theme_chit"
-                    android:text="" />
+                    android:visibility="invisible" />
 
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardGCDEreverse"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="8dp"
-                app:cardElevation="4dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardResultDecrypt"
-                android:visibility="invisible">
-
-                <RelativeLayout
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/gcdeDecryptRecycler"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginEnd="4dp">
+                    android:layout_below="@+id/includeGCDEreverse"/>
 
-                    <include
-                        android:id="@+id/includeGCDEreverse"
-                        layout="@layout/gcde_title"
-                        android:visibility="invisible"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        />
+            </RelativeLayout>
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/gcdeDecryptRecycler"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_below="@+id/includeGCDEreverse"></androidx.recyclerview.widget.RecyclerView>
+        </androidx.cardview.widget.CardView>
 
-                </RelativeLayout>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardIncludeFeDec"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:visibility="invisible"
+            app:cardElevation="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardGCDEreverse">
 
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardIncludeFeDec"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginTop="8dp"
-                app:cardElevation="4dp"
-                app:layout_constraintTop_toBottomOf="@+id/cardGCDEreverse"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:visibility="invisible">
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp">
 
-                <RelativeLayout
+                <include
+                    android:id="@+id/includeFeDec"
+                    layout="@layout/item_fe_tite"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginEnd="4dp">
+                    android:layout_marginTop="8dp"
+                    android:visibility="invisible" />
 
-                    <include
-                        android:id="@+id/includeFeDec"
-                        layout="@layout/item_fe_tite"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="8dp"
-                        android:visibility="invisible" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/decryptRecycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/includeFeDec" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/decryptRecycler"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_below="@+id/includeFeDec" />
+            </RelativeLayout>
 
-                </RelativeLayout>
-
-            </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.core.widget.NestedScrollView>
+</androidx.core.widget.NestedScrollView>
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
