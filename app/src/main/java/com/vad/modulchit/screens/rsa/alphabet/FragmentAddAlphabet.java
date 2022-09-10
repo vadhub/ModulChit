@@ -34,9 +34,8 @@ public class FragmentAddAlphabet extends Fragment implements AlphabetView, HasCu
     private EditText numberQ;
     private RecyclerView mRecyclerView;
     private AdapterRSAalphabyte adapterRSAalphabyte;
-    private Spinner spinner;
+
     private List<Integer> alphabet;
-    private int theChoice = 0;
     private boolean isEncrypt = true;
     private ProgressBar progressBar;
     private AlphabetPresenter presenter;
@@ -51,11 +50,10 @@ public class FragmentAddAlphabet extends Fragment implements AlphabetView, HasCu
 
         presenter = new AlphabetPresenter(this, (Navigator) requireActivity());
 
-        numberForFirstLetter = (EditText) v.findViewById(R.id.textViewNumberFirst);
+        numberForFirstLetter = (EditText) v.findViewById(R.id.editTextViewNumberFirst);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.mRecyclerAlphabyte);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
         adapterRSAalphabyte = new AdapterRSAalphabyte();
-        spinner = (Spinner) v.findViewById(R.id.spinner);
         progressBar = (ProgressBar) v.findViewById(R.id.progressBarAlpha);
 
         numberP = (EditText) v.findViewById(R.id.editTextNumberP);
@@ -64,10 +62,6 @@ public class FragmentAddAlphabet extends Fragment implements AlphabetView, HasCu
         RadioButton radioButtonEncrypt = (RadioButton) v.findViewById(R.id.radioButtonEncrypt);
         RadioButton radioButtonDecrypt = (RadioButton) v.findViewById(R.id.radioButtonDecrypt);
 
-        ArrayAdapter<?> adapterSpinner = ArrayAdapter.createFromResource(getContext(), R.array.modifyRsaAlpabyte, android.R.layout.simple_spinner_item);
-        adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapterSpinner);
-        spinner.setOnItemSelectedListener(onItemSelectedListener);
         btnNext.setOnClickListener(clickListener);
 
         numberForFirstLetter.addTextChangedListener(textWatcher);
@@ -85,20 +79,6 @@ public class FragmentAddAlphabet extends Fragment implements AlphabetView, HasCu
             break;
             case R.id.radioButtonDecrypt: isEncrypt = false;
             break;
-        }
-    };
-
-    //selecting modification on aphavite
-    private final AdapterView.OnItemSelectedListener onItemSelectedListener = new AdapterView.OnItemSelectedListener() {
-        @Override
-        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-            theChoice = i;
-            update(i);
-        }
-
-        @Override
-        public void onNothingSelected(AdapterView<?> adapterView) {
-
         }
     };
 
@@ -126,23 +106,14 @@ public class FragmentAddAlphabet extends Fragment implements AlphabetView, HasCu
 
         @Override
         public void afterTextChanged(Editable editable) {
-            spinner.setSelection(1);
-            update(theChoice);
-
+            if (numberForFirstLetter.getText().toString().equals("")) {
+                Toast.makeText(getContext(), getResources().getString(R.string.warning_enter_text), Toast.LENGTH_SHORT).show();
+            } else {
+                presenter.alphabetChosen(Integer.parseInt(numberForFirstLetter.getText().toString()));
+            }
         }
     };
 
-    private void update(int i) {
-
-        if (numberForFirstLetter.getText().toString().equals("")) {
-            if (i != 0) {
-                Toast.makeText(getContext(), getResources().getString(R.string.warning_enter_text), Toast.LENGTH_SHORT).show();
-            }
-        } else {
-            presenter.alphabetChosen(i, Integer.parseInt(numberForFirstLetter.getText().toString()));
-        }
-
-    }
 
     @Override
     public void setAlphabet(List<Integer> alphabetCodes) {

@@ -17,16 +17,19 @@
         android:orientation="vertical"
         android:gravity="center">
 
-        <EditText
-            android:id="@+id/editTextTextMod"
-            style="@style/Theme.ModulChit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_marginTop="16dp"
-            android:ems="6"
-            android:hint="@string/mod_number"
-            android:inputType="number"
-            android:textSize="24sp" />
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextTextMod"
+                android:layout_width="112dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/mod_number"
+                android:inputType="number"
+                android:maxLength="6" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/buttonNOK"

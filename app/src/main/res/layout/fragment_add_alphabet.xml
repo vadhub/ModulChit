@@ -2,12 +2,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/modulechit_style"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    style="@style/modulechit_style"
-    tools:context=".screens.rsa.alphabet.FragmentAddAlphabet"
     android:clickable="true"
-    android:focusable="true">
+    android:focusable="true"
+    tools:context=".screens.rsa.alphabet.FragmentAddAlphabet">
 
     <Button
         android:id="@+id/btnNetx"
@@ -15,41 +15,44 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:text="@string/next"
         android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
+        android:text="@string/next"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-    </Button>
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textViewNumberFirst"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:hint="@string/first_number"
-        android:ems="4"
-        style="@style/theme_chit"
-        android:inputType="number"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextViewNumberFirst"
+            android:layout_width="94dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/first_number"
+            android:inputType="number"
+            android:maxLength="4" />
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <RadioGroup
         android:id="@+id/radiogroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="8dp"
-
-        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/linearLayoutEncrypt">
 
         <RadioButton
             android:id="@+id/radioButtonEncrypt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:checked="true"
             android:text="@string/encrypt" />
 
@@ -66,43 +69,37 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/textViewNumberFirst"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/textViewNumberFirst">
 
-        <TextView
-            android:id="@+id/textView16"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/theme_chit"
-            android:text="p: " />
+            android:layout_margin="8dp">
 
-        <EditText
-            android:id="@+id/editTextNumberP"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextNumberP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="p"
+                android:inputType="number"
+                android:maxLength="3" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/theme_chit"
-            android:ems="3"
-            android:gravity="center"
-            android:hint="p"
-            android:inputType="number" />
+            android:layout_margin="8dp">
 
-        <TextView
-            android:id="@+id/textView17"
-            style="@style/theme_chit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="q: " />
-
-        <EditText
-            android:id="@+id/editTextNumberQ"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:hint="q"
-            style="@style/theme_chit"
-            android:ems="3"
-            android:inputType="number" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextNumberQ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="q"
+                android:inputType="number"
+                android:maxLength="3" />
+        </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
@@ -119,28 +116,19 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/mRecyclerAlphabyte"
+            style="@style/modulechit_style"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="4dp"
-            style="@style/modulechit_style"/>
+            android:layout_margin="4dp" />
 
         <ProgressBar
             android:id="@+id/progressBarAlpha"
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center" />
 
     </androidx.cardview.widget.CardView>
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textViewNumberFirst"
-        app:layout_constraintEnd_toStartOf="@+id/btnNetx"
-        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

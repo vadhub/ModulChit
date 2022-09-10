@@ -54,15 +54,8 @@ public class AlphabetPresenter {
         compositeDisposable.add(disposable);
     }
 
-    public void alphabetChosen(int i, int numberForFirstLetter) {
-        switch (i) {
-            case 0:
-                alphabetLoad();
-                break;
-            case 1:
-                alphabetLoad(numberForFirstLetter);
-                break;
-        }
+    public void alphabetChosen(int numberForFirstLetter) {
+        alphabetLoad(numberForFirstLetter);
     }
 
     public void fragmentChoose(boolean isEncrypt, String qStr, String pStr, List<Integer> alphabetCodes) {

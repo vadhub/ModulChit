@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ScrollView
-
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -70,48 +69,35 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/textView34"
-                style="@style/Theme.ModulChit"
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginHorizontal="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1.8"
-                android:gravity="center"
-                android:text="a:"
-                android:textSize="24sp" />
+                android:layout_weight="1.8">
 
-            <EditText
-                android:id="@+id/editTextA"
-                style="@style/Theme.ModulChit"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextA"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/number_1"
+                    android:maxLength="5"
+                    android:inputType="number"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginHorizontal="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1.2"
-                android:ems="5"
-                android:hint="@string/number_1"
-                android:inputType="number"
-                android:textSize="24sp" />
+                android:layout_weight="1.8">
 
-            <TextView
-                android:id="@+id/textView42"
-                style="@style/Theme.ModulChit"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1.8"
-                android:gravity="center"
-                android:text="b:"
-                android:textSize="24sp" />
-
-            <EditText
-                android:id="@+id/editTextB"
-                style="@style/Theme.ModulChit"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1.2"
-                android:ems="5"
-                android:hint="@string/number_2"
-                android:inputType="number"
-                android:textSize="24sp" />
-
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/number_2"
+                    android:maxLength="5"
+                    android:inputType="number"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
 

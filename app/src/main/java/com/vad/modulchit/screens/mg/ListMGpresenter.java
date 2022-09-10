@@ -24,7 +24,7 @@ public class ListMGpresenter {
     public void loadListMG(int m){
 
         Disposable disposable = Observable.just(algebraMod)
-                .subscribeOn(Schedulers.io())
+                .subscribeOn(Schedulers.computation())
                 .map(o -> o.nokGraph(m))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(listMGView::showData);

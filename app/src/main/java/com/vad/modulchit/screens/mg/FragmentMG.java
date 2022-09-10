@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,6 +80,7 @@ public class FragmentMG extends Fragment implements ListMGView, HasCustomTitle, 
 
     @Override
     public void showData(List<TableNumberNOK> numberNOKS) {
+        Log.d("qqqq", "one time");
         textViewResult.setText(getResult(numberNOKS));
         adapterNOK.setTableNumberNOKS(numberNOKS);
         mRecyclerView.setAdapter(adapterNOK);
