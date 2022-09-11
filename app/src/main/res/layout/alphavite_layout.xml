@@ -1,28 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/modulechit_style"
+
+<com.google.android.material.textfield.TextInputLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutAlpha"
+    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp">
 
-    <TextView
-        android:id="@+id/textViewLetterAlpha1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="A"
-        style="@style/theme_chit"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/editTextNumberAlpha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/theme_chit"
-        android:layout_marginLeft="10sp"
+        android:gravity="center"
+        android:hint="A"
         android:inputType="number"
-        android:text="10"
-        app:layout_constraintStart_toEndOf="@+id/textViewLetterAlpha1"
-        app:layout_constraintTop_toTopOf="parent" />
-</LinearLayout>
+        android:maxLength="3"
+        android:text="10" />
+</com.google.android.material.textfield.TextInputLayout>

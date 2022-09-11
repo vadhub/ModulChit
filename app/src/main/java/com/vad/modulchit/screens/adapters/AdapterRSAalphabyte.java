@@ -12,8 +12,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.textfield.TextInputLayout;
 import com.vad.modulchit.R;
 import com.vad.modulchit.models.RSAshiphr;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -47,8 +50,12 @@ public class AdapterRSAalphabyte extends RecyclerView.Adapter<AdapterRSAalphabyt
     public void onBindViewHolder(@NonNull AdapterRSAalphabyte.MyViewHolder holder, int position) {
 
         holder.listener.updatePosition(position);
-        holder.textViewLetterAlpha.setText(shiphr.getAlphabyteEN().get(position)+"");
         holder.editTextNumber.setText(numbersCode.get(position)+"");
+        if (shiphr.getAlphabyteEN().get(position).equals(' ')) {
+            holder.textInputLayout.setHint("_");
+        } else {
+            holder.textInputLayout.setHint(shiphr.getAlphabyteEN().get(position)+"");
+        }
 
     }
 
@@ -59,7 +66,7 @@ public class AdapterRSAalphabyte extends RecyclerView.Adapter<AdapterRSAalphabyt
 
 
     static class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView textViewLetterAlpha;
+        TextInputLayout textInputLayout;
         EditText editTextNumber;
         MyClassEditTextListener listener;
 
@@ -67,8 +74,7 @@ public class AdapterRSAalphabyte extends RecyclerView.Adapter<AdapterRSAalphabyt
             super(itemView);
 
             this.listener = listener;
-
-            textViewLetterAlpha = (TextView) itemView.findViewById(R.id.textViewLetterAlpha1);
+            textInputLayout = (TextInputLayout) itemView.findViewById(R.id.layoutAlpha);
             editTextNumber = (EditText) itemView.findViewById(R.id.editTextNumberAlpha);
             editTextNumber.addTextChangedListener(listener);
         }

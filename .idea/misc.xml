@@ -26,7 +26,7 @@
         <entry key="app/src/main/res/layout/fragment_mg_expl.xml" value="0.2660098522167488" />
         <entry key="app/src/main/res/layout/fragment_mod.xml" value="0.22871376811594202" />
         <entry key="app/src/main/res/layout/fragment_n_o_k.xml" value="0.2767210144927536" />
-        <entry key="app/src/main/res/layout/fragment_rsa_crypt.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/fragment_rsa_crypt.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_rsa_decrypt.xml" value="0.30994152046783624" />
         <entry key="app/src/main/res/layout/fragment_shell_sort.xml" value="0.1831306990881459" />
         <entry key="app/src/main/res/layout/fragment_sort.xml" value="0.26354679802955666" />

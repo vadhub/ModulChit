@@ -3,58 +3,75 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/modulechit_style"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    style="@style/modulechit_style"
-    tools:context=".screens.binarysearch.FragmentBinarySearch"
     android:clickable="true"
-    android:focusable="true">
+    android:focusable="true"
+    tools:context=".screens.binarysearch.FragmentBinarySearch">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/editTextEnterArray"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="1, 2, 3, 5, 6, 7"
-            android:layout_margin="10sp"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toStartOf="@id/editTextEnterElement"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
 
-        <EditText
-            android:id="@+id/editTextEnterElement"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10sp"
-            android:ems="5"
-            android:hint="3"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
 
-            />
+                android:layout_weight="0.1"
+                app:helperText="array"
+                app:endIconMode="clear_text">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextEnterArray"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="1, 2, 3, 5, 6, 7" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_weight="0.3"
+                app:endIconMode="clear_text"
+                app:helperText="element">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextEnterElement"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="3"
+                    android:inputType="textPersonName"
+                    android:maxLength="3" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
 
         <Button
             android:id="@+id/btnBinarySearch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="calc"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextEnterArray" />
+            android:layout_gravity="center"
+            android:text="calc" />
 
         <com.vad.modulchit.screens.binarysearch.CustomViewBinarySearch
             android:id="@+id/binary_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnBinarySearch" />
+            android:layout_margin="8sp" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </ScrollView>
