@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    app:cardElevation="10dp">
+    app:cardCornerRadius="15dp"
+    app:cardElevation="8dp">
 
     <TextView
         android:id="@+id/text_view_name_screen"
@@ -17,7 +18,8 @@
         android:autoSizeStepGranularity="2sp"
         android:autoSizeTextType="uniform"
         android:gravity="center"
-        android:text="@string/gcd_e" />
+        android:text="@string/gcd_e"
+        android:textColor="@color/design_default_color_primary_variant" />
 
 </androidx.cardview.widget.CardView>
 

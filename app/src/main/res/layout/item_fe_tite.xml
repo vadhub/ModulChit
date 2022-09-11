@@ -1,63 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/modulechit_style.header"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    android:stretchColumns="0,1,2,3,4,5">
+    android:orientation="horizontal">
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/textViewre"
+        style="@style/Theme.ModulChit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:gravity="center"
+        android:text="a"
+        android:textSize="24sp" />
 
-        <TextView
-            android:id="@+id/textViewre"
-            style="@style/Theme.ModulChit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="a"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/textViewMfere"
+        style="@style/Theme.ModulChit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:gravity="center"
+        android:text="m"
+        android:textSize="24sp" />
 
-        <TextView
-            android:id="@+id/textViewMfere"
-            style="@style/Theme.ModulChit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="m"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/textViewNfere"
+        style="@style/Theme.ModulChit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:gravity="center"
+        android:text="n"
+        android:textSize="24sp" />
 
-        <TextView
-            android:id="@+id/textViewNfere"
-            style="@style/Theme.ModulChit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="n"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/textViewPfere"
+        style="@style/Theme.ModulChit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:gravity="center"
+        android:text="p"
+        android:textSize="24sp" />
 
-        <TextView
-            android:id="@+id/textViewPfere"
-            style="@style/Theme.ModulChit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="p"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/textViewRfere"
-            style="@style/Theme.ModulChit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="r"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-    </TableRow>
-</TableLayout>
+    <TextView
+        android:id="@+id/textViewRfere"
+        style="@style/Theme.ModulChit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:gravity="center"
+        android:text="r"
+        android:textSize="24sp" />
+</LinearLayout>
