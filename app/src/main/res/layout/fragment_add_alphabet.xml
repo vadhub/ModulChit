@@ -9,34 +9,59 @@
     android:focusable="true"
     tools:context=".screens.rsa.alphabet.FragmentAddAlphabet">
 
-    <Button
-        android:id="@+id/btnNetx"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearLayoutEncrypt"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
-        android:text="@string/next"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        android:weightSum="1">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textViewNumberFirst"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextViewNumberFirst"
-            android:layout_width="94dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textViewNumberFirst"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="@string/first_number"
-            android:inputType="number"
-            android:maxLength="4" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_weight="0.5">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextViewNumberFirst"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/first_number"
+                android:inputType="number"
+                android:maxLength="4" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextNumberP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="p"
+                android:inputType="number"
+                android:maxLength="3" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextNumberQ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="q"
+                android:inputType="number"
+                android:maxLength="3" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
 
 
     <RadioGroup
@@ -63,44 +88,17 @@
             android:text="@string/decrypt" />
     </RadioGroup>
 
-    <LinearLayout
-        android:id="@+id/linearLayoutEncrypt"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/btnNetx"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/textViewNumberFirst">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextNumberP"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:hint="p"
-                android:inputType="number"
-                android:maxLength="3" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextNumberQ"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:hint="q"
-                android:inputType="number"
-                android:maxLength="3" />
-        </com.google.android.material.textfield.TextInputLayout>
-    </LinearLayout>
+        android:drawableEnd="@drawable/ic_baseline_navigate_next_24"
+        android:text="@string/next"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/radiogroup"
+        />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -112,7 +110,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radiogroup">
+        app:layout_constraintTop_toBottomOf="@id/btnNetx"
+>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/mRecyclerAlphabyte"
