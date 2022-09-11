@@ -15,26 +15,6 @@ public class RSAshiphr {
         return alphabyte;
     }
 
-    public List<Character> getAlphabyteRU(){
-        List<Character> alphabyte = new ArrayList<>();
-        for(char i = 'а'; i<='я'; i++){
-            alphabyte.add(i);
-        }
-        alphabyte.add(' ');
-
-        return alphabyte;
-    }
-
-
-    public List<Integer> getNumberShiphr(int startNumber,int modify){
-        List<Integer> numbers = new ArrayList<>();
-        for(int i = 0; i < getAlphabyteEN().size(); i++){
-            numbers.add(i+modify+startNumber);
-        }
-
-        return numbers;
-    }
-
     public List<Integer> getNumberShiphr(int startNumber){
         List<Integer> numbers = new ArrayList<>();
         for(int i = 0; i < getAlphabyteEN().size(); i++){

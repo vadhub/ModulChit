@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity implements Navigator {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main);
 
         toolbar = (Toolbar) findViewById(R.id.main_toolbar);

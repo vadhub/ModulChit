@@ -61,7 +61,7 @@ public class AdapterGCDe extends RecyclerView.Adapter<AdapterGCDe.MyViewHolder> 
         return tableNumberGCDes.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView textViewA;
         TextView textViewB;

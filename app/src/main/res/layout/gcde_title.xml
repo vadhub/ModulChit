@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:stretchColumns="0,1,2,3,4,5">
-
-    <TableRow
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:gravity="center">
+    android:orientation="horizontal"
+    style="@style/modulechit_style.header">
 
         <TextView
+            android:layout_weight="0.5"
             android:id="@+id/textView3"
             style="@style/Theme.ModulChit"
             android:layout_width="wrap_content"
@@ -20,6 +17,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:layout_weight="0.5"
             android:id="@+id/textView4"
             style="@style/Theme.ModulChit"
             android:layout_width="wrap_content"
@@ -30,6 +28,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:layout_weight="0.5"
             android:id="@+id/textView5"
             style="@style/Theme.ModulChit"
             android:layout_width="wrap_content"
@@ -40,6 +39,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:layout_weight="0.5"
             android:id="@+id/textView6"
             style="@style/Theme.ModulChit"
             android:layout_width="wrap_content"
@@ -50,6 +50,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:layout_weight="0.56"
             android:id="@+id/textView7"
             style="@style/Theme.ModulChit"
             android:layout_width="wrap_content"
@@ -60,6 +61,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:layout_weight="0.56"
             android:id="@+id/textView8"
             style="@style/Theme.ModulChit"
             android:layout_width="wrap_content"
@@ -68,5 +70,4 @@
             android:text="y"
             android:textSize="20sp"
             android:textStyle="bold" />
-    </TableRow>
-</TableLayout>
+</LinearLayout>

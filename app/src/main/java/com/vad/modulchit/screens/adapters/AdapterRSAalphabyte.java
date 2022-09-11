@@ -23,7 +23,7 @@ import java.util.List;
 public class AdapterRSAalphabyte extends RecyclerView.Adapter<AdapterRSAalphabyte.MyViewHolder> {
 
     private List<Integer> numbersCode;
-    private RSAshiphr shiphr;
+    private final RSAshiphr shiphr;
 
     public AdapterRSAalphabyte() {
         shiphr = new RSAshiphr();

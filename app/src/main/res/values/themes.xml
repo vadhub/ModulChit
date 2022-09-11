@@ -33,4 +33,10 @@
         </item>
     </style>
 
+    <style name="modulechit_style.header">
+        <item name="android:background">
+            @color/gray
+        </item>
+    </style>
+
 </resources>

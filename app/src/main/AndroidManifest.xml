@@ -8,6 +8,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+
         android:theme="@style/Theme.ModulChit" >
 
         <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
@@ -15,7 +16,8 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-5356301729869498~4916272144" />
 
-        <activity android:name=".screens.mainactivity.MainActivity" >
+        <activity android:name=".screens.mainactivity.MainActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

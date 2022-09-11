@@ -4,61 +4,65 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TableLayout
+    <LinearLayout
         android:id="@+id/table_gcde"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
-        android:stretchColumns="0,1,2,3">
+        android:orientation="horizontal">
 
-        <TableRow
+        <TextView
+            android:layout_weight="0.5"
+            android:id="@+id/textViewA"
+            style="@style/textview_gcde"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:text="a" />
 
-            <TextView
-                android:id="@+id/textViewA"
-                style="@style/textview_gcde"
-                android:layout_column="0"
-                android:text="a" />
+        <TextView
+            android:layout_weight="0.5"
+            android:id="@+id/textViewB"
+            style="@style/textview_gcde"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="b"
+            android:textAlignment="center" />
 
-            <TextView
-                android:id="@+id/textViewB"
-                style="@style/textview_gcde"
-                android:layout_column="1"
-                android:text="b"
-                android:textAlignment="center" />
+        <TextView
+            android:layout_weight="0.5"
+            android:id="@+id/textViewQ"
+            style="@style/textview_gcde"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="q"
+            android:textAlignment="center" />
 
-            <TextView
-                android:id="@+id/textViewQ"
-                style="@style/textview_gcde"
-                android:layout_column="2"
-                android:text="q"
-                android:textAlignment="center" />
+        <TextView
+            android:layout_weight="0.5"
+            android:id="@+id/textViewR"
+            style="@style/textview_gcde"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="r"
+            android:textAlignment="center" />
 
-            <TextView
-                android:id="@+id/textViewR"
-                style="@style/textview_gcde"
-                android:layout_column="3"
-                android:text="r"
-                android:textAlignment="center" />
+        <TextView
+            android:layout_weight="0.46"
+            android:id="@+id/textViewX"
+            style="@style/textview_gcde"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="x"
+            android:textAlignment="center" />
 
-            <TextView
-                android:id="@+id/textViewX"
-                style="@style/textview_gcde"
-                android:layout_column="4"
-                android:text="x"
-                android:textAlignment="center" />
-
-            <TextView
-                android:id="@+id/textViewY"
-                style="@style/textview_gcde"
-                android:layout_column="5"
-                android:text="y"
-                android:textAlignment="center" />
-        </TableRow>
-    </TableLayout>
+        <TextView
+            android:layout_weight="0.46"
+            android:id="@+id/textViewY"
+            style="@style/textview_gcde"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="y"
+            android:textAlignment="center" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/subItem"
