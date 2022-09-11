@@ -11,13 +11,10 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.vad.modulchit.R;
@@ -51,7 +48,7 @@ public class FragmentAddAlphabet extends Fragment implements AlphabetView, HasCu
         presenter = new AlphabetPresenter(this, (Navigator) requireActivity());
 
         numberForFirstLetter = (EditText) v.findViewById(R.id.editTextViewNumberFirst);
-        mRecyclerView = (RecyclerView) v.findViewById(R.id.mRecyclerAlphabyte);
+        mRecyclerView = (RecyclerView) v.findViewById(R.id.mRecyclerAlphabet);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
         adapterRSAalphabyte = new AdapterRSAalphabyte();
         progressBar = (ProgressBar) v.findViewById(R.id.progressBarAlpha);

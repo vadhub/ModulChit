@@ -2,157 +2,132 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/modulechit_style"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    style="@style/modulechit_style"
-    tools:context=".screens.fe.FragmentFE"
     android:clickable="true"
-    android:focusable="true">
+    android:focusable="true"
+    tools:context=".screens.fe.FragmentFE">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
 
-            <LinearLayout
-                android:id="@+id/linearLayout2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.5"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/textView11"
-                        style="@style/Theme.ModulChit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
-                        android:text="a:"
-                        android:textSize="20sp" />
-
-                    <EditText
-                        android:id="@+id/editTextNumberAFe"
-                        style="@style/Theme.ModulChit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
-                        android:ems="5"
-                        android:hint="@string/base_number"
-                        android:inputType="number"
-                        android:textSize="20sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.5"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/textView12"
-                        style="@style/Theme.ModulChit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
-                        android:text="m:"
-                        android:textSize="20sp" />
-
-                    <EditText
-                        android:id="@+id/editTextNumberMFe"
-                        style="@style/Theme.ModulChit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
-                        android:ems="5"
-                        android:hint="@string/degree"
-                        android:inputType="number"
-                        android:textSize="20sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.5"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/textView13"
-                        style="@style/Theme.ModulChit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
-                        android:hint="@string/module"
-                        android:text="n:"
-                        android:textSize="20sp" />
-
-                    <EditText
-                        android:id="@+id/editTextNumberNFe"
-                        style="@style/Theme.ModulChit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
-                        android:ems="5"
-                        android:hint="@string/module"
-                        android:inputType="number"
-                        android:textSize="20sp" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/buttonFE"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ok"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
-
-            <include
-                android:id="@+id/includeFE"
-                layout="@layout/item_fe_tite"
-                android:layout_width="0dp"
-                android:visibility="invisible"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/buttonFE" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/mRecyclerFE"
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginEnd="8sp"
-                android:layout_marginStart="8sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/includeFE" />
+                android:layout_marginHorizontal="8dp"
+                android:layout_weight="0.5"
+                app:counterEnabled="true"
+                app:counterMaxLength="5"
+                app:helperText="@string/base_number">
 
-            <TextView
-                android:id="@+id/resultFE"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                style="@style/Theme.ModulChit"
-                app:layout_constraintTop_toBottomOf="@id/mRecyclerFE"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextNumberAFe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="a"
+                    android:inputType="number"
+                    android:maxLength="5" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="8dp"
+                android:layout_weight="0.5"
+                app:counterEnabled="true"
+                app:counterMaxLength="5"
+                app:helperText="@string/degree">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextNumberMFe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="m"
+                    android:inputType="number"
+                    android:maxLength="5" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="8dp"
+                android:layout_weight="0.5"
+                app:counterEnabled="true"
+                app:counterMaxLength="5"
+                app:helperText="@string/module">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextNumberNFe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="n"
+                    android:inputType="number"
+                    android:maxLength="5" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/buttonFE"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ok"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+        <include
+            android:id="@+id/includeFE"
+            layout="@layout/item_fe_tite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonFE" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/mRecyclerFE"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8sp"
+            android:layout_marginEnd="8sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/includeFE" />
+
+        <TextView
+            android:id="@+id/resultFE"
+            style="@style/Theme.ModulChit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mRecyclerFE" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

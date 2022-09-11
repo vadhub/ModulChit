@@ -11,90 +11,81 @@
     android:focusable="true"
     tools:context=".screens.rsa.decrypt.FragmentRSAdecrypt">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/editTextCodeDecrypt"
-            style="@style/theme_chit"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:gravity="center"
-            android:hint="[132, 345, 2, 35]"
-            android:inputType="text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="8dp"
+            android:layout_weight="0.5"
+            app:helperText="cypher">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextCodeDecrypt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="[132, 345, 2, 35]"
+                android:inputType="textPersonName" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextCodeDecrypt">
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/textView14"
-                style="@style/theme_chit"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="n: " />
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="8dp"
+                app:helperText="public">
 
-            <EditText
-                android:id="@+id/editTextNdecrypt"
-                style="@style/theme_chit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="3"
-                android:gravity="center"
-                android:hint="17"
-                android:inputType="textPersonName" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextNdecrypt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="n"
+                    android:maxLength="3"
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/textView15"
-                style="@style/theme_chit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="d: " />
+            <com.google.android.material.textfield.TextInputLayout
 
-            <EditText
-                android:id="@+id/editTextDdecript"
-                style="@style/theme_chit"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="3"
-                android:gravity="center"
-                android:hint="21"
-                android:inputType="textPersonName" />
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="8dp"
+                app:helperText="private">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextDdecript"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="d"
+                    android:maxLength="3"
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
+
         </LinearLayout>
 
         <Button
             android:id="@+id/buttonDecrypt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="8dp"
-            android:text="OK"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
-
+            android:text="OK" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardResultDecrypt"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="8dp"
-            android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonDecrypt">
+            android:visibility="invisible">
 
             <TextView
                 android:id="@+id/textViewResultDecrypt"
@@ -113,10 +104,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="8dp"
             android:visibility="invisible"
-            app:cardElevation="4dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardResultDecrypt">
+            app:cardElevation="4dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -135,7 +123,7 @@
                     android:id="@+id/gcdeDecryptRecycler"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_below="@+id/includeGCDEreverse"/>
+                    android:layout_below="@+id/includeGCDEreverse" />
 
             </RelativeLayout>
 
@@ -147,11 +135,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="8dp"
             android:visibility="invisible"
-            app:cardElevation="4dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardGCDEreverse">
+            app:cardElevation="4dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -177,8 +161,7 @@
 
         </androidx.cardview.widget.CardView>
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>
 
