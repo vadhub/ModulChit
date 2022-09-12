@@ -5,4 +5,5 @@ import androidx.fragment.app.Fragment;
 public interface Navigator {
     void goBack();
     void startFragment(Fragment fragment);
+    void hideKeyBoard();
 }

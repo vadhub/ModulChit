@@ -33,13 +33,13 @@
                 android:layout_weight="0.5"
                 app:counterEnabled="true"
                 app:counterMaxLength="5"
-                app:helperText="@string/base_number">
+                app:helperText="a">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextNumberAFe"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="a"
+                    android:hint="@string/base_number"
                     android:inputType="number"
                     android:maxLength="5" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -53,13 +53,13 @@
                 android:layout_weight="0.5"
                 app:counterEnabled="true"
                 app:counterMaxLength="5"
-                app:helperText="@string/degree">
+                app:helperText="m">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextNumberMFe"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="m"
+                    android:hint="@string/degree"
                     android:inputType="number"
                     android:maxLength="5" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -73,13 +73,13 @@
                 android:layout_weight="0.5"
                 app:counterEnabled="true"
                 app:counterMaxLength="5"
-                app:helperText="@string/module">
+                app:helperText="n">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextNumberNFe"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="n"
+                    android:hint="@string/module"
                     android:inputType="number"
                     android:maxLength="5" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -90,7 +90,7 @@
             android:id="@+id/buttonFE"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ok"
+            android:text="@string/calc"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
@@ -112,7 +112,7 @@
             android:layout_height="match_parent"
             android:layout_marginStart="8sp"
             android:layout_marginEnd="8sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/includeFE" />

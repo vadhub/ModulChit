@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.vad.modulchit.R;
 import com.vad.modulchit.models.animation.StepRecorder;
 import com.vad.modulchit.models.animation.common.RenderState;
+import com.vad.modulchit.screens.contract.Navigator;
 import com.vad.modulchit.screens.sort.ScreenSort;
 import com.vad.modulchit.models.animation.common.StatusAnimation;
 import com.vad.modulchit.models.Parser;
@@ -65,6 +66,9 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Scre
         render.setScreenSort(this);
 
         btn.setOnClickListener(v1 -> {
+
+            ((Navigator) requireActivity()).hideKeyBoard();
+
             if (editText.getText().toString().equals("")) {
                 Toast.makeText(getActivity(), R.string.warning_enter_text, Toast.LENGTH_SHORT).show();
                 return;

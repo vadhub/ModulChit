@@ -63,7 +63,7 @@ public class FragmentGCDe extends Fragment implements ListGCDEView, HasCustomTit
         ((SimpleItemAnimator)mRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
 
         btnOk.setOnClickListener(view -> {
-
+            ((Navigator) requireActivity()).hideKeyBoard();
             String aStr = editTextA.getText().toString();
             String bStr = editTextB.getText().toString();
 

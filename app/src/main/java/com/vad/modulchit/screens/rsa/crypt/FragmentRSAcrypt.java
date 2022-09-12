@@ -99,10 +99,10 @@ public class FragmentRSAcrypt extends Fragment implements CryptView, HasCustomTi
         return v;
     }
 
-    private View.OnClickListener clickListener = new View.OnClickListener() {
+    private final View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-
+            ((Navigator) requireActivity()).hideKeyBoard();
             String eStr = editTextE.getText().toString();
             String nStr = editTextN.getText().toString();
             String textToEncrypt = enterTextToCrypt.getText().toString();

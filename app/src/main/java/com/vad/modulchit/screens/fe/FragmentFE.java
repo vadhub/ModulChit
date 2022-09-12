@@ -60,6 +60,7 @@ public class FragmentFE extends Fragment implements ListFEView, HasCustomTitle, 
         btnOk = (Button) v.findViewById(R.id.buttonFE);
 
         btnOk.setOnClickListener(view -> {
+            ((Navigator) requireActivity()).hideKeyBoard();
             String aStr = editTextA.getText().toString();
             String mStr = editTextM.getText().toString();
             String nStr = editTextN.getText().toString();

@@ -38,7 +38,7 @@
             android:id="@+id/buttonNOK"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ok" />
+            android:text="@string/calc" />
 
         <TextView
             android:id="@+id/textViewResult"

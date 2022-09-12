@@ -77,5 +77,6 @@
     <string name="mg_1">Entering values into the form: mod = 5</string>
     <string name="mg_2">Algorithm is simple gcde. Take numbers that a = 1</string>
     <string name="mg_3">Result is 1; 2; 3; 4.</string>
+    <string name="calc">calc</string>
 
 </resources>

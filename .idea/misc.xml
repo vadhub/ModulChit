@@ -19,7 +19,7 @@
         <entry key="app/src/main/res/layout/fragment_f_e.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_fe.xml" value="0.3765625" />
         <entry key="app/src/main/res/layout/fragment_fe_expl.xml" value="0.2871376811594203" />
-        <entry key="app/src/main/res/layout/fragment_gcde.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/fragment_gcde.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_gcdexpl.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_menu.xml" value="0.3765625" />
         <entry key="app/src/main/res/layout/fragment_mg.xml" value="0.33" />
@@ -53,5 +53,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.3765625" />
+      </ProjectState>
+    </option>
   </component>
 </project>

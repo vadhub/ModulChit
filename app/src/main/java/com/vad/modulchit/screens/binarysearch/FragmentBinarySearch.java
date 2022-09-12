@@ -15,6 +15,7 @@ import com.vad.modulchit.models.pojos.BinarySearchModel;
 import com.vad.modulchit.screens.contract.HasCustomTitle;
 import com.vad.modulchit.models.Parser;
 import com.vad.modulchit.models.search.BinarySearchImpl;
+import com.vad.modulchit.screens.contract.Navigator;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class FragmentBinarySearch extends Fragment implements HasCustomTitle {
     private EditText editTextElement;
     private CustomViewBinarySearch customViewBinarySearch;
     private Button btn;
-    private BinarySearchImpl binarySearch = new BinarySearchImpl();
+    private final BinarySearchImpl binarySearch = new BinarySearchImpl();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,7 +37,7 @@ public class FragmentBinarySearch extends Fragment implements HasCustomTitle {
         btn = v.findViewById(R.id.btnBinarySearch);
 
         btn.setOnClickListener(v1 -> {
-
+            ((Navigator) requireActivity()).hideKeyBoard();
             if (editTextArray.getText().toString().equals("") || editTextElement.getText().toString().equals("")) {
                 Toast.makeText(getActivity(), R.string.warning_enter_text, Toast.LENGTH_SHORT).show();
                 return;

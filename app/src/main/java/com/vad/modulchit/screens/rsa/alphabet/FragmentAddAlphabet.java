@@ -83,6 +83,7 @@ public class FragmentAddAlphabet extends Fragment implements AlphabetView, HasCu
     private final View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            ((Navigator) requireActivity()).hideKeyBoard();
             String qStr = numberQ.getText().toString();
             String pStr = numberP.getText().toString();
             presenter.fragmentChoose(isEncrypt, qStr, pStr, alphabet);

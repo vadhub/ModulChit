@@ -56,6 +56,7 @@ public class FragmentMG extends Fragment implements ListMGView, HasCustomTitle, 
         includeMG = (View) v.findViewById(R.id.includeMG);
         adapterNOK = new AdapterNOK();
         btnNok.setOnClickListener(view -> {
+            ((Navigator) requireActivity()).hideKeyBoard();
             String modStr =editTextMod.getText().toString();
             presenter.showResult(modStr);
         });
