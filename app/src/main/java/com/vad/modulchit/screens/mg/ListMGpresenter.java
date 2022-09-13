@@ -1,10 +1,10 @@
 package com.vad.modulchit.screens.mg;
 
+
 import com.vad.modulchit.R;
 import com.vad.modulchit.models.AlgebraMod;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -22,14 +22,16 @@ public class ListMGpresenter {
     }
 
     public void loadListMG(int m){
-
-        Disposable disposable = Observable.just(algebraMod)
-                .subscribeOn(Schedulers.computation())
-                .map(o -> o.nokGraph(m))
+        Disposable disposable = algebraMod.nokGraph(m)
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(listMGView::showData);
+                .map(algebraMod::getResult)
+                .doOnError(error -> System.out.println(error.getMessage()+" -----------------------"))
+                .subscribe(pair -> listMGView.showData(pair.first, pair.second));
         compositeDisposable.add(disposable);
     }
+
+
 
     public void showResult(String modStr){
 

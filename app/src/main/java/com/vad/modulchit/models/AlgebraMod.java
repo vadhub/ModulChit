@@ -1,5 +1,7 @@
 package com.vad.modulchit.models;
 
+import android.util.Pair;
+
 import com.vad.modulchit.models.pojos.TableNumberFE;
 import com.vad.modulchit.models.pojos.TableNumberGCDe;
 import com.vad.modulchit.models.pojos.TableNumberNOK;
@@ -7,20 +9,22 @@ import com.vad.modulchit.models.pojos.TableNumberNOK;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.rxjava3.core.Observable;
+
 public class AlgebraMod {
 
     private final StringExtraData extraData = new StringExtraData();
 
     public static int gcd(int a, int b) {
-        while (b !=0) {
-            int tmp = a%b;
+        while (b != 0) {
+            int tmp = a % b;
             a = b;
             b = tmp;
         }
         return a;
     }
 
-    public List<TableNumberGCDe> gcdGraph(int a, int b){
+    public List<TableNumberGCDe> gcdGraph(int a, int b) {
         List<TableNumberGCDe> tempTableNumberGCDes = new ArrayList<>();
         TableNumberGCDe tableNumberGCDe;
 
@@ -31,27 +35,27 @@ public class AlgebraMod {
         int tmpQ = 0;
         int tmpR = 0;
 
-        int x1= 1;
-        int x2= 0;
+        int x1 = 1;
+        int x2 = 0;
 
         int y1 = 0;
         int y2 = 1;
 
-        if(a<b){
+        if (a < b) {
             aTemp = b;
             bTemp = a;
             tmpR = aTemp;
             tableNumberGCDe = new TableNumberGCDe(a, b, tmpQ, tmpR, x1, x2, y1, y2, extra);
             tempTableNumberGCDes.add(tableNumberGCDe);
-            extra = "a = "+aTemp+";\n"+"b = "+bTemp+";\n";
+            extra = "a = " + aTemp + ";\n" + "b = " + bTemp + ";\n";
             x1 = 0;
             x2 = 1;
-            y1=1;
-            y2=0;
+            y1 = 1;
+            y2 = 0;
 
-        }else{
-            aTemp=a;
-            bTemp=b;
+        } else {
+            aTemp = a;
+            bTemp = b;
         }
         do {
 
@@ -80,50 +84,65 @@ public class AlgebraMod {
         return tempTableNumberGCDes;
     }
 
-    public List<TableNumberNOK> nokGraph(int mod){
-        List<TableNumberNOK> tempTableNumberNOKs = new ArrayList<>();
-        TableNumberNOK tableNumberNOK;
+    public Observable<List<TableNumberNOK>> nokGraph(int mod) {
+            List<TableNumberNOK> tempTableNumberNOKs = new ArrayList<>();
+            TableNumberNOK tableNumberNOK;
 
-        String extra = "";
-        int a = 0;
-        int b = 0;
-        int q = 0;
-        int r = 0;
+            String extra = "";
+            int a = 0;
+            int b = 0;
+            int q = 0;
+            int r = 0;
 
-        for(int i = 2; i<=mod; i++){
-            a = mod;
-            b = i;
-            q = a/b;
-            r = a%b;
-
-            extra = extraData.extraGCD(a, b, q, r);
-            tableNumberNOK = new TableNumberNOK(a, b, q, r, i, extra);
-            tempTableNumberNOKs.add(tableNumberNOK);
-            while (true){
-                if(r==0){
-                    tableNumberNOK = new TableNumberNOK(gcd(mod, i), 0, 0, 0, i, "exit from loop");
-                    tempTableNumberNOKs.add(tableNumberNOK);
-                    break;
-                };
-                a = tableNumberNOK.getBn();
-                b = tableNumberNOK.getRn();
-
-                q = a/b;
-                r = a%b;
+            for (int i = 2; i <= mod; i++) {
+                a = mod;
+                b = i;
+                q = a / b;
+                r = a % b;
 
                 extra = extraData.extraGCD(a, b, q, r);
                 tableNumberNOK = new TableNumberNOK(a, b, q, r, i, extra);
                 tempTableNumberNOKs.add(tableNumberNOK);
+                while (true) {
+                    if (r == 0) {
+                        tableNumberNOK = new TableNumberNOK(gcd(mod, i), 0, 0, 0, i, "exit from loop");
+                        tempTableNumberNOKs.add(tableNumberNOK);
+                        break;
+                    }
+
+                    a = tableNumberNOK.getBn();
+                    b = tableNumberNOK.getRn();
+
+                    q = a / b;
+                    r = a % b;
+
+                    extra = extraData.extraGCD(a, b, q, r);
+                    tableNumberNOK = new TableNumberNOK(a, b, q, r, i, extra);
+                    tempTableNumberNOKs.add(tableNumberNOK);
+                }
+
+                tableNumberNOK = new TableNumberNOK(-1, -1, -1, -1, -1, "end");
+                tempTableNumberNOKs.add(tableNumberNOK);
             }
-
-            tableNumberNOK = new TableNumberNOK(-1, -1, -1, -1, -1, "end");
-            tempTableNumberNOKs.add(tableNumberNOK);
-        }
-
-        return tempTableNumberNOKs;
+        return Observable.create(subscriber -> subscriber.onNext(tempTableNumberNOKs));
     }
 
-    public List<TableNumberFE> feGraph(int a, int m, int n){
+    public Pair<List<TableNumberNOK>, String> getResult(List<TableNumberNOK> noks){
+        StringBuilder txtRes = new StringBuilder("1");
+
+        int tmp = 0;
+        for(TableNumberNOK nok: noks){
+            if(nok.getBn()==0&&nok.getAn()==1){
+                if(tmp!=nok.getI()){
+                    txtRes.append("; ").append(nok.getI());
+                }
+            }
+        }
+
+        return new Pair<>(noks, txtRes+".");
+    }
+
+    public List<TableNumberFE> feGraph(int a, int m, int n) {
 
         List<TableNumberFE> tableNumberFES = new ArrayList<>();
         TableNumberFE tableNumberFE;
@@ -136,7 +155,7 @@ public class AlgebraMod {
         int tmpP = 1;
         int r = 0;
 
-        extra = "r = "+m+"%2 = "+m%2+";\n";
+        extra = "r = " + m + "%2 = " + m % 2 + ";\n";
 
         while (tempM != 0) {
             r = tempM % 2;
@@ -153,8 +172,8 @@ public class AlgebraMod {
 
         }
 
-        tableNumberFE = new TableNumberFE(-1, -1, -1, -1,-1, "");
-        tableNumberFES.add(tableNumberFE);;
+        tableNumberFE = new TableNumberFE(-1, -1, -1, -1, -1, "");
+        tableNumberFES.add(tableNumberFE);
         return tableNumberFES;
     }
 

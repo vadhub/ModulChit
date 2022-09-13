@@ -64,29 +64,12 @@ public class FragmentMG extends Fragment implements ListMGView, HasCustomTitle, 
         return v;
     }
 
-    private String getResult(List<TableNumberNOK> noks){
-        StringBuilder txtRes = new StringBuilder("1");
-
-        int tmp = 0;
-        for(TableNumberNOK nok: noks){
-            if(nok.getBn()==0&&nok.getAn()==1){
-                if(tmp!=nok.getI()){
-                    txtRes.append("; ").append(nok.getI());
-                }
-            }
-        }
-
-        return txtRes+".";
-    }
-
     @Override
-    public void showData(List<TableNumberNOK> numberNOKS) {
-        Log.d("qqqq", "one time");
-        textViewResult.setText(getResult(numberNOKS));
+    public void showData(List<TableNumberNOK> numberNOKS, String str) {
+        textViewResult.setText(str);
         adapterNOK.setTableNumberNOKS(numberNOKS);
         mRecyclerView.setAdapter(adapterNOK);
     }
-
 
     @Override
     public void showError(int resource) {
