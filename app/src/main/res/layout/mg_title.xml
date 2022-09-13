@@ -1,53 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/modulechit_style.header"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:stretchColumns="0, 1, 2, 3">
+    android:orientation="horizontal">
 
-    <TableRow
+    <TextView
+        android:id="@+id/textView3"
+        style="@style/Theme.ModulChit"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:gravity="center"
+        android:text="a"
+        android:textSize="24sp" />
 
-        <TextView
-            android:id="@+id/textView3"
-            style="@style/Theme.ModulChit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="a"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/textView4"
+        style="@style/Theme.ModulChit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:gravity="center"
+        android:text="b"
+        android:textSize="24sp" />
 
-        <TextView
-            android:id="@+id/textView4"
-            style="@style/Theme.ModulChit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="b"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/textView5"
+        style="@style/Theme.ModulChit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:gravity="center"
+        android:text="q"
+        android:textSize="24sp" />
 
-        <TextView
-            android:id="@+id/textView5"
-            style="@style/Theme.ModulChit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="q"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/textView6"
+        style="@style/Theme.ModulChit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:gravity="center"
+        android:text="r"
+        android:textSize="24sp" />
 
-        <TextView
-            android:id="@+id/textView6"
-            style="@style/Theme.ModulChit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="r"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-    </TableRow>
-</TableLayout>
+</LinearLayout>

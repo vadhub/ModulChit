@@ -4,50 +4,49 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TableLayout
+    <LinearLayout
         android:id="@+id/table_gcd"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:stretchColumns="0,1,2,3">
+        android:orientation="horizontal">
 
-        <TableRow
+        <TextView
+            android:id="@+id/textViewAn"
+            style="@style/theme_chit"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:text="a" />
 
-            <TextView
-                android:id="@+id/textViewAn"
-                style="@style/theme_chit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="a" />
+        <TextView
+            android:id="@+id/textViewBn"
+            style="@style/theme_chit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:text="b" />
 
-            <TextView
-                android:id="@+id/textViewBn"
-                style="@style/theme_chit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="b" />
+        <TextView
+            android:id="@+id/textViewQn"
+            style="@style/theme_chit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:text="q" />
 
-            <TextView
-                android:id="@+id/textViewQn"
-                style="@style/theme_chit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="q" />
+        <TextView
+            android:id="@+id/textViewRn"
+            style="@style/theme_chit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:text="r" />
 
-            <TextView
-                android:id="@+id/textViewRn"
-                style="@style/theme_chit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="r" />
-
-        </TableRow>
-    </TableLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/subItemGCD"
