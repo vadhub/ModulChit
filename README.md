@@ -21,7 +21,8 @@ In the plans:
 
 Screenshots:
 
-
+- Menu
+![alt text](https://drive.google.com/file/d/1en-qG6ClKveq7albK4yiL9q1IkbHxOEO/view?usp=sharing)
 - GCDE 
 - ![alt text](https://play-lh.googleusercontent.com/cP-qb7GxF7npZSD5-ZU6SNwjChFJm0uMQ-fHQxL8kPZijkweSz2MWc3f88ek8QA0KOQ=w1855-h951-rw)
 - Fast exponentiation
@@ -36,3 +37,4 @@ Screenshots:
 - ![alt text](https://play-lh.googleusercontent.com/Om52BTOdUJzN81IVADZlHkQEMufkjJ1uN612-s3F5EUd-wbUvepyQJ9NgE72d-6JWA=w1855-h951-rw)
 - Binary search
 - ![alt text](https://github.com/vadhub/ModulChit/blob/master/Screenshot_20220511_121301_com.vad.modulchit.jpg?raw=true)
+-![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
