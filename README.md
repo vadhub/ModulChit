@@ -6,35 +6,48 @@ Algorithms that are already in Google Play:
 - Fast exponentiation
 - Multiplicative group
 - RSA endcrypt and decrypt
-
-In developing:
 - Binary search
 - Bubble sort
 - Insertion sort
 - Shell sort
 - Quiсk sort
 
-In the plans:
-- Traversal of the graph in breadth and depth
-- Heap sort
-- Comb sorting
-
 Screenshots:
 
 - Menu
-![alt text](https://drive.google.com/file/d/1en-qG6ClKveq7albK4yiL9q1IkbHxOEO/view?usp=sharing)
-- GCDE 
-- ![alt text](https://play-lh.googleusercontent.com/cP-qb7GxF7npZSD5-ZU6SNwjChFJm0uMQ-fHQxL8kPZijkweSz2MWc3f88ek8QA0KOQ=w1855-h951-rw)
+
+![alt text](https://github.com/vadhub/ModulChit/blob/master/Screenshot%20from%202022-08-17%2016-08-24.png)
+
+- GCDE
+
+![alt text](https://github.com/vadhub/ModulChit/blob/master/gcde1.png)
+
+![alt text](https://github.com/vadhub/ModulChit/blob/master/gcde3.png)
+
 - Fast exponentiation
-- ![alt text](https://play-lh.googleusercontent.com/bR7c-XoeiGxvPsr5ayMfnHpagXW8_LVqw6WNQVp0izQReajMq1qPYEdLNMZ8TH3QUqE=w1855-h951-rw)
+
+![alt text](https://github.com/vadhub/ModulChit/blob/master/fe.png)
+
 - Multiplicative group
-- ![alt text](https://play-lh.googleusercontent.com/9E6ZvE0hS4TlhQVmTMdkjaUMlISgJb-bG7XDH1pwbUFbm3tbfdfqWceLkHsnrWF7ez4=w1855-h951-rw)
+
+![alt text](https://github.com/vadhub/ModulChit/blob/master/mg.png)
+
 - RSA set alphabet
-- ![alt text](https://play-lh.googleusercontent.com/wtJB-PSxW1Sl5T8K0dRpe1EpUP-FSTSxJO5jG_0--Dan4MtiM9RAwFUKdtkUy-zIxeuH=w1855-h951-rw)
+
+![alt text](https://github.com/vadhub/ModulChit/blob/master/al.png)
+
 - RSA encrypt
-- ![alt text](https://play-lh.googleusercontent.com/lcejkUpjcqCkDTI_oFcDQ20UJlaSEsRs-TwyJndZLatFUZor56km_dOZ6td_2eeRKzOd=w1855-h951-rw)
+
+![alt text](https://github.com/vadhub/ModulChit/blob/master/rsa1.png)
 - RSA decrypt
-- ![alt text](https://play-lh.googleusercontent.com/Om52BTOdUJzN81IVADZlHkQEMufkjJ1uN612-s3F5EUd-wbUvepyQJ9NgE72d-6JWA=w1855-h951-rw)
+
+![alt text](https://github.com/vadhub/ModulChit/blob/master/rsa2.png)
+![alt text](https://github.com/vadhub/ModulChit/blob/master/rsa3.png)
+
 - Binary search
-- ![alt text](https://github.com/vadhub/ModulChit/blob/master/Screenshot_20220511_121301_com.vad.modulchit.jpg?raw=true)
--![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
+
+![alt text](https://github.com/vadhub/ModulChit/blob/master/UY5uZqM0LZs.jpg)
+
+- Bubble sort
+
+![Alt Text](https://github.com/vadhub/ModulChit/blob/master/VID_20220914_180917.gif)
