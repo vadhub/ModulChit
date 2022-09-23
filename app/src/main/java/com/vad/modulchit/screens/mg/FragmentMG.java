@@ -1,7 +1,10 @@
- package com.vad.modulchit.screens.mg;
+package com.vad.modulchit.screens.mg;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -31,37 +34,43 @@ import java.util.List;
 public class FragmentMG extends Fragment implements ListMGView, HasCustomTitle, HasCustomAction {
 
     private EditText editTextMod;
-    private Button btnNok;
     private RecyclerView mRecyclerView;
     private AdapterNOK adapterNOK;
     private ListMGpresenter presenter;
 
     private TextView textViewResult;
     private View includeMG;
+    private Navigator navigator;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        navigator = ((Navigator) context);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_mg, container, false);
+        return inflater.inflate(R.layout.fragment_mg, container, false);
+    }
 
+    @Override
+    public void onViewCreated(@NonNull View v, @Nullable Bundle savedInstanceState) {
         presenter = new ListMGpresenter(this);
 
         editTextMod = (EditText) v.findViewById(R.id.editTextTextMod);
         textViewResult = (TextView) v.findViewById(R.id.textViewResult);
-        btnNok = (Button) v.findViewById(R.id.buttonNOK);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.mRecyclerNok);
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(v.getContext(), DividerItemDecoration.VERTICAL));
 
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(v.getContext()));
         includeMG = (View) v.findViewById(R.id.includeMG);
         adapterNOK = new AdapterNOK();
-        btnNok.setOnClickListener(view -> {
-            ((Navigator) requireActivity()).hideKeyBoard();
-            String modStr =editTextMod.getText().toString();
+        v.findViewById(R.id.buttonNOK).setOnClickListener(view -> {
+            navigator.hideKeyBoard();
+            String modStr = editTextMod.getText().toString();
             presenter.showResult(modStr);
         });
-
-        return v;
     }
 
     @Override
@@ -73,7 +82,7 @@ public class FragmentMG extends Fragment implements ListMGView, HasCustomTitle, 
 
     @Override
     public void showError(int resource) {
-        Toast.makeText(getContext(), ""+getString(resource), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "" + getString(resource), Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -88,9 +97,15 @@ public class FragmentMG extends Fragment implements ListMGView, HasCustomTitle, 
 
     @Override
     public CustomActionFragment setCustomAction(Navigator navigator) {
-        return new CustomActionFragment(R.drawable.ic_baseline_info_24,() -> {
-            ((Navigator) requireActivity()).startFragment(new FragmentMGexpl());
+        return new CustomActionFragment(R.drawable.ic_baseline_info_24, () -> {
+            navigator.startFragment(new FragmentMGexpl());
         });
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        navigator = null;
     }
 
     @Override

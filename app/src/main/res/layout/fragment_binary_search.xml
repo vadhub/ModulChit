@@ -12,7 +12,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
@@ -43,8 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="8dp"
-                android:layout_weight="0.3"
-                app:endIconMode="clear_text">
+                android:layout_weight="0.3">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextEnterElement"
