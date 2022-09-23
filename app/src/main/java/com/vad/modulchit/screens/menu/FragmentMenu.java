@@ -1,7 +1,10 @@
 package com.vad.modulchit.screens.menu;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,14 +37,22 @@ public class FragmentMenu extends Fragment implements HasCustomTitle {
     private Navigator navigator;
 
     @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        navigator = ((Navigator) context);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_menu, container, false);
+        return inflater.inflate(R.layout.fragment_menu, container, false);
+    }
 
+    @Override
+    public void onViewCreated(@NonNull View v, @Nullable Bundle savedInstanceState) {
         RecyclerView mRecyclerView = (RecyclerView) v.findViewById(R.id.menuRecyclerView);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new AdapterMenu();
-        navigator = (Navigator) requireActivity();
 
         List<String> menuItem = Arrays.asList(getResources().getStringArray(R.array.titleScreen));
 
@@ -52,8 +63,6 @@ public class FragmentMenu extends Fragment implements HasCustomTitle {
             Fragment fragment = getFragments(id);
             navigator.startFragment(fragment);
         });
-
-        return v;
     }
 
     public Fragment getFragments(int id) {
@@ -93,5 +102,11 @@ public class FragmentMenu extends Fragment implements HasCustomTitle {
     public void onDestroy() {
         adapter = null;
         super.onDestroy();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        navigator = null;
     }
 }

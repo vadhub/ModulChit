@@ -1,7 +1,9 @@
 package com.vad.modulchit.screens.rsa.decrypt;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
@@ -36,7 +38,6 @@ public class FragmentRSAdecrypt extends Fragment implements DecryptView, HasCust
     private EditText editTextD;
     private EditText editTextN;
     private TextView resultDecrypt;
-    private Button btnResult;
 
     private int n;
     private int d;
@@ -45,7 +46,6 @@ public class FragmentRSAdecrypt extends Fragment implements DecryptView, HasCust
     private int p;
     private int q;
     private List<Integer> alphaviteCodes;
-    private TextView textViewMfere;
 
     private RecyclerView mRecyclerDecrypt;
     private RecyclerView mRecyclerGCDe;
@@ -57,6 +57,7 @@ public class FragmentRSAdecrypt extends Fragment implements DecryptView, HasCust
     private CardView cardGCDEreverse;
     private CardView cardIncludeFeDec;
     private CardView cardResultDecrypt;
+    private Navigator navigator;
 
     private static final String ARG_ALPAVITE_LIST = "alphaviteCodes";
     private static final String ARG_N_INT = "n_int";
@@ -81,6 +82,12 @@ public class FragmentRSAdecrypt extends Fragment implements DecryptView, HasCust
     }
 
     @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        navigator = ((Navigator) context);
+    }
+
+    @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         alphaviteCodes = requireArguments().getIntegerArrayList(ARG_ALPAVITE_LIST);
@@ -95,8 +102,11 @@ public class FragmentRSAdecrypt extends Fragment implements DecryptView, HasCust
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_rsa_decrypt, container, false);
+        return inflater.inflate(R.layout.fragment_rsa_decrypt, container, false);
+    }
 
+    @Override
+    public void onViewCreated(@NonNull View v, @Nullable Bundle savedInstanceState) {
         cardResultDecrypt = (CardView) v.findViewById(R.id.cardResultDecrypt);
         cardIncludeFeDec = (CardView) v.findViewById(R.id.cardIncludeFeDec);
         cardGCDEreverse = (CardView) v.findViewById(R.id.cardGCDEreverse);
@@ -105,8 +115,6 @@ public class FragmentRSAdecrypt extends Fragment implements DecryptView, HasCust
         editTextD = v.findViewById(R.id.editTextDdecript);
         editTextN = v.findViewById(R.id.editTextNdecrypt);
         resultDecrypt = v.findViewById(R.id.textViewResultDecrypt);
-        btnResult = v.findViewById(R.id.buttonDecrypt);
-        textViewMfere = v.findViewById(R.id.textViewMfere);
         mRecyclerDecrypt = v.findViewById(R.id.decryptRecycler);
         mRecyclerDecrypt.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerDecrypt.setNestedScrollingEnabled(false);
@@ -120,20 +128,18 @@ public class FragmentRSAdecrypt extends Fragment implements DecryptView, HasCust
         includeFeDec = v.findViewById(R.id.includeFeDec);
         includeGCDEreverse = v.findViewById(R.id.includeGCDEreverse);
 
-        textViewMfere.setText("d");
+        ((TextView) v.findViewById(R.id.textViewMfere)).setText("d");
 
         editTextD.setText(d+"");
         editTextN.setText(n+"");
 
-        btnResult.setOnClickListener(clickListener);
-
-        return v;
+        v.findViewById(R.id.buttonDecrypt).setOnClickListener(clickListener);
     }
 
     private final View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            ((Navigator) requireActivity()).hideKeyBoard();
+            navigator.hideKeyBoard();
             String dStr = editTextD.getText().toString();
             String nStr = editTextN.getText().toString();
 
@@ -182,7 +188,7 @@ public class FragmentRSAdecrypt extends Fragment implements DecryptView, HasCust
     @Override
     public CustomActionFragment setCustomAction(Navigator navigator) {
         return new CustomActionFragment(R.drawable.ic_baseline_info_24,() -> {
-            ((Navigator) requireActivity()).startFragment(new FragmentDecryptExpl());
+            navigator.startFragment(new FragmentDecryptExpl());
         });
     }
 
@@ -192,5 +198,11 @@ public class FragmentRSAdecrypt extends Fragment implements DecryptView, HasCust
         presenter = null;
         adapterFE = null;
         super.onDestroy();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        navigator = null;
     }
 }

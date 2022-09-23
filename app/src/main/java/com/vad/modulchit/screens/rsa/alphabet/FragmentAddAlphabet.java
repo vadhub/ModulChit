@@ -1,7 +1,10 @@
 package com.vad.modulchit.screens.rsa.alphabet;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,16 +39,26 @@ public class FragmentAddAlphabet extends Fragment implements AlphabetView, HasCu
     private boolean isEncrypt = true;
     private ProgressBar progressBar;
     private AlphabetPresenter presenter;
+    private Navigator navigator;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        navigator = ((Navigator) context);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_add_alphabet, container, false);
+    }
 
-        View v = inflater.inflate(R.layout.fragment_add_alphabet, container, false);
-        Button btnNext = (Button) v.findViewById(R.id.btnNetx);
+    @Override
+    public void onViewCreated(@NonNull View v, @Nullable Bundle savedInstanceState) {
+
         setRetainInstance(true);
 
-        presenter = new AlphabetPresenter(this, (Navigator) requireActivity());
+        presenter = new AlphabetPresenter(this, navigator);
 
         numberForFirstLetter = (EditText) v.findViewById(R.id.editTextViewNumberFirst);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.mRecyclerAlphabet);
@@ -59,23 +72,24 @@ public class FragmentAddAlphabet extends Fragment implements AlphabetView, HasCu
         RadioButton radioButtonEncrypt = (RadioButton) v.findViewById(R.id.radioButtonEncrypt);
         RadioButton radioButtonDecrypt = (RadioButton) v.findViewById(R.id.radioButtonDecrypt);
 
-        btnNext.setOnClickListener(clickListener);
+        v.findViewById(R.id.btnNetx).setOnClickListener(clickListener);
 
         numberForFirstLetter.addTextChangedListener(textWatcher);
         radioButtonDecrypt.setOnClickListener(radioButtonClick);
         radioButtonEncrypt.setOnClickListener(radioButtonClick);
 
         presenter.alphabetLoad();
-        return v;
     }
 
     private final View.OnClickListener radioButtonClick = view -> {
-        RadioButton radioButton = (RadioButton)view;
-        switch (radioButton.getId()){
-            case R.id.radioButtonEncrypt: isEncrypt = true;
-            break;
-            case R.id.radioButtonDecrypt: isEncrypt = false;
-            break;
+        RadioButton radioButton = (RadioButton) view;
+        switch (radioButton.getId()) {
+            case R.id.radioButtonEncrypt:
+                isEncrypt = true;
+                break;
+            case R.id.radioButtonDecrypt:
+                isEncrypt = false;
+                break;
         }
     };
 
@@ -83,7 +97,7 @@ public class FragmentAddAlphabet extends Fragment implements AlphabetView, HasCu
     private final View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            ((Navigator) requireActivity()).hideKeyBoard();
+            navigator.hideKeyBoard();
             String qStr = numberQ.getText().toString();
             String pStr = numberP.getText().toString();
             presenter.fragmentChoose(isEncrypt, qStr, pStr, alphabet);
@@ -143,5 +157,11 @@ public class FragmentAddAlphabet extends Fragment implements AlphabetView, HasCu
         presenter = null;
         adapterRSAalphabyte = null;
         super.onDestroy();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        navigator = null;
     }
 }

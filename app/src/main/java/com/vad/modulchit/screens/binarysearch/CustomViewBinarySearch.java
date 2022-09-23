@@ -27,22 +27,6 @@ public class CustomViewBinarySearch extends View {
     private int maxHeight;
     private int widthContent;
 
-    public int getMaxHeight() {
-        return maxWidth;
-    }
-
-    public void setMaxHeight(int maxHeight) {
-        this.maxHeight = maxHeight;
-    }
-
-    public int getMaxWidth() {
-        return maxWidth;
-    }
-
-    public void setMaxWidth(int maxWidth) {
-        this.maxWidth = maxWidth;
-    }
-
     public void searchElement(List<BinarySearchModel> binarySearchModels) {
         this.binarySearchModels = binarySearchModels;
         this.maxWidth = getWidth() / binarySearchModels.get(0).getArrTemp().length;
@@ -92,7 +76,7 @@ public class CustomViewBinarySearch extends View {
         float len = 0;
 
         int length = binarySearchModels.get(0).getArrTemp().length;
-        float xStart = (float) (length * getMaxWidth() / 2) + STROKE_WITH;
+        float xStart = (float) (length * maxWidth / 2) + STROKE_WITH;
         AtomicBoolean flag = new AtomicBoolean(true);
         int finalY = y;
         binarySearchModels.forEach(s -> {
@@ -104,17 +88,17 @@ public class CustomViewBinarySearch extends View {
 
         if (flag.get()) {
             for (int i = 0; i < binarySearchModels.size() - 1; i++) {
-                drawArray(canvas, paint, binarySearchModels.get(i).getArrTemp(), x + shiftX, y, getMaxWidth(), getMaxHeight(), binarySearchModels.get(i).getMidElement());
-                drawArrow(canvas, paint, xStart, y + getMaxHeight(), xStart, y + getMaxHeight() + shiftDown);
-                canvas.drawText(binarySearchModels.get(i).getCompareElementAndMid(), xStart + 10, y + getMaxHeight() + shiftDown / 2, paintForCondition);
-                y = y + getMaxHeight() + shiftDown;
+                drawArray(canvas, paint, binarySearchModels.get(i).getArrTemp(), x + shiftX, y, maxWidth, maxHeight, binarySearchModels.get(i).getMidElement());
+                drawArrow(canvas, paint, xStart, y + maxHeight, xStart, y + maxHeight + shiftDown);
+                canvas.drawText(binarySearchModels.get(i).getCompareElementAndMid(), xStart + 10, y + maxHeight + shiftDown / 2, paintForCondition);
+                y = y + maxHeight + shiftDown;
                 if (i + 1 < binarySearchModels.size()) {
-                    len = binarySearchModels.get(i + 1).getArrTemp().length * getMaxWidth();
+                    len = binarySearchModels.get(i + 1).getArrTemp().length * maxWidth;
                 }
                 shiftX = (widthContent - len) / 2;
             }
 
-            drawArray(canvas, paint, binarySearchModels.get(binarySearchModels.size() - 1).getArrTemp(), x + shiftX, y, getMaxWidth(), getMaxWidth());
+            drawArray(canvas, paint, binarySearchModels.get(binarySearchModels.size() - 1).getArrTemp(), x + shiftX, y, maxWidth, maxWidth);
         }
     }
 
@@ -162,7 +146,6 @@ public class CustomViewBinarySearch extends View {
         path.moveTo(x, y + halfWidth); // Top
         path.lineTo(x + halfWidth, y - halfWidth); // Bottom left
         path.lineTo(x - halfWidth, y - halfWidth); // Bottom right
-        //path.lineTo(x, y + halfWidth); // Back to Top
         path.close();
 
         canvas.drawPath(path, paint);

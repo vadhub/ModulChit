@@ -1,7 +1,10 @@
 package com.vad.modulchit.screens.fe;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,15 +38,24 @@ public class FragmentFE extends Fragment implements ListFEView, HasCustomTitle, 
     private RecyclerView mRecyclerView;
     private AdapterFE adapterFE;
 
-    private Button btnOk;
     private View includeFE;
     private FEpresenter presenter;
+    private Navigator navigator;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        navigator = ((Navigator) context);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_fe, container, false);
+        return inflater.inflate(R.layout.fragment_fe, container, false);
+    }
 
+    @Override
+    public void onViewCreated(@NonNull View v, @Nullable Bundle savedInstanceState) {
         presenter = new FEpresenter(this);
         editTextA = (EditText) v.findViewById(R.id.editTextNumberAFe);
         editTextM = (EditText) v.findViewById(R.id.editTextNumberMFe);
@@ -52,27 +64,24 @@ public class FragmentFE extends Fragment implements ListFEView, HasCustomTitle, 
         mRecyclerView = (RecyclerView) v.findViewById(R.id.mRecyclerFE);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        ((SimpleItemAnimator)mRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
+        ((SimpleItemAnimator) mRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
 
         includeFE = (View) v.findViewById(R.id.includeFE);
         adapterFE = new AdapterFE();
 
-        btnOk = (Button) v.findViewById(R.id.buttonFE);
-
-        btnOk.setOnClickListener(view -> {
-            ((Navigator) requireActivity()).hideKeyBoard();
+        v.findViewById(R.id.buttonFE).setOnClickListener(view -> {
+            navigator.hideKeyBoard();
             String aStr = editTextA.getText().toString();
             String mStr = editTextM.getText().toString();
             String nStr = editTextN.getText().toString();
 
             presenter.viewResult(aStr, mStr, nStr);
         });
-        return v;
     }
 
     @Override
     public void showError(int resource) {
-        Toast.makeText(getContext(), ""+getString(resource), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "" + getString(resource), Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -93,14 +102,20 @@ public class FragmentFE extends Fragment implements ListFEView, HasCustomTitle, 
 
     @Override
     public CustomActionFragment setCustomAction(Navigator navigator) {
-        return new CustomActionFragment(R.drawable.ic_baseline_info_24,() -> {
-            ((Navigator) requireActivity()).startFragment(new FragmentFEexpl());
+        return new CustomActionFragment(R.drawable.ic_baseline_info_24, () -> {
+            navigator.startFragment(new FragmentFEexpl());
         });
     }
 
     @Override
+    public void onDetach() {
+        super.onDetach();
+        navigator = null;
+    }
+
+    @Override
     public void onDestroy() {
-        if (presenter!=null) {
+        if (presenter != null) {
             presenter.disposableDispose();
         }
         presenter = null;

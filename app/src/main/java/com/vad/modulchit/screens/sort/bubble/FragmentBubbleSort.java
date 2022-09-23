@@ -1,5 +1,7 @@
 package com.vad.modulchit.screens.sort.bubble;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
@@ -40,6 +42,13 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Scre
     private Sort sort;
     private TextView log;
     private StringBuilder logs;
+    private Navigator navigator;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        navigator = ((Navigator) context);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,6 +56,7 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Scre
         return inflater.inflate(R.layout.fragment_sort, container, false);
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     public void onViewCreated(@NonNull View v, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(v, savedInstanceState);
@@ -67,7 +77,7 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Scre
 
         btn.setOnClickListener(v1 -> {
 
-            ((Navigator) requireActivity()).hideKeyBoard();
+            navigator.hideKeyBoard();
 
             if (editText.getText().toString().equals("")) {
                 Toast.makeText(getActivity(), R.string.warning_enter_text, Toast.LENGTH_SHORT).show();
@@ -101,20 +111,6 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Scre
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
-        render.setStateStop();
-    }
-
-    @Override
-    public void onDestroy() {
-        render.setStateStop();
-        render = null;
-        customView = null;
-        super.onDestroy();
-    }
-
-    @Override
     public int getTitle() {
         return R.string.bubble_sort;
     }
@@ -137,5 +133,26 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Scre
                 log.setText(logs.toString());
             });
         }
+    }
+
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        render.setStateStop();
+    }
+
+    @Override
+    public void onDestroy() {
+        render.setStateStop();
+        render = null;
+        customView = null;
+        super.onDestroy();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        navigator = null;
     }
 }

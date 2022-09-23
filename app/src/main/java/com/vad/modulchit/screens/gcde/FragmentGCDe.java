@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SimpleItemAnimator;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,7 +32,6 @@ public class FragmentGCDe extends Fragment implements ListGCDEView, HasCustomTit
 
     private EditText editTextA;
     private EditText editTextB;
-    private Button btnOk;
 
     private RecyclerView mRecyclerView;
     private AdapterGCDe adapterGCDe;
@@ -39,7 +39,13 @@ public class FragmentGCDe extends Fragment implements ListGCDEView, HasCustomTit
     private View includeTitle;
     private ListGCDEpresenter presenter;
     private CardView cardView;
+    private Navigator navigator;
 
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        navigator = ((Navigator) context);
+    }
 
     @Nullable
     @Override
@@ -53,7 +59,6 @@ public class FragmentGCDe extends Fragment implements ListGCDEView, HasCustomTit
         presenter = new ListGCDEpresenter(this);
         editTextA = (EditText) v.findViewById(R.id.editTextA);
         editTextB = (EditText) v.findViewById(R.id.editTextB);
-        btnOk = (Button) v.findViewById(R.id.button);
         includeTitle = (View) v.findViewById(R.id.includeGCDE);
         adapterGCDe = new AdapterGCDe();
         mRecyclerView = (RecyclerView) v.findViewById(R.id.myRecyclerGcde);
@@ -62,8 +67,8 @@ public class FragmentGCDe extends Fragment implements ListGCDEView, HasCustomTit
 
         ((SimpleItemAnimator)mRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
 
-        btnOk.setOnClickListener(view -> {
-            ((Navigator) requireActivity()).hideKeyBoard();
+        v.findViewById(R.id.button).setOnClickListener(view -> {
+            navigator.hideKeyBoard();
             String aStr = editTextA.getText().toString();
             String bStr = editTextB.getText().toString();
 
@@ -97,8 +102,14 @@ public class FragmentGCDe extends Fragment implements ListGCDEView, HasCustomTit
     @Override
     public CustomActionFragment setCustomAction(Navigator navigator) {
         return new CustomActionFragment(R.drawable.ic_baseline_info_24,() -> {
-            ((Navigator) requireActivity()).startFragment(new FragmentGCDexpl());
+            navigator.startFragment(new FragmentGCDexpl());
         });
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        navigator = null;
     }
 
     @Override

@@ -1,7 +1,9 @@
 package com.vad.modulchit.screens.rsa.crypt;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
@@ -46,6 +48,7 @@ public class FragmentRSAcrypt extends Fragment implements CryptView, HasCustomTi
     private CardView cardIncludeFe;
 
     private View includeFeCrypt;
+    private Navigator navigator;
 
     private static final String ARG_ALPHABET = "alphaviteCodes";
     private static final String ARG_N_INT = "n_int";
@@ -62,9 +65,15 @@ public class FragmentRSAcrypt extends Fragment implements CryptView, HasCustomTi
     }
 
     @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        navigator = ((Navigator) context);
+    }
+
+    @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        alphabetCodes = getArguments().getIntegerArrayList(ARG_ALPHABET);
+        alphabetCodes = requireArguments().getIntegerArrayList(ARG_ALPHABET);
         n = requireArguments().getInt(ARG_N_INT);
         exponents = requireArguments().getIntegerArrayList(ARG_EXPONENTS);
     }
@@ -72,37 +81,37 @@ public class FragmentRSAcrypt extends Fragment implements CryptView, HasCustomTi
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_rsa_crypt, container, false);
+        return inflater.inflate(R.layout.fragment_rsa_crypt, container, false);
+    }
 
+    @Override
+    public void onViewCreated(@NonNull View v, @Nullable Bundle savedInstanceState) {
         cardIncludeFe = (CardView) v.findViewById(R.id.cardIncludeFe);
         cardResultCrypt = (CardView) v.findViewById(R.id.cardResultCrypt);
         cryptPresenter = new CryptPresenter(this);
-        Button btnOk = (Button) v.findViewById(R.id.buttonCrypt);
         enterTextToCrypt = (EditText) v.findViewById(R.id.editTextTextCrypt);
         editTextE = (EditText) v.findViewById(R.id.editTextE);
         editTextN = (EditText) v.findViewById(R.id.editTextN);
         textViewResult = (TextView) v.findViewById(R.id.textViewResultCrypt);
-        TextView textViewMfere = (TextView) v.findViewById(R.id.textViewMfere);
         mRecyclerFeCrypt = (RecyclerView) v.findViewById(R.id.cryptRecycler);
         adapterFE = new AdapterFE();
         includeFeCrypt = (View) v.findViewById(R.id.includeFe);
         mRecyclerFeCrypt.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        textViewMfere.setText("e");
+        ((TextView) v.findViewById(R.id.textViewMfere)).setText("e");
 
         if (exponents != null) {
             editTextE.setText(String.valueOf(exponents.get(0)));
             editTextN.setText(String.valueOf(n));
         }
 
-        btnOk.setOnClickListener(clickListener);
-        return v;
+        v.findViewById(R.id.buttonCrypt).setOnClickListener(clickListener);
     }
 
     private final View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            ((Navigator) requireActivity()).hideKeyBoard();
+            navigator.hideKeyBoard();
             String eStr = editTextE.getText().toString();
             String nStr = editTextN.getText().toString();
             String textToEncrypt = enterTextToCrypt.getText().toString();
@@ -142,7 +151,7 @@ public class FragmentRSAcrypt extends Fragment implements CryptView, HasCustomTi
     @Override
     public CustomActionFragment setCustomAction(Navigator navigator) {
         return new CustomActionFragment(R.drawable.ic_baseline_info_24,() -> {
-            ((Navigator) requireActivity()).startFragment(new FragmentCryptExpl());
+            navigator.startFragment(new FragmentCryptExpl());
         });
     }
 
@@ -152,5 +161,11 @@ public class FragmentRSAcrypt extends Fragment implements CryptView, HasCustomTi
         adapterFE = null;
         cryptPresenter = null;
         super.onDestroy();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        navigator = null;
     }
 }
