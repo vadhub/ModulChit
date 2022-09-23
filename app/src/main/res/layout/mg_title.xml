@@ -8,42 +8,42 @@
 
     <TextView
         android:id="@+id/textView3"
-        style="@style/Theme.ModulChit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.5"
         android:gravity="center"
         android:text="a"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textSize="24sp" />
 
     <TextView
         android:id="@+id/textView4"
-        style="@style/Theme.ModulChit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.5"
         android:gravity="center"
         android:text="b"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textSize="24sp" />
 
     <TextView
         android:id="@+id/textView5"
-        style="@style/Theme.ModulChit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.5"
         android:gravity="center"
         android:text="q"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textSize="24sp" />
 
     <TextView
         android:id="@+id/textView6"
-        style="@style/Theme.ModulChit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.5"
         android:gravity="center"
         android:text="r"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textSize="24sp" />
 
 </LinearLayout>

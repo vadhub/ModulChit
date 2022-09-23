@@ -12,48 +12,48 @@
 
         <TextView
             android:id="@+id/textViewAfe"
-            style="@style/theme_chit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:gravity="center"
-            android:text="a" />
+            android:text="a"
+            android:textAppearance="@style/theme_chit" />
 
         <TextView
             android:id="@+id/textViewMfe"
-            style="@style/theme_chit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:gravity="center"
-            android:text="m" />
+            android:text="m"
+            android:textAppearance="@style/theme_chit" />
 
         <TextView
             android:id="@+id/textViewNfe"
-            style="@style/theme_chit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:gravity="center"
-            android:text="n" />
+            android:text="n"
+            android:textAppearance="@style/theme_chit" />
 
         <TextView
             android:id="@+id/textViewPfe"
-            style="@style/theme_chit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:gravity="center"
-            android:text="p" />
+            android:text="p"
+            android:textAppearance="@style/theme_chit" />
 
         <TextView
             android:id="@+id/textViewRfe"
-            style="@style/theme_chit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:gravity="center"
-            android:text="r" />
+            android:text="r"
+            android:textAppearance="@style/theme_chit" />
 
     </LinearLayout>
 

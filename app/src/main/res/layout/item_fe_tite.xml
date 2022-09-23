@@ -8,51 +8,46 @@
 
     <TextView
         android:id="@+id/textViewre"
-        style="@style/Theme.ModulChit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.5"
         android:gravity="center"
         android:text="a"
-        android:textSize="24sp" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
     <TextView
         android:id="@+id/textViewMfere"
-        style="@style/Theme.ModulChit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.5"
         android:gravity="center"
         android:text="m"
-        android:textSize="24sp" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
     <TextView
         android:id="@+id/textViewNfere"
-        style="@style/Theme.ModulChit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.5"
         android:gravity="center"
         android:text="n"
-        android:textSize="24sp" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
     <TextView
         android:id="@+id/textViewPfere"
-        style="@style/Theme.ModulChit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.5"
         android:gravity="center"
         android:text="p"
-        android:textSize="24sp" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
     <TextView
         android:id="@+id/textViewRfere"
-        style="@style/Theme.ModulChit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.5"
         android:gravity="center"
         android:text="r"
-        android:textSize="24sp" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 </LinearLayout>

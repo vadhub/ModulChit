@@ -12,39 +12,39 @@
 
         <TextView
             android:id="@+id/textViewAn"
-            style="@style/theme_chit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:gravity="center"
-            android:text="a" />
+            android:text="a"
+            android:textAppearance="@style/theme_chit" />
 
         <TextView
             android:id="@+id/textViewBn"
-            style="@style/theme_chit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:gravity="center"
-            android:text="b" />
+            android:text="b"
+            android:textAppearance="@style/theme_chit" />
 
         <TextView
             android:id="@+id/textViewQn"
-            style="@style/theme_chit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:gravity="center"
-            android:text="q" />
+            android:text="q"
+            android:textAppearance="@style/theme_chit" />
 
         <TextView
             android:id="@+id/textViewRn"
-            style="@style/theme_chit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:gravity="center"
-            android:text="r" />
+            android:text="r"
+            android:textAppearance="@style/theme_chit" />
 
     </LinearLayout>
 

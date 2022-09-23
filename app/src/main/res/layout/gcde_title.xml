@@ -7,43 +7,39 @@
 
     <TextView
         android:id="@+id/textView3"
-        style="@style/Theme.ModulChit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.5"
         android:gravity="center"
         android:text="a"
-        android:textSize="24sp" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
     <TextView
         android:id="@+id/textView4"
-        style="@style/Theme.ModulChit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.5"
         android:gravity="center"
         android:text="b"
-        android:textSize="24sp" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
     <TextView
         android:id="@+id/textView5"
-        style="@style/Theme.ModulChit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.5"
         android:gravity="center"
         android:text="q"
-        android:textSize="24sp" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
     <TextView
         android:id="@+id/textView6"
-        style="@style/Theme.ModulChit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.5"
         android:gravity="center"
         android:text="r"
-        android:textSize="24sp" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
     <TextView
         android:id="@+id/textView7"
@@ -53,15 +49,14 @@
         android:layout_weight="0.46"
         android:gravity="center"
         android:text="x"
-        android:textSize="24sp" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
     <TextView
         android:id="@+id/textView8"
-        style="@style/Theme.ModulChit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.46"
         android:gravity="center"
         android:text="y"
-        android:textSize="24sp" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 </LinearLayout>
