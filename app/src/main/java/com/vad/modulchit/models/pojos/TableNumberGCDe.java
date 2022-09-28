@@ -1,22 +1,25 @@
 package com.vad.modulchit.models.pojos;
 
+import android.annotation.SuppressLint;
+import android.widget.TextView;
+
 public class TableNumberGCDe {
 
-    private int a;
-    private int b;
-    private int q;
-    private int r;
+    private final int a;
+    private final int b;
+    private final int q;
+    private final int r;
 
-    private int x1;
-    private int x2;
+    private final int x1;
+    private final int x2;
 
-    private int y1;
-    private int y2;
+    private final int y1;
+    private final int y2;
 
-    private String extra;
+    private final String extra;
 
     //state of the element
-    private boolean expanded;
+    private boolean isExpand;
 
     public TableNumberGCDe(int a, int b, int q, int r, int x1, int x2, int y1, int y2, String extra) {
         this.a = a;
@@ -31,84 +34,59 @@ public class TableNumberGCDe {
         this.extra = extra;
     }
 
-    public int getA() {
-        return a;
+    @SuppressLint("SetTextI18n")
+    public void fillRowTable(TextView textViewA, TextView textViewB, TextView textViewQ, TextView textViewR, TextView textViewX, TextView textViewY, TextView textViewExtra) {
+        textViewA.setText(a + "");
+        textViewB.setText(b + "");
+        textViewQ.setText(q + "");
+        textViewR.setText(r + "");
+        textViewX.setText("(" + x1 + "; " + x2 + ")");
+        textViewY.setText("(" + y1 + "; " + y2 + ")");
+        textViewExtra.setText(extra);
     }
 
-    public void setA(int a) {
-        this.a = a;
+    public boolean isExpand() {
+        return isExpand;
+    }
+
+    public void rollUp() {
+        isExpand = !isExpand;
+    }
+
+    public boolean extraIsEmpty() {
+        return extra.equals("");
+    }
+
+    public int getA() {
+        return a;
     }
 
     public int getB() {
         return b;
     }
 
-    public void setB(int b) {
-        this.b = b;
-    }
-
     public int getQ() {
         return q;
-    }
-
-    public void setQ(int q) {
-        this.q = q;
     }
 
     public int getR() {
         return r;
     }
 
-    public void setR(int r) {
-        this.r = r;
-    }
-
     public int getX1() {
         return x1;
-    }
-
-    public void setX1(int x1) {
-        this.x1 = x1;
     }
 
     public int getX2() {
         return x2;
     }
 
-    public void setX2(int x2) {
-        this.x2 = x2;
-    }
-
     public int getY1() {
         return y1;
     }
 
-    public void setY1(int y1) {
-        this.y1 = y1;
-    }
-
     public int getY2() {
         return y2;
-    }
-
-    public void setY2(int y2) {
-        this.y2 = y2;
-    }
-
-    public String getExtra() {
-        return extra;
-    }
-
-    public void setExtra(String extra) {
-        this.extra = extra;
-    }
-
-    public boolean isExpanded(){
-        return expanded;
-    }
-
-    public void setExpanded(boolean expanded) {
-        this.expanded = expanded;
     }
 
     @Override

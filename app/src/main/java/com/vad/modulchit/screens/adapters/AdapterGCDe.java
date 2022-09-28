@@ -18,10 +18,6 @@ public class AdapterGCDe extends RecyclerView.Adapter<AdapterGCDe.MyViewHolder> 
 
     private List<TableNumberGCDe> tableNumberGCDes;
 
-    public List<TableNumberGCDe> getTableNumbers() {
-        return tableNumberGCDes;
-    }
-
     @SuppressLint("NotifyDataSetChanged")
     public void setTableNumbers(List<TableNumberGCDe> tableNumberGCDes) {
         this.tableNumberGCDes = tableNumberGCDes;
@@ -46,10 +42,8 @@ public class AdapterGCDe extends RecyclerView.Adapter<AdapterGCDe.MyViewHolder> 
         holder.bind(tableNumberGCDe, paint);
 
         holder.itemView.setOnClickListener(view -> {
-            boolean expanded = tableNumberGCDes.get(position).isExpanded();
-
-            if (!tableNumberGCDes.get(position).getExtra().equals("")) {
-                tableNumberGCDe.setExpanded(!expanded);
+            if (!tableNumberGCDe.extraIsEmpty()) {
+                tableNumberGCDe.rollUp();
                 notifyItemChanged(position);
             }
 
@@ -91,8 +85,11 @@ public class AdapterGCDe extends RecyclerView.Adapter<AdapterGCDe.MyViewHolder> 
 
         @SuppressLint("ResourceAsColor")
         private void bind(TableNumberGCDe gcde, boolean paint) {
+
+            gcde.fillRowTable(textViewA, textViewB, textViewQ, textViewR, textViewX, textViewY, textViewExtra);
+
             // Get the state
-            boolean expanded = gcde.isExpanded();
+            boolean expanded = gcde.isExpand();
             // Set the visibility based on state
             subItem.setVisibility(expanded ? View.VISIBLE : View.GONE);
 
@@ -104,14 +101,6 @@ public class AdapterGCDe extends RecyclerView.Adapter<AdapterGCDe.MyViewHolder> 
                 textViewX.setBackgroundResource(R.color.textViewColor);
                 textViewY.setBackgroundResource(R.color.textViewColor);
             }
-
-            textViewA.setText(gcde.getA() + "");
-            textViewB.setText(gcde.getB() + "");
-            textViewQ.setText(gcde.getQ() + "");
-            textViewR.setText(gcde.getR() + "");
-            textViewX.setText("(" + gcde.getX1() + "; " + gcde.getX2() + ")");
-            textViewY.setText("(" + gcde.getY1() + "; " + gcde.getY2() + ")");
-            textViewExtra.setText(gcde.getExtra());
         }
     }
 }

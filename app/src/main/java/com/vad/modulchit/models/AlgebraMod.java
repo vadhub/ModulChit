@@ -84,7 +84,7 @@ public class AlgebraMod {
         return tempTableNumberGCDes;
     }
 
-    public Observable<List<TableNumberNOK>> nokGraph(int mod) {
+    public List<TableNumberNOK> nokGraph(int mod) {
             List<TableNumberNOK> tempTableNumberNOKs = new ArrayList<>();
             TableNumberNOK tableNumberNOK;
 
@@ -124,7 +124,7 @@ public class AlgebraMod {
                 tableNumberNOK = new TableNumberNOK(-1, -1, -1, -1, -1, "end");
                 tempTableNumberNOKs.add(tableNumberNOK);
             }
-        return Observable.create(subscriber -> subscriber.onNext(tempTableNumberNOKs));
+        return tempTableNumberNOKs;
     }
 
     public Pair<List<TableNumberNOK>, String> getResult(List<TableNumberNOK> noks){

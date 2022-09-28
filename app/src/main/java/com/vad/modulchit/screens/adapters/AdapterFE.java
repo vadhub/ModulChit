@@ -18,10 +18,6 @@ public class AdapterFE extends RecyclerView.Adapter<AdapterFE.MyViewHolderFE> {
 
     private List<TableNumberFE> tableNumberFES;
 
-    public List<TableNumberFE> getTableNumberFES() {
-        return tableNumberFES;
-    }
-
     public void setTableNumberFES(List<TableNumberFE> tableNumberFES) {
         this.tableNumberFES = tableNumberFES;
         notifyItemChanged(5);
