@@ -18,10 +18,6 @@ public class AdapterNOK extends RecyclerView.Adapter<AdapterNOK.MyViewHolderNOK>
 
     private List<TableNumberNOK> tableNumberNOKS;
 
-    public List<TableNumberNOK> getTableNumberNOKS() {
-        return tableNumberNOKS;
-    }
-
     public void setTableNumberNOKS(List<TableNumberNOK> tableNumberNOKS) {
         this.tableNumberNOKS = tableNumberNOKS;
         notifyDataSetChanged();
@@ -37,16 +33,12 @@ public class AdapterNOK extends RecyclerView.Adapter<AdapterNOK.MyViewHolderNOK>
     @Override
     public void onBindViewHolder(@NonNull AdapterNOK.MyViewHolderNOK holder, int position) {
 
-        boolean paint = position % 2 == 0;
-
         TableNumberNOK tableNumberNOK = tableNumberNOKS.get(position);
-        holder.bind(tableNumberNOK, paint);
+        holder.bind(tableNumberNOK);
 
         holder.itemView.setOnClickListener(view -> {
-            boolean expanded = tableNumberNOK.isExpanded();
-
-            if(!tableNumberNOK.getExtra().equals("")){
-                tableNumberNOK.setExpanded(!expanded);
+            if (!tableNumberNOK.extraIsEmpty()) {
+                tableNumberNOK.rollUp();
                 notifyItemChanged(position);
             }
         });
@@ -58,14 +50,14 @@ public class AdapterNOK extends RecyclerView.Adapter<AdapterNOK.MyViewHolderNOK>
         return tableNumberNOKS.size();
     }
 
-    public class MyViewHolderNOK extends RecyclerView.ViewHolder {
+    public static class MyViewHolderNOK extends RecyclerView.ViewHolder {
 
-        private TextView textViewAn;
-        private TextView textViewBn;
-        private TextView textViewQn;
-        private TextView textViewRn;
-        private View subItem;
-        private TextView textViewextra;
+        private final TextView textViewAn;
+        private final TextView textViewBn;
+        private final TextView textViewQn;
+        private final TextView textViewRn;
+        private final View subItem;
+        private final TextView textViewExtra;
 
         public MyViewHolderNOK(@NonNull View itemView) {
             super(itemView);
@@ -77,36 +69,17 @@ public class AdapterNOK extends RecyclerView.Adapter<AdapterNOK.MyViewHolderNOK>
 
             subItem = (View) itemView.findViewById(R.id.subItemGCD);
 
-            textViewextra = (TextView) itemView.findViewById(R.id.extra_gcd);
+            textViewExtra = (TextView) itemView.findViewById(R.id.extra_gcd);
         }
 
         @SuppressLint("ResourceAsColor")
-        private void bind(TableNumberNOK tableNumberNOK, boolean paint){
+        private void bind(TableNumberNOK tableNumberNOK) {
 
-            boolean expanded = tableNumberNOK.isExpanded();
+            boolean expanded = tableNumberNOK.isExpand();
 
             subItem.setVisibility(expanded ? View.VISIBLE : View.GONE);
 
-//            if (tableNumberNOK.getBn() != 0) {
-//                textViewAn.setBackgroundResource(R.color.textViewColor);
-//                textViewBn.setBackgroundResource(R.color.textViewColor);
-//                textViewQn.setBackgroundResource(R.color.textViewColor);
-//                textViewRn.setBackgroundResource(R.color.textViewColor);
-//            }
-
-            textViewAn.setText(tableNumberNOK.getAn()+"");
-            textViewBn.setText(tableNumberNOK.getBn()+"");
-            textViewQn.setText(tableNumberNOK.getQn()+"");
-            textViewRn.setText(tableNumberNOK.getRn()+"");
-
-            textViewextra.setText(tableNumberNOK.getExtra());
-
-            if (tableNumberNOK.getBn() == -1 ) {
-                textViewAn.setText(" ");
-                textViewBn.setText(" ");
-                textViewQn.setText(" ");
-                textViewRn.setText(" ");
-            }
+            tableNumberNOK.fillRowTable(textViewAn, textViewBn, textViewQn, textViewRn, textViewExtra);
 
         }
     }

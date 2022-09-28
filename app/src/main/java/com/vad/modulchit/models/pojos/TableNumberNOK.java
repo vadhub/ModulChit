@@ -1,80 +1,81 @@
 package com.vad.modulchit.models.pojos;
 
+import android.annotation.SuppressLint;
+import android.widget.TextView;
+
 public class TableNumberNOK {
-    private int a;
-    private int b;
-    private int q;
-    private int r;
+    private final int a;
+    private final int b;
+    private final int q;
+    private final int r;
 
-    private int i;
+    private final int i;
 
-    private boolean expanded;
-    private String extra;
+    private boolean isExpand;
+    private final String extra;
 
     public TableNumberNOK(int a, int b, int q, int r, int i, String extra) {
         this.a = a;
         this.b = b;
         this.q = q;
         this.r = r;
-        this.i=i;
+        this.i = i;
 
         this.extra = extra;
+    }
+
+    public TableNumberNOK() {
+        this.a = -1;
+        this.b = -1;
+        this.q = -1;
+        this.r = -1;
+        this.i = -1;
+        this.extra = "end";
     }
 
     public int getI() {
         return i;
     }
 
-    public void setI(int i) {
-        this.i = i;
-    }
-
     public int getAn() {
         return a;
-    }
-
-    public void setAn(int a) {
-        this.a = a;
     }
 
     public int getBn() {
         return b;
     }
 
-    public void setBn(int b) {
-        this.b = b;
-    }
-
-    public int getQn() {
-        return q;
-    }
-
-    public void setQn(int q) {
-        this.q = q;
-    }
-
     public int getRn() {
         return r;
     }
 
-    public void setRn(int r) {
-        this.r = r;
+    public boolean extraIsEmpty() {
+        return extra.equals("");
     }
 
-    public boolean isExpanded() {
-        return expanded;
+    public boolean isExpand() {
+        return isExpand;
     }
 
-    public void setExpanded(boolean expanded) {
-        this.expanded = expanded;
+    public void rollUp() {
+        isExpand = !isExpand;
     }
 
-    public String getExtra() {
-        return extra;
-    }
+    @SuppressLint("SetTextI18n")
+    public void fillRowTable(TextView textViewAn, TextView textViewBn, TextView textViewQn, TextView textViewRn, TextView textViewExtra) {
+        textViewAn.setText(a + "");
+        textViewBn.setText(b + "");
+        textViewQn.setText(q + "");
+        textViewRn.setText(r + "");
 
-    public void setExtra(String extra) {
-        this.extra = extra;
+        textViewExtra.setText(extra);
+
+        if (b == -1) {
+            textViewAn.setText(" ");
+            textViewBn.setText(" ");
+            textViewQn.setText(" ");
+            textViewRn.setText(" ");
+        }
     }
 
     @Override

@@ -85,61 +85,61 @@ public class AlgebraMod {
     }
 
     public List<TableNumberNOK> nokGraph(int mod) {
-            List<TableNumberNOK> tempTableNumberNOKs = new ArrayList<>();
-            TableNumberNOK tableNumberNOK;
+        List<TableNumberNOK> tempTableNumberNOKs = new ArrayList<>();
+        TableNumberNOK tableNumberNOK;
 
-            String extra = "";
-            int a = 0;
-            int b = 0;
-            int q = 0;
-            int r = 0;
+        String extra = "";
+        int a = 0;
+        int b = 0;
+        int q = 0;
+        int r = 0;
 
-            for (int i = 2; i <= mod; i++) {
-                a = mod;
-                b = i;
+        for (int i = 2; i <= mod; i++) {
+            a = mod;
+            b = i;
+            q = a / b;
+            r = a % b;
+
+            extra = extraData.extraGCD(a, b, q, r);
+            tableNumberNOK = new TableNumberNOK(a, b, q, r, i, extra);
+            tempTableNumberNOKs.add(tableNumberNOK);
+            while (true) {
+                if (r == 0) {
+                    tableNumberNOK = new TableNumberNOK(gcd(mod, i), 0, 0, 0, i, "exit from loop");
+                    tempTableNumberNOKs.add(tableNumberNOK);
+                    break;
+                }
+
+                a = tableNumberNOK.getBn();
+                b = tableNumberNOK.getRn();
+
                 q = a / b;
                 r = a % b;
 
                 extra = extraData.extraGCD(a, b, q, r);
                 tableNumberNOK = new TableNumberNOK(a, b, q, r, i, extra);
                 tempTableNumberNOKs.add(tableNumberNOK);
-                while (true) {
-                    if (r == 0) {
-                        tableNumberNOK = new TableNumberNOK(gcd(mod, i), 0, 0, 0, i, "exit from loop");
-                        tempTableNumberNOKs.add(tableNumberNOK);
-                        break;
-                    }
-
-                    a = tableNumberNOK.getBn();
-                    b = tableNumberNOK.getRn();
-
-                    q = a / b;
-                    r = a % b;
-
-                    extra = extraData.extraGCD(a, b, q, r);
-                    tableNumberNOK = new TableNumberNOK(a, b, q, r, i, extra);
-                    tempTableNumberNOKs.add(tableNumberNOK);
-                }
-
-                tableNumberNOK = new TableNumberNOK(-1, -1, -1, -1, -1, "end");
-                tempTableNumberNOKs.add(tableNumberNOK);
             }
+
+            tableNumberNOK = new TableNumberNOK();
+            tempTableNumberNOKs.add(tableNumberNOK);
+        }
         return tempTableNumberNOKs;
     }
 
-    public Pair<List<TableNumberNOK>, String> getResult(List<TableNumberNOK> noks){
+    public Pair<List<TableNumberNOK>, String> getResult(List<TableNumberNOK> noks) {
         StringBuilder txtRes = new StringBuilder("1");
 
         int tmp = 0;
-        for(TableNumberNOK nok: noks){
-            if(nok.getBn()==0&&nok.getAn()==1){
-                if(tmp!=nok.getI()){
+        for (TableNumberNOK nok : noks) {
+            if (nok.getBn() == 0 && nok.getAn() == 1) {
+                if (tmp != nok.getI()) {
                     txtRes.append("; ").append(nok.getI());
                 }
             }
         }
 
-        return new Pair<>(noks, txtRes+".");
+        return new Pair<>(noks, txtRes + ".");
     }
 
     public List<TableNumberFE> feGraph(int a, int m, int n) {
