@@ -42,10 +42,9 @@ public class AdapterFE extends RecyclerView.Adapter<AdapterFE.MyViewHolderFE> {
         holder.bind(tableNumberFE, paint);
 
         holder.itemView.setOnClickListener(view -> {
-            boolean expanded = tableNumberFE.isExpanded();
 
-            if (!tableNumberFE.getExtra().equals("")) {
-                tableNumberFE.setExpanded(!expanded);
+            if (!tableNumberFE.extraIsEmpty()) {
+                tableNumberFE.rollUp();
                 notifyItemChanged(position);
             }
         });
@@ -57,17 +56,17 @@ public class AdapterFE extends RecyclerView.Adapter<AdapterFE.MyViewHolderFE> {
         return tableNumberFES.size();
     }
 
-    public class MyViewHolderFE extends RecyclerView.ViewHolder {
+    public static class MyViewHolderFE extends RecyclerView.ViewHolder {
 
-        TextView textViewA;
-        TextView textViewM;
-        TextView textViewN;
-        TextView textViewP;
-        TextView textViewR;
+        private final TextView textViewA;
+        private final TextView textViewM;
+        private final TextView textViewN;
+        private final TextView textViewP;
+        private final TextView textViewR;
 
-        TextView textViewExtra;
+        private final TextView textViewExtra;
 
-        View subItem;
+        private final View subItem;
 
         public MyViewHolderFE(@NonNull View itemView) {
             super(itemView);
@@ -85,7 +84,9 @@ public class AdapterFE extends RecyclerView.Adapter<AdapterFE.MyViewHolderFE> {
 
         @SuppressLint("ResourceAsColor")
         private void bind(TableNumberFE tableNumberFE, boolean paint) {
-            boolean expanded = tableNumberFE.isExpanded();
+
+            tableNumberFE.fillRowTable(textViewA, textViewM, textViewN, textViewP, textViewR, textViewExtra);
+            subItem.setVisibility(tableNumberFE.isExpand() ? View.VISIBLE : View.GONE);
 
             if (paint) {
                 textViewA.setBackgroundResource(R.color.textViewColor);
@@ -93,23 +94,6 @@ public class AdapterFE extends RecyclerView.Adapter<AdapterFE.MyViewHolderFE> {
                 textViewN.setBackgroundResource(R.color.textViewColor);
                 textViewP.setBackgroundResource(R.color.textViewColor);
                 textViewR.setBackgroundResource(R.color.textViewColor);
-            }
-            subItem.setVisibility(expanded ? View.VISIBLE : View.GONE);
-
-            textViewA.setText(tableNumberFE.getAfe() + "");
-            textViewM.setText(tableNumberFE.getM() + "");
-            textViewN.setText(tableNumberFE.getN() + "");
-            textViewP.setText(tableNumberFE.getP() + "");
-            textViewR.setText(tableNumberFE.getRfe() + "");
-
-            textViewExtra.setText(tableNumberFE.getExtra());
-
-            if (tableNumberFE.getAfe() == -1 && tableNumberFE.getN() == -1) {
-                textViewA.setText("");
-                textViewM.setText("");
-                textViewN.setText("");
-                textViewP.setText("");
-                textViewR.setText("");
             }
         }
     }

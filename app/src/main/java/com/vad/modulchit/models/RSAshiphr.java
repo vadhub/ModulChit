@@ -5,19 +5,19 @@ import java.util.List;
 
 public class RSAshiphr {
 
-    public List<Character> getAlphabyteEN(){
-        List<Character> alphabyte = new ArrayList<>();
+    public List<Character> getAlphabetEN(){
+        List<Character> alphabet = new ArrayList<>();
         for(char i = 'a'; i<='z'; i++){
-            alphabyte.add(i);
+            alphabet.add(i);
         }
-        alphabyte.add(' ');
+        alphabet.add(' ');
 
-        return alphabyte;
+        return alphabet;
     }
 
     public List<Integer> getNumberShiphr(int startNumber){
         List<Integer> numbers = new ArrayList<>();
-        for(int i = 0; i < getAlphabyteEN().size(); i++){
+        for(int i = 0; i < getAlphabetEN().size(); i++){
             numbers.add(i+startNumber);
         }
 
@@ -26,7 +26,7 @@ public class RSAshiphr {
 
     public List<Integer> getNumberShiphr(){
         List<Integer> numbers = new ArrayList<>();
-        for(int i = 0; i < getAlphabyteEN().size(); i++){
+        for(int i = 0; i < getAlphabetEN().size(); i++){
             numbers.add((int) (Math.random() * 100));
         }
         return numbers;

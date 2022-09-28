@@ -1,5 +1,6 @@
 package com.vad.modulchit.screens.rsa.decrypt;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -13,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,11 +41,11 @@ public class FragmentRSAdecrypt extends Fragment implements DecryptView, HasCust
 
     private int n;
     private int d;
-    private int eller;
+    private int euler;
     private int exponent;
     private int p;
     private int q;
-    private List<Integer> alphaviteCodes;
+    private List<Integer> alphabetCodes;
 
     private RecyclerView mRecyclerDecrypt;
     private RecyclerView mRecyclerGCDe;
@@ -67,12 +67,12 @@ public class FragmentRSAdecrypt extends Fragment implements DecryptView, HasCust
     private static final String ARG_P_INT = "p_int";
     private static final String ARG_Q_INT = "q_int";
 
-    public static FragmentRSAdecrypt newInstance(List<Integer> alphaviteCodes, int n, int d, int eller, int exponent, int p, int q) {
+    public static FragmentRSAdecrypt newInstance(List<Integer> alphabetCodes, int n, int d, int euler, int exponent, int p, int q) {
         Bundle args = new Bundle();
-        args.putIntegerArrayList(ARG_ALPAVITE_LIST, (ArrayList<Integer>) alphaviteCodes);
+        args.putIntegerArrayList(ARG_ALPAVITE_LIST, (ArrayList<Integer>) alphabetCodes);
         args.putInt(ARG_N_INT, n);
         args.putInt(ARG_D_INT, d);
-        args.putInt(ARG_ELLER, eller);
+        args.putInt(ARG_ELLER, euler);
         args.putInt(ARG_EXPONENT, exponent);
         args.putInt(ARG_P_INT, p);
         args.putInt(ARG_Q_INT, q);
@@ -90,10 +90,10 @@ public class FragmentRSAdecrypt extends Fragment implements DecryptView, HasCust
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        alphaviteCodes = requireArguments().getIntegerArrayList(ARG_ALPAVITE_LIST);
+        alphabetCodes = requireArguments().getIntegerArrayList(ARG_ALPAVITE_LIST);
         n = requireArguments().getInt(ARG_N_INT);
         d = requireArguments().getInt(ARG_D_INT);
-        eller = requireArguments().getInt(ARG_ELLER);
+        euler = requireArguments().getInt(ARG_ELLER);
         exponent = requireArguments().getInt(ARG_EXPONENT);
         p = requireArguments().getInt(ARG_P_INT);
         q = requireArguments().getInt(ARG_Q_INT);
@@ -105,11 +105,12 @@ public class FragmentRSAdecrypt extends Fragment implements DecryptView, HasCust
         return inflater.inflate(R.layout.fragment_rsa_decrypt, container, false);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onViewCreated(@NonNull View v, @Nullable Bundle savedInstanceState) {
-        cardResultDecrypt = (CardView) v.findViewById(R.id.cardResultDecrypt);
-        cardIncludeFeDec = (CardView) v.findViewById(R.id.cardIncludeFeDec);
-        cardGCDEreverse = (CardView) v.findViewById(R.id.cardGCDEreverse);
+        cardResultDecrypt = v.findViewById(R.id.cardResultDecrypt);
+        cardIncludeFeDec = v.findViewById(R.id.cardIncludeFeDec);
+        cardGCDEreverse = v.findViewById(R.id.cardGCDEreverse);
         presenter = new DecryptPresenter(this);
         enterCodeDecrypt = v.findViewById(R.id.editTextCodeDecrypt);
         editTextD = v.findViewById(R.id.editTextDdecript);
@@ -130,8 +131,8 @@ public class FragmentRSAdecrypt extends Fragment implements DecryptView, HasCust
 
         ((TextView) v.findViewById(R.id.textViewMfere)).setText("d");
 
-        editTextD.setText(d+"");
-        editTextN.setText(n+"");
+        editTextD.setText(d + "");
+        editTextN.setText(n + "");
 
         v.findViewById(R.id.buttonDecrypt).setOnClickListener(clickListener);
     }
@@ -143,17 +144,13 @@ public class FragmentRSAdecrypt extends Fragment implements DecryptView, HasCust
             String dStr = editTextD.getText().toString();
             String nStr = editTextN.getText().toString();
 
-            presenter.decrypt(dStr, nStr, eller, exponent, alphaviteCodes, enterCodeDecrypt.getText().toString(), p, q);
-            cardIncludeFeDec.setVisibility(View.VISIBLE);
-            cardGCDEreverse.setVisibility(View.VISIBLE);
-            cardResultDecrypt.setVisibility(View.VISIBLE);
-
+            presenter.decrypt(dStr, nStr, euler, exponent, alphabetCodes, enterCodeDecrypt.getText().toString(), p, q);
         }
     };
 
     @Override
     public void showError(int resource) {
-        Toast.makeText(getContext(), ""+getString(resource), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "" + getString(resource), Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -176,6 +173,9 @@ public class FragmentRSAdecrypt extends Fragment implements DecryptView, HasCust
 
     @Override
     public void showTitle() {
+        cardIncludeFeDec.setVisibility(View.VISIBLE);
+        cardGCDEreverse.setVisibility(View.VISIBLE);
+        cardResultDecrypt.setVisibility(View.VISIBLE);
         includeFeDec.setVisibility(View.VISIBLE);
         includeGCDEreverse.setVisibility(View.VISIBLE);
     }
@@ -187,7 +187,7 @@ public class FragmentRSAdecrypt extends Fragment implements DecryptView, HasCust
 
     @Override
     public CustomActionFragment setCustomAction(Navigator navigator) {
-        return new CustomActionFragment(R.drawable.ic_baseline_info_24,() -> {
+        return new CustomActionFragment(R.drawable.ic_baseline_info_24, () -> {
             navigator.startFragment(new FragmentDecryptExpl());
         });
     }

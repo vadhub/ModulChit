@@ -153,7 +153,7 @@ public class RSAmod {
             temp += strCode.charAt(i);
             try {
                 if(alphabetCodes.contains(Integer.parseInt(temp))){
-                    str.append(rsAshiphr.getAlphabyteEN().get(alphabetCodes.indexOf(Integer.parseInt(temp))));
+                    str.append(rsAshiphr.getAlphabetEN().get(alphabetCodes.indexOf(Integer.parseInt(temp))));
                     temp="";
                 }
             }catch (NumberFormatException e){

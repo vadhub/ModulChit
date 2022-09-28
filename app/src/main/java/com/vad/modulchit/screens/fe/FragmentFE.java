@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.SimpleItemAnimator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -57,16 +56,16 @@ public class FragmentFE extends Fragment implements ListFEView, HasCustomTitle, 
     @Override
     public void onViewCreated(@NonNull View v, @Nullable Bundle savedInstanceState) {
         presenter = new FEpresenter(this);
-        editTextA = (EditText) v.findViewById(R.id.editTextNumberAFe);
-        editTextM = (EditText) v.findViewById(R.id.editTextNumberMFe);
-        editTextN = (EditText) v.findViewById(R.id.editTextNumberNFe);
+        editTextA = v.findViewById(R.id.editTextNumberAFe);
+        editTextM = v.findViewById(R.id.editTextNumberMFe);
+        editTextN = v.findViewById(R.id.editTextNumberNFe);
 
-        mRecyclerView = (RecyclerView) v.findViewById(R.id.mRecyclerFE);
+        mRecyclerView = v.findViewById(R.id.mRecyclerFE);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         ((SimpleItemAnimator) mRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
 
-        includeFE = (View) v.findViewById(R.id.includeFE);
+        includeFE = v.findViewById(R.id.includeFE);
         adapterFE = new AdapterFE();
 
         v.findViewById(R.id.buttonFE).setOnClickListener(view -> {

@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,8 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.textfield.TextInputLayout;
 import com.vad.modulchit.R;
 import com.vad.modulchit.models.RSAshiphr;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -51,10 +48,10 @@ public class AdapterRSAalphabyte extends RecyclerView.Adapter<AdapterRSAalphabyt
 
         holder.listener.updatePosition(position);
         holder.editTextNumber.setText(numbersCode.get(position)+"");
-        if (shiphr.getAlphabyteEN().get(position).equals(' ')) {
+        if (shiphr.getAlphabetEN().get(position).equals(' ')) {
             holder.textInputLayout.setHint("_");
         } else {
-            holder.textInputLayout.setHint(shiphr.getAlphabyteEN().get(position)+"");
+            holder.textInputLayout.setHint(shiphr.getAlphabetEN().get(position)+"");
         }
 
     }

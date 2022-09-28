@@ -1,16 +1,19 @@
 package com.vad.modulchit.models.pojos;
 
-public class TableNumberFE {
-    private int a; //number base degree
-    private int m; //degree
-    private int n; //z mod
-    private int p; //default p = 1 if r = 1 to p=prev p *a else p = prev p
-    private int r; // 0 if m%2 = 0 else 1
+import android.annotation.SuppressLint;
+import android.widget.TextView;
 
-    private String extra;
+public class TableNumberFE {
+    private final int a; //number base degree
+    private final int m; //degree
+    private final int n; //z mod
+    private final int p; //default p = 1 if r = 1 to p=prev p *a else p = prev p
+    private final int r; // 0 if m%2 = 0 else 1
+
+    private final String extra;
 
     //state of the element
-    private boolean expanded;
+    private boolean isExpand;
 
     public TableNumberFE(int a, int m, int n, int p, int r, String extra) {
         this.a = a;
@@ -22,60 +25,64 @@ public class TableNumberFE {
         this.extra = extra;
     }
 
-    public int getAfe() {
-        return a;
+    public TableNumberFE() {
+        this.a = -1;
+        this.m = -1;
+        this.n = -1;
+        this.p = -1;
+        this.r = -1;
+        this.extra = "";
     }
 
-    public void setAfe(int a) {
-        this.a = a;
+    @SuppressLint("SetTextI18n")
+    public void fillRowTable(TextView textViewA, TextView textViewM, TextView textViewN, TextView textViewP, TextView textViewR, TextView textViewExtra) {
+        textViewA.setText(a + "");
+        textViewM.setText(m + "");
+        textViewN.setText(n + "");
+        textViewP.setText(p + "");
+        textViewR.setText(r + "");
+
+        textViewExtra.setText(extra);
+
+        if (a == -1 && n == -1) {
+            textViewA.setText("");
+            textViewM.setText("");
+            textViewN.setText("");
+            textViewP.setText("");
+            textViewR.setText("");
+        }
+    }
+
+    public int getA() {
+        return a;
     }
 
     public int getM() {
         return m;
     }
 
-    public void setM(int m) {
-        this.m = m;
-    }
-
     public int getN() {
         return n;
-    }
-
-    public void setN(int n) {
-        this.n = n;
     }
 
     public int getP() {
         return p;
     }
 
-    public void setP(int p) {
-        this.p = p;
-    }
-
-    public int getRfe() {
+    public int getR() {
         return r;
     }
 
-    public void setRfe(int r) {
-        this.r = r;
+    public boolean extraIsEmpty() {
+        return extra.equals("");
     }
 
-    public String getExtra() {
-        return extra;
+    public boolean isExpand() {
+        return isExpand;
     }
 
-    public void setExtra(String extra) {
-        this.extra = extra;
-    }
-
-    public boolean isExpanded() {
-        return expanded;
-    }
-
-    public void setExpanded(boolean expanded) {
-        this.expanded = expanded;
+    public void rollUp() {
+        isExpand = !isExpand;
     }
 
     @Override

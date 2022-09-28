@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -86,16 +85,16 @@ public class FragmentRSAcrypt extends Fragment implements CryptView, HasCustomTi
 
     @Override
     public void onViewCreated(@NonNull View v, @Nullable Bundle savedInstanceState) {
-        cardIncludeFe = (CardView) v.findViewById(R.id.cardIncludeFe);
-        cardResultCrypt = (CardView) v.findViewById(R.id.cardResultCrypt);
+        cardIncludeFe = v.findViewById(R.id.cardIncludeFe);
+        cardResultCrypt = v.findViewById(R.id.cardResultCrypt);
         cryptPresenter = new CryptPresenter(this);
-        enterTextToCrypt = (EditText) v.findViewById(R.id.editTextTextCrypt);
-        editTextE = (EditText) v.findViewById(R.id.editTextE);
-        editTextN = (EditText) v.findViewById(R.id.editTextN);
-        textViewResult = (TextView) v.findViewById(R.id.textViewResultCrypt);
-        mRecyclerFeCrypt = (RecyclerView) v.findViewById(R.id.cryptRecycler);
+        enterTextToCrypt = v.findViewById(R.id.editTextTextCrypt);
+        editTextE = v.findViewById(R.id.editTextE);
+        editTextN = v.findViewById(R.id.editTextN);
+        textViewResult = v.findViewById(R.id.textViewResultCrypt);
+        mRecyclerFeCrypt = v.findViewById(R.id.cryptRecycler);
         adapterFE = new AdapterFE();
-        includeFeCrypt = (View) v.findViewById(R.id.includeFe);
+        includeFeCrypt = v.findViewById(R.id.includeFe);
         mRecyclerFeCrypt.setLayoutManager(new LinearLayoutManager(getContext()));
 
         ((TextView) v.findViewById(R.id.textViewMfere)).setText("e");
@@ -116,14 +115,12 @@ public class FragmentRSAcrypt extends Fragment implements CryptView, HasCustomTi
             String nStr = editTextN.getText().toString();
             String textToEncrypt = enterTextToCrypt.getText().toString();
             cryptPresenter.result(alphabetCodes, textToEncrypt, eStr, nStr);
-            cardResultCrypt.setVisibility(View.VISIBLE);
-            cardIncludeFe.setVisibility(View.VISIBLE);
         }
     };
 
     @Override
     public void showError(int resource) {
-        Toast.makeText(getContext(), ""+getString(resource), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "" + getString(resource), Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -134,12 +131,14 @@ public class FragmentRSAcrypt extends Fragment implements CryptView, HasCustomTi
 
     @Override
     public void showCalculatingExtra(String encrypt) {
-        String str = encrypt + getString(R.string.from_list)+exponents+getString(R.string.get_first)+ editTextE.getText().toString();
+        String str = encrypt + getString(R.string.from_list) + exponents + getString(R.string.get_first) + editTextE.getText().toString();
         textViewResult.setText(str);
     }
 
     @Override
     public void showTitle() {
+        cardResultCrypt.setVisibility(View.VISIBLE);
+        cardIncludeFe.setVisibility(View.VISIBLE);
         includeFeCrypt.setVisibility(View.VISIBLE);
     }
 
@@ -150,7 +149,7 @@ public class FragmentRSAcrypt extends Fragment implements CryptView, HasCustomTi
 
     @Override
     public CustomActionFragment setCustomAction(Navigator navigator) {
-        return new CustomActionFragment(R.drawable.ic_baseline_info_24,() -> {
+        return new CustomActionFragment(R.drawable.ic_baseline_info_24, () -> {
             navigator.startFragment(new FragmentCryptExpl());
         });
     }

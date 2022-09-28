@@ -172,7 +172,7 @@ public class AlgebraMod {
 
         }
 
-        tableNumberFE = new TableNumberFE(-1, -1, -1, -1, -1, "");
+        tableNumberFE = new TableNumberFE();
         tableNumberFES.add(tableNumberFE);
         return tableNumberFES;
     }

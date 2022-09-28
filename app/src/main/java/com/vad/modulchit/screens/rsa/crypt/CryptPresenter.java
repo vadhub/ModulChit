@@ -33,8 +33,8 @@ public class CryptPresenter {
     private List<Integer> encrypt(List<Integer> alphaviteCodes, String textToEncrypt){
         List<Integer> numbersCodesForCrypt = new ArrayList<>();
             for (char c : textToEncrypt.toLowerCase().toCharArray()) {
-                for (int j = 0; j < cypher.getAlphabyteEN().size(); j++) {
-                    if (cypher.getAlphabyteEN().get(j).equals(c)) {
+                for (int j = 0; j < cypher.getAlphabetEN().size(); j++) {
+                    if (cypher.getAlphabetEN().get(j).equals(c)) {
                         numbersCodesForCrypt.add(alphaviteCodes.get(j));
                         break;
                     }
