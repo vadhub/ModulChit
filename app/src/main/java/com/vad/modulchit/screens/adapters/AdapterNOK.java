@@ -62,14 +62,14 @@ public class AdapterNOK extends RecyclerView.Adapter<AdapterNOK.MyViewHolderNOK>
         public MyViewHolderNOK(@NonNull View itemView) {
             super(itemView);
 
-            textViewAn = (TextView) itemView.findViewById(R.id.textViewAn);
-            textViewBn = (TextView) itemView.findViewById(R.id.textViewBn);
-            textViewQn = (TextView) itemView.findViewById(R.id.textViewQn);
-            textViewRn = (TextView) itemView.findViewById(R.id.textViewRn);
+            textViewAn = itemView.findViewById(R.id.textViewAn);
+            textViewBn = itemView.findViewById(R.id.textViewBn);
+            textViewQn = itemView.findViewById(R.id.textViewQn);
+            textViewRn = itemView.findViewById(R.id.textViewRn);
 
-            subItem = (View) itemView.findViewById(R.id.subItemGCD);
+            subItem = itemView.findViewById(R.id.subItemGCD);
 
-            textViewExtra = (TextView) itemView.findViewById(R.id.extra_gcd);
+            textViewExtra = itemView.findViewById(R.id.extra_gcd);
         }
 
         @SuppressLint("ResourceAsColor")

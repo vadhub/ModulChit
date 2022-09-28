@@ -67,15 +67,15 @@ public class AdapterFE extends RecyclerView.Adapter<AdapterFE.MyViewHolderFE> {
         public MyViewHolderFE(@NonNull View itemView) {
             super(itemView);
 
-            textViewA = (TextView) itemView.findViewById(R.id.textViewAfe);
-            textViewM = (TextView) itemView.findViewById(R.id.textViewMfe);
-            textViewN = (TextView) itemView.findViewById(R.id.textViewNfe);
-            textViewP = (TextView) itemView.findViewById(R.id.textViewPfe);
-            textViewR = (TextView) itemView.findViewById(R.id.textViewRfe);
+            textViewA = itemView.findViewById(R.id.textViewAfe);
+            textViewM = itemView.findViewById(R.id.textViewMfe);
+            textViewN = itemView.findViewById(R.id.textViewNfe);
+            textViewP = itemView.findViewById(R.id.textViewPfe);
+            textViewR = itemView.findViewById(R.id.textViewRfe);
 
-            textViewExtra = (TextView) itemView.findViewById(R.id.extra_fe);
+            textViewExtra = itemView.findViewById(R.id.extra_fe);
 
-            subItem = (View) itemView.findViewById(R.id.subItemFE);
+            subItem = itemView.findViewById(R.id.subItemFE);
         }
 
         @SuppressLint("ResourceAsColor")
