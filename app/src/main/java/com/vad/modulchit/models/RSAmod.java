@@ -44,7 +44,7 @@ public class RSAmod {
         return bigInteger.isProbablePrime(number);
     }
 
-    //open exponenta for public key
+    //open exponent for public key
     public List<Integer> exponenta(int eller){
         List<Integer> simpleNumber = new ArrayList<>();
 

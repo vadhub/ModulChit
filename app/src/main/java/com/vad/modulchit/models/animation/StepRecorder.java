@@ -6,7 +6,6 @@ import java.util.List;
 public class StepRecorder {
 
     private List<int[]> steps;
-    private int[] array;
 
     public StepRecorder() {
         steps = new ArrayList<>();
@@ -19,7 +18,7 @@ public class StepRecorder {
     }
 
     public void record(int[] arr) {
-        array = copyArray(arr);
+        int[] array = copyArray(arr);
         steps.add(array);
     }
 
