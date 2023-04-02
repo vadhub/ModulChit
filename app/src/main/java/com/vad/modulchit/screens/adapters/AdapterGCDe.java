@@ -4,6 +4,9 @@ import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -67,7 +70,7 @@ public class AdapterGCDe extends RecyclerView.Adapter<AdapterGCDe.MyViewHolder> 
 
         TextView textViewExtra;
 
-        View subItem;
+        LinearLayout subItem;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -80,18 +83,23 @@ public class AdapterGCDe extends RecyclerView.Adapter<AdapterGCDe.MyViewHolder> 
             textViewY = (TextView) itemView.findViewById(R.id.textViewY);
             textViewExtra = (TextView) itemView.findViewById(R.id.extra_gcde);
 
-            subItem = (View) itemView.findViewById(R.id.subItem);
+            subItem = (LinearLayout) itemView.findViewById(R.id.subItem);
         }
 
         @SuppressLint("ResourceAsColor")
         private void bind(TableNumberGCDe gcde, boolean paint) {
 
             gcde.fillRowTable(textViewA, textViewB, textViewQ, textViewR, textViewX, textViewY, textViewExtra);
-
+            Animation animationFadeIn = AnimationUtils.loadAnimation(itemView.getContext(), R.anim.animation_fade_in);
             // Get the state
             boolean expanded = gcde.isExpand();
             // Set the visibility based on state
-            subItem.setVisibility(expanded ? View.VISIBLE : View.GONE);
+            if (expanded) {
+                subItem.setVisibility(View.VISIBLE);
+                subItem.startAnimation(animationFadeIn);
+            } else {
+                subItem.setVisibility(View.GONE);
+            }
 
             if (paint) {
                 textViewA.setBackgroundResource(R.color.textViewColor);

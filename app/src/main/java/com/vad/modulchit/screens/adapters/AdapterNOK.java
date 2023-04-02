@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,6 +20,7 @@ public class AdapterNOK extends RecyclerView.Adapter<AdapterNOK.MyViewHolderNOK>
 
     private List<TableNumberNOK> tableNumberNOKS;
 
+    @SuppressLint("NotifyDataSetChanged")
     public void setTableNumberNOKS(List<TableNumberNOK> tableNumberNOKS) {
         this.tableNumberNOKS = tableNumberNOKS;
         notifyDataSetChanged();
@@ -76,6 +79,15 @@ public class AdapterNOK extends RecyclerView.Adapter<AdapterNOK.MyViewHolderNOK>
         private void bind(TableNumberNOK tableNumberNOK) {
 
             boolean expanded = tableNumberNOK.isExpand();
+
+            Animation animationFadeIn = AnimationUtils.loadAnimation(itemView.getContext(), R.anim.animation_fade_in);
+
+            if (expanded) {
+                subItem.setVisibility(View.VISIBLE);
+                subItem.startAnimation(animationFadeIn);
+            } else {
+                subItem.setVisibility(View.GONE);
+            }
 
             subItem.setVisibility(expanded ? View.VISIBLE : View.GONE);
 

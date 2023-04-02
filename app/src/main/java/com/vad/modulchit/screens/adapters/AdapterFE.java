@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -82,7 +84,16 @@ public class AdapterFE extends RecyclerView.Adapter<AdapterFE.MyViewHolderFE> {
         private void bind(TableNumberFE tableNumberFE, boolean paint) {
 
             tableNumberFE.fillRowTable(textViewA, textViewM, textViewN, textViewP, textViewR, textViewExtra);
-            subItem.setVisibility(tableNumberFE.isExpand() ? View.VISIBLE : View.GONE);
+
+            Animation animationFadeIn = AnimationUtils.loadAnimation(itemView.getContext(), R.anim.animation_fade_in);
+
+            if (tableNumberFE.isExpand()) {
+                subItem.setVisibility(View.VISIBLE);
+                subItem.startAnimation(animationFadeIn);
+            } else {
+                subItem.setVisibility(View.GONE);
+            }
+
 
             if (paint) {
                 textViewA.setBackgroundResource(R.color.textViewColor);
