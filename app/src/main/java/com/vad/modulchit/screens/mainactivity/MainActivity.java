@@ -3,6 +3,7 @@ package com.vad.modulchit.screens.mainactivity;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
@@ -11,7 +12,6 @@ import androidx.fragment.app.FragmentManager;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -20,19 +20,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
 import com.vad.modulchit.R;
 import com.vad.modulchit.screens.contract.CustomActionFragment;
 import com.vad.modulchit.screens.contract.HasCustomAction;
 import com.vad.modulchit.screens.contract.HasCustomTitle;
 import com.vad.modulchit.screens.contract.Navigator;
 import com.vad.modulchit.screens.menu.FragmentMenu;
+import com.yandex.mobile.ads.banner.AdSize;
+import com.yandex.mobile.ads.banner.BannerAdView;
+import com.yandex.mobile.ads.common.AdRequest;
 
 public class MainActivity extends AppCompatActivity implements Navigator {
 
-    private AdView mAdView;
     private Toolbar toolbar;
 
     @Override
@@ -40,14 +39,16 @@ public class MainActivity extends AppCompatActivity implements Navigator {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
         toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
 
-        MobileAds.initialize(this, initializationStatus -> {
-        });
-        mAdView = findViewById(R.id.adView);
+        BannerAdView mBanner = (BannerAdView) findViewById(R.id.adView);
+        mBanner.setAdUnitId("R-M-2167912-1");
+        mBanner.setAdSize(AdSize.stickySize(AdSize.FULL_SCREEN.getWidth()));
         AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        mBanner.loadAd(adRequest);
 
         getSupportFragmentManager().registerFragmentLifecycleCallbacks(fragmentListener, false);
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentMenu()).commit();
