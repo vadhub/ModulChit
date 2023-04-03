@@ -13,10 +13,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.vad.modulchit.screens.BaseFragment;
 import com.vad.modulchit.screens.adapters.AdapterGCDe;
 import com.vad.modulchit.R;
 import com.vad.modulchit.models.pojos.TableNumberGCDe;
@@ -28,7 +32,7 @@ import com.vad.modulchit.screens.gcde.explgcde.FragmentGCDexpl;
 
 import java.util.List;
 
-public class FragmentGCDe extends Fragment implements ListGCDEView, HasCustomTitle, HasCustomAction {
+public class FragmentGCDe extends BaseFragment implements ListGCDEView, HasCustomTitle, HasCustomAction {
 
     private EditText editTextA;
     private EditText editTextB;
@@ -39,13 +43,6 @@ public class FragmentGCDe extends Fragment implements ListGCDEView, HasCustomTit
     private View includeTitle;
     private ListGCDEpresenter presenter;
     private CardView cardView;
-    private Navigator navigator;
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        navigator = ((Navigator) context);
-    }
 
     @Nullable
     @Override
@@ -81,6 +78,7 @@ public class FragmentGCDe extends Fragment implements ListGCDEView, HasCustomTit
     public void showData(List<TableNumberGCDe> tableNumberGCDeList) {
         adapterGCDe.setTableNumbers(tableNumberGCDeList);
         mRecyclerView.setAdapter(adapterGCDe);
+        mRecyclerView.setLayoutAnimation(layoutAnimationController);
         cardView.setVisibility(View.VISIBLE);
     }
 
@@ -104,12 +102,6 @@ public class FragmentGCDe extends Fragment implements ListGCDEView, HasCustomTit
         return new CustomActionFragment(R.drawable.ic_baseline_info_24,() -> {
             navigator.startFragment(new FragmentGCDexpl());
         });
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        navigator = null;
     }
 
     @Override

@@ -1,27 +1,23 @@
 package com.vad.modulchit.screens.mg;
 
-import android.content.Context;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.vad.modulchit.R;
-import com.vad.modulchit.screens.adapters.AdapterNOK;
 import com.vad.modulchit.models.pojos.TableNumberNOK;
+import com.vad.modulchit.screens.BaseFragment;
+import com.vad.modulchit.screens.adapters.AdapterNOK;
 import com.vad.modulchit.screens.contract.CustomActionFragment;
 import com.vad.modulchit.screens.contract.HasCustomAction;
 import com.vad.modulchit.screens.contract.HasCustomTitle;
@@ -31,7 +27,7 @@ import com.vad.modulchit.screens.mg.explmg.FragmentMGexpl;
 import java.util.List;
 
 
-public class FragmentMG extends Fragment implements ListMGView, HasCustomTitle, HasCustomAction {
+public class FragmentMG extends BaseFragment implements ListMGView, HasCustomTitle, HasCustomAction {
 
     private EditText editTextMod;
     private RecyclerView mRecyclerView;
@@ -40,13 +36,6 @@ public class FragmentMG extends Fragment implements ListMGView, HasCustomTitle, 
 
     private TextView textViewResult;
     private View includeMG;
-    private Navigator navigator;
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        navigator = ((Navigator) context);
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,6 +45,7 @@ public class FragmentMG extends Fragment implements ListMGView, HasCustomTitle, 
 
     @Override
     public void onViewCreated(@NonNull View v, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(v, savedInstanceState);
         presenter = new ListMGpresenter(this);
 
         editTextMod = (EditText) v.findViewById(R.id.editTextTextMod);
@@ -77,6 +67,7 @@ public class FragmentMG extends Fragment implements ListMGView, HasCustomTitle, 
     public void showData(List<TableNumberNOK> numberNOKS, String str) {
         textViewResult.setText(str);
         adapterNOK.setTableNumberNOKS(numberNOKS);
+        mRecyclerView.setLayoutAnimation(layoutAnimationController);
         mRecyclerView.setAdapter(adapterNOK);
     }
 
@@ -100,12 +91,6 @@ public class FragmentMG extends Fragment implements ListMGView, HasCustomTitle, 
         return new CustomActionFragment(R.drawable.ic_baseline_info_24, () -> {
             navigator.startFragment(new FragmentMGexpl());
         });
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        navigator = null;
     }
 
     @Override

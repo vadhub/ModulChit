@@ -1,24 +1,22 @@
 package com.vad.modulchit.screens.fe;
 
-import android.content.Context;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.SimpleItemAnimator;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SimpleItemAnimator;
+
 import com.vad.modulchit.R;
-import com.vad.modulchit.screens.adapters.AdapterFE;
 import com.vad.modulchit.models.pojos.TableNumberFE;
+import com.vad.modulchit.screens.BaseFragment;
+import com.vad.modulchit.screens.adapters.AdapterFE;
 import com.vad.modulchit.screens.contract.CustomActionFragment;
 import com.vad.modulchit.screens.contract.HasCustomAction;
 import com.vad.modulchit.screens.contract.HasCustomTitle;
@@ -28,7 +26,7 @@ import com.vad.modulchit.screens.fe.explfe.FragmentFEexpl;
 import java.util.List;
 
 
-public class FragmentFE extends Fragment implements ListFEView, HasCustomTitle, HasCustomAction {
+public class FragmentFE extends BaseFragment implements ListFEView, HasCustomTitle, HasCustomAction {
 
     private EditText editTextA;
     private EditText editTextM;
@@ -39,13 +37,6 @@ public class FragmentFE extends Fragment implements ListFEView, HasCustomTitle, 
 
     private View includeFE;
     private FEpresenter presenter;
-    private Navigator navigator;
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        navigator = ((Navigator) context);
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,6 +46,7 @@ public class FragmentFE extends Fragment implements ListFEView, HasCustomTitle, 
 
     @Override
     public void onViewCreated(@NonNull View v, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(v, savedInstanceState);
         presenter = new FEpresenter(this);
         editTextA = v.findViewById(R.id.editTextNumberAFe);
         editTextM = v.findViewById(R.id.editTextNumberMFe);
@@ -87,6 +79,7 @@ public class FragmentFE extends Fragment implements ListFEView, HasCustomTitle, 
     public void showData(List<TableNumberFE> tableNumberFEList) {
         adapterFE.setTableNumberFES(tableNumberFEList);
         mRecyclerView.setAdapter(adapterFE);
+        mRecyclerView.setLayoutAnimation(layoutAnimationController);
     }
 
     @Override
@@ -104,12 +97,6 @@ public class FragmentFE extends Fragment implements ListFEView, HasCustomTitle, 
         return new CustomActionFragment(R.drawable.ic_baseline_info_24, () -> {
             navigator.startFragment(new FragmentFEexpl());
         });
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        navigator = null;
     }
 
     @Override
