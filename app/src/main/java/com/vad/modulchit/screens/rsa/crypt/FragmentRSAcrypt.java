@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vad.modulchit.R;
+import com.vad.modulchit.screens.BaseFragment;
 import com.vad.modulchit.screens.adapters.AdapterFE;
 import com.vad.modulchit.models.pojos.TableNumberFE;
 import com.vad.modulchit.screens.contract.CustomActionFragment;
@@ -29,7 +30,7 @@ import com.vad.modulchit.screens.rsa.crypt.explcrypt.FragmentCryptExpl;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FragmentRSAcrypt extends Fragment implements CryptView, HasCustomTitle, HasCustomAction {
+public class FragmentRSAcrypt extends BaseFragment implements CryptView, HasCustomTitle, HasCustomAction {
 
     private EditText enterTextToCrypt;
     private EditText editTextE;
@@ -47,7 +48,6 @@ public class FragmentRSAcrypt extends Fragment implements CryptView, HasCustomTi
     private CardView cardIncludeFe;
 
     private View includeFeCrypt;
-    private Navigator navigator;
 
     private static final String ARG_ALPHABET = "alphaviteCodes";
     private static final String ARG_N_INT = "n_int";
@@ -61,12 +61,6 @@ public class FragmentRSAcrypt extends Fragment implements CryptView, HasCustomTi
         FragmentRSAcrypt fragmentRSAcrypt = new FragmentRSAcrypt();
         fragmentRSAcrypt.setArguments(args);
         return fragmentRSAcrypt;
-    }
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        navigator = ((Navigator) context);
     }
 
     @Override
@@ -85,6 +79,7 @@ public class FragmentRSAcrypt extends Fragment implements CryptView, HasCustomTi
 
     @Override
     public void onViewCreated(@NonNull View v, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(v, savedInstanceState);
         cardIncludeFe = v.findViewById(R.id.cardIncludeFe);
         cardResultCrypt = v.findViewById(R.id.cardResultCrypt);
         cryptPresenter = new CryptPresenter(this);
@@ -127,6 +122,7 @@ public class FragmentRSAcrypt extends Fragment implements CryptView, HasCustomTi
     public void showCalculating(List<TableNumberFE> tableNumberFEList) {
         adapterFE.setTableNumberFES(tableNumberFEList);
         mRecyclerFeCrypt.setAdapter(adapterFE);
+        mRecyclerFeCrypt.setLayoutAnimation(layoutAnimationController);
     }
 
     @Override
@@ -160,11 +156,5 @@ public class FragmentRSAcrypt extends Fragment implements CryptView, HasCustomTi
         adapterFE = null;
         cryptPresenter = null;
         super.onDestroy();
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        navigator = null;
     }
 }

@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vad.modulchit.R;
+import com.vad.modulchit.screens.BaseFragment;
 import com.vad.modulchit.screens.adapters.AdapterFE;
 import com.vad.modulchit.screens.adapters.AdapterGCDe;
 import com.vad.modulchit.models.pojos.TableNumberFE;
@@ -32,7 +33,7 @@ import com.vad.modulchit.screens.rsa.decrypt.expldecrypt.FragmentDecryptExpl;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FragmentRSAdecrypt extends Fragment implements DecryptView, HasCustomTitle, HasCustomAction {
+public class FragmentRSAdecrypt extends BaseFragment implements DecryptView, HasCustomTitle, HasCustomAction {
 
     private EditText enterCodeDecrypt;
     private EditText editTextD;
@@ -57,7 +58,6 @@ public class FragmentRSAdecrypt extends Fragment implements DecryptView, HasCust
     private CardView cardGCDEreverse;
     private CardView cardIncludeFeDec;
     private CardView cardResultDecrypt;
-    private Navigator navigator;
 
     private static final String ARG_ALPAVITE_LIST = "alphaviteCodes";
     private static final String ARG_N_INT = "n_int";
@@ -82,12 +82,6 @@ public class FragmentRSAdecrypt extends Fragment implements DecryptView, HasCust
     }
 
     @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        navigator = ((Navigator) context);
-    }
-
-    @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         alphabetCodes = requireArguments().getIntegerArrayList(ARG_ALPAVITE_LIST);
@@ -108,6 +102,7 @@ public class FragmentRSAdecrypt extends Fragment implements DecryptView, HasCust
     @SuppressLint("SetTextI18n")
     @Override
     public void onViewCreated(@NonNull View v, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(v, savedInstanceState);
         cardResultDecrypt = v.findViewById(R.id.cardResultDecrypt);
         cardIncludeFeDec = v.findViewById(R.id.cardIncludeFeDec);
         cardGCDEreverse = v.findViewById(R.id.cardGCDEreverse);
@@ -155,9 +150,9 @@ public class FragmentRSAdecrypt extends Fragment implements DecryptView, HasCust
 
     @Override
     public void showCalculating(List<TableNumberFE> tableNumberFEList) {
-
         adapterFE.setTableNumberFES(tableNumberFEList);
         mRecyclerDecrypt.setAdapter(adapterFE);
+        mRecyclerDecrypt.setLayoutAnimation(layoutAnimationController);
     }
 
     @Override
@@ -198,11 +193,5 @@ public class FragmentRSAdecrypt extends Fragment implements DecryptView, HasCust
         presenter = null;
         adapterFE = null;
         super.onDestroy();
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        navigator = null;
     }
 }
