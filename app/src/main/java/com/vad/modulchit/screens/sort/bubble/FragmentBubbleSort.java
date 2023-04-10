@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.vad.modulchit.R;
 import com.vad.modulchit.models.animation.StepRecorder;
 import com.vad.modulchit.models.animation.common.RenderState;
+import com.vad.modulchit.screens.BaseFragment;
 import com.vad.modulchit.screens.contract.Navigator;
 import com.vad.modulchit.screens.sort.ScreenSort;
 import com.vad.modulchit.models.animation.common.StatusAnimation;
@@ -74,6 +75,11 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Scre
 
         render = customView.getRender();
         render.setScreenSort(this);
+
+        editText.setText("9 8 7 6 5 4 3 2 1");
+        int[] ar1 = Parser.parseToIntArray(editText.getText().toString());
+        sort.setStepRecorder(new StepRecorder());
+        render.setStateStart(sort.sorting(ar1));
 
         btn.setOnClickListener(v1 -> {
 

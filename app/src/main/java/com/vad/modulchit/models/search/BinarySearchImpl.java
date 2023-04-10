@@ -18,13 +18,14 @@ public class BinarySearchImpl implements BinarySearch{
         int tempHigh = arr.length;
         int elementPos = -1;
         String mark = "";
+        int midIndex = 0;
 
         while (low <= high) {
 
-            int midIndex = low + (high - low) / 2;
+            midIndex = low + (high - low) / 2;
 
             if (midIndex >= arr.length) {
-                binarySearchModel.add(new BinarySearchModel(new int[]{0}, element, "zero"));
+                binarySearchModel.add(new BinarySearchModel(new int[]{0}, low, midIndex, high, "zero"));
                 return binarySearchModel;
             }
 
@@ -39,7 +40,7 @@ public class BinarySearchImpl implements BinarySearch{
                 mark = " > ";
             }
 
-            binarySearchModel.add(new BinarySearchModel(tempArr, arr[midIndex], element + mark + arr[midIndex]));
+            binarySearchModel.add(new BinarySearchModel(tempArr, low, midIndex, high, element + mark + arr[midIndex]));
             mark = " = ";
 
             if (element == arr[midIndex]) {
@@ -51,10 +52,10 @@ public class BinarySearchImpl implements BinarySearch{
         }
 
         if(elementPos == -1) {
-            binarySearchModel.add(new BinarySearchModel(new int[]{0}, element, "zero"));
+            binarySearchModel.add(new BinarySearchModel(new int[]{0}, low, midIndex, high, "zero"));
             return binarySearchModel;
         }
-        binarySearchModel.add(new BinarySearchModel(new int[]{arr[elementPos]}, arr[elementPos], element + mark + arr[elementPos]));
+        binarySearchModel.add(new BinarySearchModel(new int[]{arr[elementPos]}, low, midIndex, high, element + mark + arr[elementPos]));
 
         return binarySearchModel;
 

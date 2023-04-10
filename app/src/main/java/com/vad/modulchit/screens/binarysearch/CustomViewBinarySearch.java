@@ -29,9 +29,9 @@ public class CustomViewBinarySearch extends View {
 
     public void searchElement(List<BinarySearchModel> binarySearchModels) {
         this.binarySearchModels = binarySearchModels;
-        this.maxWidth = getWidth() / binarySearchModels.get(0).getArrTemp().length;
+        this.maxWidth = getWidth() / binarySearchModels.get(0).getArr().length;
         this.maxHeight = 100;
-        this.widthContent = maxWidth * binarySearchModels.get(0).getArrTemp().length;
+        this.widthContent = maxWidth * binarySearchModels.get(0).getArr().length;
         requestLayout();
     }
 
@@ -75,30 +75,30 @@ public class CustomViewBinarySearch extends View {
         float shiftX = 0;
         float len = 0;
 
-        int length = binarySearchModels.get(0).getArrTemp().length;
+        int length = binarySearchModels.get(0).getArr().length;
         float xStart = (float) (length * maxWidth / 2) + STROKE_WITH;
         AtomicBoolean flag = new AtomicBoolean(true);
         int finalY = y;
         binarySearchModels.forEach(s -> {
             if (s.getCompareElementAndMid().equals("zero")) {
-                canvas.drawText("Element is absent " + s.getMidElement(), x+shiftDown, finalY+shiftDown, paintForCondition);
+                canvas.drawText("Element is absent " + s.getMid(), x+shiftDown, finalY+shiftDown, paintForCondition);
                 flag.set(false);
             }
         });
 
         if (flag.get()) {
             for (int i = 0; i < binarySearchModels.size() - 1; i++) {
-                drawArray(canvas, paint, binarySearchModels.get(i).getArrTemp(), x + shiftX, y, maxWidth, maxHeight, binarySearchModels.get(i).getMidElement());
+                drawArray(canvas, paint, binarySearchModels.get(i).getArr(), x + shiftX, y, maxWidth, maxHeight, binarySearchModels.get(i).getMid());
                 drawArrow(canvas, paint, xStart, y + maxHeight, xStart, y + maxHeight + shiftDown);
                 canvas.drawText(binarySearchModels.get(i).getCompareElementAndMid(), xStart + 10, y + maxHeight + shiftDown / 2, paintForCondition);
                 y = y + maxHeight + shiftDown;
                 if (i + 1 < binarySearchModels.size()) {
-                    len = binarySearchModels.get(i + 1).getArrTemp().length * maxWidth;
+                    len = binarySearchModels.get(i + 1).getArr().length * maxWidth;
                 }
                 shiftX = (widthContent - len) / 2;
             }
 
-            drawArray(canvas, paint, binarySearchModels.get(binarySearchModels.size() - 1).getArrTemp(), x + shiftX, y, maxWidth, maxWidth);
+            drawArray(canvas, paint, binarySearchModels.get(binarySearchModels.size() - 1).getArr(), x + shiftX, y, maxWidth, maxWidth);
         }
     }
 

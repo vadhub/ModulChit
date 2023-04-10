@@ -64,11 +64,19 @@
             android:layout_gravity="center"
             android:text="@string/calc" />
 
-        <com.vad.modulchit.screens.binarysearch.CustomViewBinarySearch
-            android:id="@+id/binary_search"
+        <HorizontalScrollView
+            android:scrollbars="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="8sp" />
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/rootLinear"
+                android:paddingHorizontal="2dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </LinearLayout>
+        </HorizontalScrollView>
 
     </LinearLayout>
 </ScrollView>

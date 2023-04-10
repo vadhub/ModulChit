@@ -4,30 +4,57 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class BinarySearchModel {
-    private int[] arrTemp;
-    private int midElement;
+    private int[] arr;
+    private int low;
+    private int mid;
+    private int high;
     private String compareElementAndMid;
 
     public BinarySearchModel(int[] arrTemp, int midElement, String compareElementAndMid) {
-        this.arrTemp = arrTemp;
-        this.midElement = midElement;
+        this.arr = arrTemp;
+        this.mid = midElement;
         this.compareElementAndMid = compareElementAndMid;
     }
 
-    public int[] getArrTemp() {
-        return arrTemp;
+    public BinarySearchModel(int[] arrTemp, int low, int midElement, int high, String compareElementAndMid) {
+        this.arr = arrTemp;
+        this.low = low;
+        this.mid = midElement;
+        this.high = high;
+        this.compareElementAndMid = compareElementAndMid;
     }
 
-    public void setArrTemp(int[] arrTemp) {
-        this.arrTemp = arrTemp;
+
+    public int[] getArr() {
+        return arr;
     }
 
-    public int getMidElement() {
-        return midElement;
+    public void setArr(int[] arr) {
+        this.arr = arr;
     }
 
-    public void setMidElement(int midElement) {
-        this.midElement = midElement;
+    public int getLow() {
+        return low;
+    }
+
+    public void setLow(int low) {
+        this.low = low;
+    }
+
+    public int getMid() {
+        return mid;
+    }
+
+    public void setMid(int mid) {
+        this.mid = mid;
+    }
+
+    public int getHigh() {
+        return high;
+    }
+
+    public void setHigh(int high) {
+        this.high = high;
     }
 
     public String getCompareElementAndMid() {
@@ -43,21 +70,21 @@ public class BinarySearchModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         BinarySearchModel that = (BinarySearchModel) o;
-        return midElement == that.midElement && Arrays.equals(arrTemp, that.arrTemp) && Objects.equals(compareElementAndMid, that.compareElementAndMid);
+        return mid == that.mid && Arrays.equals(arr, that.arr) && Objects.equals(compareElementAndMid, that.compareElementAndMid);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(midElement, compareElementAndMid);
-        result = 31 * result + Arrays.hashCode(arrTemp);
+        int result = Objects.hash(mid, compareElementAndMid);
+        result = 31 * result + Arrays.hashCode(arr);
         return result;
     }
 
     @Override
     public String toString() {
         return "BinarySearchModel{" +
-                "arrTemp=" + Arrays.toString(arrTemp) +
-                ", midElement=" + midElement +
+                "arrTemp=" + Arrays.toString(arr) +
+                ", midElement=" + mid +
                 ", compareElementAndMid='" + compareElementAndMid + '\'' +
                 '}';
     }

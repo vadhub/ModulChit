@@ -11,10 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.vad.modulchit.R;
 import com.vad.modulchit.models.pojos.BinarySearchModel;
+import com.vad.modulchit.models.search.BinarySearch;
 import com.vad.modulchit.screens.contract.HasCustomTitle;
 import com.vad.modulchit.models.Parser;
 import com.vad.modulchit.models.search.BinarySearchImpl;
@@ -26,7 +28,6 @@ public class FragmentBinarySearch extends Fragment implements HasCustomTitle {
 
     private EditText editTextArray;
     private EditText editTextElement;
-    private CustomViewBinarySearch customViewBinarySearch;
     private final BinarySearchImpl binarySearch = new BinarySearchImpl();
     private Navigator navigator;
 
@@ -46,7 +47,9 @@ public class FragmentBinarySearch extends Fragment implements HasCustomTitle {
     public void onViewCreated(@NonNull View v, @Nullable Bundle savedInstanceState) {
         editTextArray = (EditText) v.findViewById(R.id.editTextEnterArray);
         editTextElement = (EditText) v.findViewById(R.id.editTextEnterElement);
-        customViewBinarySearch = v.findViewById(R.id.binary_search);
+
+        LinearLayout linearRoot = (LinearLayout) v.findViewById(R.id.rootLinear);
+        BinarySearchView binarySearchView = new BinarySearchView(getContext(), linearRoot);
 
         v.findViewById(R.id.btnBinarySearch).setOnClickListener(v1 -> {
             navigator.hideKeyBoard();
@@ -56,7 +59,7 @@ public class FragmentBinarySearch extends Fragment implements HasCustomTitle {
             }
 
             List<BinarySearchModel> binarySearchModels = binarySearch.search(Parser.parseToIntArray(editTextArray.getText().toString()), Integer.parseInt(editTextElement.getText().toString()));
-            customViewBinarySearch.searchElement(binarySearchModels);
+            binarySearchView.search(binarySearchModels);
         });
     }
 

@@ -26,7 +26,7 @@ public class BinarySearchUnitTest {
         searchModelList.add(new BinarySearchModel(new int[]{4}, 4, "4 = 4"));
         searchModelList.add(new BinarySearchModel(new int[]{4}, 4, "4 = 4"));
 
-        searchModelList.forEach(it -> tempArr.add(it.getArrTemp()));
+        searchModelList.forEach(it -> tempArr.add(it.getArr()));
     }
 
     @Test
@@ -38,7 +38,7 @@ public class BinarySearchUnitTest {
     @Test
     public void binarySearchTempArray_isCorrect() {
         List<int[]> tempar = new ArrayList<>();
-        binarySearch.search(arr, element).forEach(it -> tempar.add(it.getArrTemp()));
+        binarySearch.search(arr, element).forEach(it -> tempar.add(it.getArr()));
 
         for (int i = 0; i < tempar.size(); i++) {
             assertEquals(Arrays.toString(tempar.get(i)), Arrays.toString(tempArr.get(i)));
