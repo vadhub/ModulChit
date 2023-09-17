@@ -57,6 +57,7 @@
             android:id="@+id/log"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:textSize="18sp"
             android:layout_marginTop="8dp"
             android:scrollbars="horizontal" />
 
