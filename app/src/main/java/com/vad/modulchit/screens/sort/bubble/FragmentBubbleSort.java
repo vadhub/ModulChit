@@ -42,7 +42,7 @@ public class FragmentBubbleSort extends Fragment implements HasCustomTitle, Scre
     private RenderState render;
     private Sort sort;
     private TextView log;
-    private StringBuilder logs;
+    private StringBuilder logs = new StringBuilder();
     private Navigator navigator;
 
     @Override
