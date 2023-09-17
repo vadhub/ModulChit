@@ -44,7 +44,7 @@ Screenshots:
 ![alt text](https://github.com/vadhub/ModulChit/blob/master/rsa2.png)
 ![alt text](https://github.com/vadhub/ModulChit/blob/master/rsa3.png)
 
-- Binary search
+- Binary search tree customview
 
 ![alt text](https://github.com/vadhub/ModulChit/blob/master/UY5uZqM0LZs.jpg)
 
