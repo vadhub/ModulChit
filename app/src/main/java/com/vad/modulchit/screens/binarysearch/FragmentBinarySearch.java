@@ -45,10 +45,13 @@ public class FragmentBinarySearch extends Fragment implements HasCustomTitle {
 
     @Override
     public void onViewCreated(@NonNull View v, @Nullable Bundle savedInstanceState) {
-        editTextArray = (EditText) v.findViewById(R.id.editTextEnterArray);
-        editTextElement = (EditText) v.findViewById(R.id.editTextEnterElement);
+        editTextArray = v.findViewById(R.id.editTextEnterArray);
+        editTextElement = v.findViewById(R.id.editTextEnterElement);
 
-        LinearLayout linearRoot = (LinearLayout) v.findViewById(R.id.rootLinear);
+        editTextArray.setText("1 2 3 4 5 6 7 8 9");
+        editTextElement.setText("2");
+
+        LinearLayout linearRoot = v.findViewById(R.id.rootLinear);
         BinarySearchView binarySearchView = new BinarySearchView(getContext(), linearRoot);
 
         v.findViewById(R.id.btnBinarySearch).setOnClickListener(v1 -> {

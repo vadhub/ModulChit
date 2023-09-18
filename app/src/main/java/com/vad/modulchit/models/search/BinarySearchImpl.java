@@ -30,21 +30,24 @@ public class BinarySearchImpl implements BinarySearch{
             }
 
             if (element < arr[midIndex]) {
+                mark = " < ";
+                binarySearchModel.add(new BinarySearchModel(tempArr, low, midIndex, high, element + mark + arr[midIndex]));
                 high = midIndex - 1;
                 tempHigh = midIndex;
-                mark = " < ";
             }
 
             if (element > arr[midIndex]) {
-                low = midIndex + 1;
                 mark = " > ";
+                binarySearchModel.add(new BinarySearchModel(tempArr, low, midIndex, high, element + mark + arr[midIndex]));
+                low = midIndex + 1;
             }
 
-            binarySearchModel.add(new BinarySearchModel(tempArr, low, midIndex, high, element + mark + arr[midIndex]));
-            mark = " = ";
-
             if (element == arr[midIndex]) {
+                mark = " = ";
+                binarySearchModel.add(new BinarySearchModel(tempArr, low, midIndex, high, element + mark + arr[midIndex]));
                 elementPos = midIndex;
+                low = midIndex;
+                high = midIndex;
                 break;
             }
 
@@ -55,6 +58,7 @@ public class BinarySearchImpl implements BinarySearch{
             binarySearchModel.add(new BinarySearchModel(new int[]{0}, low, midIndex, high, "zero"));
             return binarySearchModel;
         }
+
         binarySearchModel.add(new BinarySearchModel(new int[]{arr[elementPos]}, low, midIndex, high, element + mark + arr[elementPos]));
 
         return binarySearchModel;

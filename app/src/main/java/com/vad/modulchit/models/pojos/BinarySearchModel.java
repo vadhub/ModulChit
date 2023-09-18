@@ -83,8 +83,10 @@ public class BinarySearchModel {
     @Override
     public String toString() {
         return "BinarySearchModel{" +
-                "arrTemp=" + Arrays.toString(arr) +
-                ", midElement=" + mid +
+                "arr=" + Arrays.toString(arr) +
+                ", low=" + low +
+                ", mid=" + mid +
+                ", high=" + high +
                 ", compareElementAndMid='" + compareElementAndMid + '\'' +
                 '}';
     }

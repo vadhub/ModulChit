@@ -1,6 +1,7 @@
 package com.vad.modulchit.screens.binarysearch;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,16 +29,17 @@ public class BinarySearchView {
 
     public void search(List<BinarySearchModel> searchModels) {
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
         params.gravity = Gravity.CENTER_HORIZONTAL;
 
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        for (BinarySearchModel b : searchModels) {
-            System.out.println(Arrays.toString(b.getArr()) + " low " + b.getLow() + " mid " + b.getMid() + " high " + b.getHigh() + " compare " + b.getCompareElementAndMid());
-        }
-
         LinearLayout linearLayout;
+
+        int[] arr = searchModels.get(0).getArr();
+
+        for (BinarySearchModel b : searchModels) {
+            Log.d("##bb", b.toString());
+        }
 
         for (int k = 0; k < searchModels.size(); k++) {
             linearLayout = new LinearLayout(context);
@@ -49,13 +51,13 @@ public class BinarySearchView {
             arrow.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
                     FrameLayout.LayoutParams.WRAP_CONTENT));
 
-            for (int i = 0; i < searchModels.get(k).getArr().length; i++) {
+            for (int i = searchModels.get(k).getLow(); i < searchModels.get(k).getHigh(); i++) {
                 View view = inflater.inflate(R.layout.item_element, linearRoot, false);
                 TextView index = view.findViewById(R.id.index);
                 TextView elementText = view.findViewById(R.id.element);
 
                 index.setText(i + "");
-                elementText.setText(searchModels.get(k).getArr()[i] + "");
+                elementText.setText(arr[i] + "");
 
                 linearLayout.addView(view);
             }
