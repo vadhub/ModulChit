@@ -43,13 +43,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="8dp"
+                android:hint="3"
                 android:layout_weight="0.3">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextEnterElement"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="3"
                     android:inputType="textPersonName"
                     android:maxLength="3" />
             </com.google.android.material.textfield.TextInputLayout>
