@@ -1,5 +1,16 @@
 package com.vad.modulchit.screens.mainactivity;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,23 +21,13 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-
 import com.vad.modulchit.R;
 import com.vad.modulchit.screens.contract.CustomActionFragment;
 import com.vad.modulchit.screens.contract.HasCustomAction;
 import com.vad.modulchit.screens.contract.HasCustomTitle;
 import com.vad.modulchit.screens.contract.Navigator;
 import com.vad.modulchit.screens.menu.FragmentMenu;
-import com.yandex.mobile.ads.banner.AdSize;
+import com.yandex.mobile.ads.banner.BannerAdSize;
 import com.yandex.mobile.ads.banner.BannerAdView;
 import com.yandex.mobile.ads.common.AdRequest;
 
@@ -45,8 +46,8 @@ public class MainActivity extends AppCompatActivity implements Navigator {
         setSupportActionBar(toolbar);
 
         BannerAdView mBanner = (BannerAdView) findViewById(R.id.adView);
-        mBanner.setAdUnitId("R-M-2167912-1");
-        mBanner.setAdSize(AdSize.stickySize(AdSize.FULL_SCREEN.getWidth()));
+        mBanner.setAdUnitId("R-M-1981935-1");
+        mBanner.setAdSize(getAdSize(mBanner));
         AdRequest adRequest = new AdRequest.Builder().build();
         mBanner.loadAd(adRequest);
 
@@ -54,6 +55,20 @@ public class MainActivity extends AppCompatActivity implements Navigator {
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_replace, new FragmentMenu()).commit();
     }
 
+    private BannerAdSize getAdSize(BannerAdView mBanner) {
+
+        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+        int adWidthPixels = mBanner.getWidth();
+
+        if (adWidthPixels == 0) {
+            // If the ad hasn't been laid out, default to the full screen width
+            adWidthPixels = displayMetrics.widthPixels;
+        }
+
+        int adWidth = Math.round(adWidthPixels / displayMetrics.density);
+        return BannerAdSize.stickySize(this, adWidth);
+
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         updateOnUI();
