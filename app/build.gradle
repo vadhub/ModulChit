@@ -10,8 +10,8 @@ android {
         applicationId "com.vad.modulchit"
         minSdkVersion 24
         targetSdkVersion 33
-        versionCode 9
-        versionName "1.6.5"
+        versionCode 13
+        versionName "1.6.9"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
