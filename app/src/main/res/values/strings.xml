@@ -80,5 +80,8 @@
     <string name="calc">calc</string>
     <string name="old_version">old version</string>
     <string name="about">About</string>
+    <string name="github_vadhub" translatable="false">GitHub: <u>vadhub</u></string>
+    <string name="email" translatable="false">Email: <u>gabderahmanov99@gmail.com</u></string>
+    <string name="send_message">Send message</string>
 
 </resources>

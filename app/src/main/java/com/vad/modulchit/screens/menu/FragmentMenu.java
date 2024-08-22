@@ -2,6 +2,9 @@ package com.vad.modulchit.screens.menu;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -9,11 +12,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.vad.modulchit.R;
+import com.vad.modulchit.screens.AboutFragment;
 import com.vad.modulchit.screens.adapters.AdapterMenu;
 import com.vad.modulchit.screens.binarysearch.FragmentBinarySearch;
 import com.vad.modulchit.screens.contract.CustomActionFragment;
@@ -114,6 +114,8 @@ public class FragmentMenu extends Fragment implements HasCustomTitle, HasCustomA
 
     @Override
     public CustomActionFragment setCustomAction(Navigator navigator) {
-        return null;
+        return new CustomActionFragment(R.drawable.ic_baseline_info_24,() -> {
+            navigator.startFragment(new AboutFragment());
+        });
     }
 }

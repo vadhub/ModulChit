@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
@@ -49,7 +50,7 @@
                 style="@style/TextViewAboutActivity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Email" />
+                android:text="@string/email" />
 
             <View
                 android:layout_width="match_parent"
@@ -61,7 +62,7 @@
                 style="@style/TextViewAboutActivity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="GitHub" />
+                android:text="@string/github_vadhub" />
 
         </LinearLayout>
     </ScrollView>

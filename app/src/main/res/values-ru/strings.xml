@@ -77,4 +77,5 @@
     <string name="calc">calc</string>
     <string name="old_version">старая версия</string>
     <string name="about">О нас</string>
+    <string name="send_message">Отправить сообщение</string>
 </resources>
