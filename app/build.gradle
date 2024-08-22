@@ -3,13 +3,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion 33
+    compileSdkVersion 34
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.vad.modulchit"
         minSdkVersion 24
-        targetSdkVersion 33
+        targetSdkVersion 34
         versionCode 13
         versionName "1.6.9"
 
@@ -35,10 +35,10 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    implementation "io.reactivex.rxjava3:rxjava:3.x.y"
+    implementation "io.reactivex.rxjava3:rxjava:3.0.0"
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.9.1'
-    implementation 'com.yandex.android:mobileads:6.0.1'
+    implementation 'com.yandex.android:mobileads:7.3.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     androidTestImplementation 'androidx.test:runner:1.4.0'
     testImplementation 'junit:junit:4.+'
