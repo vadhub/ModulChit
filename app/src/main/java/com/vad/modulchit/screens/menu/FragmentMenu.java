@@ -16,6 +16,8 @@ import android.view.ViewGroup;
 import com.vad.modulchit.R;
 import com.vad.modulchit.screens.adapters.AdapterMenu;
 import com.vad.modulchit.screens.binarysearch.FragmentBinarySearch;
+import com.vad.modulchit.screens.contract.CustomActionFragment;
+import com.vad.modulchit.screens.contract.HasCustomAction;
 import com.vad.modulchit.screens.contract.HasCustomTitle;
 import com.vad.modulchit.screens.contract.Navigator;
 import com.vad.modulchit.screens.fe.FragmentFE;
@@ -31,7 +33,7 @@ import com.vad.modulchit.screens.sort.shell.FragmentShellSort;
 import java.util.Arrays;
 import java.util.List;
 
-public class FragmentMenu extends Fragment implements HasCustomTitle {
+public class FragmentMenu extends Fragment implements HasCustomTitle, HasCustomAction {
 
     private AdapterMenu adapter;
     private Navigator navigator;
@@ -108,5 +110,10 @@ public class FragmentMenu extends Fragment implements HasCustomTitle {
     public void onDetach() {
         super.onDetach();
         navigator = null;
+    }
+
+    @Override
+    public CustomActionFragment setCustomAction(Navigator navigator) {
+        return null;
     }
 }

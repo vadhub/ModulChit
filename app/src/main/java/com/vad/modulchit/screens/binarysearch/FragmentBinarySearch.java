@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -51,18 +52,31 @@ public class FragmentBinarySearch extends Fragment implements HasCustomTitle {
         editTextArray.setText("1 2 3 4 5 6 7 8 9");
         editTextElement.setText("2");
 
+        CheckBox oldVersion = v.findViewById(R.id.oldVersion);
+
         LinearLayout linearRoot = v.findViewById(R.id.rootLinear);
-        BinarySearchView binarySearchView = new BinarySearchView(getContext(), linearRoot);
+        CustomViewBinarySearch customViewBinarySearch = v.findViewById(R.id.customViewSearch);
 
         v.findViewById(R.id.btnBinarySearch).setOnClickListener(v1 -> {
+            List<BinarySearchModel> binarySearchModels = binarySearch.search(Parser.parseToIntArray(editTextArray.getText().toString()), Integer.parseInt(editTextElement.getText().toString()));
             navigator.hideKeyBoard();
             if (editTextArray.getText().toString().equals("") || editTextElement.getText().toString().equals("")) {
                 Toast.makeText(getActivity(), R.string.warning_enter_text, Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            List<BinarySearchModel> binarySearchModels = binarySearch.search(Parser.parseToIntArray(editTextArray.getText().toString()), Integer.parseInt(editTextElement.getText().toString()));
-            binarySearchView.search(binarySearchModels);
+            if (oldVersion.isChecked()) {
+                customViewBinarySearch.searchElement(binarySearchModels);
+                linearRoot.setVisibility(View.GONE);
+                customViewBinarySearch.setVisibility(View.VISIBLE);
+                customViewBinarySearch.invalidate();
+            } else {
+                linearRoot.removeAllViews();
+                BinarySearchView binarySearchView = new BinarySearchView(getContext(), linearRoot);
+                linearRoot.setVisibility(View.VISIBLE);
+                customViewBinarySearch.setVisibility(View.GONE);
+                binarySearchView.search(binarySearchModels);
+            }
         });
     }
 

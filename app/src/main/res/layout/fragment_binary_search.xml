@@ -15,6 +15,12 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <CheckBox
+            android:id="@+id/oldVersion"
+            android:text="@string/old_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -63,6 +69,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/calc" />
+
+        <com.vad.modulchit.screens.binarysearch.CustomViewBinarySearch
+            android:id="@+id/customViewSearch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
         <HorizontalScrollView
             android:scrollbars="horizontal"
