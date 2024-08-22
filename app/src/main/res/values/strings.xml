@@ -78,5 +78,7 @@
     <string name="mg_2">Algorithm is simple gcde. Take numbers that a = 1</string>
     <string name="mg_3">Result is 1; 2; 3; 4.</string>
     <string name="calc">calc</string>
+    <string name="old_version">old version</string>
+    <string name="about">About</string>
 
 </resources>
