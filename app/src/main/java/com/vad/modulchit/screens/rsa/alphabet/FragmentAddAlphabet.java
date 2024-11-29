@@ -83,13 +83,10 @@ public class FragmentAddAlphabet extends Fragment implements AlphabetView, HasCu
 
     private final View.OnClickListener radioButtonClick = view -> {
         RadioButton radioButton = (RadioButton) view;
-        switch (radioButton.getId()) {
-            case R.id.radioButtonEncrypt:
-                isEncrypt = true;
-                break;
-            case R.id.radioButtonDecrypt:
-                isEncrypt = false;
-                break;
+        if (radioButton.getId() == R.id.radioButtonEncrypt) {
+            isEncrypt = true;
+        } else if(radioButton.getId() == R.id.radioButtonDecrypt) {
+            isEncrypt = false;
         }
     };
 
